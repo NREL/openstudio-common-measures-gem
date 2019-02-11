@@ -27,7 +27,7 @@
 ########################################################################################################################
 
 require "bundler/setup"
-require "openstudio/model-articulation"
+require "openstudio/common-measures"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

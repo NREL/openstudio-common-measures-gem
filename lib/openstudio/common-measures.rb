@@ -26,7 +26,7 @@
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ########################################################################################################################
 
-require "openstudio/model-articulation/version"
+require "openstudio/common-measures/version"
 require "openstudio/extension"
 
 module OpenStudio
