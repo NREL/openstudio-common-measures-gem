@@ -41,6 +41,6 @@ RSpec.describe OpenStudio::CommonMeasures do
 
   it 'has a measures directory' do
     instance = OpenStudio::CommonMeasures::CommonMeasures.new
-    expect(File.exists?(File.join(instance.measures_dir, 'BarAspectRatioStudy/'))).to be true
+    expect(File.exists?(File.join(instance.measures_dir, 'ChangeBuildingLocation/'))).to be true
   end
 end

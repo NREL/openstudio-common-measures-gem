@@ -41,13 +41,23 @@ module OpenStudio
       
       # Return the absolute path of the measures or nil if there is none, can be used when configuring OSWs
       def measures_dir
-        return File.absolute_path(File.join(File.dirname(__FILE__), '../measures/'))
+        return File.absolute_path(File.join(root_dir, 'lib/measures/'))
       end
-
+      
+      # Return the absolute path of the measures resources dir or nil if there is none
+      def measure_resources_dir
+        return File.absolute_path(File.join(root_dir, 'lib/measure_resources/'))
+      end
+      
+      # Return the absolute path of the measures files dir or nil if there is none
+      def measure_files_dir
+        return File.absolute_path(File.join(root_dir, 'lib/measure_files/'))
+      end
+      
       # Relevant files such as weather data, design days, etc.
       # return the absolute path of the files or nil if there is none, can be used when configuring OSWs
       def files_dir
-        return File.absolute_path(File.join(File.dirname(__FILE__), '../files/'))
+        return File.absolute_path(File.join(root_dir, 'lib/files/'))
       end
 
       # return the absolute path of root of this gem
