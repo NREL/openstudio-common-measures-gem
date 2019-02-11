@@ -1,0 +1,90 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>set_run_period</name>
+  <uid>7a84292a-3975-4ab3-9284-6edabcbe750b</uid>
+  <version_id>d44923db-6aaf-46b6-9d93-3bb27a1816ff</version_id>
+  <version_modified>20170615T203344Z</version_modified>
+  <xml_checksum>2AF3A68E</xml_checksum>
+  <class_name>SetRunPeriod</class_name>
+  <display_name>SetRunPeriod</display_name>
+  <description>Sets the run period and timestep for simulation</description>
+  <modeler_description></modeler_description>
+  <arguments>
+    <argument>
+      <name>timesteps_per_hour</name>
+      <display_name>Timesteps per hour</display_name>
+      <description>Number of simulation timesteps per hour</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>begin_date</name>
+      <display_name>Begin date</display_name>
+      <description>Simulation start date, YYYY-MM-DD format</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>end_date</name>
+      <display_name>End date</display_name>
+      <description>Simulation end date, YYYY-MM-DD format</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <filename>set_run_period_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FAD633EF</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>7D1FDAF0</checksum>
+    </file>
+  </files>
+</measure>
