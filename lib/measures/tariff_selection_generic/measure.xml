@@ -1,0 +1,235 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>tariff_selection_generic</name>
+  <uid>d65ae535-f0ea-4745-9f5b-8d42c7070741</uid>
+  <version_id>5cf48020-e0a5-408f-a473-66fbbd5babce</version_id>
+  <version_modified>20180710T213339Z</version_modified>
+  <xml_checksum>43564105</xml_checksum>
+  <class_name>TariffSelectionGeneric</class_name>
+  <display_name> Tariff Selection-Generic</display_name>
+  <description>This measure creates tariff objets from pre-poulated IDF files in the measures "resoruces" directory.</description>
+  <modeler_description>The timestep for the simulation will be changed to four timesteps per hour to me more compatable with a variety of demand window lnegths that may be in tariff objects in the resources directory.</modeler_description>
+  <arguments>
+    <argument>
+      <name>ElectricityPurchased:Facility</name>
+      <display_name>Select a Tariff for ElectricityPurchased:Facility.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Example_A</default_value>
+      <choices>
+        <choice>
+          <value>Example_A</value>
+          <display_name>Example A FlatEnergyCharge</display_name>
+        </choice>
+        <choice>
+          <value>Example_B</value>
+          <display_name>Example B BlockEnergyCharge</display_name>
+        </choice>
+        <choice>
+          <value>Example_C</value>
+          <display_name>Example C BlockEnergyAndDemandCharges</display_name>
+        </choice>
+        <choice>
+          <value>Example_D</value>
+          <display_name>Example D SeasonalEnergyCharngesWithMinimumCharge</display_name>
+        </choice>
+        <choice>
+          <value>Example_E</value>
+          <display_name>Example E KWh per kW Energy Charges</display_name>
+        </choice>
+        <choice>
+          <value>Example_F</value>
+          <display_name>Example F SeasonalTimeOfUseEnergy</display_name>
+        </choice>
+        <choice>
+          <value>Example_G</value>
+          <display_name>Example G BlocksWithinBlocks</display_name>
+        </choice>
+        <choice>
+          <value>Example_H</value>
+          <display_name>Example H RealTimePricing</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>Gas:Facility</name>
+      <display_name>Select a Tariff for Gas:Facility.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>FlatEnergyCharge-Gas</default_value>
+      <choices>
+        <choice>
+          <value>FlatEnergyCharge-Gas</value>
+          <display_name>FlatEnergyCharge-Gas</display_name>
+        </choice>
+        <choice>
+          <value>IN-EIAMonthlyRateGas</value>
+          <display_name>IN EIAMonthlyRateGas</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Economics.Life Cycle Cost Analysis</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Function</name>
+      <value>Measure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Requires EnergyPlus Results</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>EnergyPlusMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>New Construction EE</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Retrofit EE</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>EnvelopeAndLoadTestModel_01.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E11F67BD</checksum>
+    </file>
+    <file>
+      <filename>Example_E.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>98AC420A</checksum>
+    </file>
+    <file>
+      <filename>FlatEnergyCharge-Gas.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>300CF076</checksum>
+    </file>
+    <file>
+      <filename>IN-EIAMonthlyRateGas.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>6AA3EBFF</checksum>
+    </file>
+    <file>
+      <filename>Example_A.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>5DABBCE9</checksum>
+    </file>
+    <file>
+      <filename>Example_B.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>88F3D8D5</checksum>
+    </file>
+    <file>
+      <filename>Example_C.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B53143E2</checksum>
+    </file>
+    <file>
+      <filename>Example_D.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>DA5EBB8B</checksum>
+    </file>
+    <file>
+      <filename>Example_F.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>006078CC</checksum>
+    </file>
+    <file>
+      <filename>Example_G.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9899FD33</checksum>
+    </file>
+    <file>
+      <filename>Example_H.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>1F984D08</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9CFC43FB</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>364AD9F4</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>329A5893</checksum>
+    </file>
+    <file>
+      <filename>tariff_selection_generic_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FB49C385</checksum>
+    </file>
+  </files>
+</measure>
