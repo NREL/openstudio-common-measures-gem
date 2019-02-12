@@ -1,13 +1,13 @@
-# OpenStudio ModelArticulation
+# OpenStudio Common Measures 
 
-Library and measures for OpenStudio Model Articulation.
+Common measures used by OpenStudio.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'openstudio-model-articulation'
+gem 'openstudio-common-measures'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install 'openstudio-model-articulation'
+    $ gem install 'openstudio-common-measures'
 
 ## Usage
 
@@ -24,14 +24,13 @@ To be filled out later.
 
 ## TODO
 
-- [ ] Move articulation measures from openstudio-measures
-- [ ] Move articulation measure lib files to openstudio-extension lib
-- [ ] Update measures to correct naming conventions 
+- [ ] Remove measures from OpenStudio-Measures to standardize on this location
+- [ ] Update measures to code standards
 
 # Releasing
 
 * Update change log
-* Update version in `/lib/openstudio/model-articulation/version.rb`
+* Update version in `/lib/openstudio/common_measures/version.rb`
 * Merge down to master
 * Release via github
 * run `rake release` from master
