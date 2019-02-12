@@ -33,12 +33,6 @@ RSpec.describe OpenStudio::CommonMeasures do
     expect(OpenStudio::CommonMeasures::VERSION).not_to be nil
   end
 
-  it 'has a base version number' do
-    instance = OpenStudio::CommonMeasures::CommonMeasures.new
-    expect(instance.version).not_to be nil
-    expect(instance.version).to eq(OpenStudio::CommonMeasures::VERSION)
-  end
-
   it 'has a measures directory' do
     instance = OpenStudio::CommonMeasures::CommonMeasures.new
     expect(File.exists?(File.join(instance.measures_dir, 'ChangeBuildingLocation/'))).to be true

@@ -27,7 +27,7 @@
 ########################################################################################################################
 
 require "bundler/setup"
-require "openstudio/common-measures"
+require "openstudio/common_measures"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

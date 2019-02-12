@@ -26,43 +26,18 @@
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ########################################################################################################################
 
-require "openstudio/common-measures/version"
+require "openstudio/common_measures/version"
 require "openstudio/extension"
 
 module OpenStudio
   module CommonMeasures
     class CommonMeasures < OpenStudio::Extension::Extension
-      # include OpenStudio::Extension
       
-      # Return the version of the OpenStudio Extension Gem
-      def version
-        OpenStudio::CommonMeasures::VERSION
-      end
-      
-      # Return the absolute path of the measures or nil if there is none, can be used when configuring OSWs
-      def measures_dir
-        return File.absolute_path(File.join(root_dir, 'lib/measures/'))
-      end
-      
-      # Return the absolute path of the measures resources dir or nil if there is none
-      def measure_resources_dir
-        return File.absolute_path(File.join(root_dir, 'lib/measure_resources/'))
-      end
-      
-      # Return the absolute path of the measures files dir or nil if there is none
-      def measure_files_dir
-        return File.absolute_path(File.join(root_dir, 'lib/measure_files/'))
-      end
-      
-      # Relevant files such as weather data, design days, etc.
-      # return the absolute path of the files or nil if there is none, can be used when configuring OSWs
-      def files_dir
-        return File.absolute_path(File.join(root_dir, 'lib/files/'))
-      end
-
-      # return the absolute path of root of this gem
-      def root_dir
-        return File.absolute_path(File.join(File.dirname(__FILE__), '../../'))
+      # Override parent class
+      def initialize
+        super 
+        
+        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
       end
       
     end
