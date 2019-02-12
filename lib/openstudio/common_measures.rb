@@ -26,20 +26,18 @@
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ########################################################################################################################
 
-require "openstudio/common_measures/version"
-require "openstudio/extension"
+require 'openstudio/common_measures/version'
+require 'openstudio/extension'
 
 module OpenStudio
   module CommonMeasures
     class CommonMeasures < OpenStudio::Extension::Extension
-      
       # Override parent class
       def initialize
-        super 
-        
+        super
+
         @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
       end
-      
     end
   end
 end

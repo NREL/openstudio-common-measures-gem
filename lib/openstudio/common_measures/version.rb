@@ -27,7 +27,7 @@
 ########################################################################################################################
 
 module OpenStudio
-  module CommonMeasures 
-    VERSION = "0.0.1"
+  module CommonMeasures
+    VERSION = '0.0.1'.freeze
   end
 end
