@@ -26,18 +26,17 @@
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ########################################################################################################################
 
-require 'bundler/gem_tasks'
-require 'rspec/core/rake_task'
+require 'openstudio/extension'
 
-RSpec::Core::RakeTask.new(:spec)
+module OpenStudio
+  module CommonMeasures
+    class Extension < OpenStudio::Extension::Extension
+      # Override parent class
+      def initialize
+        super
 
-require 'rubocop/rake_task'
-RuboCop::RakeTask.new
-
-# Load in the rake tasks from the base extension gem
-require 'openstudio/extension/rake_task'
-require 'openstudio/common_measures'
-rake_task = OpenStudio::Extension::RakeTask.new
-rake_task.set_extension_class(OpenStudio::CommonMeasures::Extension)
-
-task default: :spec
+        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..', '..'))
+      end
+    end
+  end
+end

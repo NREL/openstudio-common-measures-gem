@@ -34,7 +34,7 @@ RSpec.describe OpenStudio::CommonMeasures do
   end
 
   it 'has a measures directory' do
-    instance = OpenStudio::CommonMeasures::CommonMeasures.new
+    instance = OpenStudio::CommonMeasures::Extension.new
     expect(File.exist?(File.join(instance.measures_dir, 'ChangeBuildingLocation/'))).to be true
   end
 end

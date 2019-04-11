@@ -27,17 +27,4 @@
 ########################################################################################################################
 
 require 'openstudio/common_measures/version'
-require 'openstudio/extension'
-
-module OpenStudio
-  module CommonMeasures
-    class CommonMeasures < OpenStudio::Extension::Extension
-      # Override parent class
-      def initialize
-        super
-
-        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
-      end
-    end
-  end
-end
+require 'openstudio/common_measures/extension'
