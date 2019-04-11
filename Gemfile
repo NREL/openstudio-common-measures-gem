@@ -3,7 +3,9 @@ source 'http://rubygems.org'
 # Specify your gem's dependencies in openstudio-model-articulation.gemspec
 gemspec
 
-if File.exist?('../openstudio-extension-gem')
+allow_local = false
+
+if allow_local && File.exist?('../openstudio-extension-gem')
   # gem 'openstudio-extension', github: 'NREL/openstudio-extension-gem', branch: 'develop'
   gem 'openstudio-extension', path: '../openstudio-extension-gem'
 else
