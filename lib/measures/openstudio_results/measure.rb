@@ -123,6 +123,14 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
   def arguments
     args = OpenStudio::Measure::OSArgumentVector.new
 
+    chs = OpenStudio::StringVector.new
+    chs << "IP"
+    chs << "SI"
+    units = OpenStudio::Measure::OSArgument::makeChoiceArgument('units', chs, true)
+    units.setDisplayName("Which Unit System do you want to use?")
+    units.setDefaultValue("IP")
+    args << units
+
     # populate arguments
     possible_sections.each do |method_name|
       # get display name
@@ -225,9 +233,15 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     unless args
       return false
     end
+    units = args["units"]
+    if units == "IP"
+      is_ip_units = true
+    else
+      is_ip_units = false
+    end
 
     # reporting final condition
-    runner.registerInitialCondition('Gathering data from EnergyPlus SQL file and OSM model.')
+    runner.registerInitialCondition("Gathering data from EnergyPlus SQL file and OSM model. Will report in #{units} Units")
 
     # create a array of sections to loop through in erb file
     @sections = []
@@ -261,7 +275,7 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
         begin
           next unless args[method_name]
           section = false
-          eval("section = OsLib_Reporting.#{method_name}(model,sql_file,runner,false)")
+          eval("section = OsLib_Reporting.#{method_name}(model,sql_file,runner,false,is_ip_units)")
           display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
           if section
             @sections << section

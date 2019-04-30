@@ -40,6 +40,16 @@ class SetLightingLoadsByLPD < OpenStudio::Measure::ModelMeasure
     return 'Set Lighting Loads by LPD'
   end
 
+  # human readable description
+  def description
+    return 'Set the lighting power density (W/ft^2) in the to a specified value for all spaces that have lights. This can be applied to the entire building or a specific space type. Cost can be added per floor area'
+  end
+
+  # human readable description of modeling approach
+  def modeler_description
+    return 'Delete all of the existing lighting in the model. Add lights with the user defined lighting power density to all spaces that initially had lights, using the schedule from the original lights. If multiple lights existed the schedule will be pulled from the one with the highest lighting power density value. Demolition costs from lights and luminaires removed by this measure can be included in the analysis.'
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -80,6 +90,12 @@ class SetLightingLoadsByLPD < OpenStudio::Measure::ModelMeasure
     lpd.setDisplayName('Lighting Power Density (W/ft^2)')
     lpd.setDefaultValue(1.0)
     args << lpd
+
+    # add in argument to add lights to all spaces that are included in building floor area even if original space didn't have lights
+    add_instance_all_spaces = OpenStudio::Measure::OSArgument.makeBoolArgument('add_instance_all_spaces', true)
+    add_instance_all_spaces.setDisplayName('Add lights to all spaces included in floor area, including spaces that did not originally include lights')
+    add_instance_all_spaces.setDefaultValue(false)
+    args << add_instance_all_spaces
 
     # make an argument for material and installation cost
     material_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('material_cost', true)
@@ -138,6 +154,7 @@ class SetLightingLoadsByLPD < OpenStudio::Measure::ModelMeasure
     # assign the user inputs to variables
     object = runner.getOptionalWorkspaceObjectChoiceValue('space_type', user_arguments, model)
     lpd = runner.getDoubleArgumentValue('lpd', user_arguments)
+    add_instance_all_spaces = runner.getBoolArgumentValue('add_instance_all_spaces', user_arguments)
     material_cost = runner.getDoubleArgumentValue('material_cost', user_arguments)
     demolition_cost = runner.getDoubleArgumentValue('demolition_cost', user_arguments)
     years_until_costs_start = runner.getIntegerArgumentValue('years_until_costs_start', user_arguments)
@@ -271,6 +288,36 @@ class SetLightingLoadsByLPD < OpenStudio::Measure::ModelMeasure
         demo_costs_of_baseline_objects += add_to_baseline_demo_cost_counter(luminaire_def)
       end
     end
+
+    # find most common lights schedule for use in spaces that do not have lights
+    light_sch_hash = {}
+    # add schedules or lights directly assigned to space
+    model.getSpaces.each do |space|
+      space.lights.each do |light|
+        if light.schedule.is_initialized
+          sch = light.schedule.get
+          if light_sch_hash.has_key?(sch)
+            light_sch_hash[sch] += 1
+          else
+            light_sch_hash[sch] = 1
+          end
+        end
+      end
+      # add schedule for lights assigned to space types
+      if space.spaceType.is_initialized
+        space.spaceType.get.lights.each do |light|
+          if light.schedule.is_initialized
+            sch = light.schedule.get
+            if light_sch_hash.has_key?(sch)
+              light_sch_hash[sch] += 1
+            else
+              light_sch_hash[sch] = 1
+            end
+          end
+        end
+      end
+    end
+    most_comm_sch = light_sch_hash.key(light_sch_hash.values.max)
 
     # report initial condition
     building = model.getBuilding
@@ -496,8 +543,18 @@ class SetLightingLoadsByLPD < OpenStudio::Measure::ModelMeasure
         end
 
       elsif space_lights.empty? && space_space_type_lights.empty?
-        # issue warning that the space does not have any direct or inherited lights.
-        runner.registerInfo("The space named '#{space.name}' does not have any direct or inherited lights.")
+
+        # add in light for spaces that do not have any with most common schedule
+        if add_instance_all_spaces && space.partofTotalFloorArea
+          space_light_new = template_light_inst.clone(model)
+          space_light_new = space_light_new.to_Lights.get
+          space_light_new.setSpace(space)
+          space_light_new.setSchedule(most_comm_sch)
+          runner.registerInfo("Adding light to #{space.name} using #{most_comm_sch.name} as fractional schedule.")
+        else
+          # issue warning that the space does not have any direct or inherited lights.
+          runner.registerInfo("The space named '#{space.name}' does not have any direct or inherited lights. No light was added")
+        end
 
       end
     end

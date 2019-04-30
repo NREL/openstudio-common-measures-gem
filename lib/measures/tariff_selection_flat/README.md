@@ -35,11 +35,35 @@ EnergyPlusMeasure
 **Required:** true,
 **Model Dependent:** false
 
+### Electric Demand Rate
+
+**Name:** elec_demand_rate,
+**Type:** Double,
+**Units:** $/kW,
+**Required:** true,
+**Model Dependent:** false
+
+### Electric Monthly Rate
+
+**Name:** elec_monthly_rate,
+**Type:** Double,
+**Units:** $/month,
+**Required:** true,
+**Model Dependent:** false
+
 ### Gas Rate
 
 **Name:** gas_rate,
 **Type:** Double,
 **Units:** $/therm,
+**Required:** true,
+**Model Dependent:** false
+
+### Gas Montly Rate
+
+**Name:** gas_monthly_rate,
+**Type:** Double,
+**Units:** $/month,
 **Required:** true,
 **Model Dependent:** false
 

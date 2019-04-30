@@ -48,7 +48,7 @@ class AddRooftopPV < OpenStudio::Measure::ModelMeasure
 
   # human readable description
   def description
-    return 'This measure will create new shading surface geometry above the roof for each thermal zone inyour model where the surface azmith falls within the user specified range. Arguments are exposed for panel efficiency, inverter efficiency, and the fraction of each roof surface that has PV'
+    return 'This measure will create new shading surface geometry above the roof for each thermal zone inyour model where the surface azmith falls within the user specified range. Arguments are exposed for panel efficiency, inverter efficiency, and the fraction of each roof surface that has PV.'
   end
 
   # human readable description of modeling approach

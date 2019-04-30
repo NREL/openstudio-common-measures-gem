@@ -50,6 +50,16 @@ class ReduceSpaceInfiltrationByPercentage < OpenStudio::Measure::ModelMeasure
     return 'ReduceSpaceInfiltrationByPercentage'
   end
 
+  # human readable description
+  def description
+    return 'This measure will reduce space infiltration rates by the requested percentage. A cost per square foot of building area can be added to the model.'
+  end
+
+  # human readable description of modeling approach
+  def modeler_description
+    return 'This can be run across a space type or the entire building. Costs will be associated with the building. If infiltration objects are removed at a later date, the costs will remain.'
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -87,58 +97,62 @@ class ReduceSpaceInfiltrationByPercentage < OpenStudio::Measure::ModelMeasure
 
     # make an argument for reduction percentage
     space_infiltration_reduction_percent = OpenStudio::Measure::OSArgument.makeDoubleArgument('space_infiltration_reduction_percent', true)
-    space_infiltration_reduction_percent.setDisplayName('Space Infiltration Power Reduction (%).')
+    space_infiltration_reduction_percent.setDisplayName('Space Infiltration Power Reduction')
     space_infiltration_reduction_percent.setDefaultValue(30.0)
+    space_infiltration_reduction_percent.setUnits('%')
     args << space_infiltration_reduction_percent
 
     # make an argument for constant_coefficient
     constant_coefficient = OpenStudio::Measure::OSArgument.makeDoubleArgument('constant_coefficient', true)
-    constant_coefficient.setDisplayName('Constant Coefficient.')
+    constant_coefficient.setDisplayName('Constant Coefficient')
     constant_coefficient.setDefaultValue(1.0)
     args << constant_coefficient
 
     # make an argument for temperature_coefficient
     temperature_coefficient = OpenStudio::Measure::OSArgument.makeDoubleArgument('temperature_coefficient', true)
-    temperature_coefficient.setDisplayName('Temperature Coefficient.')
+    temperature_coefficient.setDisplayName('Temperature Coefficient')
     temperature_coefficient.setDefaultValue(0.0)
     args << temperature_coefficient
 
     # make an argument for wind_speed_coefficient
     wind_speed_coefficient = OpenStudio::Measure::OSArgument.makeDoubleArgument('wind_speed_coefficient', true)
-    wind_speed_coefficient.setDisplayName('Wind Speed Coefficient.')
+    wind_speed_coefficient.setDisplayName('Wind Speed Coefficient')
     wind_speed_coefficient.setDefaultValue(0.0)
     args << wind_speed_coefficient
 
     # make an argument for wind_speed_squared_coefficient
     wind_speed_squared_coefficient = OpenStudio::Measure::OSArgument.makeDoubleArgument('wind_speed_squared_coefficient', true)
-    wind_speed_squared_coefficient.setDisplayName('Wind Speed Squared Coefficient.')
+    wind_speed_squared_coefficient.setDisplayName('Wind Speed Squared Coefficient')
     wind_speed_squared_coefficient.setDefaultValue(0.0)
     args << wind_speed_squared_coefficient
 
     # make an argument for alter_coef
     alter_coef = OpenStudio::Measure::OSArgument.makeBoolArgument('alter_coef', true)
     alter_coef.setDisplayName('Alter constant temperature and wind speed coefficients.')
-    alter_coef.setDescription('Setting this to false will result in infiltration objects that maintain the coefficients from the initial model. Setting this to true replaces the existing coefficients with the values entered for the coefficient arguments in this measure.')
+    alter_coef.setDescription('Setting this to false will result in infiltration objects that maintain the coefficients from the initial model. Setting this to true replaces the existing coefficients with the values entered for the coefficient arguments in this measure')
     alter_coef.setDefaultValue(true)
     args << alter_coef
 
 
     # make an argument for material and installation cost
     material_and_installation_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('material_and_installation_cost', true)
-    material_and_installation_cost.setDisplayName('Increase in Material and Installation Costs for Building per Affected Floor Area ($/ft^2).')
+    material_and_installation_cost.setDisplayName('Increase in Material and Installation Costs for Building per Affected Floor Area')
     material_and_installation_cost.setDefaultValue(0.0)
+    material_and_installation_cost.setUnits('$/ft^2')
     args << material_and_installation_cost
 
     # make an argument for O & M cost
     om_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('om_cost', true)
-    om_cost.setDisplayName('O & M Costs for Construction per Affected Floor Area ($/ft^2).')
+    om_cost.setDisplayName('O & M Costs for Construction per Affected Floor Area')
     om_cost.setDefaultValue(0.0)
+    om_cost.setUnits('$/ft^2')
     args << om_cost
 
     # make an argument for O & M frequency
     om_frequency = OpenStudio::Measure::OSArgument.makeIntegerArgument('om_frequency', true)
-    om_frequency.setDisplayName('O & M Frequency (whole years).')
+    om_frequency.setDisplayName('O & M Frequency')
     om_frequency.setDefaultValue(1)
+    om_frequency.setUnits('whole years')
     args << om_frequency
 
     return args
@@ -201,16 +215,7 @@ class ReduceSpaceInfiltrationByPercentage < OpenStudio::Measure::ModelMeasure
       runner.registerInfo('The requested value for Space Infiltration reduction percentage was negative. This will result in an increase in Space Infiltration.')
     end
 
-    # check lifecycle cost arguments for reasonableness
-    if material_and_installation_cost < -100
-      runner.registerError("Material and Installation Cost percentage increase can't be less than -100.")
-      return false
-    end
-
-    if om_cost < -100
-      runner.registerError("O & M Cost percentage increase can't be less than -100.")
-      return false
-    end
+    # todo - currently not checking for negative $/ft^2 for material_and_installation_cost and om_cost, confirm if E+ will allow negative cost
 
     if om_frequency < 1
       runner.registerError('Choose an integer greater than 0 for O & M Frequency.')

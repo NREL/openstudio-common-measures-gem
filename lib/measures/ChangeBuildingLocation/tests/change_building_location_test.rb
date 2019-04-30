@@ -133,7 +133,6 @@ class ChangeBuildingLocation_Test < Minitest::Test
   def test_weather_file_WA_Renton
     args = {}
     args['weather_file_name'] = 'USA_WA_Renton.Muni.AP.727934_TMY3.epw' # seems to search directory of OSW even with empty file_paths
-    args['set_year'] = 2012
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test.osm', nil, nil)
   end
 

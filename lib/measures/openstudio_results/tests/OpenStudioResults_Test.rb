@@ -156,7 +156,7 @@ class OpenStudioResults_Test < Minitest::Test
     model = model.get
     model.addObjects(request_model.objects)
     model.save(model_out_path(test_name), true)
-    
+
     if ENV['OPENSTUDIO_TEST_NO_CACHE_SQLFILE']
       if File.exist?(sql_path(test_name))
         FileUtils.rm_f(sql_path(test_name))
@@ -267,6 +267,80 @@ class OpenStudioResults_Test < Minitest::Test
     # make sure the report file exists
     assert(File.exist?(report_path(test_name)))
   end
+
+  def test_example_model_si
+
+    test_name = 'test_example_model_si'
+    model_in_path = "#{File.dirname(__FILE__)}/ExampleModel.osm"
+
+    # create an instance of the measure
+    measure = OpenStudioResults.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+
+    # get arguments
+    arguments = measure.arguments
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    # create hash of argument values
+    args_hash = {}
+    args_hash["units"] = "SI"
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
+
+    # get the energyplus output requests, this will be done automatically by OS App and PAT
+    idf_output_requests = measure.energyPlusOutputRequests(OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new), argument_map)
+    assert_equal(11, idf_output_requests.size)
+
+    # mimic the process of running this measure in OS App or PAT
+    epw_path = epw_path_default
+    setup_test(test_name, idf_output_requests, model_in_path)
+
+    assert(File.exist?(model_out_path(test_name)))
+    assert(File.exist?(sql_path(test_name)))
+    assert(File.exist?(epw_path))
+
+    # set up runner, this will happen automatically when measure is run in PAT or OpenStudio
+    runner.setLastOpenStudioModelPath(OpenStudio::Path.new(model_out_path(test_name)))
+    runner.setLastEnergyPlusWorkspacePath(OpenStudio::Path.new(workspace_path(test_name)))
+    runner.setLastEpwFilePath(epw_path)
+    runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
+
+    # delete the output if it exists
+    if File.exist?(report_path(test_name))
+      FileUtils.rm(report_path(test_name))
+    end
+    assert(!File.exist?(report_path(test_name)))
+
+    # temporarily change directory to the run directory and run the measure
+    start_dir = Dir.pwd
+    begin
+      Dir.chdir(run_dir(test_name))
+
+      # run the measure
+      measure.run(runner, argument_map)
+      result = runner.result
+      show_output(result)
+      assert_equal('Success', result.value.valueName)
+
+      # look for section_errors
+      assert(section_errors(runner).empty?)
+    ensure
+      Dir.chdir(start_dir)
+    end
+
+    # make sure the report file exists
+    assert(File.exist?(report_path(test_name)))
+  end
+
 
   def test_edge_model
 

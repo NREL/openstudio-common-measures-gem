@@ -46,6 +46,16 @@ class TariffSelectionGeneric < OpenStudio::Measure::EnergyPlusMeasure
     return ' Tariff Selection-Generic'
   end
 
+  # human readable description
+  def description
+    return 'This measure will add pre defined tariffs from IDF files in the resrouce directory for this measure.'
+  end
+
+  # human readable description of modeling approach
+  def modeler_description
+    return 'The measure works by cloning objects in from an external file into the current IDF file. Change functionality by changing the resource files. This measure may also adjust the simulation timestep.'
+  end
+
   # define the arguments that the user will input
   def arguments(workspace)
     args = OpenStudio::Measure::OSArgumentVector.new
