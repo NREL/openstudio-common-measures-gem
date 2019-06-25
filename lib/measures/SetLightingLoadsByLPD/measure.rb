@@ -296,7 +296,7 @@ class SetLightingLoadsByLPD < OpenStudio::Measure::ModelMeasure
       space.lights.each do |light|
         if light.schedule.is_initialized
           sch = light.schedule.get
-          if light_sch_hash.has_key?(sch)
+          if light_sch_hash.key?(sch)
             light_sch_hash[sch] += 1
           else
             light_sch_hash[sch] = 1
@@ -308,7 +308,7 @@ class SetLightingLoadsByLPD < OpenStudio::Measure::ModelMeasure
         space.spaceType.get.lights.each do |light|
           if light.schedule.is_initialized
             sch = light.schedule.get
-            if light_sch_hash.has_key?(sch)
+            if light_sch_hash.key?(sch)
               light_sch_hash[sch] += 1
             else
               light_sch_hash[sch] = 1

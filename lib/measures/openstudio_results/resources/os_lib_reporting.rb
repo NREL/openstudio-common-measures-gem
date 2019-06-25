@@ -2156,7 +2156,7 @@ module OsLib_Reporting
     end
 
     # alert user if report_detailed is requested
-    if report_detailed then runner.registerInfo("Monthly End Use by Fuel registerValues have been requested.") end
+    if report_detailed then runner.registerInfo('Monthly End Use by Fuel registerValues have been requested.') end
 
     # end use colors by index
     end_use_colors = ['#EF1C21', '#0071BD', '#F7DF10', '#DEC310', '#4A4D4A', '#B5B2B5', '#FF79AD', '#632C94', '#F75921', '#293094', '#CE5921', '#FFB239', '#29AAE7', '#8CC739']
@@ -2170,7 +2170,7 @@ module OsLib_Reporting
     OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
       standard_fuel_types << OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
     end
-    additional_fuel_types = ["FuelOil#1", "FuelOil#2", "PropaneGas", "Coal", "Diesel", "Gasoline", "OtherFuel1", "OtherFuel2"]
+    additional_fuel_types = ['FuelOil#1', 'FuelOil#2', 'PropaneGas', 'Coal', 'Diesel', 'Gasoline', 'OtherFuel1', 'OtherFuel2']
     extended_fuel_type_names = standard_fuel_types + additional_fuel_types
 
     # loop through fuels for consumption tables
@@ -2213,8 +2213,8 @@ module OsLib_Reporting
             valInJ  = nil
             if standard_fuel_types.include?(fuel_type)
               if !sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
-                                                OpenStudio::EndUseCategoryType.new(category_type),
-                                                OpenStudio::MonthOfYear.new(month)).empty?
+                                                   OpenStudio::EndUseCategoryType.new(category_type),
+                                                   OpenStudio::MonthOfYear.new(month)).empty?
                 valInJ = sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
                                                           OpenStudio::EndUseCategoryType.new(category_type),
                                                           OpenStudio::MonthOfYear.new(month)).get
@@ -2239,8 +2239,8 @@ module OsLib_Reporting
                 # return just first three characters of month
                 month_str = OpenStudio::MonthOfYear.new(month).valueDescription[0..2]
                 # this specific string chosen to match design case for a specific project
-                prefix_str = OpenStudio::toUnderscoreCase("end_use_#{fuel_type}_#{category_str}_#{month_str}")
-                runner.registerValue(prefix_str.downcase.gsub(" ","_"),valInUnits,unit_str)
+                prefix_str = OpenStudio.toUnderscoreCase("end_use_#{fuel_type}_#{category_str}_#{month_str}")
+                runner.registerValue(prefix_str.downcase.tr(' ', '_'), valInUnits, unit_str)
               end
 
               # populate hash for monthly totals
@@ -2304,10 +2304,9 @@ module OsLib_Reporting
         if report_detailed
           # return jsut first three characters of month
           month_str = k[0..2]
-          prefix_str = OpenStudio::toUnderscoreCase("#{fuel_type}_ip_#{month_str}")
-          runner.registerValue(prefix_str.downcase.gsub(" ","_"),OpenStudio.convert(v, 'J', unit_str).get,unit_str)
+          prefix_str = OpenStudio.toUnderscoreCase("#{fuel_type}_ip_#{month_str}")
+          runner.registerValue(prefix_str.downcase.tr(' ', '_'), OpenStudio.convert(v, 'J', unit_str).get, unit_str)
         end
-
       end
 
       table_total = OpenStudio.convert(site_energy_use, 'J', unit_str).get

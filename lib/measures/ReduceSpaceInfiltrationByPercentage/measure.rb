@@ -133,7 +133,6 @@ class ReduceSpaceInfiltrationByPercentage < OpenStudio::Measure::ModelMeasure
     alter_coef.setDefaultValue(true)
     args << alter_coef
 
-
     # make an argument for material and installation cost
     material_and_installation_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('material_and_installation_cost', true)
     material_and_installation_cost.setDisplayName('Increase in Material and Installation Costs for Building per Affected Floor Area')
@@ -215,7 +214,7 @@ class ReduceSpaceInfiltrationByPercentage < OpenStudio::Measure::ModelMeasure
       runner.registerInfo('The requested value for Space Infiltration reduction percentage was negative. This will result in an increase in Space Infiltration.')
     end
 
-    # todo - currently not checking for negative $/ft^2 for material_and_installation_cost and om_cost, confirm if E+ will allow negative cost
+    # TODO: - currently not checking for negative $/ft^2 for material_and_installation_cost and om_cost, confirm if E+ will allow negative cost
 
     if om_frequency < 1
       runner.registerError('Choose an integer greater than 0 for O & M Frequency.')
@@ -283,7 +282,6 @@ class ReduceSpaceInfiltrationByPercentage < OpenStudio::Measure::ModelMeasure
         instance.setVelocityTermCoefficient(wind_speed_coefficient)
         instance.setVelocitySquaredTermCoefficient(wind_speed_squared_coefficient)
       end
-
     end
 
     # loop through space types

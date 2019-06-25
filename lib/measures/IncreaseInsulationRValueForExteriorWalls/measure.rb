@@ -178,26 +178,28 @@ class IncreaseInsulationRValueForExteriorWalls < OpenStudio::Measure::ModelMeasu
       construction_layers = exterior_surface_construction.layers
       max_thermal_resistance_material = ''
       max_thermal_resistance_material_index = ''
-      materials_in_construction = construction_layers.map.with_index {|layer, i| {"name"=>layer.name.to_s,
-                                                                       "index"=>i,
-                                                                       "nomass"=>!layer.to_MasslessOpaqueMaterial.empty?,
-                                                                       "r_value"=>layer.to_OpaqueMaterial.get.thermalResistance,
-                                                                       "mat"=>layer}}
+      materials_in_construction = construction_layers.map.with_index do |layer, i|
+        { 'name' => layer.name.to_s,
+          'index' => i,
+          'nomass' => !layer.to_MasslessOpaqueMaterial.empty?,
+          'r_value' => layer.to_OpaqueMaterial.get.thermalResistance,
+          'mat' => layer }
+      end
 
-      no_mass_materials = materials_in_construction.select {|mat| mat["nomass"] == true}
+      no_mass_materials = materials_in_construction.select { |mat| mat['nomass'] == true }
       # measure will select the no mass material with the highest r-value as the insulation layer
       # if no mass materials are present, the measure will select the material with the highest r-value per inch
       if !no_mass_materials.empty?
-        thermal_resistance_values = no_mass_materials.map {|mat| mat["r_value"]}
-        max_mat_hash = no_mass_materials.select {|mat| mat["r_value"] >= thermal_resistance_values.max}
+        thermal_resistance_values = no_mass_materials.map { |mat| mat['r_value'] }
+        max_mat_hash = no_mass_materials.select { |mat| mat['r_value'] >= thermal_resistance_values.max }
       else
-        thermal_resistance_per_thickness_values = materials_in_construction.map {|mat| mat["r_value"] / mat["mat"].thickness}
+        thermal_resistance_per_thickness_values = materials_in_construction.map { |mat| mat['r_value'] / mat['mat'].thickness }
         target_index = thermal_resistance_per_thickness_values.index(thermal_resistance_per_thickness_values.max)
-        max_mat_hash = materials_in_construction.select {|mat| mat["index"] == target_index}
-        thermal_resistance_values = materials_in_construction.map {|mat| mat["r_value"]}
+        max_mat_hash = materials_in_construction.select { |mat| mat['index'] == target_index }
+        thermal_resistance_values = materials_in_construction.map { |mat| mat['r_value'] }
       end
-      max_thermal_resistance_material = max_mat_hash[0]["mat"]
-      max_thermal_resistance_material_index = max_mat_hash[0]["index"]
+      max_thermal_resistance_material = max_mat_hash[0]['mat']
+      max_thermal_resistance_material_index = max_mat_hash[0]['index']
       max_thermal_resistance = max_thermal_resistance_material.to_OpaqueMaterial.get.thermalResistance
 
       if max_thermal_resistance <= unit_helper(min_expected_r_value_ip, 'ft^2*h*R/Btu', 'm^2*K/W')

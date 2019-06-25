@@ -593,5 +593,4 @@ class ReduceSpaceInfiltrationByPercentage_Test < Minitest::Test
     # assert(result.info.size == 1)
     # assert(result.warnings.size == 1)
   end
-
 end
