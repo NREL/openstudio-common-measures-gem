@@ -46,9 +46,9 @@ if /^1\.8/.match(RUBY_VERSION)
 end
 
 module THREE
-  FrontSide = 0
-  BackSide = 1
-  DoubleSide = 2
+  FrontSide = 0 unless defined? FrontSide
+  BackSide = 1 unless defined? BackSide
+  DoubleSide = 2 unless defined? DoubleSide
 end
 
 # Va3c class converts an OpenStudio model to vA3C JSON format for rendering in Three.js

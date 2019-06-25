@@ -39,7 +39,7 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-class CreateVariableSpeedRTUTest < MiniTest::Unit::TestCase
+class CreateVariableSpeedRTUTest < Minitest::Test
 
   def test_good_argument_values
     # create an instance of the measure

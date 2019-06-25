@@ -40,7 +40,7 @@ require "#{File.dirname(__FILE__)}/../measure.rb"
 
 require 'minitest/autorun'
 
-class IncreaseInsulationRValueForExteriorWallsByPercentage_Test < MiniTest::Unit::TestCase
+class IncreaseInsulationRValueForExteriorWallsByPercentage_Test < Minitest::Test
 
   # def setup
   # end
