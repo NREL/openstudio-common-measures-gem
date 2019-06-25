@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_variable_speed_rtu</name>
   <uid>7fb36b3a-5591-4627-a2b0-7709fbeae593</uid>
-  <version_id>456b756a-7210-4b37-8637-33f1ac5992a7</version_id>
-  <version_modified>20190205T192245Z</version_modified>
+  <version_id>7d3d17ba-d99c-4968-a454-aa0d5a1d84ba</version_id>
+  <version_modified>20190625T185841Z</version_modified>
   <xml_checksum>A9D5932A</xml_checksum>
   <class_name>CreateVariableSpeedRTU</class_name>
   <display_name>Create Variable Speed RTU</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All CAV Air Loops*</default_value>
       <choices>
         <choice>
-          <value>{c6769af4-b7bd-4e31-b1a0-622c7828b7b8}</value>
+          <value>{2a78ae68-fd05-432a-ba5f-6dd917730e2b}</value>
           <display_name>*All CAV Air Loops*</display_name>
         </choice>
       </choices>
@@ -169,12 +169,6 @@
       <checksum>69467654</checksum>
     </file>
     <file>
-      <filename>create_variable_speed_rtu_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>2F85534B</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>1.12.2</identifier>
@@ -202,6 +196,12 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>839520ED</checksum>
+    </file>
+    <file>
+      <filename>create_variable_speed_rtu_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>AFA21469</checksum>
     </file>
   </files>
 </measure>

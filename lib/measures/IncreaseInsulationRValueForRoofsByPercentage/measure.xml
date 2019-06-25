@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>increase_insulation_r_value_for_roofs_by_percentage</name>
   <uid>807d3ebf-c89b-4b93-b400-110ca060b2bb</uid>
-  <version_id>1948b9a5-c797-4f7e-b677-cb1c69aaed62</version_id>
-  <version_modified>20190205T192224Z</version_modified>
+  <version_id>7f0c49f8-6c50-44b0-9e8e-1f0d7ee95ade</version_id>
+  <version_modified>20190625T185843Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>IncreaseInsulationRValueForRoofsByPercentage</class_name>
   <display_name>Increase R-value of Insulation for Roofs by a Specified Percentage.</display_name>
@@ -60,12 +60,6 @@
       <checksum>0B94403D</checksum>
     </file>
     <file>
-      <filename>IncreaseInsulationRValueForRoofs_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>507F7902</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -93,6 +87,12 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>AFA7235D</checksum>
+    </file>
+    <file>
+      <filename>IncreaseInsulationRValueForRoofs_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>0F7061AF</checksum>
     </file>
   </files>
 </measure>
