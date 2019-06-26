@@ -40,7 +40,6 @@ require_relative '../measure.rb'
 require 'fileutils'
 
 class GemEnvironmentReport_Test < MiniTest::Unit::TestCase
-
   def test_1
     # create an instance of the measure
     measure = GemEnvironmentReport.new
@@ -77,8 +76,6 @@ class GemEnvironmentReport_Test < MiniTest::Unit::TestCase
     show_output(result)
 
     # assert that it ran correctly
-    assert_equal("Success", result.value.valueName)
-
+    assert_equal('Success', result.value.valueName)
   end
-
 end

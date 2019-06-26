@@ -40,6 +40,16 @@ class ReduceLightingLoadsByPercentage < OpenStudio::Measure::ModelMeasure
     return 'Reduce Lighting Loads by Percentage'
   end
 
+  # human readable description
+  def description
+    return 'The lighting system in this building uses more power per area than is required with the latest lighting technologies.  Replace the lighting system with a newer, more efficient lighting technology.  Newer technologies provide the same amount of light but use less energy in the process.'
+  end
+
+  # human readable description of modeling approach
+  def modeler_description
+    return 'This measure supports models which have a mixture of lighting assigned to spaces and space types.  The lighting may be specified as individual luminaires, lighting equipment level, lighting power per area, or lighting power per person. Loop through all lights and luminaires in the specified space type or the entire building. Clone the definition if it is shared by other lights, rename and adjust the power based on the specified percentage. Link the new definition to the existing lights or luminaire instance.  Adjust the power for lighting equipment assigned to a particular space but only if that space is part of the selected space type by  looping through the objects first in space types and then in spaces, but again only for spaces that are in the specified space type (unless the entire building has been chosen).  Material and installation cost increases will be applied to all costs related to both the definition and instance of the lighting object.  If this measure includes baseline costs, then the material and installation costs of the lighting objects in the baseline model will be summed together and added as a capital cost on the building object.'
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -71,56 +81,63 @@ class ReduceLightingLoadsByPercentage < OpenStudio::Measure::ModelMeasure
 
     # make a choice argument for space type
     space_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('space_type', space_type_handles, space_type_display_names)
-    space_type.setDisplayName('Apply the Measure to a Specific Space Type or to the Entire Model.')
+    space_type.setDisplayName('Apply the Measure to a Specific Space Type or to the Entire Model')
     space_type.setDefaultValue('*Entire Building*') # if no space type is chosen this will run on the entire building
     args << space_type
 
     # make an argument for reduction percentage
     lighting_power_reduction_percent = OpenStudio::Measure::OSArgument.makeDoubleArgument('lighting_power_reduction_percent', true)
-    lighting_power_reduction_percent.setDisplayName('Lighting Power Reduction (%).')
+    lighting_power_reduction_percent.setDisplayName('Lighting Power Reduction')
     lighting_power_reduction_percent.setDefaultValue(30.0)
+    lighting_power_reduction_percent.setUnits('%')
     args << lighting_power_reduction_percent
 
     # make an argument for material and installation cost
     material_and_installation_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('material_and_installation_cost', true)
-    material_and_installation_cost.setDisplayName('Increase in Material and Installation Cost for Lighting per Floor Area (%).')
+    material_and_installation_cost.setDisplayName('Increase in Material and Installation Cost for Lighting per Floor Area')
     material_and_installation_cost.setDefaultValue(0.0)
+    material_and_installation_cost.setUnits('%')
     args << material_and_installation_cost
 
     # make an argument for demolition cost
     demolition_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('demolition_cost', true)
-    demolition_cost.setDisplayName('Increase in Demolition Costs for Lighting per Floor Area (%).')
+    demolition_cost.setDisplayName('Increase in Demolition Costs for Lighting per Floor Area')
     demolition_cost.setDefaultValue(0.0)
+    demolition_cost.setUnits('%')
     args << demolition_cost
 
     # make an argument for years until costs start
     years_until_costs_start = OpenStudio::Measure::OSArgument.makeIntegerArgument('years_until_costs_start', true)
-    years_until_costs_start.setDisplayName('Years Until Costs Start (whole years).')
+    years_until_costs_start.setDisplayName('Years Until Costs Start')
     years_until_costs_start.setDefaultValue(0)
+    years_until_costs_start.setUnits('whole years')
     args << years_until_costs_start
 
     # make a choice argument for when demo costs occur
     demo_cost_initial_const = OpenStudio::Measure::OSArgument.makeBoolArgument('demo_cost_initial_const', true)
-    demo_cost_initial_const.setDisplayName('Demolition Costs Occur During Initial Construction?')
+    demo_cost_initial_const.setDisplayName('Demolition Costs Occur During Initial Construction')
     demo_cost_initial_const.setDefaultValue(false)
     args << demo_cost_initial_const
 
     # make an argument for expected life
     expected_life = OpenStudio::Measure::OSArgument.makeIntegerArgument('expected_life', true)
-    expected_life.setDisplayName('Expected Life (whole years).')
+    expected_life.setDisplayName('Expected Life')
     expected_life.setDefaultValue(15)
+    expected_life.setUnits('whole years')
     args << expected_life
 
     # make an argument for O & M cost
     om_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('om_cost', true)
-    om_cost.setDisplayName('Increase O & M Costs for Lighting per Floor Area (%).')
+    om_cost.setDisplayName('Increase O & M Costs for Lighting per Floor Area')
     om_cost.setDefaultValue(0.0)
+    om_cost.setUnits('%')
     args << om_cost
 
     # make an argument for O & M frequency
     om_frequency = OpenStudio::Measure::OSArgument.makeIntegerArgument('om_frequency', true)
-    om_frequency.setDisplayName('O & M Frequency (whole years).')
+    om_frequency.setDisplayName('O & M Frequency')
     om_frequency.setDefaultValue(1)
+    om_frequency.setUnits('whole years')
     args << om_frequency
 
     return args
@@ -341,7 +358,7 @@ class ReduceLightingLoadsByPercentage < OpenStudio::Measure::ModelMeasure
       space_type_lights.each do |space_type_light|
         # clone def if it has not already been cloned
         exist_def = space_type_light.lightsDefinition
-        if cloned_lights_defs.any? { |k, v| k.include? exist_def.name.to_s }
+        if cloned_lights_defs.any? { |k, v| k.to_s == exist_def.name.to_s }
           new_def = cloned_lights_defs[exist_def.name.to_s]
         else
           # clone rename and add to hash
@@ -367,7 +384,7 @@ class ReduceLightingLoadsByPercentage < OpenStudio::Measure::ModelMeasure
       space_type_luminaires.each do |space_type_luminaire|
         # clone def if it has not already been cloned
         exist_def = space_type_luminaire.luminaireDefinition
-        if cloned_luminaire_defs.any? { |k, v| k.include? exist_def.name }
+        if cloned_luminaire_defs.any? { |k, v| k.to_s == exist_def.name }
           new_def = cloned_luminaire_defs[exist_def.name]
         else
           # clone rename and add to hash
@@ -407,7 +424,7 @@ class ReduceLightingLoadsByPercentage < OpenStudio::Measure::ModelMeasure
       space_lights.each do |space_light|
         # clone def if it has not already been cloned
         exist_def = space_light.lightsDefinition
-        if cloned_lights_defs.any? { |k, v| k.include? exist_def.name.to_s }
+        if cloned_lights_defs.any? { |k, v| k.to_s == exist_def.name.to_s }
           new_def = cloned_lights_defs[exist_def.name.to_s]
         else
           # clone rename and add to hash
@@ -433,7 +450,7 @@ class ReduceLightingLoadsByPercentage < OpenStudio::Measure::ModelMeasure
       space_luminaires.each do |space_luminaire|
         # clone def if it has not already been cloned
         exist_def = space_luminaire.luminaireDefinition
-        if cloned_luminaire_defs.any? { |k, v| k.include? exist_def.name }
+        if cloned_luminaire_defs.any? { |k, v| k.to_s == exist_def.name }
           new_def = cloned_luminaire_defs[exist_def.name]
         else
           # clone rename and add to hash

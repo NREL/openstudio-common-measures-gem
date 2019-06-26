@@ -38,7 +38,6 @@
 # Messages are put to stdout and returned in a hash.
 # @return [Hash] a hash of information about the gems.
 def gem_env_information
-
   require 'json'
 
   result = {}
@@ -86,14 +85,14 @@ def gem_env_information
   result[:gem][:user_dir] = Gem.user_dir
   result[:gem][:user_home] = Gem.user_home
   # result[:gem][:win_platform] = Gem.win_platform?
-  
+
   # Available Gems
   result[:gem_specs_in_path] = {}
-  local_gems = Gem::Specification.sort_by{ |g| [g.name.downcase, g.version] }.group_by{ |g| g.name }
+  local_gems = Gem::Specification.sort_by { |g| [g.name.downcase, g.version] }.group_by(&:name)
   local_gems.each do |name, specs|
     versions = []
     specs.sort.each do |spec|
-      versions << "- #{spec.version} from #{spec.spec_dir}"  
+      versions << "- #{spec.version} from #{spec.spec_dir}"
     end
     result[:gem_specs_in_path][name] = versions
   end

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>adjust_system_efficiencies</name>
   <uid>edeaff3d-3ae4-4487-b4a4-5cf08ea14510</uid>
-  <version_id>6a086e98-b759-40aa-851e-4595c87461af</version_id>
-  <version_modified>20190205T192214Z</version_modified>
+  <version_id>736393b5-1456-460e-90cb-b1432e98a7f2</version_id>
+  <version_modified>20190625T225103Z</version_modified>
   <xml_checksum>4435983D</xml_checksum>
   <class_name>AdjustSystemEfficiencies</class_name>
   <display_name>AdjustSystemEfficiencies</display_name>
@@ -46,17 +46,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>123EC750</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -73,6 +62,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>FA0C0477</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>65377E0A</checksum>
     </file>
   </files>
 </measure>

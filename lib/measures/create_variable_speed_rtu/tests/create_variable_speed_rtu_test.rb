@@ -39,8 +39,7 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-class CreateVariableSpeedRTUTest < MiniTest::Unit::TestCase
-
+class CreateVariableSpeedRTUTest < Minitest::Test
   def test_good_argument_values
     # create an instance of the measure
     measure = CreateVariableSpeedRTU.new
@@ -50,9 +49,9 @@ class CreateVariableSpeedRTUTest < MiniTest::Unit::TestCase
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/example_model.osm")
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
     model = translator.loadModel(path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     # get arguments
@@ -62,17 +61,17 @@ class CreateVariableSpeedRTUTest < MiniTest::Unit::TestCase
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash["object"] = "Packaged Rooftop Air Conditioner"
+    args_hash['object'] = 'Packaged Rooftop Air Conditioner'
     # have not investigated reasonableness of argument values
-    args_hash["rated_cc_eer"] = 15
-    args_hash["three_quarter_cc_eer"] = 15
-    args_hash["half_cc_eer"] = 15
-    args_hash["quarter_cc_eer"] = 15
-    args_hash["rated_hc_gas_efficiency"] = 0.9
-    args_hash["rated_hc_cop"] = 3
-    args_hash["three_quarter_hc_cop"] = 3
-    args_hash["half_hc_cop"] = 3
-    args_hash["quarter_hc_cop"] = 3
+    args_hash['rated_cc_eer'] = 15
+    args_hash['three_quarter_cc_eer'] = 15
+    args_hash['half_cc_eer'] = 15
+    args_hash['quarter_cc_eer'] = 15
+    args_hash['rated_hc_gas_efficiency'] = 0.9
+    args_hash['rated_hc_cop'] = 3
+    args_hash['three_quarter_hc_cop'] = 3
+    args_hash['half_hc_cop'] = 3
+    args_hash['quarter_hc_cop'] = 3
 
     # using defaults values from measure.rb for other arguments
 
@@ -93,13 +92,13 @@ class CreateVariableSpeedRTUTest < MiniTest::Unit::TestCase
     show_output(result)
 
     # assert that it ran correctly
-    assert_equal("Success", result.value.valueName)
-    #assert(result.info.size == 1)
-    assert(result.warnings.size == 0)
+    assert_equal('Success', result.value.valueName)
+    # assert(result.info.size == 1)
+    assert(result.warnings.empty?)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/test_output.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
+    model.save(output_file_path, true)
   end
 
   def test_all_loops
@@ -111,9 +110,9 @@ class CreateVariableSpeedRTUTest < MiniTest::Unit::TestCase
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/example_model.osm")
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
     model = translator.loadModel(path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     # get arguments
@@ -123,17 +122,17 @@ class CreateVariableSpeedRTUTest < MiniTest::Unit::TestCase
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash["object"] = "*All CAV Air Loops*"
+    args_hash['object'] = '*All CAV Air Loops*'
     # have not investigated reasonableness of argument values
-    args_hash["rated_cc_eer"] = 15
-    args_hash["three_quarter_cc_eer"] = 15
-    args_hash["half_cc_eer"] = 15
-    args_hash["quarter_cc_eer"] = 15
-    args_hash["rated_hc_gas_efficiency"] = 0.9
-    args_hash["rated_hc_cop"] = 3
-    args_hash["three_quarter_hc_cop"] = 3
-    args_hash["half_hc_cop"] = 3
-    args_hash["quarter_hc_cop"] = 3
+    args_hash['rated_cc_eer'] = 15
+    args_hash['three_quarter_cc_eer'] = 15
+    args_hash['half_cc_eer'] = 15
+    args_hash['quarter_cc_eer'] = 15
+    args_hash['rated_hc_gas_efficiency'] = 0.9
+    args_hash['rated_hc_cop'] = 3
+    args_hash['three_quarter_hc_cop'] = 3
+    args_hash['half_hc_cop'] = 3
+    args_hash['quarter_hc_cop'] = 3
 
     # using defaults values from measure.rb for other arguments
 
@@ -154,13 +153,12 @@ class CreateVariableSpeedRTUTest < MiniTest::Unit::TestCase
     show_output(result)
 
     # assert that it ran correctly
-    assert_equal("Success", result.value.valueName)
-    #assert(result.info.size == 1)
-    assert(result.warnings.size == 0)
+    assert_equal('Success', result.value.valueName)
+    # assert(result.info.size == 1)
+    assert(result.warnings.empty?)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/test_all_loops.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_all_loops.osm')
+    model.save(output_file_path, true)
   end
-
 end

@@ -37,7 +37,6 @@
 # Simple measure to load the EPW file and DDY file
 
 class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
-
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
   # resource file modules
@@ -85,7 +84,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
 
     set_year = OpenStudio::Measure::OSArgument.makeIntegerArgument('set_year', true)
     set_year.setDisplayName('Set Calendar Year')
-    set_year.setDefaultValue (0)
+    set_year.setDefaultValue 0
     set_year.setDescription('This will impact the day of the week the simulation starts on. An input value of 0 will leave the year un-altered')
     args << set_year
 
@@ -109,13 +108,13 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
 
     # lookup and replace argument values from upstream measures
     if args['use_upstream_args'] == true
-      args.each do |arg,value|
+      args.each do |arg, value|
         next if arg == 'use_upstream_args' # this argument should not be changed
         value_from_osw = OsLib_HelperMethods.check_upstream_measure_for_arg(runner, arg)
         if !value_from_osw.empty?
           runner.registerInfo("Replacing argument named #{arg} from current measure with a value of #{value_from_osw[:value]} from #{value_from_osw[:measure_name]}.")
           new_val = value_from_osw[:value]
-          # todo - make code to handle non strings more robust. check_upstream_measure_for_arg coudl pass bakc the argument type
+          # TODO: - make code to handle non strings more robust. check_upstream_measure_for_arg coudl pass bakc the argument type
           if arg == 'total_bldg_floor_area'
             args[arg] = new_val.to_f
           elsif arg == 'num_stories_above_grade'
@@ -179,7 +178,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     # actual year of start date
     if args['set_year'] > 0
       model.getYearDescription.setCalendarYear(args['set_year'])
-      runner.registerInfo("Changing Calendar Year to #{args['set_year'].to_s},")
+      runner.registerInfo("Changing Calendar Year to #{args['set_year']},")
     end
 
     # Add SiteWaterMainsTemperature -- via parsing of STAT file.

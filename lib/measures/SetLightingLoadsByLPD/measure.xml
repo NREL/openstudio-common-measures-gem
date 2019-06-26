@@ -2,12 +2,12 @@
   <schema_version>3.0</schema_version>
   <name>set_lighting_loads_by_lpd</name>
   <uid>901c076e-02af-4bf4-a780-57391e7b1e2a</uid>
-  <version_id>30123b20-418e-432c-93b4-6ccbb450b15b</version_id>
-  <version_modified>20180626T202332Z</version_modified>
+  <version_id>1164f804-6bd5-4776-b959-6c77509f4e05</version_id>
+  <version_modified>20190625T225119Z</version_modified>
   <xml_checksum>293730A7</xml_checksum>
   <class_name>SetLightingLoadsByLPD</class_name>
   <display_name>Set Lighting Loads by LPD</display_name>
-  <description>Set the lighting power density (W/ft^2) in the to a specified value for all spaces that have lights. This can be applied to the entire building or a specific space type. Cost can be added per floor area.</description>
+  <description>Set the lighting power density (W/ft^2) in the to a specified value for all spaces that have lights. This can be applied to the entire building or a specific space type. Cost can be added per floor area</description>
   <modeler_description>Delete all of the existing lighting in the model. Add lights with the user defined lighting power density to all spaces that initially had lights, using the schedule from the original lights. If multiple lights existed the schedule will be pulled from the one with the highest lighting power density value. Demolition costs from lights and luminaires removed by this measure can be included in the analysis.</modeler_description>
   <arguments>
     <argument>
@@ -19,7 +19,7 @@
       <default_value>*Entire Building*</default_value>
       <choices>
         <choice>
-          <value>{557e5de9-f288-4b6a-963e-6ccee488728d}</value>
+          <value>{7480df6e-ae68-4b52-9893-53fbc1bd5732}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -31,6 +31,24 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>add_instance_all_spaces</name>
+      <display_name>Add lights to all spaces included in floor area, including spaces that did not originally include lights</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
     </argument>
     <argument>
       <name>material_cost</name>
@@ -140,23 +158,6 @@
       <checksum>E025B7B3</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>13F51B30</checksum>
-    </file>
-    <file>
-      <filename>ReplaceLightsWithLPD_01_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>070A3818</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -166,13 +167,30 @@
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <checksum>232D0477</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>554D6B5E</checksum>
+      <checksum>DD51F214</checksum>
+    </file>
+    <file>
+      <filename>ReplaceLightsWithLPD_01_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>350098FD</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>ABC44753</checksum>
     </file>
   </files>
 </measure>

@@ -39,13 +39,10 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-class SetRunPeriod_Test < MiniTest::Unit::TestCase
-
+class SetRunPeriod_Test < Minitest::Test
   # def setup
   # end
 
   # def teardown
   # end
-
-
 end

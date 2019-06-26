@@ -53,7 +53,7 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(9, arguments.size)
+    assert_equal(10, arguments.size)
     assert_equal('space_type', arguments[0].name)
     assert_equal('lpd', arguments[1].name)
     assert_equal(1.0, arguments[1].defaultValueAsDouble)
@@ -70,7 +70,10 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     lpd = arguments[count += 1].clone
     assert(lpd.setValue(9000.0))
     argument_map['lpd'] = lpd
-
+    
+    add_instance_all_spaces = arguments[count += 1].clone
+    argument_map['add_instance_all_spaces'] = add_instance_all_spaces
+    
     material_cost = arguments[count += 1].clone
     assert(material_cost.setValue(5.0))
     argument_map['material_cost'] = material_cost
@@ -127,7 +130,10 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     lpd = arguments[count += 1].clone
     assert(lpd.setValue(25.0))
     argument_map['lpd'] = lpd
-
+    
+    add_instance_all_spaces = arguments[count += 1].clone
+    argument_map['add_instance_all_spaces'] = add_instance_all_spaces
+    
     material_cost = arguments[count += 1].clone
     assert(material_cost.setValue(5.0))
     argument_map['material_cost'] = material_cost
@@ -190,7 +196,10 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     lpd = arguments[count += 1].clone
     assert(lpd.setValue(5.0))
     argument_map['lpd'] = lpd
-
+    
+    add_instance_all_spaces = arguments[count += 1].clone
+    argument_map['add_instance_all_spaces'] = add_instance_all_spaces
+    
     material_cost = arguments[count += 1].clone
     assert(material_cost.setValue(5.0))
     argument_map['material_cost'] = material_cost
@@ -254,7 +263,10 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     lpd = arguments[count += 1].clone
     assert(lpd.setValue(5.0))
     argument_map['lpd'] = lpd
-
+    
+    add_instance_all_spaces = arguments[count += 1].clone
+    argument_map['add_instance_all_spaces'] = add_instance_all_spaces
+    
     material_cost = arguments[count += 1].clone
     assert(material_cost.setValue(5.0))
     argument_map['material_cost'] = material_cost
@@ -318,7 +330,10 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     lpd = arguments[count += 1].clone
     assert(lpd.setValue(5.0))
     argument_map['lpd'] = lpd
-
+    
+    add_instance_all_spaces = arguments[count += 1].clone
+    argument_map['add_instance_all_spaces'] = add_instance_all_spaces
+    
     material_cost = arguments[count += 1].clone
     assert(material_cost.setValue(5.0))
     argument_map['material_cost'] = material_cost
@@ -382,7 +397,10 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     lpd = arguments[count += 1].clone
     assert(lpd.setValue(5.0))
     argument_map['lpd'] = lpd
-
+    
+    add_instance_all_spaces = arguments[count += 1].clone
+    argument_map['add_instance_all_spaces'] = add_instance_all_spaces
+    
     material_cost = arguments[count += 1].clone
     assert(material_cost.setValue(5.0))
     argument_map['material_cost'] = material_cost
@@ -440,7 +458,7 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(9, arguments.size)
+    assert_equal(10, arguments.size)
     assert_equal('space_type', arguments[0].name)
     assert_equal('lpd', arguments[1].name)
     assert_equal(1.0, arguments[1].defaultValueAsDouble)
@@ -457,7 +475,10 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     lpd = arguments[count += 1].clone
     assert(lpd.setValue(3.0))
     argument_map['lpd'] = lpd
-
+    
+    add_instance_all_spaces = arguments[count += 1].clone
+    argument_map['add_instance_all_spaces'] = add_instance_all_spaces
+    
     material_cost = arguments[count += 1].clone
     assert(material_cost.setValue(5.0))
     argument_map['material_cost'] = material_cost

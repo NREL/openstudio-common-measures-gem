@@ -38,41 +38,40 @@
 
 # start the measure
 class SetRunPeriod < OpenStudio::Ruleset::ModelUserScript
-
   # human readable name
   def name
-    return "SetRunPeriod"
+    return 'SetRunPeriod'
   end
 
   # human readable description
   def description
-    return "Sets the run period and timestep for simulation"
+    return 'Sets the run period and timestep for simulation'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return ""
+    return ''
   end
 
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Ruleset::OSArgumentVector.new
 
-    timesteps_per_hour = OpenStudio::Ruleset::OSArgument.makeIntegerArgument("timesteps_per_hour", true)
-    timesteps_per_hour.setDisplayName("Timesteps per hour")
-    timesteps_per_hour.setDescription("Number of simulation timesteps per hour")
+    timesteps_per_hour = OpenStudio::Ruleset::OSArgument.makeIntegerArgument('timesteps_per_hour', true)
+    timesteps_per_hour.setDisplayName('Timesteps per hour')
+    timesteps_per_hour.setDescription('Number of simulation timesteps per hour')
     args << timesteps_per_hour
-    
-    begin_date = OpenStudio::Ruleset::OSArgument.makeStringArgument("begin_date", true)
-    begin_date.setDisplayName("Begin date")
-    begin_date.setDescription("Simulation start date, YYYY-MM-DD format")
+
+    begin_date = OpenStudio::Ruleset::OSArgument.makeStringArgument('begin_date', true)
+    begin_date.setDisplayName('Begin date')
+    begin_date.setDescription('Simulation start date, YYYY-MM-DD format')
     args << begin_date
-    
-    end_date = OpenStudio::Ruleset::OSArgument.makeStringArgument("end_date", true)
-    end_date.setDisplayName("End date")
-    end_date.setDescription("Simulation end date, YYYY-MM-DD format")
+
+    end_date = OpenStudio::Ruleset::OSArgument.makeStringArgument('end_date', true)
+    end_date.setDisplayName('End date')
+    end_date.setDescription('Simulation end date, YYYY-MM-DD format')
     args << end_date
-    
+
     return args
   end
 
@@ -86,18 +85,18 @@ class SetRunPeriod < OpenStudio::Ruleset::ModelUserScript
     end
 
     # assign the user inputs to variables
-    timesteps_per_hour = runner.getIntegerArgumentValue("timesteps_per_hour", user_arguments)
-    begin_date = runner.getStringArgumentValue("begin_date", user_arguments)
-    end_date = runner.getStringArgumentValue("end_date", user_arguments)
+    timesteps_per_hour = runner.getIntegerArgumentValue('timesteps_per_hour', user_arguments)
+    begin_date = runner.getStringArgumentValue('begin_date', user_arguments)
+    end_date = runner.getStringArgumentValue('end_date', user_arguments)
 
     # check for reasonableness
     if timesteps_per_hour < 1
-      runner.registerError("Timesteps per hour must be greater than or equal to 1")
+      runner.registerError('Timesteps per hour must be greater than or equal to 1')
       return false
     end
-    
+
     model.getTimestep.setNumberOfTimestepsPerHour(timesteps_per_hour)
-    
+
     begin_year = nil
     begin_month = nil
     begin_day = nil
@@ -106,10 +105,10 @@ class SetRunPeriod < OpenStudio::Ruleset::ModelUserScript
       begin_month = md[2].to_i
       begin_day = md[3].to_i
     else
-      runner.registerError("Begin date must be in YYYY-MM-DD format")
+      runner.registerError('Begin date must be in YYYY-MM-DD format')
       return false
     end
-    
+
     end_year = nil
     end_month = nil
     end_day = nil
@@ -118,21 +117,20 @@ class SetRunPeriod < OpenStudio::Ruleset::ModelUserScript
       end_month = md[2].to_i
       end_day = md[3].to_i
     else
-      runner.registerError("End date must be in YYYY-MM-DD format")
+      runner.registerError('End date must be in YYYY-MM-DD format')
       return false
     end
-    
-    d1 = OpenStudio::Date.new(OpenStudio::monthOfYear(begin_month), begin_day, begin_year)
-    d2 = OpenStudio::Date.new(OpenStudio::monthOfYear(end_month), end_day, end_year)
-    
+
+    d1 = OpenStudio::Date.new(OpenStudio.monthOfYear(begin_month), begin_day, begin_year)
+    d2 = OpenStudio::Date.new(OpenStudio.monthOfYear(end_month), end_day, end_year)
+
     if d2 < d1
-      runner.registerError("Begin date cannot be after end date")
+      runner.registerError('Begin date cannot be after end date')
       return false
     end
-    
-        
+
     if (d2 - d1).totalDays > 366
-      runner.registerError("Maximum simulation period is 366 days")
+      runner.registerError('Maximum simulation period is 366 days')
       return false
     end
 
@@ -143,9 +141,7 @@ class SetRunPeriod < OpenStudio::Ruleset::ModelUserScript
     model.getRunPeriod.setEndDayOfMonth(end_day)
 
     return true
-
   end
-  
 end
 
 # register the measure to be used by the application

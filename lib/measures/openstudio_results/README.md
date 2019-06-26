@@ -19,6 +19,14 @@ ReportingMeasure
 ## Arguments
 
 
+### Which Unit System do you want to use?
+
+**Name:** units,
+**Type:** Choice,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
 ### Model Summary
 
 **Name:** building_summary_section,
@@ -231,3 +239,8 @@ This argument does not effect HTML file, instead it makes data from individal ce
 
 
 electricity_ip, natural_gas_ip, additional_fuel_ip, district_heating_ip, district_cooling_ip, total_site_eui, eui, net_site_energy, annual_peak_electric_demand, unmet_hours_during_occupied_cooling, unmet_hours_during_occupied_heating, first_year_capital_cost, annual_utility_cost, total_lifecycle_cost
+
+
+## Contributors
+ - Primary development by the commercial buildings team at NREL
+ - Support for SI units reporting developed by Julien Marrec with EffiBEM and Julien Thirifays with IGRETEC

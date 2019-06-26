@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>increase_insulation_r_value_for_exterior_walls_by_percentage</name>
   <uid>7508c563-22bd-49f4-b646-aac69b02a82d</uid>
-  <version_id>7d684f65-19fb-403e-a6f5-afcc154d175b</version_id>
-  <version_modified>20190205T192224Z</version_modified>
+  <version_id>0929439b-dba7-4d13-ac5a-1e8109f4b57d</version_id>
+  <version_modified>20190625T225104Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>IncreaseInsulationRValueForExteriorWallsByPercentage</class_name>
   <display_name>Increase R-value of Insulation for Exterior Walls By a Specified Percentage</display_name>
@@ -60,23 +60,6 @@
       <checksum>0B94403D</checksum>
     </file>
     <file>
-      <filename>IncreaseInsulationRValueForExteriorWalls_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>F218ED10</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>6FF78AE1</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -93,6 +76,23 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>D4B90CE5</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>D3F96340</checksum>
+    </file>
+    <file>
+      <filename>IncreaseInsulationRValueForExteriorWalls_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>5A4912D7</checksum>
     </file>
   </files>
 </measure>

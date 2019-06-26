@@ -38,7 +38,6 @@
 # Messages are put to stdout and returned in an array.
 # @return [Array<String>] an array of information about OpenStudio.
 def openstudio_information
-
   require 'json'
 
   result = {}
@@ -54,8 +53,7 @@ def openstudio_information
     result[:openstudio]['getEnergyPlusExecutable'] = OpenStudio.getEnergyPlusExecutable.to_s
     result[:openstudio]['getRadianceDirectory'] = OpenStudio.getRadianceDirectory.to_s
     result[:openstudio]['getPerlExecutable'] = OpenStudio.getPerlExecutable.to_s
-
-  rescue => exception
+  rescue StandardError => exception
     result[:openstudio][:error] = exception.backtrace
 
     pretty_result = JSON.pretty_generate(result)

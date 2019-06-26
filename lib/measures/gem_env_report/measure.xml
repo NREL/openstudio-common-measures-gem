@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>gem_environment_report</name>
   <uid>3f9f1a2f-0e8a-4c88-b817-10494fc3e73a</uid>
-  <version_id>21bb15a3-daf7-4e25-957d-8f346ef3f3ba</version_id>
-  <version_modified>20190205T192221Z</version_modified>
+  <version_id>adf033d9-8777-4c35-b22b-662039fcd7b8</version_id>
+  <version_modified>20190625T225103Z</version_modified>
   <xml_checksum>D1F10311</xml_checksum>
   <class_name>GemEnvironmentReport</class_name>
   <display_name>gem environment report</display_name>
@@ -39,12 +39,6 @@
   </attributes>
   <files>
     <file>
-      <filename>openstudio_info.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>372925EF</checksum>
-    </file>
-    <file>
       <filename>run_gem_env_info.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -55,29 +49,6 @@
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>29992A95</checksum>
-    </file>
-    <file>
-      <filename>gem_env_info.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>D6EF0E1A</checksum>
-    </file>
-    <file>
-      <filename>test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>6A652133</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>2AB4228D</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
@@ -96,6 +67,35 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>ACC6F66B</checksum>
+    </file>
+    <file>
+      <filename>openstudio_info.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>855B14C4</checksum>
+    </file>
+    <file>
+      <filename>gem_env_info.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>A242A705</checksum>
+    </file>
+    <file>
+      <filename>test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B3C17849</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>1ADE489F</checksum>
     </file>
   </files>
 </measure>

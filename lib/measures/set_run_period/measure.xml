@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_run_period</name>
   <uid>7a84292a-3975-4ab3-9284-6edabcbe750b</uid>
-  <version_id>b10a4566-c9de-416b-bc19-b85618364664</version_id>
-  <version_modified>20190212T173154Z</version_modified>
+  <version_id>709dc30b-1727-4614-819d-4ec964db9ecd</version_id>
+  <version_modified>20190625T225119Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>SetRunPeriod</class_name>
   <display_name>SetRunPeriod</display_name>
@@ -70,23 +70,6 @@
       <checksum>53D14E69</checksum>
     </file>
     <file>
-      <filename>set_run_period_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>833D1BA6</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>138C6780</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -103,6 +86,23 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>78FEB295</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>B3AAEB92</checksum>
+    </file>
+    <file>
+      <filename>set_run_period_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>22D1F2C1</checksum>
     </file>
   </files>
 </measure>

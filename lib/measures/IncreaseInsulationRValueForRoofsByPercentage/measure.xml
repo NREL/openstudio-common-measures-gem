@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>increase_insulation_r_value_for_roofs_by_percentage</name>
   <uid>807d3ebf-c89b-4b93-b400-110ca060b2bb</uid>
-  <version_id>1948b9a5-c797-4f7e-b677-cb1c69aaed62</version_id>
-  <version_modified>20190205T192224Z</version_modified>
+  <version_id>d2e3776e-9e77-4522-b108-58e3a303bb6a</version_id>
+  <version_modified>20190625T225104Z</version_modified>
   <xml_checksum>EB1A0C08</xml_checksum>
   <class_name>IncreaseInsulationRValueForRoofsByPercentage</class_name>
   <display_name>Increase R-value of Insulation for Roofs by a Specified Percentage.</display_name>
@@ -60,23 +60,6 @@
       <checksum>0B94403D</checksum>
     </file>
     <file>
-      <filename>IncreaseInsulationRValueForRoofs_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>507F7902</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>1E2503B6</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -93,6 +76,23 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>AFA7235D</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>65DA0F44</checksum>
+    </file>
+    <file>
+      <filename>IncreaseInsulationRValueForRoofs_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>105C7096</checksum>
     </file>
   </files>
 </measure>

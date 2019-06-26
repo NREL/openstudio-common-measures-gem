@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>increase_insulation_r_value_for_roofs</name>
   <uid>65b798f4-207f-4aed-987a-386c865d0ccd</uid>
-  <version_id>a82d4a7a-8ae5-42f7-9d71-3cdb15d085d3</version_id>
-  <version_modified>20180626T202325Z</version_modified>
+  <version_id>3efe6a59-62cc-4e3e-a9be-581ed5e5fa3e</version_id>
+  <version_modified>20190625T225104Z</version_modified>
   <xml_checksum>0F858D9E</xml_checksum>
   <class_name>IncreaseInsulationRValueForRoofs</class_name>
   <display_name>Increase R-value of Insulation for Roofs to a Specific Value</display_name>
@@ -105,17 +105,6 @@ The resulting construction will retain the cost data from the source constructio
       <checksum>0B94403D</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>61F38051</checksum>
-    </file>
-    <file>
       <filename>IncreaseInsulationRValueForRoofs_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -138,6 +127,17 @@ The resulting construction will retain the cost data from the source constructio
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>62C992A9</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>F5DC6955</checksum>
     </file>
   </files>
 </measure>

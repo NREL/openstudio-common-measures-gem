@@ -40,6 +40,17 @@ class ReduceElectricEquipmentLoadsByPercentage < OpenStudio::Measure::ModelMeasu
     return 'Reduce Electric Equipment Loads by Percentage'
   end
 
+  # human readable description
+  def description
+    return 'Reduce Electric Equipment Loads by Percentage</display_name>
+  <description>Reduce electric equipment loads. This will affect equipment that have a, power, power per area (LPD), or power per person value. This can be applied to the entire building or a specific space type. A positive percentage represents an increase electric equipment power, while a negative percentage can be used for an increase in electric equipment power.'
+  end
+
+  # human readable description of modeling approach
+  def modeler_description
+    return 'Loop through all electric equipment objects in the specified space type or the entire building. Clone the definition if it has not already been cloned, rename and adjust the power based on the specified percentage. Link the new definition to the existing electric equipment instance. Loop through objects first in space types and then in spaces, but only for spaces that are in the specified space type, unless entire building has been chosen.'
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -71,56 +82,63 @@ class ReduceElectricEquipmentLoadsByPercentage < OpenStudio::Measure::ModelMeasu
 
     # make a choice argument for space type
     space_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('space_type', space_type_handles, space_type_display_names)
-    space_type.setDisplayName('Apply the Measure to a Specific Space Type or to the Entire Model.')
+    space_type.setDisplayName('Apply the Measure to a Specific Space Type or to the Entire Model')
     space_type.setDefaultValue('*Entire Building*') # if no space type is chosen this will run on the entire building
     args << space_type
 
     # make an argument for reduction percentage
     elecequip_power_reduction_percent = OpenStudio::Measure::OSArgument.makeDoubleArgument('elecequip_power_reduction_percent', true)
-    elecequip_power_reduction_percent.setDisplayName('Electric Equipment Power Reduction (%).')
+    elecequip_power_reduction_percent.setDisplayName('Electric Equipment Power Reduction')
     elecequip_power_reduction_percent.setDefaultValue(30.0)
+    elecequip_power_reduction_percent.setUnits('%')
     args << elecequip_power_reduction_percent
 
     # make an argument for material and installation cost
     material_and_installation_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('material_and_installation_cost', true)
-    material_and_installation_cost.setDisplayName('Increase in Material and Installation Cost for Electric Equipment per Floor Area (%).')
+    material_and_installation_cost.setDisplayName('Increase in Material and Installation Cost for Electric Equipment per Floor Area')
     material_and_installation_cost.setDefaultValue(0.0)
+    material_and_installation_cost.setUnits('%')
     args << material_and_installation_cost
 
     # make an argument for demolition cost
     demolition_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('demolition_cost', true)
-    demolition_cost.setDisplayName('Increase in Demolition Costs for Electric Equipment per Floor Area (%).')
+    demolition_cost.setDisplayName('Increase in Demolition Costs for Electric Equipment per Floor Area')
     demolition_cost.setDefaultValue(0.0)
+    demolition_cost.setUnits('%')
     args << demolition_cost
 
     # make an argument for years until costs start
     years_until_costs_start = OpenStudio::Measure::OSArgument.makeIntegerArgument('years_until_costs_start', true)
-    years_until_costs_start.setDisplayName('Years Until Costs Start (whole years).')
+    years_until_costs_start.setDisplayName('Years Until Costs Start')
     years_until_costs_start.setDefaultValue(0)
+    years_until_costs_start.setUnits('whole years')
     args << years_until_costs_start
 
     # make a choice argument for when demo costs occur
     demo_cost_initial_const = OpenStudio::Measure::OSArgument.makeBoolArgument('demo_cost_initial_const', true)
-    demo_cost_initial_const.setDisplayName('Demolition Costs Occur During Initial Construction?')
+    demo_cost_initial_const.setDisplayName('Demolition Costs Occur During Initial Construction')
     demo_cost_initial_const.setDefaultValue(false)
     args << demo_cost_initial_const
 
     # make an argument for expected life
     expected_life = OpenStudio::Measure::OSArgument.makeIntegerArgument('expected_life', true)
-    expected_life.setDisplayName('Expected Life (whole years).')
+    expected_life.setDisplayName('Expected Life')
     expected_life.setDefaultValue(15)
+    expected_life.setUnits('whole years')
     args << expected_life
 
     # make an argument for O & M cost
     om_cost = OpenStudio::Measure::OSArgument.makeDoubleArgument('om_cost', true)
-    om_cost.setDisplayName('Increase O & M Costs for Electric Equipment per Floor Area (%).')
+    om_cost.setDisplayName('Increase O & M Costs for Electric Equipment per Floor Area')
     om_cost.setDefaultValue(0.0)
+    om_cost.setUnits('%')
     args << om_cost
 
     # make an argument for O & M frequency
     om_frequency = OpenStudio::Measure::OSArgument.makeIntegerArgument('om_frequency', true)
-    om_frequency.setDisplayName('O & M Frequency (whole years).')
+    om_frequency.setDisplayName('O & M Frequency')
     om_frequency.setDefaultValue(1)
+    om_frequency.setUnits('whole years')
     args << om_frequency
 
     return args
@@ -376,7 +394,7 @@ class ReduceElectricEquipmentLoadsByPercentage < OpenStudio::Measure::ModelMeasu
       space_equipments.each do |space_equipment|
         # clone def if it has not already been cloned
         exist_def = space_equipment.electricEquipmentDefinition
-        if cloned_elecequip_defs.any? { |k, v| k.include? exist_def.name.get.to_s }
+        if cloned_elecequip_defs.any? { |k, v| k.to_s == exist_def.name.get.to_s }
           new_def = cloned_elecequip_defs[exist_def.name.get.to_s]
         else
           # clone rename and add to hash
