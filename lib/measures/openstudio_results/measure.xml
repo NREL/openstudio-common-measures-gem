@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>be33f0da-6d98-47bb-9ef1-f9aa66cd3f49</version_id>
-  <version_modified>20190625T225104Z</version_modified>
+  <version_id>de229d19-f2c8-4f70-804f-a1619aa7392f</version_id>
+  <version_modified>20190626T180253Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -604,12 +604,6 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>99A21A4F</checksum>
-    </file>
-    <file>
-      <filename>os_lib_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>5F1CEF3A</checksum>
     </file>
     <file>
       <filename>os_lib_helper_methods.rb</filename>
@@ -1416,12 +1410,6 @@
       <checksum>8BCA04C9</checksum>
     </file>
     <file>
-      <filename>os_lib_reporting.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B407E11E</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1433,16 +1421,28 @@
       <checksum>19438B06</checksum>
     </file>
     <file>
+      <filename>os_lib_schedules.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>26368263</checksum>
+    </file>
+    <file>
+      <filename>os_lib_reporting.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>212424C0</checksum>
+    </file>
+    <file>
       <filename>OpenStudioResults_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>17C0AA79</checksum>
+      <checksum>F202A976</checksum>
     </file>
     <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>632E0B4B</checksum>
+      <checksum>66BEFDDA</checksum>
     </file>
   </files>
 </measure>
