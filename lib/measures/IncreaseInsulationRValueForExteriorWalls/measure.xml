@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>increase_insulation_r_value_for_exterior_walls</name>
   <uid>3fdf9c39-d305-449b-a4b5-077166af5a67</uid>
-  <version_id>e4a04d44-0cee-419e-bf17-d136ba3e911a</version_id>
-  <version_modified>20180711T183038Z</version_modified>
+  <version_id>b6db7433-efc6-472f-97bc-668c5173b4fb</version_id>
+  <version_modified>20190625T225103Z</version_modified>
   <xml_checksum>0F858D9E</xml_checksum>
   <class_name>IncreaseInsulationRValueForExteriorWalls</class_name>
   <display_name>Increase R-value of Insulation for Exterior Walls to a Specific Value</display_name>
@@ -105,17 +105,6 @@ The resulting construction will retain the cost data from the source constructio
       <checksum>0B94403D</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>3E52B290</checksum>
-    </file>
-    <file>
       <filename>no_mass.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -140,10 +129,21 @@ The resulting construction will retain the cost data from the source constructio
       <checksum>C9E03B35</checksum>
     </file>
     <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>69D50DF1</checksum>
+    </file>
+    <file>
       <filename>IncreaseInsulationRValueForExteriorWalls_01_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>ED7BDC6C</checksum>
+      <checksum>23258748</checksum>
     </file>
   </files>
 </measure>

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_variable_speed_rtu</name>
   <uid>7fb36b3a-5591-4627-a2b0-7709fbeae593</uid>
-  <version_id>7d3d17ba-d99c-4968-a454-aa0d5a1d84ba</version_id>
-  <version_modified>20190625T185841Z</version_modified>
+  <version_id>64f921a9-c6f3-4e5b-9cf7-736e8888a4a5</version_id>
+  <version_modified>20190625T225103Z</version_modified>
   <xml_checksum>A9D5932A</xml_checksum>
   <class_name>CreateVariableSpeedRTU</class_name>
   <display_name>Create Variable Speed RTU</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All CAV Air Loops*</default_value>
       <choices>
         <choice>
-          <value>{2a78ae68-fd05-432a-ba5f-6dd917730e2b}</value>
+          <value>{d940aa58-eee0-4e37-93f6-9acac53b8957}</value>
           <display_name>*All CAV Air Loops*</display_name>
         </choice>
       </choices>
@@ -169,17 +169,6 @@
       <checksum>69467654</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>1.12.2</identifier>
-        <min_compatible>2.7.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>7C4BF176</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -198,10 +187,21 @@
       <checksum>839520ED</checksum>
     </file>
     <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>1.12.2</identifier>
+        <min_compatible>2.7.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>10441A95</checksum>
+    </file>
+    <file>
       <filename>create_variable_speed_rtu_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>AFA21469</checksum>
+      <checksum>0A0F6597</checksum>
     </file>
   </files>
 </measure>

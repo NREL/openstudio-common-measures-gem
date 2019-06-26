@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_lighting_loads_by_lpd</name>
   <uid>901c076e-02af-4bf4-a780-57391e7b1e2a</uid>
-  <version_id>313bae64-9d23-4f12-b7e3-a2d92c36caf3</version_id>
-  <version_modified>20190430T155229Z</version_modified>
+  <version_id>1164f804-6bd5-4776-b959-6c77509f4e05</version_id>
+  <version_modified>20190625T225119Z</version_modified>
   <xml_checksum>293730A7</xml_checksum>
   <class_name>SetLightingLoadsByLPD</class_name>
   <display_name>Set Lighting Loads by LPD</display_name>
@@ -19,7 +19,7 @@
       <default_value>*Entire Building*</default_value>
       <choices>
         <choice>
-          <value>{b18add7f-8292-4df8-93fb-dcd1bee92f0f}</value>
+          <value>{7480df6e-ae68-4b52-9893-53fbc1bd5732}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -158,27 +158,10 @@
       <checksum>E025B7B3</checksum>
     </file>
     <file>
-      <filename>ReplaceLightsWithLPD_01_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>070A3818</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>9640B6CB</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>5C8DBC6F</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -191,6 +174,23 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>DD51F214</checksum>
+    </file>
+    <file>
+      <filename>ReplaceLightsWithLPD_01_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>350098FD</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>ABC44753</checksum>
     </file>
   </files>
 </measure>

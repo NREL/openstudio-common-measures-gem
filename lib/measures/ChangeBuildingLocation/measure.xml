@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>change_building_location</name>
   <uid>d4db4971-f5ba-11e3-a3ac-0800200c9a66</uid>
-  <version_id>5ae90ad5-2cdc-4dde-a3ce-bc55a407aeb7</version_id>
-  <version_modified>20190430T155220Z</version_modified>
+  <version_id>f245dc8d-bbbc-4bb6-90ef-73404311228a</version_id>
+  <version_modified>20190625T225103Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>ChangeBuildingLocation</class_name>
   <display_name>ChangeBuildingLocation</display_name>
@@ -244,17 +244,6 @@
       <checksum>9640B6CB</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>CF871950</checksum>
-    </file>
-    <file>
       <filename>stat_file.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -283,6 +272,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>408106D7</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>D00843C9</checksum>
     </file>
   </files>
 </measure>
