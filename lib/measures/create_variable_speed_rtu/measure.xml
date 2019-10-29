@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_variable_speed_rtu</name>
   <uid>7fb36b3a-5591-4627-a2b0-7709fbeae593</uid>
-  <version_id>64f921a9-c6f3-4e5b-9cf7-736e8888a4a5</version_id>
-  <version_modified>20190625T225103Z</version_modified>
+  <version_id>3a7085b8-5a9e-4754-9776-295f2e329c42</version_id>
+  <version_modified>20191029T231254Z</version_modified>
   <xml_checksum>A9D5932A</xml_checksum>
   <class_name>CreateVariableSpeedRTU</class_name>
   <display_name>Create Variable Speed RTU</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All CAV Air Loops*</default_value>
       <choices>
         <choice>
-          <value>{d940aa58-eee0-4e37-93f6-9acac53b8957}</value>
+          <value>{47d11683-15fb-4c77-801d-1780bd0a0191}</value>
           <display_name>*All CAV Air Loops*</display_name>
         </choice>
       </choices>
@@ -169,12 +169,6 @@
       <checksum>69467654</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -187,6 +181,12 @@
       <checksum>839520ED</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>D41C05CF</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>1.12.2</identifier>
@@ -195,13 +195,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>10441A95</checksum>
+      <checksum>FE273A5A</checksum>
     </file>
     <file>
       <filename>create_variable_speed_rtu_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>0A0F6597</checksum>
+      <checksum>5E908CD5</checksum>
     </file>
   </files>
 </measure>

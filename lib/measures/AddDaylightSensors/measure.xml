@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>add_daylight_sensors</name>
   <uid>62babdc7-c81e-4dfd-96e8-af1628a55167</uid>
-  <version_id>6d2d1845-1613-4850-9a75-763036d7a71b</version_id>
-  <version_modified>20180626T202311Z</version_modified>
+  <version_id>ac2b68e7-4376-47b3-bc08-f645a7d38a8d</version_id>
+  <version_modified>20191029T231254Z</version_modified>
   <xml_checksum>0AC58119</xml_checksum>
   <class_name>AddDaylightSensors</class_name>
   <display_name>Add Daylight Sensor at the Center of Spaces with a Specified Space Type Assigned</display_name>
@@ -187,29 +187,6 @@
       <checksum>34D67AAA</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>9AD9C39C</checksum>
-    </file>
-    <file>
-      <filename>AddDaylightSensors_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>D3F319C2</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -220,6 +197,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>0E14C1CA</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>68356650</checksum>
+    </file>
+    <file>
+      <filename>AddDaylightSensors_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>37498842</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>D41C05CF</checksum>
     </file>
   </files>
 </measure>

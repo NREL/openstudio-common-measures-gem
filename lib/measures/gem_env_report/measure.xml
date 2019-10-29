@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>gem_environment_report</name>
   <uid>3f9f1a2f-0e8a-4c88-b817-10494fc3e73a</uid>
-  <version_id>adf033d9-8777-4c35-b22b-662039fcd7b8</version_id>
-  <version_modified>20190625T225103Z</version_modified>
+  <version_id>31ec65fa-e1b8-49af-8434-79c666e3c4cb</version_id>
+  <version_modified>20191029T231254Z</version_modified>
   <xml_checksum>D1F10311</xml_checksum>
   <class_name>GemEnvironmentReport</class_name>
   <display_name>gem environment report</display_name>
@@ -39,24 +39,6 @@
   </attributes>
   <files>
     <file>
-      <filename>run_gem_env_info.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>38023E26</checksum>
-    </file>
-    <file>
-      <filename>run_openstudio_info.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>29992A95</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -69,22 +51,40 @@
       <checksum>ACC6F66B</checksum>
     </file>
     <file>
+      <filename>run_gem_env_info.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>4D3B0836</checksum>
+    </file>
+    <file>
+      <filename>run_openstudio_info.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>A0EF4EED</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>D41C05CF</checksum>
+    </file>
+    <file>
       <filename>openstudio_info.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>855B14C4</checksum>
+      <checksum>688CAFE7</checksum>
     </file>
     <file>
       <filename>gem_env_info.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>A242A705</checksum>
+      <checksum>76C738C7</checksum>
     </file>
     <file>
       <filename>test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B3C17849</checksum>
+      <checksum>3EF45B65</checksum>
     </file>
     <file>
       <version>
@@ -95,7 +95,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>1ADE489F</checksum>
+      <checksum>924281E2</checksum>
     </file>
   </files>
 </measure>

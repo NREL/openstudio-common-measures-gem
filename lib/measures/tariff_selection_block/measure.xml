@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>tariff_selection_block</name>
   <uid>42e9f831-f39a-4709-a79b-41db49c94f8c</uid>
-  <version_id>7aebb611-4a26-44e0-8bef-b37fe3ecd8eb</version_id>
-  <version_modified>20180710T213339Z</version_modified>
+  <version_id>64bc8f5d-c6ce-446d-adfb-5ca4ea5a119f</version_id>
+  <version_modified>20191029T231305Z</version_modified>
   <xml_checksum>92578CE8</xml_checksum>
   <class_name>TariffSelectionBlock</class_name>
   <display_name> Tariff Selection-Block</display_name>
@@ -239,18 +239,6 @@
       <checksum>E11F67BD</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>9CFC43FB</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -263,6 +251,18 @@
       <checksum>F00D5166</checksum>
     </file>
     <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>22515A49</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>D41C05CF</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -271,13 +271,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>2C473D22</checksum>
+      <checksum>C8EEBC68</checksum>
     </file>
     <file>
       <filename>tariff_selection_block_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>582DF5A7</checksum>
+      <checksum>06B18E2C</checksum>
     </file>
   </files>
 </measure>

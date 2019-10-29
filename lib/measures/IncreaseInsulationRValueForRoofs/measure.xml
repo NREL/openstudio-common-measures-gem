@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>increase_insulation_r_value_for_roofs</name>
   <uid>65b798f4-207f-4aed-987a-386c865d0ccd</uid>
-  <version_id>3efe6a59-62cc-4e3e-a9be-581ed5e5fa3e</version_id>
-  <version_modified>20190625T225104Z</version_modified>
+  <version_id>d11a9274-9797-4f95-aae9-fd3fea10edb6</version_id>
+  <version_modified>20191029T231254Z</version_modified>
   <xml_checksum>0F858D9E</xml_checksum>
   <class_name>IncreaseInsulationRValueForRoofs</class_name>
   <display_name>Increase R-value of Insulation for Roofs to a Specific Value</display_name>
@@ -105,18 +105,6 @@ The resulting construction will retain the cost data from the source constructio
       <checksum>0B94403D</checksum>
     </file>
     <file>
-      <filename>IncreaseInsulationRValueForRoofs_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9A4BBA6D</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -129,6 +117,18 @@ The resulting construction will retain the cost data from the source constructio
       <checksum>62C992A9</checksum>
     </file>
     <file>
+      <filename>IncreaseInsulationRValueForRoofs_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>07DA93D2</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>D41C05CF</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -137,7 +137,7 @@ The resulting construction will retain the cost data from the source constructio
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>F5DC6955</checksum>
+      <checksum>0A2D5C17</checksum>
     </file>
   </files>
 </measure>
