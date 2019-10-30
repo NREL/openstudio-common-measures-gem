@@ -6,8 +6,8 @@ require 'openstudio/common_measures/version'
 Gem::Specification.new do |spec|
   spec.name          = 'openstudio-common-measures'
   spec.version       = OpenStudio::CommonMeasures::VERSION
-  spec.authors       = ['David Goldwasser']
-  spec.email         = ['david.goldwasser@nrel.gov']
+  spec.authors       = ['David Goldwasser', 'Nicholas Long']
+  spec.email         = ['david.goldwasser@nrel.gov', 'nicholas.long@nrel.gov']
 
   spec.summary       = 'Common library and measures for OpenStudio'
   spec.description   = 'Common library and measures for OpenStudio'
@@ -27,6 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '3.7.0'
   spec.add_development_dependency 'rubocop', '~> 0.54.0'
 
-  spec.add_dependency 'openstudio-extension', '~> 0.1.0'
-  spec.add_dependency 'openstudio-standards', '~> 0.2.7'
+  spec.add_dependency 'openstudio-extension', '~> 0.1.3'
+  spec.add_dependency 'openstudio-standards', '~> 0.2.10'
 end

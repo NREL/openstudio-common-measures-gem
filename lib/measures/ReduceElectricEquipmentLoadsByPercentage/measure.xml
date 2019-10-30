@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>reduce_electric_equipment_loads_by_percentage</name>
   <uid>0902e302-70db-4339-99b0-17f08bc93629</uid>
-  <version_id>8f2c2a38-142b-46d6-bbc1-c2d2118198d4</version_id>
-  <version_modified>20190430T155228Z</version_modified>
+  <version_id>7be9778a-f317-46fb-b48a-4159ce1ec158</version_id>
+  <version_modified>20191029T231304Z</version_modified>
   <xml_checksum>F9A5B8F0</xml_checksum>
   <class_name>ReduceElectricEquipmentLoadsByPercentage</class_name>
   <display_name>Reduce Electric Equipment Loads by Percentage</display_name>
@@ -20,7 +20,7 @@
       <default_value>*Entire Building*</default_value>
       <choices>
         <choice>
-          <value>{69969560-cd89-419d-b515-7b3ef4e89e94}</value>
+          <value>{d6f5c1b0-32e8-4d96-b8da-7d97f8c5379b}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -148,22 +148,28 @@
       <checksum>38E06CA8</checksum>
     </file>
     <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>4FC6A4A7</checksum>
+    </file>
+    <file>
       <filename>ReduceElectricEquipmentLoadsByPercentage_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B82B5383</checksum>
+      <checksum>35D9BF28</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <checksum>D41C05CF</checksum>
     </file>
     <file>
       <version>
@@ -174,13 +180,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C4522647</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>4FC6A4A7</checksum>
+      <checksum>372F7BD9</checksum>
     </file>
   </files>
 </measure>
