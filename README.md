@@ -29,8 +29,10 @@ To be filled out later.
 
 # Releasing
 
-* Update change log
+* Update CHANGELOG.md
+* Run `rake rubocop:auto_correct`
 * Update version in `/lib/openstudio/common_measures/version.rb`
-* Merge down to master
-* Release via github
-* run `rake release` from master
+* Create PR to master, after tests and reviews complete, then merge
+* Locally - from the master branch, run `rake release`
+* On GitHub, go to the releases page and update the latest release tag. Name it “Version x.y.z” and copy the CHANGELOG entry into the description box.
+
