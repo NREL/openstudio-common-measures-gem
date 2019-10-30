@@ -37,7 +37,6 @@
 # Simple measure to load the EPW file and DDY file
 
 class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
-
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
   # resource file modules
@@ -109,7 +108,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
 
     # lookup and replace argument values from upstream measures
     if args['use_upstream_args'] == true
-      args.each do |arg,value|
+      args.each do |arg, value|
         next if arg == 'use_upstream_args' # this argument should not be changed
         value_from_osw = OsLib_HelperMethods.check_upstream_measure_for_arg(runner, arg)
         if !value_from_osw.empty?
@@ -158,7 +157,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     weather_file.setLongitude(epw_file.lon)
     weather_file.setTimeZone(epw_file.gmt)
     weather_file.setElevation(epw_file.elevation)
-    
+
     # try without the file:/// protocol
     weather_file.setString(10, epw_file.filename)
     runner.registerWarning("weather_file.path is #{weather_file.path.get}.")
