@@ -1,0 +1,44 @@
+UtilityCost:Tariff,
+  ExampleB,                     ! Name
+    ElectricityPurchased:Facility,  !- Output Meter Name
+  kWh,                          ! Conversion Factor Choice
+  ,                             ! Energy Conversion Factor
+  ,                             ! Demand Conversion Factor
+  ,                             ! Time of Use Period Schedule Name
+  ,                             ! Season Schedule Name
+  ,                             ! Month Schedule Name
+  ,                             ! Demand Window Length
+  5.75;                         ! Monthly Charge or Variable Name
+
+
+UtilityCost:Charge:Block,
+  BlockEnergyCharge,            ! Charge Variable Name
+  ExampleB,                     ! Tariff Name
+  totalEnergy,                  ! Source Variable
+  Annual,                       ! Season
+  EnergyCharges,                ! Category Variable Name
+  ,                             ! Remaining Into Variable
+  ,                             ! Block Size Multiplier Value or Variable Name
+  200,                          ! Block Size 1 Value or Variable Name
+  0.07231,                      ! Block 1 Cost per Unit Value or Variable Name
+  1000,                         ! Block Size 2 Value or Variable Name
+  0.06656,                      ! Block 2 Cost per Unit Value or Variable Name
+  remaining,                    ! Block Size 3 Value or Variable Name
+  0.05876;                      ! Block 3 Cost per Unit Value or Variable Name
+
+
+BuildingSurface:Detailed,
+  Example Surafce for Zone In Model,      !- Name
+  Floor,                                  !- Surface Type
+  000_ExtSlabCarpet_4in_ClimateZone 1-8,  !- Construction Name
+  Thermal Zone: Space 101,                !- Zone Name
+  Ground,                                 !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  NoSun,                                  !- Sun Exposure
+  NoWind,                                 !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  3.162696875, 0, 0,                      !- X,Y,Z Vertex 1 {m}
+  3.162696875, -6.5452625, 0,             !- X,Y,Z Vertex 2 {m}
+  0, -6.5452625, 0,                       !- X,Y,Z Vertex 3 {m}
+  0, 0, 0;                                !- X,Y,Z Vertex 4 {m}

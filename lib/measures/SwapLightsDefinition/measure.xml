@@ -1,0 +1,124 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>swap_lights_definition</name>
+  <uid>63845525-5b86-448f-9a34-6be8481496ea</uid>
+  <version_id>4ffda5a5-0647-47dc-bcfb-fc509f730794</version_id>
+  <version_modified>20180626T202333Z</version_modified>
+  <xml_checksum>293730A7</xml_checksum>
+  <class_name>SwapLightsDefinition</class_name>
+  <display_name>SwapLightsDefinition</display_name>
+  <description>This measure will swap out one lights definition for another. All objects that had referred to the original definition will now refer to the new one.</description>
+  <modeler_description>This measure will not delete or change either definition, rather it just swaps out the references of one for the other. It is possible that the new definition is already used in the model elsewhere.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+    Each of these objects can be independently costed, however the measure can address demolition costs of the object being removed.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+  </modeler_description>
+  <arguments>
+    <argument>
+      <name>old_lights_def</name>
+      <display_name>Choose the Lights Definition you Want to Replace.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>new_lights_def</name>
+      <display_name>Choose the Lights Definition to Use in Place of Removed Definition.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>demo_cost_initial_const</name>
+      <display_name>Demolition Costs Occur During Initial Definition?</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Electric Lighting.Lighting Equipment</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Function</name>
+      <value>Measure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Requires EnergyPlus Results</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>EnvelopeAndLoadTestModel_01.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E3EB4106</checksum>
+    </file>
+    <file>
+      <filename>EnvelopeAndLoadTestModel_01_costed.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2ED2C03C</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>3B467FFA</checksum>
+    </file>
+    <file>
+      <filename>SwapLightsDefinition_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>6236AA41</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>23BE224A</checksum>
+    </file>
+  </files>
+</measure>
