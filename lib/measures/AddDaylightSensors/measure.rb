@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2018, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -111,6 +111,12 @@ class AddDaylightSensors < OpenStudio::Measure::ModelMeasure
     min_light_fraction.setDefaultValue(0.2)
     args << min_light_fraction
 
+    # make an argument for fraction_zone_controlled
+    fraction_zone_controlled = OpenStudio::Measure::OSArgument.makeDoubleArgument('fraction_zone_controlled', true)
+    fraction_zone_controlled.setDisplayName('Fraction of zone controlled by daylight sensors')
+    fraction_zone_controlled.setDefaultValue(1.0)
+    args << fraction_zone_controlled
+
     # make an argument for height
     height = OpenStudio::Measure::OSArgument.makeDoubleArgument('height', true)
     height.setDisplayName('Sensor Height')
@@ -184,6 +190,7 @@ class AddDaylightSensors < OpenStudio::Measure::ModelMeasure
     control_type = runner.getStringArgumentValue('control_type', user_arguments)
     min_power_fraction = runner.getDoubleArgumentValue('min_power_fraction', user_arguments)
     min_light_fraction = runner.getDoubleArgumentValue('min_light_fraction', user_arguments)
+    fraction_zone_controlled = runner.getDoubleArgumentValue('fraction_zone_controlled', user_arguments)
     height = runner.getDoubleArgumentValue('height', user_arguments)
     material_cost = runner.getDoubleArgumentValue('material_cost', user_arguments)
     demolition_cost = runner.getDoubleArgumentValue('demolition_cost', user_arguments)
@@ -472,14 +479,14 @@ class AddDaylightSensors < OpenStudio::Measure::ModelMeasure
           # setup primary sensor
           sensor_primary = new_sensor_objects[primary_space.name.to_s]
           zone.setPrimaryDaylightingControl(sensor_primary)
-          zone.setFractionofZoneControlledbyPrimaryDaylightingControl(primary_area / (primary_area + secondary_area))
+          zone.setFractionofZoneControlledbyPrimaryDaylightingControl(fraction_zone_controlled * primary_area / (primary_area + secondary_area))
         end
 
         if secondary_space
           # setup secondary sensor
           sensor_secondary = new_sensor_objects[secondary_space.name.to_s]
           zone.setSecondaryDaylightingControl(sensor_secondary)
-          zone.setFractionofZoneControlledbySecondaryDaylightingControl(secondary_area / (primary_area + secondary_area))
+          zone.setFractionofZoneControlledbySecondaryDaylightingControl(fraction_zone_controlled * secondary_area / (primary_area + secondary_area))
         end
 
         # warn that additional sensors were not used

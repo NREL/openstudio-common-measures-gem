@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_lighting_loads_by_lpd</name>
   <uid>901c076e-02af-4bf4-a780-57391e7b1e2a</uid>
-  <version_id>442c6433-9134-4603-8a12-e7d00c3e94ea</version_id>
-  <version_modified>20191029T231305Z</version_modified>
+  <version_id>cc67f8ee-4329-4573-92b1-ac136ac6c3b2</version_id>
+  <version_modified>20190829T151343Z</version_modified>
   <xml_checksum>293730A7</xml_checksum>
   <class_name>SetLightingLoadsByLPD</class_name>
   <display_name>Set Lighting Loads by LPD</display_name>
@@ -19,7 +19,7 @@
       <default_value>*Entire Building*</default_value>
       <choices>
         <choice>
-          <value>{b45357fa-d95b-4288-aeb1-2543df15e293}</value>
+          <value>{969c8806-0923-490c-aa7b-d83dbdab889b}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -158,6 +158,18 @@
       <checksum>E025B7B3</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>HasSpaceWithNoLightsOrElec.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>ECE1D347</checksum>
+    </file>
+    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -170,16 +182,10 @@
       <checksum>DD51F214</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
-    </file>
-    <file>
       <filename>ReplaceLightsWithLPD_01_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>770FFA99</checksum>
+      <checksum>4C4A9296</checksum>
     </file>
     <file>
       <version>
@@ -190,7 +196,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>BFCCE72F</checksum>
+      <checksum>ABC44753</checksum>
     </file>
   </files>
 </measure>

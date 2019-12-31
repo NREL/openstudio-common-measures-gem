@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>tariff_selection_time_and_date_dependant</name>
   <uid>a890e296-b357-432f-8d53-6428d9bf3c0a</uid>
-  <version_id>c2fbd1ab-afca-414e-a9a1-fb43594f12e2</version_id>
-  <version_modified>20191029T231305Z</version_modified>
+  <version_id>539835a3-4077-42f3-94f4-3e84c49fcb83</version_id>
+  <version_modified>20190923T182709Z</version_modified>
   <xml_checksum>135F7E88</xml_checksum>
   <class_name>TariffSelectionTimeAndDateDependant</class_name>
   <display_name>Tariff Selection-Time and Date Dependant</display_name>
@@ -257,6 +257,12 @@
       <checksum>E11F67BD</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -269,18 +275,6 @@
       <checksum>C90B29ED</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -289,13 +283,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>99CA249B</checksum>
+      <checksum>8435C9A3</checksum>
     </file>
     <file>
       <filename>tariff_selection_time_and_date_dependant_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>DF6E71D2</checksum>
+      <checksum>44193BF6</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>22515A49</checksum>
     </file>
   </files>
 </measure>
