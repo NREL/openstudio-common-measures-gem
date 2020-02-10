@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>enable_economizer_control</name>
   <uid>f8cc920d-8ae3-411a-922f-e6fed3223c4d</uid>
-  <version_id>30f619d1-f447-4e19-aa18-9d266faf125e</version_id>
-  <version_modified>20181101T151202Z</version_modified>
+  <version_id>dfd2a1bc-1621-4b0d-8431-fdac44071d2c</version_id>
+  <version_modified>20191231T201102Z</version_modified>
   <xml_checksum>ECE70A70</xml_checksum>
   <class_name>EnableEconomizerControl</class_name>
   <display_name>Enable Economizer Control</display_name>
@@ -86,17 +86,6 @@ The cost arguments are user arguments that start with a default of $0.&#xd;&#xd;
       <checksum>4A5352A1</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>67ECD1CA</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -109,16 +98,27 @@ The cost arguments are user arguments that start with a default of $0.&#xd;&#xd;
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>CF61C43C</checksum>
-    </file>
-    <file>
       <filename>measure_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>7B7B1503</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>67ECD1CA</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>CF61C43C</checksum>
     </file>
   </files>
 </measure>

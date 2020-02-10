@@ -43,6 +43,17 @@ class OpenStudio::Model::HVACComponent
     end
   end
 
+  def ratedPower
+    comp = cast_to_concrete_type
+    return OpenStudio::OptionalDouble.new if comp.nil?
+    if comp.respond_to?(__method__.to_s)
+      return comp.ratedPower
+    else
+      # puts "#{__method__.to_s} not implemented for #{iddObject.type.name}"
+      return OpenStudio::OptionalDouble.new
+    end
+  end
+
   def maxHeatingCapacityAutosized
     comp = cast_to_concrete_type
     return OpenStudio::OptionalDouble.new if comp.nil?
@@ -81,6 +92,17 @@ class OpenStudio::Model::HVACComponent
     return OpenStudio::OptionalDouble.new if comp.nil?
     if comp.respond_to?(__method__.to_s)
       return comp.maxWaterFlowRateAutosized
+    else
+      # puts "#{__method__.to_s} not implemented for #{iddObject.type.name}"
+      return OpenStudio::OptionalDouble.new
+    end
+  end
+
+  def ratedPowerAutosized
+    comp = cast_to_concrete_type
+    return OpenStudio::OptionalDouble.new if comp.nil?
+    if comp.respond_to?(__method__.to_s)
+      return comp.ratedPowerAutosized
     else
       # puts "#{__method__.to_s} not implemented for #{iddObject.type.name}"
       return OpenStudio::OptionalDouble.new

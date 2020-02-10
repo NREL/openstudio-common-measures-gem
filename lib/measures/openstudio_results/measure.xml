@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>1d1137b1-f65f-4af8-86cd-8137e43fd36f</version_id>
-  <version_modified>20191219T010136Z</version_modified>
+  <version_id>b40e3a83-24f3-459f-bc33-493802595c7b</version_id>
+  <version_modified>20200207T205527Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -407,6 +407,24 @@
       </choices>
     </argument>
     <argument>
+      <name>measure_warning_section</name>
+      <display_name>Measure Warnings</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
       <name>reg_monthly_details</name>
       <display_name>Report monthly fuel and enduse breakdown to registerValue</display_name>
       <description>This argument does not effect HTML file, instead it makes data from individal cells of monthly tables avaiable for machine readable values in the resulting OpenStudio Workflow file.</description>
@@ -592,12 +610,6 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>D67C186D</checksum>
-    </file>
-    <file>
-      <filename>ExampleModel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>6EBB9908</checksum>
     </file>
     <file>
       <filename>HeatingOnly.osm</filename>
@@ -1326,24 +1338,6 @@
       <checksum>39D37C1E</checksum>
     </file>
     <file>
-      <filename>Siz.HumidifierSteamElectric.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>4AC9E00C</checksum>
-    </file>
-    <file>
-      <filename>Siz.HVACComponent.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>7B9BDC31</checksum>
-    </file>
-    <file>
-      <filename>Siz.Model.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>049C8904</checksum>
-    </file>
-    <file>
       <filename>Siz.ModelObject.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -1380,22 +1374,10 @@
       <checksum>9640B6CB</checksum>
     </file>
     <file>
-      <filename>add_tariff.osw</filename>
-      <filetype>osw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>D6967D86</checksum>
-    </file>
-    <file>
       <filename>EdgeCaseModel.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>4EEA709C</checksum>
-    </file>
-    <file>
-      <filename>OpenStudioResults_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>75BD5A2B</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -1410,38 +1392,10 @@
       <checksum>CF3D4ACC</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>19438B06</checksum>
-    </file>
-    <file>
       <filename>Siz.ZoneHVACTerminalUnitVariableRefrigerantFlow.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>6EC93B35</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>19438B06</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>8BCA04C9</checksum>
     </file>
     <file>
       <filename>os_lib_helper_methods.rb</filename>
@@ -1450,10 +1404,63 @@
       <checksum>22515A49</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>992838C5</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>063B4808</checksum>
+    </file>
+    <file>
+      <filename>add_tariff.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1F52F669</checksum>
+    </file>
+    <file>
+      <filename>OpenStudioResults_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B5A91B29</checksum>
+    </file>
+    <file>
+      <filename>ExampleModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F70DF221</checksum>
+    </file>
+    <file>
+      <filename>Siz.HumidifierSteamElectric.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>1CAE52F5</checksum>
+    </file>
+    <file>
+      <filename>Siz.HVACComponent.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>F6C43668</checksum>
+    </file>
+    <file>
+      <filename>Siz.Model.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>16442856</checksum>
+    </file>
+    <file>
       <filename>os_lib_reporting.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>116282CB</checksum>
+      <checksum>6D66BD93</checksum>
     </file>
   </files>
 </measure>

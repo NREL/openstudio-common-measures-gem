@@ -195,6 +195,14 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
+### Measure Warnings
+
+**Name:** measure_warning_section,
+**Type:** Boolean,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
 ### Report monthly fuel and enduse breakdown to registerValue
 This argument does not effect HTML file, instead it makes data from individal cells of monthly tables avaiable for machine readable values in the resulting OpenStudio Workflow file.
 **Name:** reg_monthly_details,

@@ -808,7 +808,12 @@ class OpenStudioResults_Test < Minitest::Test
     measure = OpenStudioResults.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    #runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+
+    # create an instance of a runner with OSW (pre-populated with result data)
+    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/add_tariff.osw')
+    osw = OpenStudio::WorkflowJSON.load(osw_path).get
+    runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # get arguments
     arguments = measure.arguments

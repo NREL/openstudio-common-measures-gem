@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_space_infiltration_per_exterior_area</name>
   <uid>9d796dd3-c5cf-475a-81aa-607d3ba9d143</uid>
-  <version_id>d40dedfc-85c3-4eb1-8f89-20b33a6c7367</version_id>
-  <version_modified>20190404T225938Z</version_modified>
+  <version_id>8502986c-87b1-466e-b469-c0f1dbfde08e</version_id>
+  <version_modified>20191231T193155Z</version_modified>
   <xml_checksum>19EEDBBB</xml_checksum>
   <class_name>SetSpaceInfiltrationPerExteriorArea</class_name>
   <display_name>SetSpaceInfiltrationPerExteriorArea</display_name>
@@ -66,12 +66,6 @@
     </attribute>
   </attributes>
   <files>
-    <file>
-      <filename>.gitkeep</filename>
-      <filetype>gitkeep</filetype>
-      <usage_type>doc</usage_type>
-      <checksum>00000000</checksum>
-    </file>
     <file>
       <filename>set_space_infiltration_per_exterior_area_test.rb</filename>
       <filetype>rb</filetype>

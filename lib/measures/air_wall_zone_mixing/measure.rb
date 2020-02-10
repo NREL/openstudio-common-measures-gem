@@ -47,20 +47,14 @@ class AirWallZoneMixing < OpenStudio::Measure::ModelMeasure
 
   # human readable description
   def description
-    return "This measure replaces conductive heat transfer with zone mixing wherever air walls are used on matched surfaces or sub-surfaces for walls. A user argument is exposed for a coefficient that represents a target air changes per hour (ACH) for a room where the zone volume/the air wall surface area is the same as its zone height. As the room gets deeper the additional airflow per unit of depth decreases. If two zones have different mixing estimates, the lower will be used. If a smaller portion of an inter-zone wall is an air wall, that will also decrease zone mixing airflow.
-
-A construction will be hard assigned to the matched surfaces using the air wall, and the then boundary condition will be changed to adiabatic. This will avoid including both air mixing and conductive transfer across zones. Zone mixing objects will also be made for sub-surface air walls, but they can't be made adiabatic unless their base surface also is. A warning will be issued if that happens"
+    return "This measure replaces conductive heat transfer with zone mixing wherever air walls are used on matched surfaces or sub-surfaces for walls. A user argument is exposed for a coefficient that represents a target air changes per hour (ACH) for a room where the zone volume/the air wall surface area is the same as its zone height. As the room gets deeper the additional airflow per unit of depth decreases. If two zones have different mixing estimates, the lower will be used. If a smaller portion of an inter-zone wall is an air wall, that will also decrease zone mixing airflow. A construction will be hard assigned to the matched surfaces using the air wall, and the then boundary condition will be changed to adiabatic. This will avoid including both air mixing and conductive transfer across zones. Zone mixing objects will also be made for sub-surface air walls, but they can't be made adiabatic unless their base surface also is. A warning will be issued if that happens"
   end
 
   # human readable description of modeling approach
   def modeler_description
     return "The formula used to determine the design flow rate is the zone mixing coefficient * zone volume/sqrt(zone volume / (air wall area * zone height).
 
-Zone mixing will only be added where there is an air wall and where the matched surfaces belong to spaces in different thermal zones and the base surface type is a wall. Currently floors are not addressed by this measure. Air walls in spaces that are part of the same thermal zone will be left alone. The intended use case is a single base surface that spans the room or one or more sub-surface that spans a portion of it. If you have multiple air wall base surfaces matched between the same zones you may get higher than expected zone mixing.
-
-Example 1: two 10' high by 40' wide by 10' deep rooms with a zone mixing coefficient of 1.0 would have a design flow rate of 66.67 CFM (equiv to 1.0 ACH)
-Example 2: two 10' high by 40' wide by 40' deep rooms with a zone mixing coefficient of 1.0 would have a design flow rate of 133.33 CFM (equiv to 0.5 ACH)
-Example 3: two 40' high by 10' wide by 10' deep rooms with a zone mixing coefficient of 1.0 would have a design flow rate of 66.67 CFM (equiv to 1.0 ACH)"
+Zone mixing will only be added where there is an air wall and where the matched surfaces belong to spaces in different thermal zones and the base surface type is a wall. Currently floors are not addressed by this measure. Air walls in spaces that are part of the same thermal zone will be left alone. The intended use case is a single base surface that spans the room or one or more sub-surface that spans a portion of it. If you have multiple air wall base surfaces matched between the same zones you may get higher than expected zone mixing."
   end
   # TODO: - update it to look at all matched surfaces between two zones at the same time and make a single zone mixing object. This will better handle split walls where part is open and part is solid.
 
