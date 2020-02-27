@@ -47,6 +47,16 @@ class PredictedMeanVote < OpenStudio::Measure::ModelMeasure
     return 'Predicted Mean Vote'
   end
 
+  # description
+  def description
+    return 'This measure adds the necessary data to people objects to support Predicted Mean Vote output data. It also adds the variable request.'
+  end
+
+  # modeler description
+  def modeler_description
+    return 'This will not add new people objects, but rather just extend the ones that are in the model. It will rely on schedules already made in the model instead of creating new schedules.'
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -63,7 +73,7 @@ class PredictedMeanVote < OpenStudio::Measure::ModelMeasure
     chs << 'SurfaceWeighted'
     # chs << "AngleFactor" # I disabled this choice unless we expose the Surface Name/Angle Factor List Name field.
     meanRadiantCalcType = OpenStudio::Measure::OSArgument.makeChoiceArgument('meanRadiantCalcType', chs, true)
-    meanRadiantCalcType.setDisplayName('Mean Radiant Temperature Calculation Type.')
+    meanRadiantCalcType.setDisplayName('Mean Radiant Temperature Calculation Type')
     meanRadiantCalcType.setDefaultValue('ZoneAveraged')
     args << meanRadiantCalcType
 
@@ -95,7 +105,7 @@ class PredictedMeanVote < OpenStudio::Measure::ModelMeasure
 
     # make a choice schedule for Work Efficiency Schedule
     workEfficiencySchedule = OpenStudio::Measure::OSArgument.makeChoiceArgument('workEfficiencySchedule', fractional_schedule_handles, fractional_schedule_display_names, true)
-    workEfficiencySchedule.setDisplayName('Choose a Work Efficiency Schedule.')
+    workEfficiencySchedule.setDisplayName('Choose a Work Efficiency Schedule')
     # I don't offer a default here because there will be many fractional schedules. I want to user to choose
     args << workEfficiencySchedule
 
@@ -114,7 +124,7 @@ class PredictedMeanVote < OpenStudio::Measure::ModelMeasure
 
     # make a choice argument for Clothing Insulation Schedule Name
     clothingSchedule = OpenStudio::Measure::OSArgument.makeChoiceArgument('clothingSchedule', clothing_schedule_handles, clothing_schedule_display_names, true)
-    clothingSchedule.setDisplayName('Choose a Clothing Insulation Schedule.')
+    clothingSchedule.setDisplayName('Choose a Clothing Insulation Schedule')
     if !clothing_schedule_display_names.empty?
       clothingSchedule.setDefaultValue(clothing_schedule_display_names[0]) # normally I don't default model choice list, but since often there might be just one I decided to default this.
     end
@@ -135,13 +145,27 @@ class PredictedMeanVote < OpenStudio::Measure::ModelMeasure
 
     # make a choice argument for Air Velocity Schedule Name
     airVelocitySchedule = OpenStudio::Measure::OSArgument.makeChoiceArgument('airVelocitySchedule', airVelocity_schedule_handles, airVelocity_schedule_display_names, true)
-    airVelocitySchedule.setDisplayName('Choose an Air Velocity Schedule.')
+    airVelocitySchedule.setDisplayName('Choose an Air Velocity Schedule')
     if !airVelocity_schedule_display_names.empty?
       airVelocitySchedule.setDefaultValue(airVelocity_schedule_display_names[0]) # normally I don't default model choice list, but since often there might be just one I decided to default this.
     end
     args << airVelocitySchedule
-
     # hard code Thermal Comfort Model Type to Fanger, but could add argument in the future.
+
+    # make an argument for the frequency
+    reporting_frequency_chs = OpenStudio::StringVector.new
+    reporting_frequency_chs << 'Detailed'
+    reporting_frequency_chs << 'Timestep'
+    reporting_frequency_chs << 'Hourly'
+    reporting_frequency_chs << 'Daily'
+    reporting_frequency_chs << 'Monthly'
+    reporting_frequency_chs << 'Runperiod'
+
+    reporting_frequency = OpenStudio::Measure::OSArgument.makeChoiceArgument('reporting_frequency', reporting_frequency_chs, true)
+    reporting_frequency.setDisplayName('Reporting Frequency')
+    reporting_frequency.setDescription('The frequency at which to report timeseries output data.')
+    reporting_frequency.setDefaultValue('Timestep')
+    args << reporting_frequency
 
     return args
   end
@@ -161,6 +185,7 @@ class PredictedMeanVote < OpenStudio::Measure::ModelMeasure
     workEfficiencySchedule = runner.getOptionalWorkspaceObjectChoiceValue('workEfficiencySchedule', user_arguments, model) # model is passed in because of argument type
     clothingSchedule = runner.getOptionalWorkspaceObjectChoiceValue('clothingSchedule', user_arguments, model)
     airVelocitySchedule = runner.getOptionalWorkspaceObjectChoiceValue('airVelocitySchedule', user_arguments, model)
+    reporting_frequency = runner.getStringArgumentValue('reporting_frequency', user_arguments)
 
     # check the schedules for reasonableness
     if clothingSchedule.empty? || airVelocitySchedule.empty? || workEfficiencySchedule.empty?
@@ -228,7 +253,7 @@ class PredictedMeanVote < OpenStudio::Measure::ModelMeasure
     runner.registerInfo('Adding zone output variables for Fanger PMV, Fanger PPD, and ASHRAE 55')
     outputVariableArray.each do |variable|
       outputVariable = OpenStudio::Model::OutputVariable.new(variable, model)
-      outputVariable.setReportingFrequency('hourly')
+      outputVariable.setReportingFrequency(reporting_frequency.to_s)
     end
 
     # reporting final condition of model
