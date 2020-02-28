@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2018, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -93,7 +93,7 @@ class RemoveOrphanObjectsAndUnusedResourcesTest < Minitest::Test
     remove_unused_curves = arguments[3].clone
     assert(remove_unused_curves.setValue(true))
     argument_map['remove_unused_curves'] = remove_unused_curves
-    
+
     remove_unused_constructions = arguments[4].clone
     assert(remove_unused_constructions.setValue(true))
     argument_map['remove_unused_constructions'] = remove_unused_constructions
