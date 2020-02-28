@@ -156,13 +156,13 @@ class GenericQAQC_Test < Minitest::Test
     model = model.get
     model.addObjects(request_model.objects)
     model.save(model_out_path(test_name), true)
-    
+
     if ENV['OPENSTUDIO_TEST_NO_CACHE_SQLFILE']
       if File.exist?(sql_path(test_name))
         FileUtils.rm_f(sql_path(test_name))
       end
     end
-    
+
     if is_openstudio_2?
       setup_test_2(test_name, epw_path)
     else
@@ -182,14 +182,13 @@ class GenericQAQC_Test < Minitest::Test
 
   # assert that no section errors were thrown
   def section_errors(runner)
-
     # loop through a number of possible messages to trigger error if found
     test_strings = []
-    test_strings << "Error prevented QAQC check from running"
+    test_strings << 'Error prevented QAQC check from running'
     test_strings << "Can't calculate target EUI. Make sure model has expected climate zone and building type."
     test_strings << "Can't calculate target end use EUIs. Make sure model has expected climate zone and building type."
     test_strings << "Didn't find construction for"
-    #test_strings << "Annual average of 0 gallons per day of hot water" # confirm that no test models have non zero SWH value
+    # test_strings << "Annual average of 0 gallons per day of hot water" # confirm that no test models have non zero SWH value
 
     section_errors = []
 
@@ -216,7 +215,7 @@ class GenericQAQC_Test < Minitest::Test
 
   # test pass
   def test_GenericQAQC_pass
-    #skip "Broken in 2.5.1, address immediately"
+    # skip "Broken in 2.5.1, address immediately"
 
     # setup test name, model, and epw
     test_name = 'pass'
@@ -282,7 +281,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   def test_GenericQAQC_alt_hvac_a
-    #skip "Broken in 2.5.1, address immediately"
+    # skip "Broken in 2.5.1, address immediately"
 
     # setup test name, model, and epw
     test_name = 'alt_hvac_a'
@@ -350,7 +349,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   def test_GenericQAQC_alt_hvac_b
-    #skip "Broken in 2.5.1, address immediately"
+    # skip "Broken in 2.5.1, address immediately"
 
     # setup test name, model, and epw
     test_name = 'alt_hvac_b'
@@ -548,7 +547,7 @@ class GenericQAQC_Test < Minitest::Test
 
   def test_GenericQAQC_res_a
     # test file is 2.6.0
-    if OpenStudio::VersionString.new(OpenStudio::openStudioVersion) >= OpenStudio::VersionString.new('2.6.0')
+    if OpenStudio::VersionString.new(OpenStudio.openStudioVersion) >= OpenStudio::VersionString.new('2.6.0')
 
       # setup test name, model, and epw
       test_name = 'res_a'

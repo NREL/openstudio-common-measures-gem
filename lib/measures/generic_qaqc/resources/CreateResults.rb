@@ -752,7 +752,7 @@ module OsLib_CreateResults
         end
       else
         # If TOU periods were specified but this model has no district cooling, report zeroes
-        if electricity_consumption_tou_periods.size > 0
+        if !electricity_consumption_tou_periods.empty?
           # Get the TOU ids
           tou_ids = []
           electricity_consumption_tou_periods.each do |tou_pd|

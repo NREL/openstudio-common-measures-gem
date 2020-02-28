@@ -64,8 +64,8 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
     # Future functionality
     # zone_titles = []
     # model.getThermalZones.each do |thermalZone|
-    #	zone_name = thermalZone.name.empty? ? thermalZone.name.get : ''
-    #	zone_titles.push( zone_name )
+    #  zone_name = thermalZone.name.empty? ? thermalZone.name.get : ''
+    #  zone_titles.push( zone_name )
     # end
 
     #  Choice list of measure_zones
@@ -187,7 +187,7 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
       if is_unitary_system
         zoneMetrics[:test_four_state] = :no_airloops
         return true
-      end                               
+      end
 
       loopName = airloop.name.to_s
       supplyOutletNode = airloop.supplyOutletNode
@@ -222,7 +222,7 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
     if thermalZone.thermostatSetpointDualSetpoint.empty?
       setpoint = nil
     else
-      setpoint = thermalZone.thermostatSetpointDualSetpoint.get      
+      setpoint = thermalZone.thermostatSetpointDualSetpoint.get
       unless setpoint.heatingSetpointTemperatureSchedule.is_initialized && setpoint.heatingSetpointTemperatureSchedule.is_initialized
         setpoint = nil
       end
@@ -381,7 +381,7 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
 
         if is_unitary_system
           zoneMetrics[:air_loop_vs_schedule_temp][loop_name][:status] = :no_scheduled_manager
-          next 
+          next
         end
 
         supplyOutletNode = airloop.supplyOutletNode
@@ -643,9 +643,9 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
 
   def getMinMaxForSchedule(schedule)
     if schedule.to_ScheduleConstant.is_initialized
-     schedule = schedule.to_ScheduleConstant.get
-     max = schedule.value
-     min = schedule.value
+      schedule = schedule.to_ScheduleConstant.get
+      max = schedule.value
+      min = schedule.value
     elsif schedule.to_ScheduleCompact.is_initialized
       schedule = schedule.toScheduleCompact.get
       vals = []

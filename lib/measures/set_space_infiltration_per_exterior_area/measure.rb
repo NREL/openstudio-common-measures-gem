@@ -63,7 +63,7 @@ class SetSpaceInfiltrationPerExteriorArea < OpenStudio::Measure::ModelMeasure
     # add double argument for space infiltration target
     flow_per_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('flow_per_area', true)
     flow_per_area.setDisplayName('Flow per Exterior Surface Area.')
-    flow_per_area.setUnits("CFM/ft^2")
+    flow_per_area.setUnits('CFM/ft^2')
     flow_per_area.setDefaultValue(0.05)
     args << flow_per_area
 
@@ -102,9 +102,7 @@ class SetSpaceInfiltrationPerExteriorArea < OpenStudio::Measure::ModelMeasure
     runner.registerInitialCondition("The building started with #{model.getSpaceInfiltrationDesignFlowRates.size} SpaceInfiltrationDesignFlowRate objects and #{model.getSpaceInfiltrationEffectiveLeakageAreas.size} SpaceInfiltrationEffectiveLeakageArea objects.")
 
     # remove any SpaceInfiltrationEffectiveLeakageArea objects
-    model.getSpaceInfiltrationEffectiveLeakageAreas.each do |infil_eff_leak|
-      infil_eff_leak.remove
-    end
+    model.getSpaceInfiltrationEffectiveLeakageAreas.each(&:remove)
 
     # find most common lights schedule for use in spaces that do not have lights
     sch_hash = {}
@@ -121,7 +119,7 @@ class SetSpaceInfiltrationPerExteriorArea < OpenStudio::Measure::ModelMeasure
         space_has_infil += 1
         if infil.schedule.is_initialized
           sch = infil.schedule.get
-          if sch_hash.has_key?(sch)
+          if sch_hash.key?(sch)
             sch_hash[sch] += 1
           else
             sch_hash[sch] = 1
@@ -138,7 +136,7 @@ class SetSpaceInfiltrationPerExteriorArea < OpenStudio::Measure::ModelMeasure
           space_type_has_infil += 1
           if infil.schedule.is_initialized
             sch = infil.schedule.get
-            if sch_hash.has_key?(sch)
+            if sch_hash.key?(sch)
               sch_hash[sch] += 1
             else
               sch_hash[sch] = 1
@@ -155,19 +153,18 @@ class SetSpaceInfiltrationPerExteriorArea < OpenStudio::Measure::ModelMeasure
         runner.registerInfo("#{space.name} has infiltration object in both the space and space type, removing #{infil_to_rem.name} to avoid excess infiltration in resulting model.")
         infil_to_rem.remove
       end
-
     end
     most_comm_sch = sch_hash.key(sch_hash.values.max)
 
     # get target flow rate in ip
-    flow_per_area_si = OpenStudio.convert(flow_per_area,"ft/min","m/s").get
+    flow_per_area_si = OpenStudio.convert(flow_per_area, 'ft/min', 'm/s').get
 
     # set infil for existing SpaceInfiltrationDesignFlowRate objects
     model.getSpaceInfiltrationDesignFlowRates.each do |infil|
-      # todo - skip if this is unused space type
+      # TODO: - skip if this is unused space type
       next if infil.spaceType.is_initialized && infil.spaceType.get.floorArea == 0
       runner.registerInfo("Changing flow rate for #{infil.name}.")
-      if ext_surf_cat == "ExteriorWallArea"
+      if ext_surf_cat == 'ExteriorWallArea'
         infil.setFlowperExteriorWallArea(flow_per_area_si)
       else # ExteriorArea
         infil.setFlowperExteriorSurfaceArea(flow_per_area_si)
@@ -179,7 +176,7 @@ class SetSpaceInfiltrationPerExteriorArea < OpenStudio::Measure::ModelMeasure
       infil = OpenStudio::Model::SpaceInfiltrationDesignFlowRate.new(model)
       infil.setSchedule(most_comm_sch)
       runner.registerInfo("Adding new infiltration object to #{space.name} which did not initially have an infiltration object.")
-      if ext_surf_cat == "ExteriorWallArea"
+      if ext_surf_cat == 'ExteriorWallArea'
         infil.setFlowperExteriorWallArea(flow_per_area_si)
       else # ExteriorArea
         infil.setFlowperExteriorSurfaceArea(flow_per_area_si)
