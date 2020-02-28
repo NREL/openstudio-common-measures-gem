@@ -40,10 +40,7 @@ require 'openstudio/ruleset/ShowRunnerOutput'
 require "#{File.dirname(__FILE__)}/../measure.rb"
 
 class EnableIdealAirLoadsForAllZones_Test < MiniTest::Test
-
-
   def test_EnableIdealAirLoadsForAllZones
-
     assert(true == true)
     # # create an instance of the measure
     # measure = EnableIdealAirLoadsForAllZones.new
@@ -76,5 +73,4 @@ class EnableIdealAirLoadsForAllZones_Test < MiniTest::Test
     # FileUtils.mkdir output_dir unless Dir.exist? output_dir
     # model.save("#{output_dir}/test.osm", true)
   end
-
 end

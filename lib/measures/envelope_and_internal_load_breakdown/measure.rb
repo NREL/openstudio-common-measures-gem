@@ -44,26 +44,27 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
-    return "Envelope and Internal Load Breakdown"
+    return 'Envelope and Internal Load Breakdown'
   end
+
   # human readable description
   def description
-    return "Report provides annual and monthly views into heat gains and losses for envelope and internal loads."
+    return 'Report provides annual and monthly views into heat gains and losses for envelope and internal loads.'
   end
+
   # human readable description of modeling approach
   def modeler_description
-    return "It uses the following variables: Electric Equipment Total Heating Energy, Zone Lights Total Heating Energy, Zone, People Sensible Heating Energy, Surface Average Face Conduction Heat Transfer Energy, Surface Window Heat Gain Energy, Surface Window Heat Loss Energy, Zone Infiltration Sensible Heat Gain Energy, Zone Infiltration Sensible Heat Loss Energy. For Surface Average Face Conduction Heat Transfer Energy bin positive values as heat gain and negative values as heat loss.
-"
+    return "It uses the following variables: Electric Equipment Total Heating Energy, Zone Lights Total Heating Energy, Zone, People Sensible Heating Energy, Surface Average Face Conduction Heat Transfer Energy, Surface Window Heat Gain Energy, Surface Window Heat Loss Energy, Zone Infiltration Sensible Heat Gain Energy, Zone Infiltration Sensible Heat Loss Energy. For Surface Average Face Conduction Heat Transfer Energy bin positive values as heat gain and negative values as heat loss.\n"
   end
-  def possible_sections
 
+  def possible_sections
     # methods for sections in order that they will appear in report
     result = []
 
     # instead of hand populating, any methods with 'section' in the name will be added in the order they appear
-    all_setions =  OsLib_ReportingHeatGainLoss.methods(false)
+    all_setions = OsLib_ReportingHeatGainLoss.methods(false)
     all_setions.each do |section|
-      next if not section.to_s.include? 'section'
+      next if !section.to_s.include? 'section'
       result << section.to_s
     end
 
@@ -74,17 +75,15 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
   def arguments
     args = OpenStudio::Ruleset::OSArgumentVector.new
 
-=begin
-    # populate arguments
-    possible_sections.each do |method_name|
-      # get display name
-      arg = OpenStudio::Ruleset::OSArgument.makeBoolArgument(method_name, true)
-      display_name = eval("OsLib_ReportingHeatGainLoss.#{method_name}(nil,nil,nil,true)[:title]")
-      arg.setDisplayName(display_name)
-      arg.setDefaultValue(true)
-      args << arg
-    end
-=end
+    #     # populate arguments
+    #     possible_sections.each do |method_name|
+    #       # get display name
+    #       arg = OpenStudio::Ruleset::OSArgument.makeBoolArgument(method_name, true)
+    #       display_name = eval("OsLib_ReportingHeatGainLoss.#{method_name}(nil,nil,nil,true)[:title]")
+    #       arg.setDisplayName(display_name)
+    #       arg.setDefaultValue(true)
+    #       args << arg
+    #     end
 
     args
   end
@@ -102,41 +101,37 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
     result << OpenStudio::IdfObject.load('Output:Variable,,Zone People Sensible Heating Energy,monthly;').get
     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Infiltration Sensible Heat Gain Energy,monthly;').get
     result << OpenStudio::IdfObject.load('Output:Variable,,Surface Window Heat Gain Energy,monthly;').get
-=begin
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Increase Energy,monthly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Increase Due to Overheating Energy,monthly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Decrease Energy,monthly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation No Load Heat Addition Energy,monthly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Air System Heat Exchanger Total Cooling Energy,monthly;').get
-=end
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Increase Energy,monthly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Increase Due to Overheating Energy,monthly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Decrease Energy,monthly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation No Load Heat Addition Energy,monthly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Air System Heat Exchanger Total Cooling Energy,monthly;').get
 
     # monthly heat loss outputs
     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Infiltration Sensible Heat Loss Energy,monthly;').get
     result << OpenStudio::IdfObject.load('Output:Variable,,Surface Window Heat Loss Energy,monthly;').get
-=begin
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Increase Energy,monthly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Increase Due to Overcooling Energy,monthly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Decrease Energy,monthly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation No Load Heat Removal Energy,monthly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Air System Heat Exchanger Total Heating Energy,monthly;').get
-
-    # diagnostic outputs
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Increase Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Increase Due to Overheating Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Decrease Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation No Load Heat Addition Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Air System Heat Exchanger Total Cooling Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Increase Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Increase Due to Overcooling Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Decrease Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation No Load Heat Removal Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Air System Heat Exchanger Total Heating Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Site Outdoor Air Drybulb Temperature,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Site Outdoor Air Wetbulb Temperature,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Air System Fan Air Electric Energy,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Air System Outdoor Air Mass Flow Rate,hourly;').get
-    result << OpenStudio::IdfObject.load('Output:Variable,,Zone Air Terminal Outdoor Air Volume Flow Rate,hourly;').get
-=end
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Increase Energy,monthly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Increase Due to Overcooling Energy,monthly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Decrease Energy,monthly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation No Load Heat Removal Energy,monthly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Air System Heat Exchanger Total Heating Energy,monthly;').get
+    #
+    #     # diagnostic outputs
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Increase Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Increase Due to Overheating Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Cooling Load Decrease Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation No Load Heat Addition Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Air System Heat Exchanger Total Cooling Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Increase Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Increase Due to Overcooling Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation Heating Load Decrease Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Mechanical Ventilation No Load Heat Removal Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Air System Heat Exchanger Total Heating Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Site Outdoor Air Drybulb Temperature,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Site Outdoor Air Wetbulb Temperature,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Air System Fan Air Electric Energy,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Air System Outdoor Air Mass Flow Rate,hourly;').get
+    #     result << OpenStudio::IdfObject.load('Output:Variable,,Zone Air Terminal Outdoor Air Volume Flow Rate,hourly;').get
 
     # hourly outputs (will bin by hour to heat loss or gain and roll up to monthly, may break out by surface type)
     result << OpenStudio::IdfObject.load('Output:Variable,,Surface Average Face Conduction Heat Transfer Energy,hourly;').get
@@ -158,13 +153,11 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
     sql_file = setup[:sqlFile]
     web_asset_path = setup[:web_asset_path]
 
-=begin
-    # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments)
-    unless args
-      return false
-    end
-=end
+    #     # assign the user inputs to variables
+    #     args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments)
+    #     unless args
+    #       return false
+    #     end
 
     # reporting final condition
     runner.registerInitialCondition('Gathering data from EnergyPlus SQL file and OSM model.')
@@ -179,9 +172,8 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
     # generate data for requested sections
     sections_made = 0
     possible_sections.each do |method_name|
-
       begin
-        #next unless args[method_name]
+        # next unless args[method_name]
         section = false
         eval("section = OsLib_ReportingHeatGainLoss.#{method_name}(model,sql_file,runner,false)")
         display_name = eval("OsLib_ReportingHeatGainLoss.#{method_name}(nil,nil,nil,true)[:title]")
@@ -190,7 +182,7 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
           sections_made += 1
           # look for emtpy tables and warn if skipped because returned empty
           section[:tables].each do |table|
-            if not table
+            if !table
               runner.registerWarning("A table in #{display_name} section returned false and was skipped.")
               section[:messages] = ["One or more tables in #{display_name} section returned false and was skipped."]
             end
@@ -198,27 +190,25 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
         else
           runner.registerWarning("#{display_name} section returned false and was skipped.")
           section = {}
-          section[:title] = "#{display_name}"
+          section[:title] = display_name.to_s
           section[:tables] = []
           section[:messages] = []
           section[:messages] << "#{display_name} section returned false and was skipped."
           raw_sections << section
         end
-      rescue => e
+      rescue StandardError => e
         display_name = eval("OsLib_ReportingHeatGainLoss.#{method_name}(nil,nil,nil,true)[:title]")
-        if display_name == nil then display_name == method_name end
+        if display_name.nil? then display_name == method_name end
         runner.registerWarning("#{display_name} section failed and was skipped because: #{e}. Detail on error follows.")
-        runner.registerWarning("#{e.backtrace.join("\n")}")
+        runner.registerWarning(e.backtrace.join("\n").to_s)
 
         # add in section heading with message if section fails
         section = eval("OsLib_ReportingHeatGainLoss.#{method_name}(nil,nil,nil,true)")
         section[:messages] = []
         section[:messages] << "#{display_name} section failed and was skipped because: #{e}. Detail on error follows."
-        section[:messages] << ["#{e.backtrace.join("\n")}"]
+        section[:messages] << [e.backtrace.join("\n").to_s]
         raw_sections << section
-
       end
-
     end
 
     # reorganize section order so summaries are at top (1,3,0,2)
@@ -250,7 +240,7 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
       # make sure data is written to the disk one way or the other
       begin
         file.fsync
-      rescue
+      rescue StandardError
         file.flush
       end
     end

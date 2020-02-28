@@ -156,13 +156,13 @@ class MeterFloodPlot_Test < Minitest::Test
     model = model.get
     model.addObjects(request_model.objects)
     model.save(model_out_path(test_name), true)
-    
+
     if ENV['OPENSTUDIO_TEST_NO_CACHE_SQLFILE']
       if File.exist?(sql_path(test_name))
         FileUtils.rm_f(sql_path(test_name))
       end
     end
-    
+
     if is_openstudio_2?
       setup_test_2(test_name, epw_path)
     else
@@ -172,7 +172,6 @@ class MeterFloodPlot_Test < Minitest::Test
 
   # the actual test
   def test_MeterFloodPlot
-
     test_name = 'test_meter_flood_plot'
 
     # create an instance of the measure
