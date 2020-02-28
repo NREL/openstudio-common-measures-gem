@@ -63,7 +63,7 @@ class PredictedMeanVote_Test < Minitest::Test
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(5, arguments.size)
+    assert_equal(6, arguments.size)
     assert_equal('comfortWarnings', arguments[0].name)
     assert_equal('meanRadiantCalcType', arguments[1].name)
     assert_equal('workEfficiencySchedule', arguments[2].name)
