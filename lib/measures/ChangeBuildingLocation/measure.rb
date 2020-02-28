@@ -60,8 +60,8 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     # make choice argument for climate zone
     choices = OpenStudio::StringVector.new
     choices << 'Lookup From Stat File'
-    
-    # todo - consider having measure use get_climate_zones
+
+    # TODO: - consider having measure use get_climate_zones
     # todo - decide what to do with cz0, at least want looking from stat to work from that if not listed in measure
     # todo - consider combined, doe, and deer, or separate ASHRAE and DEER climate zone arguments (although that could create problems)
     choices << 'ASHRAE 169-2013-0A'
@@ -169,17 +169,17 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
       runner.registerInitialCondition("No weather file is set. The model has #{model.getDesignDays.size} design day objects")
     end
 
-        # use gsub if requested
+    # use gsub if requested
     if args['epw_gsub'] != 'Do Nothing'
       # get the orig weather file from OSM
-      file_name = model.getWeatherFile.url.get.split("/").last
+      file_name = model.getWeatherFile.url.get.split('/').last
       runner.registerInfo(file_name)
 
       if model.getWeatherFile.file.is_initialized
-        orig_epw = model.getWeatherFile.url.get.split("/").last
+        orig_epw = model.getWeatherFile.url.get.split('/').last
         gsub_array = args['epw_gsub'].split(',')
         # updated line below so it doesn't matter what the user argument is, it always modifies what was in the seed OSM
-        args['weather_file_name'] = orig_epw.gsub(gsub_array[0],gsub_array[1])
+        args['weather_file_name'] = orig_epw.gsub(gsub_array[0], gsub_array[1])
         runner.registerInfo("Changing target weather file from #{orig_epw} to #{args['weather_file_name']}.")
       end
     end
@@ -290,7 +290,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
 
     # Warn if no design days are present in the ddy file
     if ddy_model.getDesignDays.size.zero?
-      runner.registerWarning("No design days were found in the ddy file.")
+      runner.registerWarning('No design days were found in the ddy file.')
     end
 
     ddy_model.getDesignDays.sort.each do |d|
@@ -325,7 +325,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
 
     # Warn if no design days were added
     if model.getDesignDays.size.zero?
-      runner.registerWarning("No design days were added to the model.")
+      runner.registerWarning('No design days were added to the model.')
     end
 
     # Set climate zone
@@ -352,7 +352,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     end
 
     # report time zone for use in results.csv
-    runner.registerValue('reported_climate_zone',args['climate_zone'])
+    runner.registerValue('reported_climate_zone', args['climate_zone'])
 
     # set climate zone
     climateZones.clear

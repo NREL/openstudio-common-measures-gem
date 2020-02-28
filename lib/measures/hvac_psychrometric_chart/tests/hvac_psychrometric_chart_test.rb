@@ -156,13 +156,13 @@ class HVACPsychrometricChart_Test < Minitest::Test
     model = model.get
     model.addObjects(request_model.objects)
     model.save(model_out_path(test_name), true)
-    
+
     if ENV['OPENSTUDIO_TEST_NO_CACHE_SQLFILE']
       if File.exist?(sql_path(test_name))
         FileUtils.rm_f(sql_path(test_name))
       end
     end
-    
+
     if is_openstudio_2?
       setup_test_2(test_name, epw_path)
     else
@@ -190,7 +190,6 @@ class HVACPsychrometricChart_Test < Minitest::Test
   end
 
   def test_example_model
-
     test_name = 'test_example_model'
     model_in_path = model_in_path_default
 

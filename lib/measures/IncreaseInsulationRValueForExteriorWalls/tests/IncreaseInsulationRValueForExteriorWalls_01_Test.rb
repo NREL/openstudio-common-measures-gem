@@ -477,8 +477,8 @@ class IncreaseInsulationRValueForExteriorWalls_Test < Minitest::Test
 
   def test_IncreaseInsulationRValueForExteriorWalls__no_mass
     # test file is 2.5.1
-    if OpenStudio::VersionString.new(OpenStudio::openStudioVersion) >= OpenStudio::VersionString.new('2.5.1')
-      
+    if OpenStudio::VersionString.new(OpenStudio.openStudioVersion) >= OpenStudio::VersionString.new('2.5.1')
+
       # create an instance of the measure
       measure = IncreaseInsulationRValueForExteriorWalls.new
 
@@ -524,10 +524,10 @@ class IncreaseInsulationRValueForExteriorWalls_Test < Minitest::Test
 
       measure.run(model, runner, argument_map)
       result = runner.result
-      show_output(result) #this displays the output when you run the test
+      show_output(result) # this displays the output when you run the test
       assert(result.value.valueName == 'Success')
-      #assert(result.info.size == 4)
-      #assert(result.warnings.size == 1)
+      # assert(result.info.size == 4)
+      # assert(result.warnings.size == 1)
     end
   end
 end

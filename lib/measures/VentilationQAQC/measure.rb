@@ -76,8 +76,8 @@ class VentilationQAQC < OpenStudio::Measure::ReportingMeasure
     # Future functionality
     # zone_titles = []
     # model.getThermalZones.each do |thermalZone|
-    #	zone_name = thermalZone.name.empty? ? thermalZone.name.get : ''
-    #	zone_titles.push( zone_name )
+    #  zone_name = thermalZone.name.empty? ? thermalZone.name.get : ''
+    #  zone_titles.push( zone_name )
     # end
 
     #  Choice list of measure_zones

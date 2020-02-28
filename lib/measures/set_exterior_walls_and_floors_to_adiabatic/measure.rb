@@ -47,7 +47,7 @@ class SetExteriorWallsAndFloorsToAdiabatic < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
-    return "Set Exterior Walls and Floors to Adiabatic"
+    return 'Set Exterior Walls and Floors to Adiabatic'
   end
 
   # define the arguments that the user will input
