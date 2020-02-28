@@ -1,0 +1,100 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>ventilation_qaqc</name>
+  <uid>cb13be0e-88f6-494c-b3b1-dc748b42e205</uid>
+  <version_id>f0ae7ad0-21c2-4acd-9036-bf85b9a4a195</version_id>
+  <version_modified>20180710T213339Z</version_modified>
+  <xml_checksum>2C8A3EEF</xml_checksum>
+  <class_name>VentilationQAQC</class_name>
+  <display_name>Ventilation Report</display_name>
+  <description>This measure asks the user to select a thermal zone (or all zones) and generates a Quality Assurance Report relating to ventilation and infiltration model objects. The QA report consists of two sections: 1) A table listing each space and associated (total of space) ventilation and infiltration metrics and 2) an interactive time series chart plotting both the zone mechanical ventilation rate and the zone Infiltration mass flow rate. Error or warning messages may be triggered based on the resulting cfm/person and ACH for each space associated with the selected thermal zone(s).</description>
+  <modeler_description>This measure will retrieve all OS:DesignSpecificationOutdoorAir and OS:SpaceInfiltrationDesignFlowRate objects associated with any spaces present in the model. If multiple space OS:SpaceInfiltrationDesignFlowRate objects are attached to a space, the measure will collapse them into a single object. Regardless of the method of entry of OS:DesignSpecificationOutdoorAir object flow rates, they will be converted into a common cfm/person metric. Regardless of the method of entry of OS:SpaceInfiltrationDesignFlowRate object flow rates, they will be converted into a common ACH metric. Error and warning messages may be written depending on the levels of cfm/person/space and ACH/space associated with the selected thermal zone(s). </modeler_description>
+  <arguments>
+    <argument>
+      <name>measure_zone</name>
+      <display_name>Pick a Zone (or all Zones)</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>All Zones</default_value>
+      <choices>
+        <choice>
+          <value>All Zones</value>
+          <display_name>All Zones</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Reporting.QAQC</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ReportingMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>ExampleModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4E11CF11</checksum>
+    </file>
+    <file>
+      <filename>report.html.in</filename>
+      <filetype>in</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E5A4911E</checksum>
+    </file>
+    <file>
+      <filename>USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C254B53F</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>7A7F2C94</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>0F07063A</checksum>
+    </file>
+    <file>
+      <filename>VentilationQAQC_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>5705DE36</checksum>
+    </file>
+  </files>
+</measure>

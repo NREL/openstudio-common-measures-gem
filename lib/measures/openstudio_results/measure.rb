@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2018, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -110,6 +110,9 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     result << 'schedules_overview_section'
     # TODO: - clean up code to gather schedule profiles so I don't have to grab every 15 minutes
 
+    # TODO - add in section to report warnings for this and other measures
+    result << 'measure_warning_section'
+
     # see the method below in os_lib_reporting.rb to see a simple example of code to make a section of tables
     # result << 'template_section'
 
@@ -211,6 +214,9 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('first_year_capital_cost') # $
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('annual_utility_cost') # $
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('total_lifecycle_cost') # $
+
+    # todo - add warning counts, but only if they will always be made.
+
     return result
   end
 

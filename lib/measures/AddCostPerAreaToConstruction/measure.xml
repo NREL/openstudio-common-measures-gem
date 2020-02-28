@@ -1,0 +1,183 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>add_cost_per_area_to_construction</name>
+  <uid>bf6ac5d5-6348-4012-b7b4-1200a672e377</uid>
+  <version_id>9b294d25-76fc-4455-a140-135b8706fce1</version_id>
+  <version_modified>20181101T151202Z</version_modified>
+  <xml_checksum>35DA4ED3</xml_checksum>
+  <class_name>AddCostPerAreaToConstruction</class_name>
+  <display_name>Add Cost per Area to Construction</display_name>
+  <description>This measure will create life cycle cost objects associated with the selected construction. You can set a material and installation cost, demolition cost, and O&amp;M costs. Optionally existing cost objects already associated with building can be deleted. This measure will not affect energy use of the building.</description>
+  <modeler_description>In addition to the inputs for the cost values, a number of other inputs are exposed to specify when the cost first occurs and at what frequency it occurs in the future. This measure is intended to be used as an 'Always Run' measure to apply costs to the baseline simulation before any design alternatives manipulate it.
+
+For baseline costs, 'Years Until Costs Start' indicates the year that the capital costs first occur. For new construction this will be typically be 0 and 'Demolition Costs Occur During Initial Construction' will be 'false'. For a retrofit 'Years Until Costs Start' is between 0 and the 'Expected Life' of the object, while 'Demolition Costs Occur During Initial Construction' is true.  O&amp;M cost and frequency can be whatever is appropriate for the component.</modeler_description>
+  <arguments>
+    <argument>
+      <name>construction</name>
+      <display_name>Choose a Construction to Add Costs to</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>remove_costs</name>
+      <display_name>Remove Existing Costs</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>material_cost_ip</name>
+      <display_name>Material and Installation Costs for Construction per Area Used</display_name>
+      <type>Double</type>
+      <units>$/ft^2</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>demolition_cost_ip</name>
+      <display_name>Demolition Costs for Construction per Area Used</display_name>
+      <type>Double</type>
+      <units>$/ft^2</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>years_until_costs_start</name>
+      <display_name>Years Until Costs Start</display_name>
+      <type>Integer</type>
+      <units>whole years</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>demo_cost_initial_const</name>
+      <display_name>Demolition Costs Occur During Initial Construction</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>expected_life</name>
+      <display_name>Expected Life</display_name>
+      <type>Integer</type>
+      <units>whole years</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>20</default_value>
+    </argument>
+    <argument>
+      <name>om_cost_ip</name>
+      <display_name>O &amp; M Costs for Construction per Area Used</display_name>
+      <type>Double</type>
+      <units>$/ft^2</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>om_frequency</name>
+      <display_name>O &amp; M Frequency</display_name>
+      <type>Integer</type>
+      <units>whole years</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Economics.Life Cycle Cost Analysis</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Function</name>
+      <value>Measure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Requires EnergyPlus Results</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>0416_NetArea_b.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3D3EE8E9</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>24EAEF12</checksum>
+    </file>
+    <file>
+      <filename>AddCostPerAreaToConstruction_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>066BC41B</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>E8C8B150</checksum>
+    </file>
+  </files>
+</measure>

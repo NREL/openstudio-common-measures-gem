@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>add_rooftop_pv</name>
   <uid>34550614-0c87-44db-9252-0ca0915b1e64</uid>
-  <version_id>b2d5ae7d-f012-4503-a97c-2674d89577f7</version_id>
-  <version_modified>20191029T231254Z</version_modified>
+  <version_id>94eb5c3b-59f5-4f13-bf47-54e1f6372404</version_id>
+  <version_modified>20190923T182646Z</version_modified>
   <xml_checksum>178163B6</xml_checksum>
   <class_name>AddRooftopPV</class_name>
   <display_name>Add Rooftop PV</display_name>
@@ -93,10 +93,33 @@
       <checksum>AB14A2B3</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>add_rooftop_pv_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C596C250</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>5B56D930</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -108,36 +131,13 @@
       <filename>os_lib_schedules.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>E1011B09</checksum>
+      <checksum>CF3D4ACC</checksum>
     </file>
     <file>
       <filename>os_lib_helper_methods.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>22515A49</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
-    </file>
-    <file>
-      <filename>add_rooftop_pv_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E7020F2A</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>E274F82F</checksum>
     </file>
   </files>
 </measure>
