@@ -18,14 +18,9 @@ Or install it yourself as:
 
     $ gem install 'openstudio-common-measures'
 
-## Usage
-
-To be filled out later. 
-
 ## TODO
 
-- [ ] Remove measures from OpenStudio-Measures to standardize on this location
-- [ ] Update measures to code standards
+- [ ] Update measures to follow coding standards
 
 # Releasing
 
