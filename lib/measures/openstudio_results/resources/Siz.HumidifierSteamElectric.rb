@@ -35,7 +35,7 @@
 
 class OpenStudio::Model::HumidifierSteamElectric
   def ratedPower
-    if ratedPower.is_initialized #SystemStackError: stack level too deep error when this called, disabled in Siz.Model.rb
+    if ratedPower.is_initialized # SystemStackError: stack level too deep error when this called, disabled in Siz.Model.rb
       ratedPower
     else
       ratedPowerAutosized

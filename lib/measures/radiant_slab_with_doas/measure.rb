@@ -205,12 +205,12 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     radiant_type = runner.getStringArgumentValue('radiant_type', user_arguments)
     include_carpet = runner.getBoolArgumentValue('include_carpet', user_arguments)
     control_strategy = runner.getStringArgumentValue('control_strategy', user_arguments)
-    proportional_gain = runner.getDoubleArgumentValue('proportional_gain',user_arguments)
-    minimum_operation = runner.getDoubleArgumentValue('minimum_operation',user_arguments)
-    switch_over_time = runner.getDoubleArgumentValue('switch_over_time',user_arguments)
+    proportional_gain = runner.getDoubleArgumentValue('proportional_gain', user_arguments)
+    minimum_operation = runner.getDoubleArgumentValue('minimum_operation', user_arguments)
+    switch_over_time = runner.getDoubleArgumentValue('switch_over_time', user_arguments)
     radiant_lockout = runner.getBoolArgumentValue('radiant_lockout', user_arguments)
-    lockout_start_time = runner.getDoubleArgumentValue('lockout_start_time',user_arguments)
-    lockout_end_time = runner.getDoubleArgumentValue('lockout_end_time',user_arguments)
+    lockout_start_time = runner.getDoubleArgumentValue('lockout_start_time', user_arguments)
+    lockout_end_time = runner.getDoubleArgumentValue('lockout_end_time', user_arguments)
     add_output_variables = runner.getBoolArgumentValue('add_output_variables', user_arguments)
     standards_template = runner.getStringArgumentValue('standards_template', user_arguments)
 
@@ -238,9 +238,9 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     end
 
     # get the climate zone
-    climate_zone_obj = model.getClimateZones.getClimateZone("ASHRAE", 2006)
+    climate_zone_obj = model.getClimateZones.getClimateZone('ASHRAE', 2006)
     if climate_zone_obj.empty
-      climate_zone_obj = model.getClimateZones.getClimateZone("ASHRAE", 2013)
+      climate_zone_obj = model.getClimateZones.getClimateZone('ASHRAE', 2013)
     end
 
     if climate_zone_obj.empty || climate_zone_obj.value == ''
@@ -277,7 +277,7 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     when 'Air Source Heat Pump'
       boiler_fuel_type = 'ASHP'
     when 'Boiler'
-     boiler_fuel_type = 'NaturalGas'
+      boiler_fuel_type = 'NaturalGas'
     end
     hot_water_loop = std.model_add_hw_loop(model, boiler_fuel_type, dsgn_sup_wtr_temp: radiant_htg_dsgn_sup_wtr_temp_f, dsgn_sup_wtr_temp_delt: 10.0)
 

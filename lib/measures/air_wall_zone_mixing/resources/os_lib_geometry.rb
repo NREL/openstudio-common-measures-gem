@@ -327,7 +327,7 @@ module OsLib_Geometry
     end
 
     # sort array by floor area, this hash will be altered to reduce floor area for each space type to 0
-    #space_types_running_count = space_types.sort_by { |k, v| v[:floor_area] }
+    # space_types_running_count = space_types.sort_by { |k, v| v[:floor_area] }
     space_types_running_count = space_types
 
     # array entry for each story
@@ -370,7 +370,7 @@ module OsLib_Geometry
 
         # add entry for space type if it doesn't have one yet
         if !space_types_local_count.key?(space_type)
-          if space_type_hash.has_key?(:children)
+          if space_type_hash.key?(:children)
             space_type = space_type_hash[:children][:default][:space_type] # will re-using space type create issue
             space_types_local_count[space_type] = { floor_area: 0.0 }
             space_types_local_count[space_type][:children] = space_type_hash[:children]
@@ -381,7 +381,7 @@ module OsLib_Geometry
 
         # if there is enough of this space type to fill rest of floor area
         remaining_in_footprint = target_footprint_area - current_footprint_area
-        raw_footprint_area_used = [space_type_hash[:floor_area],remaining_in_footprint].min
+        raw_footprint_area_used = [space_type_hash[:floor_area], remaining_in_footprint].min
 
         # add to local hash
         space_types_local_count[space_type][:floor_area] = raw_footprint_area_used / v[:multiplier].to_f
@@ -457,11 +457,11 @@ module OsLib_Geometry
     reverse_slice = false
     if length < width
       reverse_slice = true
-      #runner.registerInfo("reverse typical slice direction for bar because of aspect ratio less than 1.0.")
+      # runner.registerInfo("reverse typical slice direction for bar because of aspect ratio less than 1.0.")
     end
 
     # determine if core and perimeter zoning can be used
-    if !([length,width].min > perimeter_zone_depth * 2.5 && [length,width].min > perimeter_zone_depth * 2.5)
+    if !([length, width].min > perimeter_zone_depth * 2.5 && [length, width].min > perimeter_zone_depth * 2.5)
       perimeter_zone_depth = 0 # if any size is to small then just model floor as single zone, issue warning
       runner.registerWarning('Not modeling core and perimeter zones for some portion of the model.')
     end
@@ -482,7 +482,7 @@ module OsLib_Geometry
 
     # sort array by floor area but shift largest object to front
     space_types = space_types.sort_by { |k, v| v[:floor_area] }
-    space_types.insert(0, space_types.delete_at(space_types.size - 1)) #.to_h
+    space_types.insert(0, space_types.delete_at(space_types.size - 1)) # .to_h
 
     # min and max bar end values
     min_bar_end_multiplier = 0.75
@@ -496,20 +496,20 @@ module OsLib_Geometry
       start_perimeter_width_deduction = 0.0
       end_perimeter_width_deduction = 0.0
       if space_type == space_types.first[0]
-        if [length,width].max * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth
+        if [length, width].max * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth
           start_perimeter_width_deduction = perimeter_zone_depth
         end
         # see if last space type is too small for perimeter. If it is then save some of this space type
-        if [length,width].max * space_types.last[1][:floor_area] / total_floor_area < perimeter_zone_depth * min_bar_end_multiplier
+        if [length, width].max * space_types.last[1][:floor_area] / total_floor_area < perimeter_zone_depth * min_bar_end_multiplier
           re_apply_largest_space_type_at_end = true
         end
       end
       if space_type == space_types.last[0]
-        if [length,width].max * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth
+        if [length, width].max * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth
           end_perimeter_width_deduction = perimeter_zone_depth
         end
       end
-      non_end_adjusted_width = ([length,width].max * space_type_hash[:floor_area] / total_floor_area) - start_perimeter_width_deduction - end_perimeter_width_deduction
+      non_end_adjusted_width = ([length, width].max * space_type_hash[:floor_area] / total_floor_area) - start_perimeter_width_deduction - end_perimeter_width_deduction
 
       # adjustment of end space type is too small and is replaced with largest space type
       if (space_type == space_types.first[0]) && re_apply_largest_space_type_at_end
@@ -531,7 +531,7 @@ module OsLib_Geometry
 
       # determine if this space+type is double loaded corridor, and if so what the perimeter zone depth should be based on building width
       # look at reverse_slice to see if length or width should be used to determine perimeter depth
-      if space_type_hash.has_key?(:children)
+      if space_type_hash.key?(:children)
         core_ratio = space_type_hash[:children][:circ][:orig_ratio]
         perim_ratio = space_type_hash[:children][:default][:orig_ratio]
         core_ratio_adj = core_ratio / (core_ratio + perim_ratio)
@@ -540,10 +540,10 @@ module OsLib_Geometry
         perim_space_type = space_type_hash[:children][:default][:space_type]
         if !reverse_slice
           custom_cor_val = width * core_ratio_adj
-          custom_perim_val = (width - custom_cor_val)/2.0
+          custom_perim_val = (width - custom_cor_val) / 2.0
         else
           custom_cor_val = length * core_ratio_adj
-          custom_perim_val = (length - custom_cor_val)/2.0
+          custom_perim_val = (length - custom_cor_val) / 2.0
         end
         actual_perim = custom_perim_val
         double_loaded_corridor = true
@@ -554,7 +554,7 @@ module OsLib_Geometry
 
       # may overwrite
       first_space_type_hash = space_types.first[1]
-      if end_b_flag && first_space_type_hash.has_key?(:children)
+      if end_b_flag && first_space_type_hash.key?(:children)
         end_b_core_ratio = first_space_type_hash[:children][:circ][:orig_ratio]
         end_b_perim_ratio = first_space_type_hash[:children][:default][:orig_ratio]
         end_b_core_ratio_adj = end_b_core_ratio / (end_b_core_ratio + end_b_perim_ratio)
@@ -563,10 +563,10 @@ module OsLib_Geometry
         end_b_perim_space_type = first_space_type_hash[:children][:default][:space_type]
         if !reverse_slice
           end_b_custom_cor_val = width * end_b_core_ratio_adj
-          end_b_custom_perim_val = (width - end_b_custom_cor_val)/2.0
+          end_b_custom_perim_val = (width - end_b_custom_cor_val) / 2.0
         else
           end_b_custom_cor_val = length * end_b_core_ratio_adj
-          end_b_custom_perim_val = (length - end_b_custom_cor_val)/2.0
+          end_b_custom_perim_val = (length - end_b_custom_cor_val) / 2.0
         end
         end_b_actual_perim = end_b_custom_perim_val
         end_b_double_loaded_corridor = true
@@ -577,9 +577,8 @@ module OsLib_Geometry
 
       # loop through sections for space type (main and possibly one or two end perimeter sections)
       section_hash_for_space_type.each do |k, slice|
-
         # need to use different space type for end_b
-        if end_b_flag && k == "end_b" && space_types.first[1].has_key?(:children)
+        if end_b_flag && k == 'end_b' && space_types.first[1].key?(:children)
           slice = space_types.first[0]
           actual_perim = end_b_actual_perim
           double_loaded_corridor = end_b_double_loaded_corridor

@@ -42,7 +42,6 @@ require 'minitest/autorun'
 
 class ImportEnvelopeAndInternalLoadsFromIdf_Test < Minitest::Test
   def test_ImportEnvelopeAndInternalLoadsFromIdf
-
     skip # test uses old idf files as input. No easy way to currently upgrade within test unless it is updated to make an IDF from OSM, but that limits the kinds of test models that can be used
 
     # create an instance of the measure
@@ -84,7 +83,6 @@ class ImportEnvelopeAndInternalLoadsFromIdf_Test < Minitest::Test
   end
 
   def test_ImportEnvelopeAndInternalLoadsFromIdf_exteriorLightsAndShadingSurfaces
-
     skip # test uses old idf files as input. No easy way to currently upgrade within test unless it is updated to make an IDF from OSM, but that limits the kinds of test models that can be used
 
     # create an instance of the measure
