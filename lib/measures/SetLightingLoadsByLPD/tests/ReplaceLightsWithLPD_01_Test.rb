@@ -41,7 +41,6 @@ require_relative '../measure.rb'
 require 'minitest/autorun'
 
 class SetLightingLoadsByLPD_Test < Minitest::Test
-
   def test_SetLightingLoadsByLPD_a
     # create an instance of the measure
     measure = SetLightingLoadsByLPD.new
@@ -588,5 +587,4 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
     assert(result.warnings.size == 2)
   end
-
 end

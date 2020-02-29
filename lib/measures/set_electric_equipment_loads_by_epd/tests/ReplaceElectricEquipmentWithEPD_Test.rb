@@ -41,7 +41,6 @@ require_relative '../measure.rb'
 require 'minitest/autorun'
 
 class SetElectricEquipmentLoadsByEPD_Test < Minitest::Test
-
   def test_SetElectricEquipmentLoadsByEPD_a
     # create an instance of the measure
     measure = SetElectricEquipmentLoadsByEPD.new
@@ -168,7 +167,7 @@ class SetElectricEquipmentLoadsByEPD_Test < Minitest::Test
     measure.run(model, runner, argument_map)
     result = runner.result
     assert(result.value.valueName == 'NA')
-    #assert(result.warnings.size == 1)
+    # assert(result.warnings.size == 1)
   end
 
   def test_SetElectricEquipmentLoadsByEPD_c
@@ -236,7 +235,7 @@ class SetElectricEquipmentLoadsByEPD_Test < Minitest::Test
     result = runner.result
     show_output(result)
     assert(result.value.valueName == 'Success')
-    #assert(result.warnings.size == 4)
+    # assert(result.warnings.size == 4)
   end
 
   def test_SetElectricEquipmentLoadsByEPD_d
@@ -304,7 +303,7 @@ class SetElectricEquipmentLoadsByEPD_Test < Minitest::Test
     result = runner.result
     show_output(result)
     assert(result.value.valueName == 'Success')
-    #assert(result.warnings.size == 1)
+    # assert(result.warnings.size == 1)
   end
 
   def test_SetElectricEquipmentLoadsByEPD_e_DemoInitialConstruction_UnCosted_Baseline
@@ -372,7 +371,7 @@ class SetElectricEquipmentLoadsByEPD_Test < Minitest::Test
     result = runner.result
     show_output(result)
     assert(result.value.valueName == 'Success')
-    #assert(result.warnings.size == 1)
+    # assert(result.warnings.size == 1)
   end
 
   def test_SetElectricEquipmentLoadsByEPD_f_DemoInitialConstruction_Costed_Baseline
@@ -440,7 +439,7 @@ class SetElectricEquipmentLoadsByEPD_Test < Minitest::Test
     result = runner.result
     show_output(result)
     assert(result.value.valueName == 'Success')
-    #assert(result.warnings.size == 1)
+    # assert(result.warnings.size == 1)
   end
 
   def test_SetElectricEquipmentLoadsByEPD_no_lights
@@ -588,7 +587,6 @@ class SetElectricEquipmentLoadsByEPD_Test < Minitest::Test
     result = runner.result
     show_output(result)
     assert(result.value.valueName == 'Success')
-    #assert(result.warnings.size == 2)
+    # assert(result.warnings.size == 2)
   end
-
 end

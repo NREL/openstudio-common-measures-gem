@@ -37,16 +37,19 @@
 class SetElectricEquipmentLoadsByEPD < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see
   def name
-    return "Set Electric Equipment loads by EPD"
+    return 'Set Electric Equipment loads by EPD'
   end
+
   # human readable description
   def description
-    return "Set the electric equipment power density (W/ft^2) in the to a specified value for all spaces that have electric equipment. This can be applied to the entire building or a specific space type. Cost can be added per floor area"
+    return 'Set the electric equipment power density (W/ft^2) in the to a specified value for all spaces that have electric equipment. This can be applied to the entire building or a specific space type. Cost can be added per floor area'
   end
+
   # human readable description of modeling approach
   def modeler_description
-    return "Delete all of the existing electric equipment in the model. Add electric equipment with the user defined electric equipment power density to all spaces that initially had electric equipment, using the schedule from the original electric equipment. If multiple electric equipment existed the schedule will be pulled from the one with the highest electric equipment power density value. Demolition costs from electric equipment removed by this measure can be included in the analysis."
+    return 'Delete all of the existing electric equipment in the model. Add electric equipment with the user defined electric equipment power density to all spaces that initially had electric equipment, using the schedule from the original electric equipment. If multiple electric equipment existed the schedule will be pulled from the one with the highest electric equipment power density value. Demolition costs from electric equipment removed by this measure can be included in the analysis.'
   end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -288,7 +291,7 @@ class SetElectricEquipmentLoadsByEPD < OpenStudio::Measure::ModelMeasure
       space.electricEquipment.each do |elec_equip|
         if elec_equip.schedule.is_initialized
           sch = elec_equip.schedule.get
-          if elec_equip_sch_hash.has_key?(sch)
+          if elec_equip_sch_hash.key?(sch)
             elec_equip_sch_hash[sch] += 1
           else
             elec_equip_sch_hash[sch] = 1
@@ -300,7 +303,7 @@ class SetElectricEquipmentLoadsByEPD < OpenStudio::Measure::ModelMeasure
         space.spaceType.get.electricEquipment.each do |elec_equip|
           if elec_equip.schedule.is_initialized
             sch = elec_equip.schedule.get
-            if elec_equip_sch_hash.has_key?(sch)
+            if elec_equip_sch_hash.key?(sch)
               elec_equip_sch_hash[sch] += 1
             else
               elec_equip_sch_hash[sch] = 1

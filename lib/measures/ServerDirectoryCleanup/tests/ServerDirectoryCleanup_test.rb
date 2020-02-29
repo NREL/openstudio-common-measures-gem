@@ -115,13 +115,13 @@ class ServerDirectoryCleanupTest < Minitest::Test
     model = model.get
     model.addObjects(request_model.objects)
     model.save(model_out_path(test_name), true)
-    
+
     if ENV['OPENSTUDIO_TEST_NO_CACHE_SQLFILE']
       if File.exist?(sql_path(test_name))
         FileUtils.rm_f(sql_path(test_name))
       end
     end
-    
+
     setup_test_2(test_name, epw_path)
   end
 
@@ -153,7 +153,7 @@ class ServerDirectoryCleanupTest < Minitest::Test
 
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
-    #assert_equal(1, idf_output_requests.size)
+    # assert_equal(1, idf_output_requests.size)
 
     # mimic the process of running this measure in OS App or PAT. Optionally set custom model_in_path and custom epw_path.
     epw_path = epw_path_default
@@ -190,7 +190,6 @@ class ServerDirectoryCleanupTest < Minitest::Test
     end
 
     # make sure the report file exists
-    #assert(File.exist?(report_path(test_name)))
+    # assert(File.exist?(report_path(test_name)))
   end
 end
-

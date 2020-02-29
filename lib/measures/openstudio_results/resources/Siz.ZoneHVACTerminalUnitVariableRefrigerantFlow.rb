@@ -44,7 +44,7 @@ class OpenStudio::Model::ZoneHVACTerminalUnitVariableRefrigerantFlow
 
   def maxCoolingCapacity
     if coolingCoil.is_initialized
-    coolingCoil.get.maxCoolingCapacity
+      coolingCoil.get.maxCoolingCapacity
     else
       OpenStudio::OptionalDouble.new
     end
@@ -83,7 +83,7 @@ class OpenStudio::Model::ZoneHVACTerminalUnitVariableRefrigerantFlow
     vals = []
     if coolingCoil.is_initialized
       if coolingCoil.get.maxWaterFlowRate.is_initialized
-      vals << coolingCoil.get.maxWaterFlowRate.get
+        vals << coolingCoil.get.maxWaterFlowRate.get
       end
     end
     if heatingCoil.is_initialized

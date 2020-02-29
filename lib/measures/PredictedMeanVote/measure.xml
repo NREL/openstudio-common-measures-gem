@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>predicted_mean_vote</name>
   <uid>11cd3144-dac6-4f64-90e4-b8804c6bfc5e</uid>
-  <version_id>3de84444-a7bd-48a2-bd8b-d4b42c9f3849</version_id>
-  <version_modified>20180626T202328Z</version_modified>
+  <version_id>3351a0f8-9ffc-4dbd-a36b-873d8f45851b</version_id>
+  <version_modified>20200228T204851Z</version_modified>
   <xml_checksum>0CA4D54C</xml_checksum>
   <class_name>PredictedMeanVote</class_name>
   <display_name>Predicted Mean Vote</display_name>
@@ -30,7 +30,7 @@
     </argument>
     <argument>
       <name>meanRadiantCalcType</name>
-      <display_name>Mean Radiant Temperature Calculation Type.</display_name>
+      <display_name>Mean Radiant Temperature Calculation Type</display_name>
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -48,24 +48,59 @@
     </argument>
     <argument>
       <name>workEfficiencySchedule</name>
-      <display_name>Choose a Work Efficiency Schedule.</display_name>
+      <display_name>Choose a Work Efficiency Schedule</display_name>
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
     </argument>
     <argument>
       <name>clothingSchedule</name>
-      <display_name>Choose a Clothing Insulation Schedule.</display_name>
+      <display_name>Choose a Clothing Insulation Schedule</display_name>
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
     </argument>
     <argument>
       <name>airVelocitySchedule</name>
-      <display_name>Choose an Air Velocity Schedule.</display_name>
+      <display_name>Choose an Air Velocity Schedule</display_name>
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>reporting_frequency</name>
+      <display_name>Reporting Frequency</display_name>
+      <description>The frequency at which to report timeseries output data.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Timestep</default_value>
+      <choices>
+        <choice>
+          <value>Detailed</value>
+          <display_name>Detailed</display_name>
+        </choice>
+        <choice>
+          <value>Timestep</value>
+          <display_name>Timestep</display_name>
+        </choice>
+        <choice>
+          <value>Hourly</value>
+          <display_name>Hourly</display_name>
+        </choice>
+        <choice>
+          <value>Daily</value>
+          <display_name>Daily</display_name>
+        </choice>
+        <choice>
+          <value>Monthly</value>
+          <display_name>Monthly</display_name>
+        </choice>
+        <choice>
+          <value>Runperiod</value>
+          <display_name>Runperiod</display_name>
+        </choice>
+      </choices>
     </argument>
   </arguments>
   <outputs/>
@@ -109,6 +144,12 @@
       <checksum>88395709</checksum>
     </file>
     <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -117,31 +158,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>632DA14D</checksum>
+      <checksum>EB49CC9D</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
     <file>
       <filename>PredictedMeanVote_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B2B38598</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <checksum>981F085D</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>80D98EB3</checksum>
+      <checksum>C2BA306D</checksum>
     </file>
   </files>
 </measure>
