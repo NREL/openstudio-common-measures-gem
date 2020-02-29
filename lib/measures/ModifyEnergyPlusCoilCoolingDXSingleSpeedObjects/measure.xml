@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>modify_energyplus_coil_cooling_dx_single_speed_objects</name>
   <uid>b224bd36-213e-4b0e-b3fe-70371e04533d</uid>
-  <version_id>55d2d5e6-c3c1-4233-9ccd-3f3fc4673681</version_id>
-  <version_modified>20180710T213337Z</version_modified>
+  <version_id>f2614a2b-2077-4322-bdcf-6227a0b42d52</version_id>
+  <version_modified>20200229T024313Z</version_modified>
   <xml_checksum>C7ED76C0</xml_checksum>
   <class_name>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects</class_name>
   <display_name>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects</display_name>
@@ -78,18 +78,6 @@
       <checksum>BCF2DBB8</checksum>
     </file>
     <file>
-      <filename>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4373633E</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -102,6 +90,18 @@
       <checksum>8B12BFCE</checksum>
     </file>
     <file>
+      <filename>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EFC6D32D</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -110,7 +110,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>18A9C0E7</checksum>
+      <checksum>77D7ABBC</checksum>
     </file>
   </files>
 </measure>

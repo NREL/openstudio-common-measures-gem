@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>swap_lights_definition</name>
   <uid>63845525-5b86-448f-9a34-6be8481496ea</uid>
-  <version_id>4ffda5a5-0647-47dc-bcfb-fc509f730794</version_id>
-  <version_modified>20180626T202333Z</version_modified>
+  <version_id>acab2d64-3b5f-49c9-95d4-9531153f3a4c</version_id>
+  <version_modified>20200229T024320Z</version_modified>
   <xml_checksum>293730A7</xml_checksum>
   <class_name>SwapLightsDefinition</class_name>
   <display_name>SwapLightsDefinition</display_name>
@@ -86,29 +86,6 @@
       <checksum>2ED2C03C</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>3B467FFA</checksum>
-    </file>
-    <file>
-      <filename>SwapLightsDefinition_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>6236AA41</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -119,6 +96,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>23BE224A</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>68478B15</checksum>
+    </file>
+    <file>
+      <filename>SwapLightsDefinition_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D1BDE11B</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>tariff_selection_generic</name>
   <uid>d65ae535-f0ea-4745-9f5b-8d42c7070741</uid>
-  <version_id>63079200-545c-4473-a75f-6b796fac0fea</version_id>
-  <version_modified>20190923T182708Z</version_modified>
+  <version_id>12e70bed-8889-4f87-be70-f3d0b20dd34a</version_id>
+  <version_modified>20200229T024320Z</version_modified>
   <xml_checksum>43564105</xml_checksum>
   <class_name>TariffSelectionGeneric</class_name>
   <display_name> Tariff Selection-Generic</display_name>
@@ -16,28 +16,8 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>Example_A</default_value>
+      <default_value>Example_F</default_value>
       <choices>
-        <choice>
-          <value>Example_A</value>
-          <display_name>Example A FlatEnergyCharge</display_name>
-        </choice>
-        <choice>
-          <value>Example_B</value>
-          <display_name>Example B BlockEnergyCharge</display_name>
-        </choice>
-        <choice>
-          <value>Example_C</value>
-          <display_name>Example C BlockEnergyAndDemandCharges</display_name>
-        </choice>
-        <choice>
-          <value>Example_D</value>
-          <display_name>Example D SeasonalEnergyCharngesWithMinimumCharge</display_name>
-        </choice>
-        <choice>
-          <value>Example_E</value>
-          <display_name>Example E KWh per kW Energy Charges</display_name>
-        </choice>
         <choice>
           <value>Example_F</value>
           <display_name>Example F SeasonalTimeOfUseEnergy</display_name>
@@ -45,6 +25,26 @@
         <choice>
           <value>Example_G</value>
           <display_name>Example G BlocksWithinBlocks</display_name>
+        </choice>
+        <choice>
+          <value>Example_E</value>
+          <display_name>Example E KWh per kW Energy Charges</display_name>
+        </choice>
+        <choice>
+          <value>Example_D</value>
+          <display_name>Example D SeasonalEnergyCharngesWithMinimumCharge</display_name>
+        </choice>
+        <choice>
+          <value>Example_A</value>
+          <display_name>Example A FlatEnergyCharge</display_name>
+        </choice>
+        <choice>
+          <value>Example_C</value>
+          <display_name>Example C BlockEnergyAndDemandCharges</display_name>
+        </choice>
+        <choice>
+          <value>Example_B</value>
+          <display_name>Example B BlockEnergyCharge</display_name>
         </choice>
         <choice>
           <value>Example_H</value>
@@ -58,15 +58,15 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>FlatEnergyCharge-Gas</default_value>
+      <default_value>IN-EIAMonthlyRateGas</default_value>
       <choices>
-        <choice>
-          <value>FlatEnergyCharge-Gas</value>
-          <display_name>FlatEnergyCharge-Gas</display_name>
-        </choice>
         <choice>
           <value>IN-EIAMonthlyRateGas</value>
           <display_name>IN EIAMonthlyRateGas</display_name>
+        </choice>
+        <choice>
+          <value>FlatEnergyCharge-Gas</value>
+          <display_name>FlatEnergyCharge-Gas</display_name>
         </choice>
       </choices>
     </argument>
@@ -191,22 +191,28 @@
       <checksum>1F984D08</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>703C9964</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>5EEF1AF4</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <filename>tariff_selection_generic_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>FB49C385</checksum>
+      <checksum>3B660459</checksum>
     </file>
     <file>
       <version>
@@ -217,19 +223,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>FC9F914E</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>5EEF1AF4</checksum>
+      <checksum>74F74E2B</checksum>
     </file>
     <file>
       <filename>os_lib_helper_methods.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
+      <checksum>07B01D67</checksum>
     </file>
   </files>
 </measure>

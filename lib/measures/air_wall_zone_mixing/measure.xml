@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>air_wall_zone_mixing</name>
   <uid>fd04f73e-a530-4144-9e1e-c1878b1394bc</uid>
-  <version_id>9080d867-5bc3-4017-bd7c-1be45ba0c771</version_id>
-  <version_modified>20191231T201354Z</version_modified>
+  <version_id>346f6e74-eecf-4137-bf7c-67d4ffa21d26</version_id>
+  <version_modified>20200229T024315Z</version_modified>
   <xml_checksum>772B7164</xml_checksum>
   <class_name>AirWallZoneMixing</class_name>
   <display_name>Air Wall Zone Mixing</display_name>
@@ -81,22 +81,10 @@ Zone mixing will only be added where there is an air wall and where the matched 
       <checksum>38ED88B9</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>C272754F</checksum>
-    </file>
-    <file>
-      <filename>air_wall_zone_mixing_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>628E4DB5</checksum>
     </file>
     <file>
       <filename>example_a.png</filename>
@@ -141,10 +129,22 @@ Zone mixing will only be added where there is an air wall and where the matched 
       <checksum>95902986</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>air_wall_zone_mixing_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D78B91B3</checksum>
+    </file>
+    <file>
       <filename>os_lib_geometry.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>FBB26B44</checksum>
+      <checksum>674C561A</checksum>
     </file>
     <file>
       <version>
@@ -155,7 +155,7 @@ Zone mixing will only be added where there is an air wall and where the matched 
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A96950D4</checksum>
+      <checksum>2FD21B1F</checksum>
     </file>
   </files>
 </measure>

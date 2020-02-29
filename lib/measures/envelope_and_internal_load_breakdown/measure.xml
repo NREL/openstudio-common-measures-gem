@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>envelope_and_internal_load_breakdown</name>
   <uid>8f0e1fbb-8bc6-46e5-b6e4-db59177e2c02</uid>
-  <version_id>b03ed8b0-6396-4cb5-82b9-3b766eeff20d</version_id>
-  <version_modified>20190923T182659Z</version_modified>
+  <version_id>290b65df-0fbb-4161-b253-364e5e02f378</version_id>
+  <version_modified>20200229T024316Z</version_modified>
   <xml_checksum>69BA4D91</xml_checksum>
   <class_name>EnvelopeAndInternalLoadBreakdown</class_name>
   <display_name>Envelope and Internal Load Breakdown</display_name>
@@ -82,12 +82,6 @@
       <checksum>7F9DACF4</checksum>
     </file>
     <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>6AD259AE</checksum>
-    </file>
-    <file>
       <filename>ExampleModel_NoExtNoGround.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -98,29 +92,6 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>CA6A593D</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>563AA6FC</checksum>
-    </file>
-    <file>
-      <filename>os_lib_reporting_envelope_and_internal_loads_breakdown.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>767C180A</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -135,16 +106,45 @@
       <checksum>F66552F1</checksum>
     </file>
     <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>18E9F25F</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>612C80AA</checksum>
+    </file>
+    <file>
+      <filename>os_lib_reporting_envelope_and_internal_loads_breakdown.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>F01B22FB</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <filename>EnvelopeAndInternalLoadBreakdown_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>0A5F1E16</checksum>
+      <checksum>A8844C42</checksum>
     </file>
     <file>
       <filename>os_lib_helper_methods.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
+      <checksum>07B01D67</checksum>
     </file>
   </files>
 </measure>

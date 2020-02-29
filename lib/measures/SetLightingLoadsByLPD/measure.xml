@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_lighting_loads_by_lpd</name>
   <uid>901c076e-02af-4bf4-a780-57391e7b1e2a</uid>
-  <version_id>cc67f8ee-4329-4573-92b1-ac136ac6c3b2</version_id>
-  <version_modified>20190829T151343Z</version_modified>
+  <version_id>70647009-9dbc-4799-aafa-f89177a278e9</version_id>
+  <version_modified>20200229T024316Z</version_modified>
   <xml_checksum>293730A7</xml_checksum>
   <class_name>SetLightingLoadsByLPD</class_name>
   <display_name>Set Lighting Loads by LPD</display_name>
@@ -19,7 +19,7 @@
       <default_value>*Entire Building*</default_value>
       <choices>
         <choice>
-          <value>{969c8806-0923-490c-aa7b-d83dbdab889b}</value>
+          <value>{e4b1b526-ab17-4ee7-ad86-01d9218c6261}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -158,12 +158,6 @@
       <checksum>E025B7B3</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>HasSpaceWithNoLightsOrElec.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -182,10 +176,16 @@
       <checksum>DD51F214</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <filename>ReplaceLightsWithLPD_01_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>4C4A9296</checksum>
+      <checksum>BC3B260C</checksum>
     </file>
     <file>
       <version>
@@ -196,7 +196,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>ABC44753</checksum>
+      <checksum>E1681A6A</checksum>
     </file>
   </files>
 </measure>

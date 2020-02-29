@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_thermostat_schedules</name>
   <uid>2978cde0-53d5-4096-bdab-11f9f6e074f1</uid>
-  <version_id>c6c768cd-4cbf-4a7a-93cd-23bcc0656182</version_id>
-  <version_modified>20180710T213339Z</version_modified>
+  <version_id>c08c1cff-1e5e-474c-915e-c1a3abe0c0b8</version_id>
+  <version_modified>20200229T024315Z</version_modified>
   <xml_checksum>F4CEA58B</xml_checksum>
   <class_name>SetThermostatSchedules</class_name>
   <display_name>Set Thermostat Schedules</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All Thermal Zones*</default_value>
       <choices>
         <choice>
-          <value>{87e3a7c4-4cfc-427d-bb1c-472f9ba4698e}</value>
+          <value>{6a241220-4789-4fcb-b416-3432f86d7b2d}</value>
           <display_name>*All Thermal Zones*</display_name>
         </choice>
       </choices>
@@ -90,23 +90,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>194979CD</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -119,10 +102,27 @@
       <checksum>7C2538DE</checksum>
     </file>
     <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>C53B40AB</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <filename>SetThermostatSchedules_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>BACDB93C</checksum>
+      <checksum>101470AA</checksum>
     </file>
   </files>
 </measure>

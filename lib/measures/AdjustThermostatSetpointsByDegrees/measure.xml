@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>adjust_thermostat_setpoints_by_degrees</name>
   <uid>6e1f34f9-92e1-44ea-9279-de0b9b64f6a1</uid>
-  <version_id>0ffde0cf-822a-4965-9ceb-e661600495d2</version_id>
-  <version_modified>20180626T202311Z</version_modified>
+  <version_id>1a1b2e9b-7317-4f70-8a16-0235418fbeaa</version_id>
+  <version_modified>20200229T024315Z</version_modified>
   <xml_checksum>4F7846F2</xml_checksum>
   <class_name>AdjustThermostatSetpointsByDegrees</class_name>
   <display_name>Adjust Thermostat Setpoints by Degrees</display_name>
@@ -86,29 +86,6 @@
       <checksum>508ECE85</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>12BC1FF5</checksum>
-    </file>
-    <file>
-      <filename>AdjustThermostatSetpointsByDegrees_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>DE02A5F2</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -119,6 +96,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>DDCB3166</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>4C97F8A9</checksum>
+    </file>
+    <file>
+      <filename>AdjustThermostatSetpointsByDegrees_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FE9BB2F3</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

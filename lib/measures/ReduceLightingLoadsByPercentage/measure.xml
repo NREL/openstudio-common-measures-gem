@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>reduce_lighting_loads_by_percentage</name>
   <uid>791f3404-a28b-4a80-ba3f-e15b339e39ea</uid>
-  <version_id>a3fd24ea-f077-43b8-835c-677bb58e37fe</version_id>
-  <version_modified>20190319T172949Z</version_modified>
+  <version_id>01e31b73-acc4-47cd-b6cb-8c54238964fc</version_id>
+  <version_modified>20200229T024320Z</version_modified>
   <xml_checksum>293730A7</xml_checksum>
   <class_name>ReduceLightingLoadsByPercentage</class_name>
   <display_name>Reduce Lighting Loads by Percentage</display_name>
@@ -19,7 +19,7 @@
       <default_value>*Entire Building*</default_value>
       <choices>
         <choice>
-          <value>{0fba837b-b10b-44da-9cf5-76dd279b8618}</value>
+          <value>{ba5b25d6-8c19-43e3-abc8-bb5666d4cc52}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -153,18 +153,6 @@
       <checksum>824A4C53</checksum>
     </file>
     <file>
-      <filename>ReduceLightingLoadsByPercentage_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>223534B5</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -177,6 +165,18 @@
       <checksum>9169535E</checksum>
     </file>
     <file>
+      <filename>ReduceLightingLoadsByPercentage_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F5BAA5CC</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -185,7 +185,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>1C72084F</checksum>
+      <checksum>BD37BF51</checksum>
     </file>
   </files>
 </measure>

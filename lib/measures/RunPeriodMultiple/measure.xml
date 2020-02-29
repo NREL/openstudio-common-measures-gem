@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>run_period_multiple</name>
   <uid>100a5eba-0442-42cb-bdf1-9cf75e102f71</uid>
-  <version_id>06f60211-85ed-4f26-beaa-dcece2ad2a66</version_id>
-  <version_modified>20181101T151202Z</version_modified>
+  <version_id>fe138460-d723-4f30-8244-4bed107025d6</version_id>
+  <version_modified>20200229T024319Z</version_modified>
   <xml_checksum>87C4F8A7</xml_checksum>
   <class_name>RunPeriodMultiple</class_name>
   <display_name>Set Multiple Run Period Object</display_name>
@@ -70,17 +70,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>5BA235B5</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -93,10 +82,21 @@
       <checksum>1CF1E24C</checksum>
     </file>
     <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>D2CF15FC</checksum>
+    </file>
+    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

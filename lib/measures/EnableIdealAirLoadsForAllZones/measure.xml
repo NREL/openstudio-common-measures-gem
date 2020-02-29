@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>enable_ideal_air_loads_for_all_zones</name>
   <uid>f70d4a3d-8b93-4fef-b679-858fe1e05acc</uid>
-  <version_id>ad15991e-ded2-445d-8fc8-78b0384543c6</version_id>
-  <version_modified>20190325T201338Z</version_modified>
+  <version_id>595a8700-e2a3-4068-badc-f8968f0e9f0e</version_id>
+  <version_modified>20200229T024317Z</version_modified>
   <xml_checksum>4435983D</xml_checksum>
   <class_name>EnableIdealAirLoadsForAllZones</class_name>
   <display_name>EnableIdealAirLoadsForAllZones</display_name>
@@ -29,12 +29,6 @@
   </attributes>
   <files>
     <file>
-      <filename>EnableIdealAirLoadsForAllZones_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>7E97737D</checksum>
-    </file>
-    <file>
       <filename>IdealAir_TestModel.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -53,6 +47,12 @@
       <checksum>99E5F2C0</checksum>
     </file>
     <file>
+      <filename>EnableIdealAirLoadsForAllZones_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3510338F</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -61,13 +61,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>6541CC2A</checksum>
+      <checksum>77739D3D</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

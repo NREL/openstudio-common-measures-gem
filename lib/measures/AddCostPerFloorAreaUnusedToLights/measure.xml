@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>add_cost_per_floor_area_to_unused_lights</name>
   <uid>a5f5ddcf-48bb-413a-a712-0ee22f0b40a4</uid>
-  <version_id>472a97a8-696b-4df3-ad94-e8e49903b881</version_id>
-  <version_modified>20181101T151202Z</version_modified>
+  <version_id>1b691206-0c60-48ba-8d34-2ae9ba833e34</version_id>
+  <version_modified>20200229T024319Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerFloorAreaToUnusedLights</class_name>
   <display_name>Add Cost per Floor Area to Unused Lights</display_name>
@@ -149,29 +149,6 @@
       <checksum>8626A1EB</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>7E22E558</checksum>
-    </file>
-    <file>
-      <filename>AddCostPerFloorAreaToUusedLights_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>BB42035D</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -182,6 +159,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>1FCC0A99</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>1DABE4CF</checksum>
+    </file>
+    <file>
+      <filename>AddCostPerFloorAreaToUusedLights_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9E52068B</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>reduce_ventilation_by_percentage</name>
   <uid>f0859a47-fddf-4962-9035-2f9fc9d6e283</uid>
-  <version_id>ab194a5e-7f36-40a0-9978-a389e319df8c</version_id>
-  <version_modified>20180626T202330Z</version_modified>
+  <version_id>e29d8862-7c60-4159-84d9-d67401d54757</version_id>
+  <version_modified>20200229T024315Z</version_modified>
   <xml_checksum>ECE70A70</xml_checksum>
   <class_name>ReduceVentilationByPercentage</class_name>
   <display_name>ReduceVentilationByPercentage</display_name>
@@ -19,7 +19,7 @@
       <default_value>*Entire Building*</default_value>
       <choices>
         <choice>
-          <value>{d03d3c60-6d61-482d-acf0-0a9f648fcc42}</value>
+          <value>{71e2edc6-1434-4d5a-9246-0c4e46fb02b0}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -58,29 +58,6 @@
       <checksum>587515F3</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>E38BE298</checksum>
-    </file>
-    <file>
-      <filename>ReduceVentilationByPercentage_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9F4BD11C</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -91,6 +68,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>13B80C30</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>E9A01A56</checksum>
+    </file>
+    <file>
+      <filename>ReduceVentilationByPercentage_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>05626F50</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

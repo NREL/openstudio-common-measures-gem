@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>replace_exterior_window_construction</name>
   <uid>95116deb-0716-4cdc-af27-09c463befc7c</uid>
-  <version_id>37e818da-ac5a-4b80-af04-cb20b44d0dc8</version_id>
-  <version_modified>20180626T202331Z</version_modified>
+  <version_id>1f92ce50-a8a1-46cf-8eb0-914f3abcf2cc</version_id>
+  <version_modified>20200229T024320Z</version_modified>
   <xml_checksum>6DE831F7</xml_checksum>
   <class_name>ReplaceExteriorWindowConstruction</class_name>
   <display_name>Replace Exterior Window Constructions with a Different Construction from the Model.</display_name>
@@ -188,29 +188,6 @@ For costs added as part of a design alternatives "Years Until Costs Start? is ty
       <checksum>40BB59D1</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>14BAD950</checksum>
-    </file>
-    <file>
-      <filename>ReplaceExteriorWindowConstruction_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9F36890D</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -221,6 +198,29 @@ For costs added as part of a design alternatives "Years Until Costs Start? is ty
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>CA45F32D</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>1BE9617A</checksum>
+    </file>
+    <file>
+      <filename>ReplaceExteriorWindowConstruction_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E3BA742F</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

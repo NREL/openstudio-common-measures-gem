@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>2636834d-7847-47c5-9547-8acd30bc8713</version_id>
-  <version_modified>20191105T083732Z</version_modified>
+  <version_id>511ae4d4-3afb-4307-836d-8a51b901875f</version_id>
+  <version_modified>20200229T024318Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -437,18 +437,6 @@
       <checksum>779C47A4</checksum>
     </file>
     <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E753A7CA</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -479,17 +467,6 @@
       <checksum>601A4415</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>2F1FE5E5</checksum>
-    </file>
-    <file>
       <filename>BasicOfficeTest_Mueller.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -514,112 +491,135 @@
       <checksum>BBC2D3D5</checksum>
     </file>
     <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>BDF70EAA</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>2396A403</checksum>
+    </file>
+    <file>
       <filename>measure_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>2CC1C21F</checksum>
+      <checksum>8FBCE04A</checksum>
     </file>
     <file>
       <filename>os_lib_reporting_qaqc.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>E723B7A3</checksum>
+      <checksum>54A730F4</checksum>
     </file>
     <file>
       <filename>check_placeholder.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>9CAE40B5</checksum>
+      <checksum>A46F04B4</checksum>
     </file>
     <file>
       <filename>check_simultaneous_heating_and_cooling.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>CD7325D2</checksum>
+      <checksum>D7AE5189</checksum>
     </file>
     <file>
       <filename>check_weather_files.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>8B5E2833</checksum>
+      <checksum>688B721D</checksum>
     </file>
     <file>
       <filename>os_lib_helper_methods.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
+      <checksum>07B01D67</checksum>
     </file>
     <file>
       <filename>check_eui_reasonableness.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>E4217B10</checksum>
+      <checksum>CB7DDC0B</checksum>
     </file>
     <file>
       <filename>check_eui_by_end_use.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>507E55ED</checksum>
+      <checksum>D81E33DD</checksum>
     </file>
     <file>
       <filename>check_mech_sys_type.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>BC73C685</checksum>
+      <checksum>DB7A676B</checksum>
     </file>
     <file>
       <filename>check_mech_sys_efficiency.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>1DE7CF85</checksum>
+      <checksum>F47A1139</checksum>
     </file>
     <file>
       <filename>check_schedules.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>207E5B61</checksum>
+      <checksum>11D5DF87</checksum>
     </file>
     <file>
       <filename>check_supply_air_and_thermostat_temp_difference.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>BB16CC42</checksum>
+      <checksum>0F3C61BC</checksum>
     </file>
     <file>
       <filename>check_envelope_conductance.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>EBBB8C18</checksum>
+      <checksum>4F5626E2</checksum>
     </file>
     <file>
       <filename>check_mech_sys_capacity.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>9B139D5F</checksum>
+      <checksum>8A55DBAB</checksum>
     </file>
     <file>
       <filename>check_internal_loads.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>1BCBE280</checksum>
+      <checksum>09DC3552</checksum>
     </file>
     <file>
       <filename>check_mech_sys_part_load_eff.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>9B40D10C</checksum>
+      <checksum>B830417E</checksum>
     </file>
     <file>
       <filename>check_domestic_hot_water.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>0ED6681C</checksum>
+      <checksum>9BE27A55</checksum>
     </file>
     <file>
       <filename>CreateResults.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>4C04A2EB</checksum>
+      <checksum>33AF0943</checksum>
     </file>
   </files>
 </measure>

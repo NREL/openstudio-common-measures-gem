@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>modify_energyplus_fan_variable_volume_objects</name>
   <uid>009fe4eb-be72-4803-ac84-471ebe2c4c21</uid>
-  <version_id>a6afe989-7e01-4e20-a3f2-bc841c4bc623</version_id>
-  <version_modified>20180710T213337Z</version_modified>
+  <version_id>c356a086-3ee9-49b9-a723-6d516cdfb973</version_id>
+  <version_modified>20200229T024317Z</version_modified>
   <xml_checksum>D8794EFE</xml_checksum>
   <class_name>ModifyEnergyPlusFanVariableVolumeObjects</class_name>
   <display_name>ModifyEnergyPlusFanVariableVolumeObjects</display_name>
@@ -50,18 +50,6 @@
       <checksum>BCF2DBB8</checksum>
     </file>
     <file>
-      <filename>ModifyEnergyPlusFanVariableVolumeObjects_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9A5553FB</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -74,6 +62,18 @@
       <checksum>E3BA65D6</checksum>
     </file>
     <file>
+      <filename>ModifyEnergyPlusFanVariableVolumeObjects_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>425566AD</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -82,7 +82,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>804CE91E</checksum>
+      <checksum>F2831654</checksum>
     </file>
   </files>
 </measure>
