@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_space_infiltration_per_exterior_area</name>
   <uid>9d796dd3-c5cf-475a-81aa-607d3ba9d143</uid>
-  <version_id>8502986c-87b1-466e-b469-c0f1dbfde08e</version_id>
-  <version_modified>20191231T193155Z</version_modified>
+  <version_id>9fa46190-e00c-4962-995e-3a89db0aa02b</version_id>
+  <version_modified>20200229T024314Z</version_modified>
   <xml_checksum>19EEDBBB</xml_checksum>
   <class_name>SetSpaceInfiltrationPerExteriorArea</class_name>
   <display_name>SetSpaceInfiltrationPerExteriorArea</display_name>
@@ -67,27 +67,10 @@
   </attributes>
   <files>
     <file>
-      <filename>set_space_infiltration_per_exterior_area_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>8A9E3BAB</checksum>
-    </file>
-    <file>
       <filename>example_model.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>66DC88A9</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.7.0</identifier>
-        <min_compatible>2.7.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>A98467DC</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -102,10 +85,27 @@
       <checksum>03150193</checksum>
     </file>
     <file>
+      <filename>set_space_infiltration_per_exterior_area_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>A2B977DA</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.7.0</identifier>
+        <min_compatible>2.7.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>EAEA6308</checksum>
+    </file>
+    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

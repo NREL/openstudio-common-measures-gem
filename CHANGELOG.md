@@ -1,4 +1,8 @@
 # OpenStudio Common Measures Gem
+
+## Version 0.1.2 (Unreleased)
+
+* Run update measures command to generate new measure.xml files
  
 ## Version 0.1.1
 

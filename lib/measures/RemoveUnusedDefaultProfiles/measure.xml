@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>remove_unused_default_profiles</name>
   <uid>8abcdf38-c391-465a-8fb8-b243aa4f0b06</uid>
-  <version_id>c04c618f-fc76-4df9-a628-77cb0629d54f</version_id>
-  <version_modified>20180626T202330Z</version_modified>
+  <version_id>005cd001-99f9-4d1b-a187-0f6998405f19</version_id>
+  <version_modified>20200229T024314Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>RemoveUnusedDefaultProfiles</class_name>
   <display_name>RemoveUnusedDefaultProfiles</display_name>
@@ -45,29 +45,6 @@
       <checksum>E1E75C42</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>E91D6BD8</checksum>
-    </file>
-    <file>
-      <filename>RemoveUnusedDefaultProfiles_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>1E7DFFE0</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -78,6 +55,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>4403A4C3</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>0D8A5EC6</checksum>
+    </file>
+    <file>
+      <filename>RemoveUnusedDefaultProfiles_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FFFADF01</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_energyplus_light_objects_lpd</name>
   <uid>88e02d9f-611f-45ec-afd7-eb9c0e2f8ccf</uid>
-  <version_id>ceec7636-1e2e-4415-9c64-490e82e7104b</version_id>
-  <version_modified>20180710T213338Z</version_modified>
+  <version_id>ab5345cb-6234-4f0c-b5aa-27e2857dce9c</version_id>
+  <version_modified>20200229T024318Z</version_modified>
   <xml_checksum>B087785D</xml_checksum>
   <class_name>SetEnergyPlusLightObjectsLPD</class_name>
   <display_name>SetEnergyPlusLightObjectsLPD</display_name>
@@ -44,18 +44,6 @@
       <checksum>10DA2352</checksum>
     </file>
     <file>
-      <filename>SetEnergyPlusLightobjectsLPD_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>C28017E1</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -68,6 +56,18 @@
       <checksum>92996150</checksum>
     </file>
     <file>
+      <filename>SetEnergyPlusLightobjectsLPD_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>20E99C43</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -76,7 +76,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A02FFEB5</checksum>
+      <checksum>761907E9</checksum>
     </file>
   </files>
 </measure>

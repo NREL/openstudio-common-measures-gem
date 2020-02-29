@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>add_simple_pv_to_shading_surfaces_by_type</name>
   <uid>27627c16-75d4-4fc3-add9-2d7d538c0130</uid>
-  <version_id>92a93d3d-c36c-47c7-9542-e8a8c8118fc4</version_id>
-  <version_modified>20181101T151202Z</version_modified>
+  <version_id>7efbb76d-72fd-432e-9e06-8f6b2410a751</version_id>
+  <version_modified>20200229T024318Z</version_modified>
   <xml_checksum>92C8C204</xml_checksum>
   <class_name>AddSimplePvToShadingSurfacesByType</class_name>
   <display_name>Add Simple PV to Specified Shading Surfaces</display_name>
@@ -120,18 +120,6 @@
       <checksum>DA2775F4</checksum>
     </file>
     <file>
-      <filename>AddSimplePvToShadingSurfacesByType_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4D6E8BC1</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -144,6 +132,18 @@
       <checksum>0A15907B</checksum>
     </file>
     <file>
+      <filename>AddSimplePvToShadingSurfacesByType_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>70128578</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -152,7 +152,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>86AB6000</checksum>
+      <checksum>362C32D7</checksum>
     </file>
   </files>
 </measure>

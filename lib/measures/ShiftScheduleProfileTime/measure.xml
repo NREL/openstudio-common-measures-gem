@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>shift_schedule_profile_time</name>
   <uid>1c642348-f074-4ad1-98ee-2208ddc89ac7</uid>
-  <version_id>e4237441-44a0-49b1-a2e7-8b776c824069</version_id>
-  <version_modified>20180626T202333Z</version_modified>
+  <version_id>5404621c-fd40-40c5-9151-84cc29061110</version_id>
+  <version_modified>20200229T024319Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>ShiftScheduleProfileTime</class_name>
   <display_name>ShiftScheduleProfileTime</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All Ruleset Schedules*</default_value>
       <choices>
         <choice>
-          <value>{e3da39d6-7507-4bfb-9726-e0baa51ba944}</value>
+          <value>{f218f307-4c6f-4fcb-bd01-f0044042f9f0}</value>
           <display_name>*All Ruleset Schedules*</display_name>
         </choice>
       </choices>
@@ -68,29 +68,6 @@
       <checksum>B4AB814E</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>9C2F2E8C</checksum>
-    </file>
-    <file>
-      <filename>ShiftScheduleProfileTime_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>AE7DD6BC</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -101,6 +78,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>8E63A0BF</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>003AA7A4</checksum>
+    </file>
+    <file>
+      <filename>ShiftScheduleProfileTime_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>51BB433C</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

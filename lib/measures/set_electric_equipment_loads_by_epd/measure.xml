@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_electric_equipment_loads_by_epd</name>
   <uid>b1d87b95-a6d1-4999-bd0d-16da879f4340</uid>
-  <version_id>244a6e72-f587-4e16-af14-742f18490d2f</version_id>
-  <version_modified>20190325T215956Z</version_modified>
+  <version_id>77eb1d04-16e0-48eb-9cb5-e43c99d8252d</version_id>
+  <version_modified>20200229T024316Z</version_modified>
   <xml_checksum>5C8B3381</xml_checksum>
   <class_name>SetElectricEquipmentLoadsByEPD</class_name>
   <display_name>Set Electric Equipment loads by EPD</display_name>
@@ -19,7 +19,7 @@
       <default_value>*Entire Building*</default_value>
       <choices>
         <choice>
-          <value>{7ebe8c6a-1db3-4d95-b21f-1a3894199a8f}</value>
+          <value>{f2489a8b-9fdc-45d0-a5f9-da5b7e1fc2ab}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -158,27 +158,10 @@
       <checksum>E025B7B3</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>HasSpaceWithNoLightsOrElec.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>ECE1D347</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>DC629AF8</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -193,10 +176,27 @@
       <checksum>14295EFE</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>9187A779</checksum>
+    </file>
+    <file>
       <filename>ReplaceElectricEquipmentWithEPD_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>86FD7316</checksum>
+      <checksum>EDCC59FE</checksum>
     </file>
   </files>
 </measure>

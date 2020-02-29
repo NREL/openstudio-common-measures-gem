@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_space_infiltration_by_exterior_surface_area</name>
   <uid>9d7b0789-3974-4869-a2a8-055391857e3c</uid>
-  <version_id>82c6f476-5d3f-412b-9780-e0009c9ab363</version_id>
-  <version_modified>20180626T202333Z</version_modified>
+  <version_id>009df721-461a-45d4-8751-ae9c999c3ff7</version_id>
+  <version_modified>20200229T024316Z</version_modified>
   <xml_checksum>E88CCCA7</xml_checksum>
   <class_name>SetSpaceInfiltrationByExteriorSurfaceArea</class_name>
   <display_name>Set Space Infiltration by Exterior Surface Area</display_name>
@@ -96,29 +96,6 @@ A one time material &amp; installation cost can be added to the building object 
       <checksum>0B94403D</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>5F2E24EB</checksum>
-    </file>
-    <file>
-      <filename>SetSpaceInfiltrationByExteriorSurfaceArea_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>5C830302</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -129,6 +106,29 @@ A one time material &amp; installation cost can be added to the building object 
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>4B3DFB4E</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>2A4F5C31</checksum>
+    </file>
+    <file>
+      <filename>SetSpaceInfiltrationByExteriorSurfaceArea_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>352CBB25</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

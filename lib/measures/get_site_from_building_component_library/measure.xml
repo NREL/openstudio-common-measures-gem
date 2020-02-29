@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>get_site_from_building_component_library</name>
   <uid>a6dff045-6f62-4288-a3f0-a5549f4c292a</uid>
-  <version_id>dcb57268-5d52-4866-ae5a-c674d37ccbca</version_id>
-  <version_modified>20190923T182700Z</version_modified>
+  <version_id>b6531b83-50a1-4827-ad4c-3333d707336b</version_id>
+  <version_modified>20200229T024319Z</version_modified>
   <xml_checksum>99E7000D</xml_checksum>
   <class_name>GetSiteFromBuildingComponentLibrary</class_name>
   <display_name>Get Site from Building Component Library</display_name>
@@ -99,18 +99,6 @@
       <checksum>C4F35230</checksum>
     </file>
     <file>
-      <filename>bcl_api_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>AE85D544</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -123,6 +111,18 @@
       <checksum>FAAFE9B7</checksum>
     </file>
     <file>
+      <filename>bcl_api_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2B96ED07</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -131,19 +131,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>90873453</checksum>
+      <checksum>471D25D8</checksum>
     </file>
     <file>
       <filename>get_site_from_building_component_library_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>DC8D727A</checksum>
+      <checksum>D2DF7036</checksum>
     </file>
     <file>
       <filename>os_lib_helper_methods.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
+      <checksum>07B01D67</checksum>
     </file>
   </files>
 </measure>

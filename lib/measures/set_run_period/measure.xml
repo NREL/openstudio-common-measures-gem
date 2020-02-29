@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_run_period</name>
   <uid>7a84292a-3975-4ab3-9284-6edabcbe750b</uid>
-  <version_id>62323562-963d-4e61-8dc1-33935da3c01e</version_id>
-  <version_modified>20191029T231304Z</version_modified>
+  <version_id>c3a54143-dcda-4280-850b-c26cd7260211</version_id>
+  <version_modified>20200229T024314Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>SetRunPeriod</class_name>
   <display_name>SetRunPeriod</display_name>
@@ -85,7 +85,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
     <file>
       <version>
@@ -96,13 +96,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>4CC0292E</checksum>
+      <checksum>B8305E98</checksum>
     </file>
     <file>
       <filename>set_run_period_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B7B329DB</checksum>
+      <checksum>8F889535</checksum>
     </file>
   </files>
 </measure>
