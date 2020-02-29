@@ -42,7 +42,6 @@ require_relative '../measure.rb'
 require 'fileutils'
 
 class SetSpaceInfiltrationPerExteriorAreaTest < Minitest::Test
-
   def test_bad_argument_values
     # create an instance of the measure
     measure = SetSpaceInfiltrationPerExteriorArea.new
@@ -104,8 +103,8 @@ class SetSpaceInfiltrationPerExteriorAreaTest < Minitest::Test
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    #args_hash['flow_per_area'] = 0.06
-    #args_hash['ext_flow_cat'] = "ExteriorWallArea"
+    # args_hash['flow_per_area'] = 0.06
+    # args_hash['ext_flow_cat'] = "ExteriorWallArea"
 
     # populate argument with specified hash value if specified
     arguments.each do |arg|
@@ -125,8 +124,8 @@ class SetSpaceInfiltrationPerExteriorAreaTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.empty?)
+    # assert(result.info.size == 1)
+    # assert(result.warnings.empty?)
 
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/test_output.osm"

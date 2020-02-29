@@ -110,7 +110,7 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     result << 'schedules_overview_section'
     # TODO: - clean up code to gather schedule profiles so I don't have to grab every 15 minutes
 
-    # TODO - add in section to report warnings for this and other measures
+    # TODO: - add in section to report warnings for this and other measures
     result << 'measure_warning_section'
 
     # see the method below in os_lib_reporting.rb to see a simple example of code to make a section of tables
@@ -215,7 +215,7 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('annual_utility_cost') # $
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('total_lifecycle_cost') # $
 
-    # todo - add warning counts, but only if they will always be made.
+    # TODO: - add warning counts, but only if they will always be made.
 
     return result
   end

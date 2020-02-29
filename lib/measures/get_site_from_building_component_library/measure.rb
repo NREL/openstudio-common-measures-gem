@@ -38,7 +38,6 @@
 
 # start the measure
 class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
-
   # require all .rb files in resources folder
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
@@ -47,17 +46,17 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
 
   # human readable name
   def name
-    return "Get Site from Building Component Library"
+    return 'Get Site from Building Component Library'
   end
 
   # human readable description
   def description
-    return "Populate choice list from BCL, then selected site will be brought into model. This will include the weather file, design days, and water main temperatures."
+    return 'Populate choice list from BCL, then selected site will be brought into model. This will include the weather file, design days, and water main temperatures.'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return "To start with measure will hard code a string to narrow the search. Then a shorter list than all weather files on BCL will be shown. In the future woudl be nice to select region based on climate zone set in building object."
+    return 'To start with measure will hard code a string to narrow the search. Then a shorter list than all weather files on BCL will be shown. In the future woudl be nice to select region based on climate zone set in building object.'
   end
 
   # define the arguments that the user will input
@@ -65,9 +64,9 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make argument for zipcode
-    zipcode = OpenStudio::Measure::OSArgument.makeIntegerArgument("zipcode", true)
-    zipcode.setDisplayName("Zip Code for project")
-    zipcode.setDescription("Enter valid us 5 digit zipcode")
+    zipcode = OpenStudio::Measure::OSArgument.makeIntegerArgument('zipcode', true)
+    zipcode.setDisplayName('Zip Code for project')
+    zipcode.setDescription('Enter valid us 5 digit zipcode')
     zipcode.setDefaultValue(80401)
     args << zipcode
 
@@ -91,13 +90,13 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
 
     # lookup and replace argument values from upstream measures
     if args['use_upstream_args'] == true
-      args.each do |arg,value|
+      args.each do |arg, value|
         next if arg == 'use_upstream_args' # this argument should not be changed
         value_from_osw = OsLib_HelperMethods.check_upstream_measure_for_arg(runner, arg)
         if !value_from_osw.empty?
           runner.registerInfo("Replacing argument named #{arg} from current measure with a value of #{value_from_osw[:value]} from #{value_from_osw[:measure_name]}.")
           new_val = value_from_osw[:value]
-          # todo - make code to handle non strings more robust. check_upstream_measure_for_arg coudl pass bakc the argument type
+          # TODO: - make code to handle non strings more robust. check_upstream_measure_for_arg coudl pass bakc the argument type
           if arg == 'total_bldg_floor_area'
             args[arg] = new_val.to_f
           elsif arg == 'num_stories_above_grade'
@@ -111,15 +110,15 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
       end
     end
 
-    #assign the user inputs to variables
+    # assign the user inputs to variables
     zipcode = args['zipcode']
     # validate that argument 5 digit number, but that doesn't mean it is valid zip code
     if zipcode > 100000
-      runner.registerError("Requested number has too many digits, please just enter a 5 digit number")
+      runner.registerError('Requested number has too many digits, please just enter a 5 digit number')
       return false
     elsif zipcode < 10000
       # pad number
-      zipcode = "%05d" % zipcode
+      zipcode = format('%05d', zipcode)
     else
       zipcode = zipcode.to_s
     end
@@ -129,25 +128,23 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
     remote = OpenStudio::RemoteBCL.new
 
     # removed openstudio search in place of direct bcl api search. Still use remote to download commont once uuid is identified
-=begin
-    responses = remote.searchComponentLibrary("location:#{zipcode}", "Site")
-    uid = nil
-    responses.each_with_index do |response,i|
-      # list results for diagnostic purposes
-      runner.registerInfo("Response #{i} is #{response.name}")
-      next if not response.name.include?("TMY3")
-      next if not uid.nil?
-      uid = response.uid
-    end
-    if uid.nil? then uid = responses.first.uid end
-=end
+    #     responses = remote.searchComponentLibrary("location:#{zipcode}", "Site")
+    #     uid = nil
+    #     responses.each_with_index do |response,i|
+    #       # list results for diagnostic purposes
+    #       runner.registerInfo("Response #{i} is #{response.name}")
+    #       next if not response.name.include?("TMY3")
+    #       next if not uid.nil?
+    #       uid = response.uid
+    #     end
+    #     if uid.nil? then uid = responses.first.uid end
 
     # search bcl for site components for target zip code
     require 'open-uri'
     require 'json'
 
     # dev search string for internal testing
-    #search_string = "http://bcl7.development.nrel.gov/api/search/location:'#{zipcode}'.json?fq[]=bundle:nrel_component&fq[]=sm_vid_Component_Tags:Site&api_version=2.0"
+    # search_string = "http://bcl7.development.nrel.gov/api/search/location:'#{zipcode}'.json?fq[]=bundle:nrel_component&fq[]=sm_vid_Component_Tags:Site&api_version=2.0"
 
     # udpated to use https vs. http
     search_string = "https://bcl.nrel.gov/api/search/location:'#{zipcode}'.json?fq[]=bundle:nrel_component&fq[]=sm_vid_Component_Tags:Site&api_version=2.0"
@@ -159,35 +156,34 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
     responses = JSON.parse(responses)
 
     bcl_search_results = []
-    bcl_search_rejected =[]
+    bcl_search_rejected = []
     responses['result'].each do |i|
-
       reject = false
 
-      i.each do |k,v|
+      i.each do |k, v|
         hash = {}
         hash['name'] = v['name']
         hash['tag'] = v['tags']['tag']
         hash['uuid'] = v['uuid']
 
         v['attributes']['attribute'].each do |j|
-          if j['name'] == "Latitude"
+          if j['name'] == 'Latitude'
             hash['Latitude'] = j['value']
-          elsif j['name'] == "Longitude"
+          elsif j['name'] == 'Longitude'
             hash['Longitude'] = j['value']
-          elsif j['name'] == "OpenStudio Type"
+          elsif j['name'] == 'OpenStudio Type'
             hash['OpenStudio Type'] = j['value']
           end
         end
 
         # filter out of not expected component type
-        #if not hash['tag'] == ["Location-Dependent Component.Site"] then reject = true end
+        # if not hash['tag'] == ["Location-Dependent Component.Site"] then reject = true end
 
         # need extra filter because not all object of Component.Site map to OS:Site objects
-        #if not hash['OpenStudio Type'] == "OS:Site" then reject = true end
+        # if not hash['OpenStudio Type'] == "OS:Site" then reject = true end
 
         # filter out if not tmy3
-        if not hash['name'].upcase.include?("TMY3") then reject = true end
+        if !hash['name'].upcase.include?('TMY3') then reject = true end
 
         # add to array
         if reject
@@ -195,14 +191,13 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
         else
           bcl_search_results << hash
         end
-
       end
     end
 
-    if bcl_search_results.size == 0
+    if bcl_search_results.empty?
 
       # list rejected results for diagnostics
-      bcl_search_rejected.each_with_index do |search_hash,i|
+      bcl_search_rejected.each_with_index do |search_hash, i|
         runner.registerInfo("Rejected response #{i} is #{search_hash.inspect}")
       end
 
@@ -211,36 +206,36 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
     end
 
     # for now error if results include Aberdeen, which has shown up in past on bad searches
-    if bcl_search_results[0]['name'].include?("Aberdeen")
-      runner.registerError("Confirm that search results are correct, may have picked first alphabetical components")
+    if bcl_search_results[0]['name'].include?('Aberdeen')
+      runner.registerError('Confirm that search results are correct, may have picked first alphabetical components')
       return false
     end
 
     uid = bcl_search_results.first['uuid']
     runner.registerInfo("uid is #{uid}")
     remote.downloadComponent(uid)
-    component = remote.waitForComponentDownload()
+    component = remote.waitForComponentDownload
 
     if component.empty?
-      runner.registerError("Cannot find local component")
+      runner.registerError('Cannot find local component')
       return false
     end
     component = component.get
 
     # get epw file
-    files = component.files("epw")
+    files = component.files('epw')
     if files.empty?
-      runner.registerError("No epw file found")
+      runner.registerError('No epw file found')
       return false
     end
-    epw_path = component.files("epw")[0]
+    epw_path = component.files('epw')[0]
 
     # parse epw file
     epw_file = OpenStudio::EpwFile.new(OpenStudio::Path.new(epw_path))
     puts epw_file
 
     # report initial condition of model
-    if model.weatherFile.is_initialized and model.weatherFile.get.path.is_initialized
+    if model.weatherFile.is_initialized && model.weatherFile.get.path.is_initialized
       runner.registerInitialCondition("Current weather file is #{model.weatherFile.get.path.get} km.")
     else
       runner.registerInitialCondition("The model doesn't have a weather file assigned.")
@@ -256,13 +251,13 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
     model.getDesignDays.each(&:remove)
 
     # get osc file
-    osc_files = component.files("osc")
+    osc_files = component.files('osc')
     if osc_files.empty?
-      runner.registerError("No osc file found")
+      runner.registerError('No osc file found')
       return false
     end
-    osc_path = component.files("osc")[0]
-    osc_file = OpenStudio::IdfFile::load(osc_path)
+    osc_path = component.files('osc')[0]
+    osc_file = OpenStudio::IdfFile.load(osc_path)
     vt = OpenStudio::OSVersion::VersionTranslator.new
     component_object = vt.loadComponent(OpenStudio::Path.new(osc_path))
 
@@ -284,16 +279,16 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
           new_site_object = componentData.get.primaryComponentObject.to_Site.get
           runner.registerInfo("added site object named #{new_site_object.name}")
           site_water_main_temp = model.getSiteWaterMainsTemperature
-          if site_water_main_temp.annualAverageOutdoorAirTemperature.is_initialized and site_water_main_temp.maximumDifferenceInMonthlyAverageOutdoorAirTemperatures.is_initialized
+          if site_water_main_temp.annualAverageOutdoorAirTemperature.is_initialized && site_water_main_temp.maximumDifferenceInMonthlyAverageOutdoorAirTemperatures.is_initialized
             avg_temp = site_water_main_temp.annualAverageOutdoorAirTemperature.get
             max_diff_monthly_avg_temp = site_water_main_temp.maximumDifferenceInMonthlyAverageOutdoorAirTemperatures.get
-            avg_temp_ip = OpenStudio::convert(avg_temp,"C","F").get
-            max_diff_monthly_avg_temp_ip = OpenStudio::convert(max_diff_monthly_avg_temp,"C","F").get
+            avg_temp_ip = OpenStudio.convert(avg_temp, 'C', 'F').get
+            max_diff_monthly_avg_temp_ip = OpenStudio.convert(max_diff_monthly_avg_temp, 'C', 'F').get
             runner.registerInfo("SiteWaterMainsTemperature object has Annual Avg. Outdoor Air Temp. of #{avg_temp_ip.round(2)} and Max. Diff. in Monthly Avg. Outdoor Air Temp. of #{max_diff_monthly_avg_temp_ip.round(2)}.")
           else
-            runner.registerWarning("SiteWaterMainsTemperature object is missing Annual Avg. Outdoor Air Temp. or Max. Diff.in Monthly Avg. Outdoor Air Temp. set.")
+            runner.registerWarning('SiteWaterMainsTemperature object is missing Annual Avg. Outdoor Air Temp. or Max. Diff.in Monthly Avg. Outdoor Air Temp. set.')
           end
-          if model.getDesignDays.size > 0
+          if !model.getDesignDays.empty?
             runner.registerInfo("The model has #{model.getDesignDays.size} DesignDay objects")
           else
             runner.registerWarning("The model has #{model.getDesignDays.size} DesignDay objects")
@@ -304,23 +299,23 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
     end
 
     # get epw file
-    epw_files = component.files("epw")
+    epw_files = component.files('epw')
     if files.empty?
-      runner.registerError("No epw file found")
+      runner.registerError('No epw file found')
       return false
     end
-    epw_path = component.files("epw")[0]
+    epw_path = component.files('epw')[0]
 
     # parse epw file
     epw_file = OpenStudio::EpwFile.new(OpenStudio::Path.new(epw_path))
 
     # set weather file (this sets path to BCL diretory vs. temp zip file without this)
-    OpenStudio::Model::WeatherFile::setWeatherFile(model, epw_file)
+    OpenStudio::Model::WeatherFile.setWeatherFile(model, epw_file)
 
     # get stat file
-    stat_path = OpenStudio::Path.new(component.files("stat")[0])
+    stat_path = OpenStudio::Path.new(component.files('stat')[0])
     text = nil
-    File.open(component.files("stat")[0]) do |f|
+    File.open(component.files('stat')[0]) do |f|
       text = f.read.force_encoding('iso-8859-1')
     end
 
@@ -335,21 +330,19 @@ class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
       climate_zone = match_data[1].to_s.strip
       standard = match_data[2].to_s.strip # could confirm it is 196-2006 Climate Zone
       model.getClimateZones.clear
-      model.getClimateZones.setClimateZone("ASHRAE",climate_zone)
+      model.getClimateZones.setClimateZone('ASHRAE', climate_zone)
       runner.registerInfo("Setting ASHRAE Climate Zone to #{climate_zone}")
     end
 
     # report final condition of model
-    if model.weatherFile.is_initialized and model.weatherFile.get.path.is_initialized
+    if model.weatherFile.is_initialized && model.weatherFile.get.path.is_initialized
       runner.registerFinalCondition("Current weather file is #{model.weatherFile.get.path.get}")
     else
       runner.registerFinalCondition("The model doesn't have a weather file assigned.")
     end
 
     return true
-
   end
-
 end
 
 # register the measure to be used by the application
