@@ -1,6 +1,13 @@
 # OpenStudio Common Measures Gem
 
-## Version 0.1.2 (Unreleased)
+## Version 0.2.0 (Unreleased)
+
+* Upgrade Bundler to 2.1.x
+* Restrict to Ruby ~> 2.5.0
+* Remove json_pure gem
+* Update measure tester to 0.2.0 (removes need for github checkout)
+
+## Version 0.1.2
 
 * Run update measures command to generate new measure.xml files
  
