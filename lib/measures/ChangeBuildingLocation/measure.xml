@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>change_building_location</name>
   <uid>d4db4971-f5ba-11e3-a3ac-0800200c9a66</uid>
-  <version_id>ee75726e-6dad-4da9-9f64-a40f4e79bd92</version_id>
-  <version_modified>20200229T024319Z</version_modified>
+  <version_id>406b3f89-2244-447d-9eb9-8a5f65fb09aa</version_id>
+  <version_modified>20200325T163510Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>ChangeBuildingLocation</class_name>
   <display_name>ChangeBuildingLocation</display_name>
@@ -224,8 +225,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -399,12 +400,6 @@
       <checksum>07B01D67</checksum>
     </file>
     <file>
-      <filename>epw.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>0CA3BA14</checksum>
-    </file>
-    <file>
       <filename>change_building_location_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -420,6 +415,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>9831ECC1</checksum>
+    </file>
+    <file>
+      <filename>epw.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>6D1088DD</checksum>
     </file>
   </files>
 </measure>
