@@ -88,7 +88,12 @@ class OpenStudio::Model::ChillerElectricEIR
   def performanceCharacteristics
     effs = []
     effs << [referenceCOP, 'Reference COP']
-    effs << [compressorMotorEfficiency, 'Compressor Motor Efficiency']
+    # check os version
+    if Gem::Version.new(OpenStudio::openStudioVersion) > Gem::Version.new("2.9.1")
+      effs << [fractionofCompressorElectricConsumptionRejectedbyCondenser, 'Fraction of Compressor Electric Consumption Rejected by Condenser']
+    else
+      effs << [compressorMotorEfficiency, 'Compressor Motor Fraction of Compressor Electric Consumption Rejected by Condenser']
+    end
     return effs
   end
 end
