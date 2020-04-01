@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>73f8f122-4bd5-4592-b85d-c1944e2c6dcb</version_id>
-  <version_modified>20200401T050059Z</version_modified>
+  <version_id>b9cd17e1-df0d-4472-96e4-b9f76ddd4032</version_id>
+  <version_modified>20200401T165941Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -573,6 +573,12 @@
       <checksum>8FBCE04A</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0B68E96D</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -581,13 +587,169 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>72D35287</checksum>
+      <checksum>99CA2F98</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>0B68E96D</checksum>
+      <filename>check_mech_sys_type.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>DB7A676B</checksum>
+    </file>
+    <file>
+      <filename>check_plant_cap.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>62BF8146</checksum>
+    </file>
+    <file>
+      <filename>check_part_loads.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>ABAE0E33</checksum>
+    </file>
+    <file>
+      <filename>check_fan_pwr.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>54705290</checksum>
+    </file>
+    <file>
+      <filename>check_supply_air_and_thermostat_temp_difference.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>0F3C61BC</checksum>
+    </file>
+    <file>
+      <filename>check_placeholder.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>A46F04B4</checksum>
+    </file>
+    <file>
+      <filename>check_eui_by_end_use.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D81E33DD</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_part_load_eff.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B830417E</checksum>
+    </file>
+    <file>
+      <filename>check_plenum_loads.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B6BCB01D</checksum>
+    </file>
+    <file>
+      <filename>os_lib_reporting_qaqc.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>54A730F4</checksum>
+    </file>
+    <file>
+      <filename>check_schedules.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>11D5DF87</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>07B01D67</checksum>
+    </file>
+    <file>
+      <filename>check_simultaneous_heating_and_cooling.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D7AE5189</checksum>
+    </file>
+    <file>
+      <filename>check_sch_coord.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>ED20C054</checksum>
+    </file>
+    <file>
+      <filename>check_eui_reasonableness.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>CB7DDC0B</checksum>
+    </file>
+    <file>
+      <filename>check_internal_loads.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>09DC3552</checksum>
+    </file>
+    <file>
+      <filename>check_domestic_hot_water.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9BE27A55</checksum>
+    </file>
+    <file>
+      <filename>check_air_sys_temps.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>980FD951</checksum>
+    </file>
+    <file>
+      <filename>check_cond_zns.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>2B3D8E08</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_capacity.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>8A55DBAB</checksum>
+    </file>
+    <file>
+      <filename>check_plant_temps.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>BB36639F</checksum>
+    </file>
+    <file>
+      <filename>check_pump_pwr.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E3D75A8F</checksum>
+    </file>
+    <file>
+      <filename>check_envelope_conductance.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>4F5626E2</checksum>
+    </file>
+    <file>
+      <filename>check_weather_files.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>688B721D</checksum>
+    </file>
+    <file>
+      <filename>check_calibration.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>ED3D70DA</checksum>
+    </file>
+    <file>
+      <filename>CreateResults.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>130A6C58</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_efficiency.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>F47A1139</checksum>
     </file>
   </files>
 </measure>
