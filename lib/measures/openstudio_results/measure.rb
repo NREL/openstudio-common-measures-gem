@@ -36,9 +36,12 @@
 require 'erb'
 require 'json'
 
-require "#{File.dirname(__FILE__)}/resources/os_lib_reporting"
-require "#{File.dirname(__FILE__)}/resources/os_lib_schedules"
-require "#{File.dirname(__FILE__)}/resources/os_lib_helper_methods"
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_helper_methods'
+require 'openstudio/extension/core/os_lib_reporting'
+require 'openstudio/extension/core/os_lib_schedules'
+
 require_relative 'resources/Siz.Model'
 
 # start the measure

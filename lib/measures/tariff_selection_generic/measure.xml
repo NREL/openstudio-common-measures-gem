@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>tariff_selection_generic</name>
   <uid>d65ae535-f0ea-4745-9f5b-8d42c7070741</uid>
-  <version_id>12e70bed-8889-4f87-be70-f3d0b20dd34a</version_id>
-  <version_modified>20200229T024320Z</version_modified>
+  <version_id>852a1d4f-c670-4ff3-931b-f2e4a697ffab</version_id>
+  <version_modified>20200401T050100Z</version_modified>
   <xml_checksum>43564105</xml_checksum>
   <class_name>TariffSelectionGeneric</class_name>
   <display_name> Tariff Selection-Generic</display_name>
@@ -71,8 +72,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Economics.Life Cycle Cost Analysis</tag>
   </tags>
@@ -223,13 +224,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>74F74E2B</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
+      <checksum>234F1E3C</checksum>
     </file>
   </files>
 </measure>

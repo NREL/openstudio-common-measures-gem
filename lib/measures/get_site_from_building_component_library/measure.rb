@@ -36,10 +36,12 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/measures/measure_writing_guide/
 
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_helper_methods'
+
 # start the measure
 class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
-  # require all .rb files in resources folder
-  Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
   # resource file modules
   include OsLib_HelperMethods

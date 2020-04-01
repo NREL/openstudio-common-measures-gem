@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_rooftop_pv</name>
   <uid>34550614-0c87-44db-9252-0ca0915b1e64</uid>
-  <version_id>9183da9c-a059-4341-8b57-d0c3ee0e9949</version_id>
-  <version_modified>20200229T024317Z</version_modified>
+  <version_id>16fd2166-6f79-4384-a763-80b9e1edf5dd</version_id>
+  <version_modified>20200401T050058Z</version_modified>
   <xml_checksum>178163B6</xml_checksum>
   <class_name>AddRooftopPV</class_name>
   <display_name>Add Rooftop PV</display_name>
@@ -38,8 +39,8 @@
       <default_value>0.98</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Onsite Power Generation.Photovoltaic</tag>
   </tags>
@@ -125,19 +126,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DFB2B432</checksum>
-    </file>
-    <file>
-      <filename>os_lib_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B38668F5</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
+      <checksum>536704F1</checksum>
     </file>
   </files>
 </measure>

@@ -36,7 +36,9 @@
 # see the URL below for information on how to write OpenStuido measures
 # http://openstudio.nrel.gov/openstudio-measure-writing-guide
 
-require "#{File.dirname(__FILE__)}/resources/os_lib_helper_methods"
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_helper_methods'
 
 # start the measure
 class TariffSelectionGeneric < OpenStudio::Measure::EnergyPlusMeasure

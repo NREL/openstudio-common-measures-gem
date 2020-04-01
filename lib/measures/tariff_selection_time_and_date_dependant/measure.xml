@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>tariff_selection_time_and_date_dependant</name>
   <uid>a890e296-b357-432f-8d53-6428d9bf3c0a</uid>
-  <version_id>4b831698-a087-4fb7-8c81-bb5236150d15</version_id>
-  <version_modified>20200229T024318Z</version_modified>
+  <version_id>4354e40f-83cd-492c-bcdc-63bef8c15855</version_id>
+  <version_modified>20200401T050059Z</version_modified>
   <xml_checksum>135F7E88</xml_checksum>
   <class_name>TariffSelectionTimeAndDateDependant</class_name>
   <display_name>Tariff Selection-Time and Date Dependant</display_name>
@@ -177,8 +178,8 @@
       <default_value>0.2</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Economics.Life Cycle Cost Analysis</tag>
   </tags>
@@ -275,6 +276,12 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
+      <filename>tariff_selection_time_and_date_dependant_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>012CCBFD</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -283,19 +290,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>13EB69F6</checksum>
-    </file>
-    <file>
-      <filename>tariff_selection_time_and_date_dependant_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>012CCBFD</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
+      <checksum>D48111BA</checksum>
     </file>
   </files>
 </measure>

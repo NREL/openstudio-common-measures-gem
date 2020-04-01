@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>c830a971-ec41-4a63-a1b5-77d808d1e3df</version_id>
-  <version_modified>20200326T185812Z</version_modified>
+  <version_id>83948ee7-901d-436b-a23d-8190a0251221</version_id>
+  <version_modified>20200401T050055Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -1510,33 +1510,10 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>os_lib_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B38668F5</checksum>
-    </file>
-    <file>
       <filename>Siz.ZoneHVACTerminalUnitVariableRefrigerantFlow.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>8A8CE353</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>A25D75EC</checksum>
     </file>
     <file>
       <filename>OpenStudioResults_Test.rb</filename>
@@ -1563,12 +1540,6 @@
       <checksum>E453C1B0</checksum>
     </file>
     <file>
-      <filename>os_lib_reporting.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>5C1955E4</checksum>
-    </file>
-    <file>
       <filename>Siz.ChillerElectricEIR.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -1585,6 +1556,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>5AD93476</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>751E1C46</checksum>
     </file>
   </files>
 </measure>

@@ -36,7 +36,9 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/measures/measure_writing_guide/
 
-require "#{File.dirname(__FILE__)}/resources/os_lib_geometry"
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_geometry'
 
 # start the measure
 class AirWallZoneMixing < OpenStudio::Measure::ModelMeasure

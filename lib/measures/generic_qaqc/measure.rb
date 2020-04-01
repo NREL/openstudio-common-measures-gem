@@ -36,12 +36,28 @@
 require 'erb'
 require 'json'
 require 'openstudio-standards'
-require "#{File.dirname(__FILE__)}/resources/os_lib_helper_methods"
+
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_helper_methods'
+require 'openstudio/extension/core/os_lib_reporting_qaqc.rb'
+require 'openstudio/extension/core/check_domestic_hot_water.rb'
+require 'openstudio/extension/core/check_envelope_conductance.rb'
+require 'openstudio/extension/core/check_eui_by_end_use.rb'
+require 'openstudio/extension/core/check_eui_reasonableness.rb'
+require 'openstudio/extension/core/check_internal_loads.rb'
+require 'openstudio/extension/core/check_mech_sys_capacity.rb'
+require 'openstudio/extension/core/check_mech_sys_efficiency.rb'
+require 'openstudio/extension/core/check_mech_sys_part_load_eff.rb'
+require 'openstudio/extension/core/check_mech_sys_type.rb'
+require 'openstudio/extension/core/check_schedules.rb'
+require 'openstudio/extension/core/check_simultaneous_heating_and_cooling.rb'
+require 'openstudio/extension/core/check_supply_air_and_thermostat_temp_difference.rb'
+require 'openstudio/extension/core/check_weather_files.rb'
+require 'openstudio/extension/core/CreateResults.rb'
 
 # start the measure
 class GenericQAQC < OpenStudio::Measure::ReportingMeasure
-  # require all .rb files in resources folder
-  Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
   # all QAQC checks should be in OsLib_QAQC module
   include OsLib_QAQC
