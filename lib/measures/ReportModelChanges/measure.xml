@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>report_model_changes</name>
   <uid>6d66b426-908f-4528-9fe5-523b9d2f49c5</uid>
-  <version_id>1a10e099-61b5-4e3c-b1a6-1b29822e2653</version_id>
-  <version_modified>20200401T050056Z</version_modified>
+  <version_id>4ef17c2a-9464-4696-85a7-090da25fc94b</version_id>
+  <version_modified>20200401T173824Z</version_modified>
   <xml_checksum>1E1F8B97</xml_checksum>
   <class_name>ReportModelChanges</class_name>
   <display_name>ReportModelChanges</display_name>
