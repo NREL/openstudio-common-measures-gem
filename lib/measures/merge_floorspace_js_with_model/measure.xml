@@ -1,0 +1,115 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>merge_floorspace_js_with_model</name>
+  <uid>16ef6369-6420-4f17-894c-a767895bcaa4</uid>
+  <version_id>aaa3fffd-37fd-4b57-941a-39f6f4edfbf1</version_id>
+  <version_modified>20191226T174003Z</version_modified>
+  <xml_checksum>0AD1E2E2</xml_checksum>
+  <class_name>MergeFloorspaceJsWithModel</class_name>
+  <display_name>Merge FloorspaceJs with Model</display_name>
+  <description>This measure will import a FloorspacJS JSON file into an OpenStudio model. This is meant to function in similar way to the merge function in the geometry editor of the OpenStudio Applicaiton.</description>
+  <modeler_description>This measure is based off of the ResidentialGeometryCreateFromFloorspaceJS measure on the OpenStudio-Buildstock repository</modeler_description>
+  <arguments>
+    <argument>
+      <name>floorplan_path</name>
+      <display_name>Floorplan Path</display_name>
+      <description>Path to the floorplan JSON.</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>CD7F5672</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>.gitkeep</filename>
+      <filetype>gitkeep</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>00000000</checksum>
+    </file>
+    <file>
+      <filename>merge_floorspace_js_with_model_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4F290B61</checksum>
+    </file>
+    <file>
+      <filename>office_floorplan.json</filename>
+      <filetype>json</filetype>
+      <usage_type>test</usage_type>
+      <checksum>88795F74</checksum>
+    </file>
+    <file>
+      <filename>SDDC Office template.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>757BD721</checksum>
+    </file>
+    <file>
+      <filename>test.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3CCFE3D3</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>31568C75</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.9.0</identifier>
+        <min_compatible>2.9.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>FCF44865</checksum>
+    </file>
+  </files>
+</measure>
