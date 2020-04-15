@@ -142,6 +142,14 @@ class ChangeBuildingLocation_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test.osm', nil, 2, nil, 0)
   end
 
+  def test_weather_file_WA_Renton_test_as_deer
+    args = {}
+    args['weather_file_name'] = 'USA_WA_Renton.Muni.AP.727934_TMY3.epw' # seems to search directory of OSW even with empty file_paths
+    args['climate_zone'] = "CEC T24-CEC5"
+    args['use_upstream_args'] = false
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test.osm', nil, 2, nil, 0)
+  end
+
   def test_multiyear_weather_file
     args = {}
     args['weather_file_name'] = 'multiyear.epw' # seems to search directory of OSW even with empty file_paths
