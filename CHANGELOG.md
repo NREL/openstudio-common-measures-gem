@@ -1,5 +1,9 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.X (unreleased)
+
+* Exclude measure tests from being released with the gem (reduces the size of the installed gem significantly) 
+
 ## Version 0.1.2
 
 * Run update measures command to generate new measure.xml files
