@@ -5,8 +5,9 @@
 * Upgrade Bundler to 2.1.x
 * Restrict to Ruby ~> 2.5.0
 * Remove json_pure gem
-* Update openstudio-extension to 0.2.1
+* Update openstudio-extension to 0.2.2
 * Update measure tester to 0.2.0 (removes need for github checkout)
+* Remove measure tests files from gem package
 
 ## Version 0.1.2
 
