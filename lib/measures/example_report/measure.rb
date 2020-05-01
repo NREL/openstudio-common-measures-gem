@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -132,45 +134,43 @@ class ExampleReport < OpenStudio::Measure::ReportingMeasure
     # generate data for requested sections
     sections_made = 0
     possible_sections.each do |method_name|
-      begin
-        next unless args[method_name]
-        section = false
-        eval("section = OsLib_Reporting_example.#{method_name}(model,sql_file,runner,false)")
-        display_name = eval("OsLib_Reporting_example.#{method_name}(nil,nil,nil,true)[:title]")
-        if section
-          @sections << section
-          sections_made += 1
-          # look for emtpy tables and warn if skipped because returned empty
-          section[:tables].each do |table|
-            if !table
-              runner.registerWarning("A table in #{display_name} section returned false and was skipped.")
-              section[:messages] = ["One or more tables in #{display_name} section returned false and was skipped."]
-            end
+      next unless args[method_name]
+      section = false
+      eval("section = OsLib_Reporting_example.#{method_name}(model,sql_file,runner,false)")
+      display_name = eval("OsLib_Reporting_example.#{method_name}(nil,nil,nil,true)[:title]")
+      if section
+        @sections << section
+        sections_made += 1
+        # look for emtpy tables and warn if skipped because returned empty
+        section[:tables].each do |table|
+          if !table
+            runner.registerWarning("A table in #{display_name} section returned false and was skipped.")
+            section[:messages] = ["One or more tables in #{display_name} section returned false and was skipped."]
           end
-        else
-          runner.registerWarning("#{display_name} section returned false and was skipped.")
-          section = {}
-          section[:title] = display_name.to_s
-          section[:tables] = []
-          section[:messages] = []
-          section[:messages] << "#{display_name} section returned false and was skipped."
-          @sections << section
         end
-      rescue StandardError => e
-        display_name = eval("OsLib_Reporting_example.#{method_name}(nil,nil,nil,true)[:title]")
-        if display_name.nil? then display_name == method_name end
-        runner.registerWarning("#{display_name} section failed and was skipped because: #{e}. Detail on error follows.")
-        runner.registerWarning(e.backtrace.join("\n").to_s)
-
-        # add in section heading with message if section fails
-        section = eval("OsLib_Reporting_example.#{method_name}(nil,nil,nil,true)")
+      else
+        runner.registerWarning("#{display_name} section returned false and was skipped.")
+        section = {}
         section[:title] = display_name.to_s
         section[:tables] = []
         section[:messages] = []
-        section[:messages] << "#{display_name} section failed and was skipped because: #{e}. Detail on error follows."
-        section[:messages] << [e.backtrace.join("\n").to_s]
+        section[:messages] << "#{display_name} section returned false and was skipped."
         @sections << section
       end
+    rescue StandardError => e
+      display_name = eval("OsLib_Reporting_example.#{method_name}(nil,nil,nil,true)[:title]")
+      if display_name.nil? then display_name == method_name end
+      runner.registerWarning("#{display_name} section failed and was skipped because: #{e}. Detail on error follows.")
+      runner.registerWarning(e.backtrace.join("\n").to_s)
+
+      # add in section heading with message if section fails
+      section = eval("OsLib_Reporting_example.#{method_name}(nil,nil,nil,true)")
+      section[:title] = display_name.to_s
+      section[:tables] = []
+      section[:messages] = []
+      section[:messages] << "#{display_name} section failed and was skipped because: #{e}. Detail on error follows."
+      section[:messages] << [e.backtrace.join("\n").to_s]
+      @sections << section
     end
 
     # read in template

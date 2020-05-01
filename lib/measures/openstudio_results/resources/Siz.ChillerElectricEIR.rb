@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -89,7 +91,7 @@ class OpenStudio::Model::ChillerElectricEIR
     effs = []
     effs << [referenceCOP, 'Reference COP']
     # check os version
-    if Gem::Version.new(OpenStudio::openStudioVersion) > Gem::Version.new("2.9.1")
+    if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('2.9.1')
       effs << [fractionofCompressorElectricConsumptionRejectedbyCondenser, 'Fraction of Compressor Electric Consumption Rejected by Condenser']
     else
       effs << [compressorMotorEfficiency, 'Compressor Motor Fraction of Compressor Electric Consumption Rejected by Condenser']

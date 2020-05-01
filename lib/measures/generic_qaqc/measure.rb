@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -42,7 +44,6 @@ Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
 # start the measure
 class GenericQAQC < OpenStudio::Measure::ReportingMeasure
-
   # all QAQC checks should be in OsLib_QAQC module
   include OsLib_QAQC
   # OsLib_CreateResults is needed for utility EDA programs but not the generic QAQC measure

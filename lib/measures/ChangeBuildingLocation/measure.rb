@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -280,7 +282,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
         /December .4. Condns DB=>MCWB/
       ]
       ddy_list.each do |ddy_name_regex|
-        if d.name.get.to_s =~ ddy_name_regex
+        if d.name.get.to_s.match?(ddy_name_regex)
           runner.registerInfo("Adding object #{d.name}")
 
           # add the object to the existing model

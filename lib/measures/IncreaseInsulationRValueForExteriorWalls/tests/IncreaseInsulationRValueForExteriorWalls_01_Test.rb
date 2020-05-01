@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -204,7 +206,7 @@ class IncreaseInsulationRValueForExteriorWalls_Test < Minitest::Test
     expected_messages["Construction 'Test_No Insulation' does not appear to have an insulation layer and was not altered."] = false
     result.warnings.each do |warning|
       expected_messages.each_key do |message|
-        if Regexp.new(message).match(warning.logMessage)
+        if Regexp.new(message).match?(warning.logMessage)
           assert(expected_messages[message] == false, "Message '#{message}' found multiple times")
           expected_messages[message] = true
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -42,7 +44,6 @@ require 'openstudio/extension/core/os_lib_helper_methods'
 
 # start the measure
 class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
-
   # resource file modules
   include OsLib_HelperMethods
 
