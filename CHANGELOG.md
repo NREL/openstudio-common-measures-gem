@@ -7,7 +7,7 @@
 * Remove json_pure gem
 * Update openstudio-extension to 0.2.2
 * Update measure tester to 0.2.0 (removes need for github checkout)
-* Remove measure tests files from gem package
+* Exclude measure tests from being released with the gem (reduces the size of the installed gem significantly) 
 
 ## Version 0.1.2
 
