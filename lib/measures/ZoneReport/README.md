@@ -2,7 +2,7 @@
 
 ###### (Automatically generated documentation)
 
-# Zone Report
+# 
 
 ## Description
 
@@ -11,7 +11,7 @@
 
 
 ## Measure Type
-ReportingMeasure
+ModelMeasure
 
 ## Taxonomy
 

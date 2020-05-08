@@ -1,17 +1,18 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>zone_report</name>
   <uid>81ac119f-4841-434c-9e11-824310fe1cb7</uid>
-  <version_id>cc6e376b-c0d8-476b-bb09-9fc3cb391854</version_id>
-  <version_modified>20200229T024314Z</version_modified>
+  <version_id>3450c9a8-4b87-480c-9e06-bc97cab118df</version_id>
+  <version_modified>20200508T204116Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ZoneReport</class_name>
   <display_name>Zone Report</display_name>
   <description> This measure provides Thermal Zone level HVAC information.  Output includes thermal zone equipment descriptions and details, zone sizing information for heating and cooling, and a disaggregation of the contributions of envelope and internal gains to the HVAC loads.</description>
   <modeler_description> This measure will not report uncontrolled air terminals, or zone level radiant HVAC equipment.</modeler_description>
-  <arguments/>
-  <outputs/>
-  <provenances/>
+  <arguments />
+  <outputs />
+  <provenances />
   <tags>
     <tag>Reporting.QAQC</tag>
   </tags>
@@ -53,12 +54,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>C013AECE</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -73,13 +68,20 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D27D9508</checksum>
+      <checksum>67AA9EB6</checksum>
     </file>
     <file>
       <filename>ZoneReport_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>23FA651F</checksum>
+      <checksum>7039102A</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0B68E96D</checksum>
     </file>
   </files>
 </measure>
+<error>wrong number of arguments (given 1, expected 0)</error>
