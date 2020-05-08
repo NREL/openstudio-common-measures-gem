@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -115,7 +113,7 @@ module OsLib_CreateResults
     base_yr_query = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='Life-Cycle Cost Report' AND ReportForString='Entire Facility' AND TableName='Life-Cycle Cost Parameters' AND RowName='Base Date' AND ColumnName='Value'"
     base_yr = @sql.execAndReturnFirstString(base_yr_query)
     if base_yr.is_initialized
-      if base_yr.get.match?(/\d\d\d\d/)
+      if base_yr.get =~ /\d\d\d\d/
         base_yr = base_yr.get.match(/\d\d\d\d/)[0].to_f
       else
         @runner.registerError("Could not determine the analysis start year from #{base_yr.get}")
@@ -754,7 +752,7 @@ module OsLib_CreateResults
         end
       else
         # If TOU periods were specified but this model has no district cooling, report zeroes
-        if !electricity_consumption_tou_periods.empty?
+        if electricity_consumption_tou_periods.size > 0
           # Get the TOU ids
           tou_ids = []
           electricity_consumption_tou_periods.each do |tou_pd|
