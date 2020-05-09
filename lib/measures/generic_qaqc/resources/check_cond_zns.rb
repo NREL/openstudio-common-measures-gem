@@ -33,67 +33,52 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-class OpenStudio::Model::ChillerElectricEIR
-  def maxCoolingCapacity
-    if referenceCapacity.is_initialized
-      referenceCapacity
-    else
-      autosizedReferenceCapacity
-    end
-  end
+module OsLib_QAQC
+  # Check that all zones with people are conditioned (have a thermostat with setpoints)
+  def check_cond_zns(category, target_standard, name_only = false)
+    # summary of the check
+    check_elems = OpenStudio::AttributeVector.new
+    check_elems << OpenStudio::Attribute.new('name', 'Conditioned Zones')
+    check_elems << OpenStudio::Attribute.new('category', category)
+    check_elems << OpenStudio::Attribute.new('description', 'Check that all zones with people have thermostats.')
 
-  def maxAirFlowRate
-    if referenceCondenserFluidFlowRate.is_initialized
-      referenceCondenserFluidFlowRate
-    else
-      autosizedReferenceCondenserFluidFlowRate
+    # stop here if only name is requested this is used to populate display name for arguments
+    if name_only == true
+      results = []
+      check_elems.each do |elem|
+        results << elem.valueAsString
+      end
+      return results
     end
-  end
 
-  def maxWaterFlowRate
-    if referenceChilledWaterFlowRate.is_initialized
-      referenceChilledWaterFlowRate
-    else
-      autosizedReferenceChilledWaterFlowRate
-    end
-  end
+    std = Standard.build(target_standard)
 
-  def maxCoolingCapacityAutosized
-    if referenceCapacity.is_initialized
-      # Not autosized if hard size field value present
-      return OpenStudio::OptionalBool.new(false)
-    else
-      return OpenStudio::OptionalBool.new(true)
-    end
-  end
+    begin
+      @model.getThermalZones.each do |zone|
+        # Only check zones that have people
+        num_ppl = zone.numberOfPeople
+        next unless zone.numberOfPeople > 0
 
-  def maxAirFlowRateAutosized
-    if referenceCondenserFluidFlowRate.is_initialized
-      # Not autosized if hard size field value present
-      return OpenStudio::OptionalBool.new(false)
-    else
-      return OpenStudio::OptionalBool.new(true)
-    end
-  end
+        # Check that the zone is heated (at a minimum)
+        # by checking that the heating setpoint is at least 41F.
+        # Sometimes people include thermostats but set the setpoints
+        # such that the system never comes on.  This check attempts to catch that.
+        unless std.thermal_zone_heated?(zone)
+          check_elems << OpenStudio::Attribute.new('flag', "#{zone.name} has #{num_ppl} people but is not heated.  Zones containing people are expected to be conditioned, heated-only at a minimum.  Heating setpoint must be at least 41F to be considered heated.")
+        end
+      end
+    rescue StandardError => e
+      # brief description of ruby error
+      check_elems << OpenStudio::Attribute.new('flag', "Error prevented QAQC check from running (#{e}).")
 
-  def maxWaterFlowRateAutosized
-    if referenceChilledWaterFlowRate.is_initialized
-      # Not autosized if hard size field value present
-      return OpenStudio::OptionalBool.new(false)
-    else
-      return OpenStudio::OptionalBool.new(true)
+      # backtrace of ruby error for diagnostic use
+      if @error_backtrace then check_elems << OpenStudio::Attribute.new('flag', e.backtrace.join("\n").to_s) end
     end
-  end
 
-  def performanceCharacteristics
-    effs = []
-    effs << [referenceCOP, 'Reference COP']
-    # check os version
-    if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('2.9.1')
-      effs << [fractionofCompressorElectricConsumptionRejectedbyCondenser, 'Fraction of Compressor Electric Consumption Rejected by Condenser']
-    else
-      effs << [compressorMotorEfficiency, 'Compressor Motor Fraction of Compressor Electric Consumption Rejected by Condenser']
-    end
-    return effs
+    # add check_elms to new attribute
+    check_elem = OpenStudio::Attribute.new('check', check_elems)
+
+    return check_elem
+    # note: registerWarning and registerValue will be added for checks downstream using os_lib_reporting_qaqc.rb
   end
 end

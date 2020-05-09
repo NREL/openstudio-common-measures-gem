@@ -2538,7 +2538,7 @@ module OsLib_Reporting
                 month_str = OpenStudio::MonthOfYear.new(month).valueDescription[0..2]
                 # this specific string chosen to match design case for a specific project
                 prefix_str = OpenStudio.toUnderscoreCase("end_use_#{fuel_type}_#{category_str}_#{month_str}")
-                runner.registerValue(prefix_str.downcase.tr(' ', '_'), valInUnits, unit_str)
+                runner.registerValue(prefix_str.downcase.gsub(' ', '_'), valInUnits, unit_str)
               end
 
               # populate hash for monthly totals
@@ -2603,7 +2603,7 @@ module OsLib_Reporting
           # return jsut first three characters of month
           month_str = k[0..2]
           prefix_str = OpenStudio.toUnderscoreCase("#{fuel_type}_ip_#{month_str}")
-          runner.registerValue(prefix_str.downcase.tr(' ', '_'), OpenStudio.convert(v, 'J', unit_str).get, unit_str)
+          runner.registerValue(prefix_str.downcase.gsub(' ', '_'), OpenStudio.convert(v, 'J', unit_str).get, unit_str)
         end
       end
 

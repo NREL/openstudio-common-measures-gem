@@ -1,3 +1,4 @@
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -204,11 +205,11 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
   def properties_for_zone_equipment(equipment, equipment_properties, parent)
     # Make properties an empty hash if it was nil
     equipment_properties ||= {}
-    if /^OS_Coil_Cooling/ =~ equipment.iddObjectType.valueName
+    if /^OS_Coil_Cooling/.match?(equipment.iddObjectType.valueName)
       return 'Cooling', properties_for_cooling_coil(equipment, equipment_properties, parent)
-    elsif /^OS_Coil_Heating/ =~ equipment.iddObjectType.valueName
+    elsif /^OS_Coil_Heating/.match?(equipment.iddObjectType.valueName)
       return 'Heating', properties_for_heating_coil(equipment, equipment_properties, parent)
-    elsif /^OS_Fan/ =~ equipment.iddObjectType.valueName
+    elsif /^OS_Fan/.match?(equipment.iddObjectType.valueName)
       return 'Fans', properties_for_fan(equipment, equipment_properties, parent)
     elsif OpenStudio::Model::ZoneHVACBaseboardConvectiveElectric.iddObjectType == equipment.iddObjectType
       baseboard = equipment.to_ZoneHVACBaseboardConvectiveElectric.get

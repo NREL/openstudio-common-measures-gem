@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>tariff_selection_block</name>
   <uid>42e9f831-f39a-4709-a79b-41db49c94f8c</uid>
-  <version_id>d473703d-679a-4697-ba5f-5062844626b9</version_id>
-  <version_modified>20200229T024318Z</version_modified>
+  <version_id>8636ed6c-3998-42ef-9cc8-98fd1d5fb6cf</version_id>
+  <version_modified>20200401T050058Z</version_modified>
   <xml_checksum>92578CE8</xml_checksum>
   <class_name>TariffSelectionBlock</class_name>
   <display_name> Tariff Selection-Block</display_name>
@@ -99,8 +100,8 @@
       <default_value>0.2</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Economics.Life Cycle Cost Analysis</tag>
   </tags>
@@ -257,27 +258,21 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>04892B26</checksum>
-    </file>
-    <file>
       <filename>tariff_selection_block_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>4F006849</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
       <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
+      <usage_type>script</usage_type>
+      <checksum>0DE324C3</checksum>
     </file>
   </files>
 </measure>

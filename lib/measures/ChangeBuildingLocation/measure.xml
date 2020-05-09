@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>change_building_location</name>
   <uid>d4db4971-f5ba-11e3-a3ac-0800200c9a66</uid>
-  <version_id>ee75726e-6dad-4da9-9f64-a40f4e79bd92</version_id>
-  <version_modified>20200229T024319Z</version_modified>
+  <version_id>ff1497c6-f1bd-40b3-b972-f4424a902b8f</version_id>
+  <version_modified>20200509T041913Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>ChangeBuildingLocation</class_name>
   <display_name>ChangeBuildingLocation</display_name>
@@ -29,14 +30,6 @@
         <choice>
           <value>Lookup From Stat File</value>
           <display_name>Lookup From Stat File</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-0A</value>
-          <display_name>ASHRAE 169-2013-0A</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-0B</value>
-          <display_name>ASHRAE 169-2013-0B</display_name>
         </choice>
         <choice>
           <value>ASHRAE 169-2013-1A</value>
@@ -107,68 +100,68 @@
           <display_name>ASHRAE 169-2013-8A</display_name>
         </choice>
         <choice>
-          <value>T24-CEC1</value>
-          <display_name>T24-CEC1</display_name>
+          <value>CEC T24-CEC1</value>
+          <display_name>CEC T24-CEC1</display_name>
         </choice>
         <choice>
-          <value>T24-CEC2</value>
-          <display_name>T24-CEC2</display_name>
+          <value>CEC T24-CEC2</value>
+          <display_name>CEC T24-CEC2</display_name>
         </choice>
         <choice>
-          <value>T24-CEC3</value>
-          <display_name>T24-CEC3</display_name>
+          <value>CEC T24-CEC3</value>
+          <display_name>CEC T24-CEC3</display_name>
         </choice>
         <choice>
-          <value>T24-CEC4</value>
-          <display_name>T24-CEC4</display_name>
+          <value>CEC T24-CEC4</value>
+          <display_name>CEC T24-CEC4</display_name>
         </choice>
         <choice>
-          <value>T24-CEC5</value>
-          <display_name>T24-CEC5</display_name>
+          <value>CEC T24-CEC5</value>
+          <display_name>CEC T24-CEC5</display_name>
         </choice>
         <choice>
-          <value>T24-CEC6</value>
-          <display_name>T24-CEC6</display_name>
+          <value>CEC T24-CEC6</value>
+          <display_name>CEC T24-CEC6</display_name>
         </choice>
         <choice>
-          <value>T24-CEC7</value>
-          <display_name>T24-CEC7</display_name>
+          <value>CEC T24-CEC7</value>
+          <display_name>CEC T24-CEC7</display_name>
         </choice>
         <choice>
-          <value>T24-CEC8</value>
-          <display_name>T24-CEC8</display_name>
+          <value>CEC T24-CEC8</value>
+          <display_name>CEC T24-CEC8</display_name>
         </choice>
         <choice>
-          <value>T24-CEC9</value>
-          <display_name>T24-CEC9</display_name>
+          <value>CEC T24-CEC9</value>
+          <display_name>CEC T24-CEC9</display_name>
         </choice>
         <choice>
-          <value>T24-CEC10</value>
-          <display_name>T24-CEC10</display_name>
+          <value>CEC T24-CEC10</value>
+          <display_name>CEC T24-CEC10</display_name>
         </choice>
         <choice>
-          <value>T24-CEC11</value>
-          <display_name>T24-CEC11</display_name>
+          <value>CEC T24-CEC11</value>
+          <display_name>CEC T24-CEC11</display_name>
         </choice>
         <choice>
-          <value>T24-CEC12</value>
-          <display_name>T24-CEC12</display_name>
+          <value>CEC T24-CEC12</value>
+          <display_name>CEC T24-CEC12</display_name>
         </choice>
         <choice>
-          <value>T24-CEC13</value>
-          <display_name>T24-CEC13</display_name>
+          <value>CEC T24-CEC13</value>
+          <display_name>CEC T24-CEC13</display_name>
         </choice>
         <choice>
-          <value>T24-CEC14</value>
-          <display_name>T24-CEC14</display_name>
+          <value>CEC T24-CEC14</value>
+          <display_name>CEC T24-CEC14</display_name>
         </choice>
         <choice>
-          <value>T24-CEC15</value>
-          <display_name>T24-CEC15</display_name>
+          <value>CEC T24-CEC15</value>
+          <display_name>CEC T24-CEC15</display_name>
         </choice>
         <choice>
-          <value>T24-CEC16</value>
-          <display_name>T24-CEC16</display_name>
+          <value>CEC T24-CEC16</value>
+          <display_name>CEC T24-CEC16</display_name>
         </choice>
       </choices>
     </argument>
@@ -224,8 +217,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -375,10 +368,16 @@
       <checksum>D1551F9A</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>BCD09124</checksum>
+      <checksum>D6556B8E</checksum>
     </file>
     <file>
       <filename>stat_file.rb</filename>
@@ -387,39 +386,27 @@
       <checksum>79F5AADA</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
-    </file>
-    <file>
       <filename>epw.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>0CA3BA14</checksum>
+      <checksum>CA6053B6</checksum>
     </file>
     <file>
       <filename>change_building_location_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>13C9910C</checksum>
+      <checksum>BB5BC6DF</checksum>
     </file>
     <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
+        <min_compatible>3.0.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>9831ECC1</checksum>
+      <checksum>FA76F2D6</checksum>
     </file>
   </files>
 </measure>

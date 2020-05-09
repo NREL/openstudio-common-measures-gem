@@ -36,13 +36,12 @@
 require 'erb'
 require 'json'
 require 'openstudio-standards'
-require "#{File.dirname(__FILE__)}/resources/os_lib_helper_methods"
+
+# require all .rb files in resources folder
+Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
 # start the measure
 class GenericQAQC < OpenStudio::Measure::ReportingMeasure
-  # require all .rb files in resources folder
-  Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
-
   # all QAQC checks should be in OsLib_QAQC module
   include OsLib_QAQC
   # OsLib_CreateResults is needed for utility EDA programs but not the generic QAQC measure

@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>tariff_selection_flat</name>
   <uid>539c3e8e-6c41-4f50-ac61-6cbbf1ee1b55</uid>
-  <version_id>7301b532-f622-4b51-90e8-765d3de524cf</version_id>
-  <version_modified>20200229T024321Z</version_modified>
+  <version_id>1d8b09b4-afbd-4729-ad9b-a7a09a1613e6</version_id>
+  <version_modified>20200401T050100Z</version_modified>
   <xml_checksum>FBDC6D11</xml_checksum>
   <class_name>TariffSelectionFlat</class_name>
   <display_name>Tariff Selection-Flat</display_name>
@@ -105,8 +106,8 @@
       <default_value>0.2</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Economics.Life Cycle Cost Analysis</tag>
   </tags>
@@ -242,18 +243,12 @@
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
+        <min_compatible>2.8.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>78854CB1</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
+      <checksum>D32ADC10</checksum>
     </file>
   </files>
 </measure>

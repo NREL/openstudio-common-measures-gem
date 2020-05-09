@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>air_wall_zone_mixing</name>
   <uid>fd04f73e-a530-4144-9e1e-c1878b1394bc</uid>
-  <version_id>346f6e74-eecf-4137-bf7c-67d4ffa21d26</version_id>
-  <version_modified>20200229T024315Z</version_modified>
+  <version_id>65c3f123-bb44-4515-bfc8-5844b3b1f8a1</version_id>
+  <version_modified>20200401T050057Z</version_modified>
   <xml_checksum>772B7164</xml_checksum>
   <class_name>AirWallZoneMixing</class_name>
   <display_name>Air Wall Zone Mixing</display_name>
@@ -40,8 +41,8 @@ Zone mixing will only be added where there is an air wall and where the matched 
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Distribution</tag>
   </tags>
@@ -141,21 +142,15 @@ Zone mixing will only be added where there is an air wall and where the matched 
       <checksum>D78B91B3</checksum>
     </file>
     <file>
-      <filename>os_lib_geometry.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>674C561A</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
+        <min_compatible>2.8.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>2FD21B1F</checksum>
+      <checksum>58F69028</checksum>
     </file>
   </files>
 </measure>

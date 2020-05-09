@@ -1,18 +1,19 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>envelope_and_internal_load_breakdown</name>
   <uid>8f0e1fbb-8bc6-46e5-b6e4-db59177e2c02</uid>
-  <version_id>290b65df-0fbb-4161-b253-364e5e02f378</version_id>
-  <version_modified>20200229T024316Z</version_modified>
+  <version_id>dc19cbc4-8b3c-4676-9c67-79fc751ba6c0</version_id>
+  <version_modified>20200509T041912Z</version_modified>
   <xml_checksum>69BA4D91</xml_checksum>
   <class_name>EnvelopeAndInternalLoadBreakdown</class_name>
   <display_name>Envelope and Internal Load Breakdown</display_name>
   <description>Report provides annual and monthly views into heat gains and losses for envelope and internal loads.</description>
   <modeler_description>It uses the following variables: Electric Equipment Total Heating Energy, Zone Lights Total Heating Energy, Zone, People Sensible Heating Energy, Surface Average Face Conduction Heat Transfer Energy, Surface Window Heat Gain Energy, Surface Window Heat Loss Energy, Zone Infiltration Sensible Heat Gain Energy, Zone Infiltration Sensible Heat Loss Energy. For Surface Average Face Conduction Heat Transfer Energy bin positive values as heat gain and negative values as heat loss.
 </modeler_description>
-  <arguments/>
-  <outputs/>
-  <provenances/>
+  <arguments />
+  <outputs />
+  <provenances />
   <tags>
     <tag>Reporting.QAQC</tag>
   </tags>
@@ -100,29 +101,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>F66552F1</checksum>
-    </file>
-    <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>18E9F25F</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>612C80AA</checksum>
-    </file>
-    <file>
       <filename>os_lib_reporting_envelope_and_internal_loads_breakdown.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -141,10 +119,28 @@
       <checksum>A8844C42</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0B68E96D</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
+      <checksum>BDF70EAA</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>1D8E4DB0</checksum>
     </file>
   </files>
 </measure>
+<error>wrong number of arguments (given 1, expected 0)</error>

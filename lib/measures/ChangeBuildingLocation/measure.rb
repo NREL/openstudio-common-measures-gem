@@ -36,11 +36,17 @@
 # Authors : Nicholas Long, David Goldwasser
 # Simple measure to load the EPW file and DDY file
 
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_helper_methods'
+require 'openstudio/extension/core/os_lib_model_generation.rb'
+
 class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
   # resource file modules
   include OsLib_HelperMethods
+  include OsLib_ModelGeneration
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
@@ -61,46 +67,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     choices = OpenStudio::StringVector.new
     choices << 'Lookup From Stat File'
 
-    # TODO: - consider having measure use get_climate_zones
-    # todo - decide what to do with cz0, at least want looking from stat to work from that if not listed in measure
-    # todo - consider combined, doe, and deer, or separate ASHRAE and DEER climate zone arguments (although that could create problems)
-    choices << 'ASHRAE 169-2013-0A'
-    choices << 'ASHRAE 169-2013-0B'
-
-    choices << 'ASHRAE 169-2013-1A'
-    choices << 'ASHRAE 169-2013-1B'
-    choices << 'ASHRAE 169-2013-2A'
-    choices << 'ASHRAE 169-2013-2B'
-    choices << 'ASHRAE 169-2013-3A'
-    choices << 'ASHRAE 169-2013-3B'
-    choices << 'ASHRAE 169-2013-3C'
-    choices << 'ASHRAE 169-2013-4A'
-    choices << 'ASHRAE 169-2013-4B'
-    choices << 'ASHRAE 169-2013-4C'
-    choices << 'ASHRAE 169-2013-5A'
-    choices << 'ASHRAE 169-2013-5B'
-    choices << 'ASHRAE 169-2013-5C'
-    choices << 'ASHRAE 169-2013-6A'
-    choices << 'ASHRAE 169-2013-6B'
-    choices << 'ASHRAE 169-2013-7A'
-    choices << 'ASHRAE 169-2013-8A'
-    choices << 'T24-CEC1'
-    choices << 'T24-CEC2'
-    choices << 'T24-CEC3'
-    choices << 'T24-CEC4'
-    choices << 'T24-CEC5'
-    choices << 'T24-CEC6'
-    choices << 'T24-CEC7'
-    choices << 'T24-CEC8'
-    choices << 'T24-CEC9'
-    choices << 'T24-CEC10'
-    choices << 'T24-CEC11'
-    choices << 'T24-CEC12'
-    choices << 'T24-CEC13'
-    choices << 'T24-CEC14'
-    choices << 'T24-CEC15'
-    choices << 'T24-CEC16'
-    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', choices, true)
+    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', get_climate_zones(false, 'Lookup From Stat File'), true)
     climate_zone.setDisplayName('Climate Zone.')
     climate_zone.setDefaultValue('Lookup From Stat File')
     args << climate_zone
@@ -210,7 +177,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     weather_file.setLongitude(epw_file.lon)
     weather_file.setTimeZone(epw_file.gmt)
     weather_file.setElevation(epw_file.elevation)
-    weather_file.setString(10, "file:///#{epw_file.filename}")
+    weather_file.setString(10, epw_file.filename)
 
     weather_name = "#{epw_file.city}_#{epw_file.state}_#{epw_file.country}"
     weather_lat = epw_file.lat
@@ -313,7 +280,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
         /December .4. Condns DB=>MCWB/
       ]
       ddy_list.each do |ddy_name_regex|
-        if d.name.get.to_s =~ ddy_name_regex
+        if d.name.get.to_s.match?(ddy_name_regex)
           runner.registerInfo("Adding object #{d.name}")
 
           # add the object to the existing model
@@ -357,11 +324,11 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     # set climate zone
     climateZones.clear
     if args['climate_zone'].include?('CEC')
-      climateZones.setClimateZone('CEC', args['climate_zone'].gsub('T24-CEC', ''))
-      runner.registerInfo("Setting Climate Zone to #{climateZones.getClimateZones('CEC').first.value}")
+      climateZones.setClimateZone('CEC', args['climate_zone'].gsub('CEC T24-CEC', ''))
+      runner.registerInfo("Setting CEC Climate Zone to #{climateZones.getClimateZones('CEC').first.value}")
     else
       climateZones.setClimateZone('ASHRAE', args['climate_zone'].gsub('ASHRAE 169-2013-', ''))
-      runner.registerInfo("Setting Climate Zone to #{climateZones.getClimateZones('ASHRAE').first.value}")
+      runner.registerInfo("Setting ASHRAE Climate Zone to #{climateZones.getClimateZones('ASHRAE').first.value}")
     end
 
     # add final condition

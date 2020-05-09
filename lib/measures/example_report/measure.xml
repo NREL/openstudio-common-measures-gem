@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>example_report</name>
   <uid>174a6f71-3e8c-4f99-9e7a-b64f2e7535d4</uid>
-  <version_id>e9e15889-0265-43b4-a3e7-ad64395ad022</version_id>
-  <version_modified>20200229T024304Z</version_modified>
+  <version_id>a274e765-411c-4d8c-b68c-93ca1cc29a1c</version_id>
+  <version_modified>20200509T041907Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>ExampleReport</class_name>
   <display_name>Example Report</display_name>
@@ -13,7 +14,9 @@
     <argument>
       <name>template_section</name>
       <display_name>Tasty Treats</display_name>
+      <description></description>
       <type>Boolean</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>true</default_value>
@@ -27,11 +30,15 @@
           <display_name>false</display_name>
         </choice>
       </choices>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>mat_prop_section</name>
       <display_name>Material Properties</display_name>
+      <description></description>
       <type>Boolean</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>true</default_value>
@@ -45,11 +52,15 @@
           <display_name>false</display_name>
         </choice>
       </choices>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>general_building_information_section</name>
       <display_name>General Building Information</display_name>
+      <description></description>
       <type>Boolean</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>true</default_value>
@@ -63,10 +74,12 @@
           <display_name>false</display_name>
         </choice>
       </choices>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Reporting.QAQC</tag>
   </tags>
@@ -128,18 +141,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>3C0851D8</checksum>
-    </file>
-    <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>BDF70EAA</checksum>
-    </file>
-    <file>
       <filename>os_lib_reporting_example.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -152,27 +153,34 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>29245C87</checksum>
-    </file>
-    <file>
       <filename>ExampleReport_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>AFC7D248</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0B68E96D</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
+      <checksum>708516C5</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>4107DCF6</checksum>
     </file>
   </files>
 </measure>
+<error>wrong number of arguments (given 1, expected 0)</error>

@@ -18,6 +18,18 @@ Or install it yourself as:
 
     $ gem install 'openstudio-common-measures'
 
+## Tests
+
+To run the tests similar to how Jenkins run:
+
+```
+bundle install
+
+bundle exec rake
+bundle exec rake openstudio:list_measures
+bundle exec rake openstudio:update_measures
+bundle exec rake openstudio:test_with_openstudio
+```
 ## TODO
 
 - [ ] Update measures to follow coding standards
