@@ -1,5 +1,3 @@
-
-
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -37,6 +35,6 @@
 
 module OpenStudio
   module CommonMeasures
-    VERSION = '0.2.0'
+    VERSION = '0.2.0'.freeze
   end
 end

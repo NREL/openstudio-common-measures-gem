@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>zone_report</name>
   <uid>81ac119f-4841-434c-9e11-824310fe1cb7</uid>
-  <version_id>3450c9a8-4b87-480c-9e06-bc97cab118df</version_id>
-  <version_modified>20200508T204116Z</version_modified>
+  <version_id>2b729b0e-abb0-4257-a616-e13f920af649</version_id>
+  <version_modified>20200509T041912Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ZoneReport</class_name>
   <display_name>Zone Report</display_name>
@@ -71,16 +71,16 @@
       <checksum>67AA9EB6</checksum>
     </file>
     <file>
-      <filename>ZoneReport_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>7039102A</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>0B68E96D</checksum>
+    </file>
+    <file>
+      <filename>ZoneReport_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>23FA651F</checksum>
     </file>
   </files>
 </measure>

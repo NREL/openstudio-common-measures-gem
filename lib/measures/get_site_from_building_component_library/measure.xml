@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>get_site_from_building_component_library</name>
   <uid>a6dff045-6f62-4288-a3f0-a5549f4c292a</uid>
-  <version_id>4764d70a-c0de-4dd0-83ac-c0f71347c6e2</version_id>
-  <version_modified>20200401T050059Z</version_modified>
+  <version_id>2a807499-50fc-4472-b873-928056eeabea</version_id>
+  <version_modified>20200509T041913Z</version_modified>
   <xml_checksum>99E7000D</xml_checksum>
   <class_name>GetSiteFromBuildingComponentLibrary</class_name>
   <display_name>Get Site from Building Component Library</display_name>
@@ -138,7 +138,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>6302B1D1</checksum>
+      <checksum>A0260DC0</checksum>
     </file>
   </files>
 </measure>

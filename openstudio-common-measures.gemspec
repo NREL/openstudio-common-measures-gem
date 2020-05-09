@@ -13,10 +13,10 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Common library and measures for OpenStudio'
   spec.description   = 'Common library and measures for OpenStudio'
   spec.metadata = {
-      'bug_tracker_uri' => 'https://github.com/NREL/openstudio-common-measures-gem/issues',
-      'changelog_uri' => 'https://github.com/NREL/openstudio-common-measures-gem/blob/develop/CHANGELOG.md',
-      #'documentation_uri' =>  'https://www.rubydoc.info/gems/openstudio-common-measures-gem/#{gem.version}',
-      'source_code_uri' => "https://github.com/NREL/openstudio-common-measures-gem/tree/v#{spec.version}"
+    'bug_tracker_uri' => 'https://github.com/NREL/openstudio-common-measures-gem/issues',
+    'changelog_uri' => 'https://github.com/NREL/openstudio-common-measures-gem/blob/develop/CHANGELOG.md',
+    # 'documentation_uri' =>  'https://www.rubydoc.info/gems/openstudio-common-measures-gem/#{gem.version}',
+    'source_code_uri' => "https://github.com/NREL/openstudio-common-measures-gem/tree/v#{spec.version}"
   }
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|

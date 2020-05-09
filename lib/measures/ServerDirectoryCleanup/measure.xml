@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>server_directory_cleanup</name>
   <uid>ec7d04ad-0b7b-495b-825a-e1b6d28d1d3f</uid>
-  <version_id>4452476d-375c-4f69-938a-b417fadeae19</version_id>
-  <version_modified>20200508T204110Z</version_modified>
+  <version_id>d590e5c9-2b25-4dbb-8b22-bc267550b89b</version_id>
+  <version_modified>20200509T041911Z</version_modified>
   <xml_checksum>5BFE84C4</xml_checksum>
   <class_name>ServerDirectoryCleanup</class_name>
   <display_name>Server Directory Cleanup</display_name>
@@ -319,12 +319,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>ServerDirectoryCleanup_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4FA20DE3</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>1.11.0</identifier>
@@ -340,6 +334,12 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>0B68E96D</checksum>
+    </file>
+    <file>
+      <filename>ServerDirectoryCleanup_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7278D224</checksum>
     </file>
   </files>
 </measure>

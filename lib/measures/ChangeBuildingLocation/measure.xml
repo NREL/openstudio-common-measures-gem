@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>change_building_location</name>
   <uid>d4db4971-f5ba-11e3-a3ac-0800200c9a66</uid>
-  <version_id>6ee0d93a-9f9f-4bcf-82af-0155d34d0ef8</version_id>
-  <version_modified>20200505T224228Z</version_modified>
+  <version_id>ff1497c6-f1bd-40b3-b972-f4424a902b8f</version_id>
+  <version_modified>20200509T041913Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>ChangeBuildingLocation</class_name>
   <display_name>ChangeBuildingLocation</display_name>
@@ -383,19 +383,19 @@
       <filename>stat_file.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>CAD66115</checksum>
+      <checksum>79F5AADA</checksum>
     </file>
     <file>
       <filename>epw.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>91032A64</checksum>
+      <checksum>CA6053B6</checksum>
     </file>
     <file>
       <filename>change_building_location_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>FCA64892</checksum>
+      <checksum>BB5BC6DF</checksum>
     </file>
     <file>
       <version>
@@ -406,7 +406,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>03F95454</checksum>
+      <checksum>FA76F2D6</checksum>
     </file>
   </files>
 </measure>
