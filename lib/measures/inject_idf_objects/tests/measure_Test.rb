@@ -48,7 +48,7 @@ class InjectIDFObjects_Test < MiniTest::Unit::TestCase
     # create an instance of a runner with OSW
     osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
-    runner = OpenStudio::Ruleset::OSRunner.new(osw)
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
