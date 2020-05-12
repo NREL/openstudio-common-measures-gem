@@ -18,14 +18,21 @@ Or install it yourself as:
 
     $ gem install 'openstudio-common-measures'
 
-## Usage
+## Tests
 
-To be filled out later. 
+To run the tests similar to how Jenkins run:
 
+```
+bundle install
+
+bundle exec rake
+bundle exec rake openstudio:list_measures
+bundle exec rake openstudio:update_measures
+bundle exec rake openstudio:test_with_openstudio
+```
 ## TODO
 
-- [ ] Remove measures from OpenStudio-Measures to standardize on this location
-- [ ] Update measures to code standards
+- [ ] Update measures to follow coding standards
 
 # Releasing
 

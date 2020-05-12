@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_rooftop_pv</name>
   <uid>34550614-0c87-44db-9252-0ca0915b1e64</uid>
-  <version_id>b2d5ae7d-f012-4503-a97c-2674d89577f7</version_id>
-  <version_modified>20191029T231254Z</version_modified>
+  <version_id>16fd2166-6f79-4384-a763-80b9e1edf5dd</version_id>
+  <version_modified>20200401T050058Z</version_modified>
   <xml_checksum>178163B6</xml_checksum>
   <class_name>AddRooftopPV</class_name>
   <display_name>Add Rooftop PV</display_name>
@@ -38,8 +39,8 @@
       <default_value>0.98</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Onsite Power Generation.Photovoltaic</tag>
   </tags>
@@ -105,39 +106,27 @@
       <checksum>936FAC3C</checksum>
     </file>
     <file>
-      <filename>os_lib_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E1011B09</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
     <file>
       <filename>add_rooftop_pv_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>E7020F2A</checksum>
+      <checksum>0026BCB1</checksum>
     </file>
     <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
+        <min_compatible>2.8.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E274F82F</checksum>
+      <checksum>536704F1</checksum>
     </file>
   </files>
 </measure>

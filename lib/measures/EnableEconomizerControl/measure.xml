@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>enable_economizer_control</name>
   <uid>f8cc920d-8ae3-411a-922f-e6fed3223c4d</uid>
-  <version_id>757f6c26-b1d2-4dc4-82d6-96d2e37fb56d</version_id>
-  <version_modified>20191029T231254Z</version_modified>
+  <version_id>d45560a8-abbf-4fa3-bf5f-ff0e93faaeaa</version_id>
+  <version_modified>20200229T024317Z</version_modified>
   <xml_checksum>ECE70A70</xml_checksum>
   <class_name>EnableEconomizerControl</class_name>
   <display_name>Enable Economizer Control</display_name>
@@ -98,6 +98,18 @@ The cost arguments are user arguments that start with a default of $0.&#xd;&#xd;
       <checksum>CF61C43C</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>measure_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>A2090624</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -106,19 +118,7 @@ The cost arguments are user arguments that start with a default of $0.&#xd;&#xd;
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E1B5F00B</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
-    </file>
-    <file>
-      <filename>measure_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>968703DA</checksum>
+      <checksum>605C310C</checksum>
     </file>
   </files>
 </measure>

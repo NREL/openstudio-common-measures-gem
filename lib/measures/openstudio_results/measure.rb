@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -36,9 +36,11 @@
 require 'erb'
 require 'json'
 
+# load local resources
 require "#{File.dirname(__FILE__)}/resources/os_lib_reporting"
 require "#{File.dirname(__FILE__)}/resources/os_lib_schedules"
 require "#{File.dirname(__FILE__)}/resources/os_lib_helper_methods"
+
 require_relative 'resources/Siz.Model'
 
 # start the measure
@@ -109,6 +111,9 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     # result << 'typical_load_profiles_section' # TODO: - stub only
     result << 'schedules_overview_section'
     # TODO: - clean up code to gather schedule profiles so I don't have to grab every 15 minutes
+
+    # TODO: - add in section to report warnings for this and other measures
+    result << 'measure_warning_section'
 
     # see the method below in os_lib_reporting.rb to see a simple example of code to make a section of tables
     # result << 'template_section'
@@ -211,6 +216,9 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('first_year_capital_cost') # $
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('annual_utility_cost') # $
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('total_lifecycle_cost') # $
+
+    # TODO: - add warning counts, but only if they will always be made.
+
     return result
   end
 
@@ -272,45 +280,43 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
       # generate data for requested sections
       sections_made = 0
       possible_sections.each do |method_name|
-        begin
-          next unless args[method_name]
-          section = false
-          eval("section = OsLib_Reporting.#{method_name}(model,sql_file,runner,false,is_ip_units)")
-          display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
-          if section
-            @sections << section
-            sections_made += 1
-            # look for empty tables and warn if skipped because returned empty
-            section[:tables].each do |table|
-              if !table
-                runner.registerWarning("A table in #{display_name} section returned false and was skipped.")
-                section[:messages] = ["One or more tables in #{display_name} section returned false and was skipped."]
-              end
+        next unless args[method_name]
+        section = false
+        eval("section = OsLib_Reporting.#{method_name}(model,sql_file,runner,false,is_ip_units)")
+        display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
+        if section
+          @sections << section
+          sections_made += 1
+          # look for empty tables and warn if skipped because returned empty
+          section[:tables].each do |table|
+            if !table
+              runner.registerWarning("A table in #{display_name} section returned false and was skipped.")
+              section[:messages] = ["One or more tables in #{display_name} section returned false and was skipped."]
             end
-          else
-            runner.registerWarning("#{display_name} section returned false and was skipped.")
-            section = {}
-            section[:title] = display_name.to_s
-            section[:tables] = []
-            section[:messages] = []
-            section[:messages] << "#{display_name} section returned false and was skipped."
-            @sections << section
           end
-        rescue StandardError => e
-          display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
-          if display_name.nil? then display_name == method_name end
-          runner.registerWarning("#{display_name} section failed and was skipped because: #{e}. Detail on error follows.")
-          runner.registerWarning(e.backtrace.join("\n").to_s)
-
-          # add in section heading with message if section fails
+        else
+          runner.registerWarning("#{display_name} section returned false and was skipped.")
           section = {}
           section[:title] = display_name.to_s
           section[:tables] = []
           section[:messages] = []
-          section[:messages] << "#{display_name} section failed and was skipped because: #{e}. Detail on error follows."
-          section[:messages] << [e.backtrace.join("\n").to_s]
+          section[:messages] << "#{display_name} section returned false and was skipped."
           @sections << section
         end
+      rescue StandardError => e
+        display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
+        if display_name.nil? then display_name == method_name end
+        runner.registerWarning("#{display_name} section failed and was skipped because: #{e}. Detail on error follows.")
+        runner.registerWarning(e.backtrace.join("\n").to_s)
+
+        # add in section heading with message if section fails
+        section = {}
+        section[:title] = display_name.to_s
+        section[:tables] = []
+        section[:messages] = []
+        section[:messages] << "#{display_name} section failed and was skipped because: #{e}. Detail on error follows."
+        section[:messages] << [e.backtrace.join("\n").to_s]
+        @sections << section
       end
 
     else

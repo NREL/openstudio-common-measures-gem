@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -547,33 +547,31 @@ module OsLib_Schedules
     end
 
     # Rules
-    unless options['rules'].nil?
-      options['rules'].each do |data_array|
-        rule = OpenStudio::Model::ScheduleRule.new(sch_ruleset)
-        rule.setName("#{sch_ruleset.name} #{data_array[0]} Rule")
-        date_range = data_array[1].split('-')
-        start_date = date_range[0].split('/')
-        end_date = date_range[1].split('/')
-        rule.setStartDate(model.getYearDescription.makeDate(start_date[0].to_i, start_date[1].to_i))
-        rule.setEndDate(model.getYearDescription.makeDate(end_date[0].to_i, end_date[1].to_i))
-        days = data_array[2].split('/')
-        rule.setApplySunday(true) if days.include? 'Sun'
-        rule.setApplyMonday(true) if days.include? 'Mon'
-        rule.setApplyTuesday(true) if days.include? 'Tue'
-        rule.setApplyWednesday(true) if days.include? 'Wed'
-        rule.setApplyThursday(true) if days.include? 'Thu'
-        rule.setApplyFriday(true) if days.include? 'Fri'
-        rule.setApplySaturday(true) if days.include? 'Sat'
-        day_schedule = rule.daySchedule
-        day_schedule.setName("#{sch_ruleset.name} #{data_array[0]}")
-        data_array.delete_at(0)
-        data_array.delete_at(0)
-        data_array.delete_at(0)
-        data_array.each do |data_pair|
-          hour = data_pair[0].truncate
-          min = ((data_pair[0] - hour) * 60).to_i
-          day_schedule.addValue(OpenStudio::Time.new(0, hour, min, 0), data_pair[1])
-        end
+    options['rules']&.each do |data_array|
+      rule = OpenStudio::Model::ScheduleRule.new(sch_ruleset)
+      rule.setName("#{sch_ruleset.name} #{data_array[0]} Rule")
+      date_range = data_array[1].split('-')
+      start_date = date_range[0].split('/')
+      end_date = date_range[1].split('/')
+      rule.setStartDate(model.getYearDescription.makeDate(start_date[0].to_i, start_date[1].to_i))
+      rule.setEndDate(model.getYearDescription.makeDate(end_date[0].to_i, end_date[1].to_i))
+      days = data_array[2].split('/')
+      rule.setApplySunday(true) if days.include? 'Sun'
+      rule.setApplyMonday(true) if days.include? 'Mon'
+      rule.setApplyTuesday(true) if days.include? 'Tue'
+      rule.setApplyWednesday(true) if days.include? 'Wed'
+      rule.setApplyThursday(true) if days.include? 'Thu'
+      rule.setApplyFriday(true) if days.include? 'Fri'
+      rule.setApplySaturday(true) if days.include? 'Sat'
+      day_schedule = rule.daySchedule
+      day_schedule.setName("#{sch_ruleset.name} #{data_array[0]}")
+      data_array.delete_at(0)
+      data_array.delete_at(0)
+      data_array.delete_at(0)
+      data_array.each do |data_pair|
+        hour = data_pair[0].truncate
+        min = ((data_pair[0] - hour) * 60).to_i
+        day_schedule.addValue(OpenStudio::Time.new(0, hour, min, 0), data_pair[1])
       end
     end
 

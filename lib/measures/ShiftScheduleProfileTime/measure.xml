@@ -1,0 +1,106 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>shift_schedule_profile_time</name>
+  <uid>1c642348-f074-4ad1-98ee-2208ddc89ac7</uid>
+  <version_id>5404621c-fd40-40c5-9151-84cc29061110</version_id>
+  <version_modified>20200229T024319Z</version_modified>
+  <xml_checksum>B6CD1F98</xml_checksum>
+  <class_name>ShiftScheduleProfileTime</class_name>
+  <display_name>ShiftScheduleProfileTime</display_name>
+  <description>Shift a single or all schedules in the building by the specified number of hours</description>
+  <modeler_description>This measure provides an easy way to shirt the building operations by a set time, but does not alter the length of the day. It only works with RulesetSchedules. It will allter summer and winter design days in addition to other profiles that are part of the schedules.</modeler_description>
+  <arguments>
+    <argument>
+      <name>schedule</name>
+      <display_name>Choose a Schedule to Shift the Time For.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>*All Ruleset Schedules*</default_value>
+      <choices>
+        <choice>
+          <value>{f218f307-4c6f-4fcb-bd01-f0044042f9f0}</value>
+          <display_name>*All Ruleset Schedules*</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>shift_value</name>
+      <display_name>Shift Schedule Profiles Forward (24hr, use decimal for sub hour).</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Whole Building.Whole Building Schedules</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Function</name>
+      <value>Measure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Requires EnergyPlus Results</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>3Story2Space.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B4AB814E</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>8E63A0BF</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>003AA7A4</checksum>
+    </file>
+    <file>
+      <filename>ShiftScheduleProfileTime_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>51BB433C</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+  </files>
+</measure>

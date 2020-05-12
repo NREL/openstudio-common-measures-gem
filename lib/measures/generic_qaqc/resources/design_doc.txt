@@ -1,0 +1,116 @@
+NREL Measure Design Document Text File
+
+Note: you can include ruby snippets for arguments and messaged, but it isn't necessary. If you are comfortable with it, it makes writing the measure quicker if the code is already structured here.
+
+Measure Name: Generic QAQC
+Measure Class: GenericQAQC
+Tag: Reporting.QAQC
+Measure Type: ReportingMeasure
+OpenStudio Version: 1.13.1
+
+Description:
+    "This measure extracts key simulation results and performs basic model QAQC checks. Each category of checks provides a description of the source of the check. In some cases the target standards and tollerances are adjustable."
+
+Model Description:
+    "Reads the model and sql file to pull out the necessary information and run the model checks.  The check results show up as warning messages in the measure's output on the PAT run tab."
+
+Arguments:
+    template = OpenStudio::Ruleset::OSArgument::makeChoiceArgument('template', template_chs, true)
+
+    Beyond the choice of template (standard) to check against, there will be a bool argument for each measure and in some cases an adjustable tollerance that takes a double, typically but not always fractional. See "Code Outline" for a list of sections.
+
+Error Message:
+    runner.registerError("Cannot find last model.")
+    If an individual QAQC repot section hits an error, then that section will be skipped but the rest of the sections will still be run and generated.
+
+Warning Message:
+    Warnings will be used to indicate any time a QAQC value was outside of the expected range. One example is shown below
+    EUI Reasonableness - Model EUI of 42.3 (kBtu/ft^2) is more than 10.0 % above the expected EUI of 33.9 (kBtu/ft^2) for 90.1-2013.
+
+Info Message:
+    If no flags were thrown for a QAQC section it will have a have an info log. One example is shown below
+    Schedules - no flags.
+
+Not Applicable Message:
+    not used for this measure
+
+Initial Condition:
+    runner.registerInitialCondition("Starting QAQC report generation")
+
+Final Condition:
+    runner.registerFinalCondition("Finished generating report.xml.")
+
+
+Code Outline:
+    require 'openstudio-standards'
+    include OsLib_QAQC
+
+    The code below describes the optional QAQC sections that will be run if the user argument is set to true (which is the default value). check_weather_files is used by utility EDA progrms to confirm that valid epw files and design days are used; but is not enabled for this measure since it can be run in any climate zones. The other QAQC checks will still use climate zone to determine expected values.
+
+    Each QAQC section is in its own ruby file in the "resources directory". They all contribute to the OsLib_QAQC modeule which is required by the measure.
+
+    #results << {:method_name => 'check_weather_files',:cat => 'General',:standards => false,:data => options_check_weather_files,:min_tol => false,:max_tol => false, :units => nil}
+    results << {:method_name => 'check_eui_reasonableness',:cat => 'General',:standards => true,:data => nil,:tol_min => 0.1,:tol_max => true,:units => 'fraction'}
+    results << {:method_name => 'check_eui_by_end_use',:cat => 'General',:standards => true,:data => nil,:tol_min => 0.25,:tol_max => true,:units => 'fraction'}
+    results << {:method_name => 'check_mech_sys_part_load_eff',:cat => 'General',:standards => true,:data => nil,:tol_min => 0.1,:tol_max => true,:units => 'fraction'}
+    results << {:method_name => 'check_mech_sys_capacity',:cat => 'General',:standards => false,:data => options_check_mech_sys_capacity,:tol_min => false,:tol_max => false,:units => 'fraction'}
+    results << {:method_name => 'check_simultaneous_heating_and_cooling',:cat => 'General',:standards => false,:data => nil,:tol_min => false,:tol_max => 0.05,:units => 'fraction'}
+    results << {:method_name => 'check_internal_loads',:cat => 'Baseline',:standards => true,:data => nil,:tol_min => 0.1,:tol_max => true,:units => 'fraction'}
+    results << {:method_name => 'check_schedules',:cat => 'Baseline',:standards => true,:data => nil,:tol_min => 0.05,:tol_max => true,:units => 'fraction'}
+    results << {:method_name => 'check_envelope_conductance',:cat => 'Baseline',:standards => true,:data => nil,:tol_min => 0.1,:tol_max => true,:units => 'fraction'}
+    results << {:method_name => 'check_domestic_hot_water',:cat => 'Baseline',:standards => true,:data => nil,:tol_min => 0.25,:tol_max => true,:units => 'fraction'}
+    results << {:method_name => 'check_mech_sys_efficiency',:cat => 'Baseline',:standards => true,:data => nil,:tol_min => 0.1,:tol_max => true,:units => 'fraction'}
+    results << {:method_name => 'check_mech_sys_type',:cat => 'Baseline',:standards => true,:data => nil,:tol_min => false,:tol_max => false,:units => nil}
+    results << {:method_name => 'check_supply_air_and_thermostat_temp_difference',:cat => 'Baseline',:standards => false,:data => nil,:tol_min => 0.5,:tol_max => false,:units => 'F'}
+
+
+Tests:
+    def test_GenericQAQC_pass
+    def test_GenericQAQC_alt_hvac_a
+    def test_GenericQAQC_alt_hvac_b
+    def test_GenericQAQC_fail_a
+    def test_GenericQAQC_fail_b
+    def test_GenericQAQC_res_a
+    def test_GenericQAQC_0422_sm_off
+
+Example Test Log Output:
+    **INITIAL CONDITION**
+    Starting QAQC report generation
+    **FINAL CONDITION**
+    Finished generating report.xml.
+    **INFO MESSAGES**
+    Internal Loads - no flags.
+    Schedules - no flags.
+    Domestic Hot Water - no flags.
+    Supply and Zone Air Temperature - no flags.
+    **WARNING MESSAGES**
+    EUI Reasonableness - Model EUI of 47.5 (kBtu/ft^2) is more than 10.0 % above the expected EUI of 33.9 (kBtu/ft^2) for 90.1-2013.
+    End Use by Category - Heating EUI of 2.87361 (kBtu/ft^2) is more than 25.0 % above the expected Heating EUI of 1.5 (kBtu/ft^2) for 90.1-2013.
+    End Use by Category - Cooling EUI of 13.57715 (kBtu/ft^2) is more than 25.0 % above the expected Cooling EUI of 8.9 (kBtu/ft^2) for 90.1-2013.
+    End Use by Category - Fans EUI of 2.27217 (kBtu/ft^2) is more than 25.0 % above the expected Fans EUI of 1.4 (kBtu/ft^2) for 90.1-2013.
+    End Use by Category - Heat Rejection EUI of 2.56608 (kBtu/ft^2) is more than 25.0 % above the expected Heat Rejection EUI of 0.0 (kBtu/ft^2) for 90.1-2013.
+    End Use by Category - Water Systems EUI of 0.00000 (kBtu/ft^2) is less than 25.0 % below the expected Water Systems EUI of 1.2 (kBtu/ft^2) for 90.1-2013.
+    Mechanical System Part Load Efficiency - The curve value at 40% of 0.35 for Chiller Electric EIR AirCooled WithCondenser is more than 10.0 % below the typical value of 0.44 for ASHRAE 90.1-2013.
+    Mechanical System Part Load Efficiency - The curve value at 40% of 1.22 for Coil Heating DX Single Speed 1 is more than 10.0 % above the typical value of 1.09 for ASHRAE 90.1-2013.
+    Mechanical System Capacity - Flow Rate of 1.99 gal/ton*min for Chilled Water Loop is more than 10.0 % below the typical value of 2.4 gal/ton*min.
+    Mechanical System Capacity - Flow Rate of 0.65 cfm/ft^2 for Packaged Rooftop Heat Pump is more than 10.0 % below the typical value of 1.0 cfm/ft^2.
+    Mechanical System Capacity - Flow Rate of 0.76 cfm/ft^2 for Packaged Rooftop VAV with PFP Boxes and Reheat is more than 10.0 % below the typical value of 1.0 cfm/ft^2.
+    Mechanical System Capacity - Flow Rate of 0.62 cfm/ft^2 for VAV with Reheat is more than 10.0 % below the typical value of 1.0 cfm/ft^2.
+    Mechanical System Capacity - Cooling Capacity of 463 ft^2/ton for Packaged Rooftop Heat Pump is more than 10.0 % above the typical value of 303 ft^2/ton.
+    Mechanical System Capacity - Cooling Capacity of 397 ft^2/ton for Packaged Rooftop VAV with PFP Boxes and Reheat is more than 10.0 % above the typical value of 303 ft^2/ton.
+    Simultaneous Heating and Cooling - Error prevented QAQC check from running (undefined method `*' for false:FalseClass).
+    Envelope R-Value - U value of 0.62 (Btu/ft^2*h*R) for U 0.60 SHGC 0.25 Dbl 2.5mm air in 90.1-2013 - Office - WholeBuilding - Md Office is more than 10.0 % below the expected value of 0.83 (Btu/ft^2*h*R) for ASHRAE 90.1-2013.
+    Mechanical System Efficiency - Error prevented QAQC check from running (undefined method `[]' for nil:NilClass).
+    Perimeter_top_ZN_1 ZN baseline system type is incorrect. Supposed to be PVAV_PFP_Boxes, but was VAV_Reheat instead.
+    **ERROR MESSAGES**
+
+General Notes:
+
+    This measure outputs the QAQC results in a number of formats. One format is an HTML file with a summary table at the top listing how many flags were thrown for each QAQC section. A value greater than 0 will have a red cell color vs. green for a value of 0. There is an additional report section for each QAQC section that had one or more flags. These tables list the individual flags. The flag count for each section and the total flag count is also saved as a runner.registerValue for use in post processing. A report.xml file also contains the flags for use in utility EDA programs.
+
+    The measure includes resource files that call methods in the openstudio-standards gem. Some checks are intended for use with Baseline models, while others are intended for use with design (or general) models. ALl of the checks will run on any model but may be more meaningful in some cases vs. others. Models should use building type space type standard designations from openstudio-standards and should define the ASHRAE climate zone in their model.
+    - Some sections check against model inputs from openstudio-standards, again for the same building type and template and climate zone.
+    - Some sections check annual model simulation results against pre-run floor area normalized simulation results from DOE prototype buildings of the same building type climate zone and template.
+    - Some sections check inspect analyize time series simulation results to perform a check
+    - Some sections such as Mechanical System Capacity and Domestic Hot Water check against rules of thumbs, in these cases ASHRAE rules of thumb.
+    - Lastly, some sections try to infer information about the model such as system type or simultaneous heating and cooling from model inputs.

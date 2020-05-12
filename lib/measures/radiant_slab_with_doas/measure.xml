@@ -1,0 +1,345 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>radiant_slab_with_doas</name>
+  <uid>8091a0c3-7760-4da6-adf4-133d55872816</uid>
+  <version_id>75060b98-b765-4efd-b612-9c339893aade</version_id>
+  <version_modified>20200229T024315Z</version_modified>
+  <xml_checksum>C49A7DAB</xml_checksum>
+  <class_name>RadiantSlabWithDoas</class_name>
+  <display_name>Radiant Slab with DOAS</display_name>
+  <description>Adds a radiant slab with DOAS ventilation system to the model.</description>
+  <modeler_description>This measure adds either a radiant floor slab or radiant ceiling slab with dedicated outdoor air system to conditioned zones in the model.
+Radiant systems are comfortable with wider zone air temperature range. Use the CBE Thermal Comfort Tool or other method to set thermostat setpoint temperatures.
+This measure optionally removes existing HVAC systems (recommended).
+This measure is dependent on an ASHRAE climate zone to set insulation and design supply temperature levels, so make sure this is set in the site parameters of the model.
+Plant equipment options are an Air Source Heat Pump or a Boiler for hot water, and an Air Cooled Chiller or Water Cooled Chiller for chilled water.
+The Air Source Heat Pump object uses a user-defined plant component in EnergyPlus and may not be compatible with several reporting measures, including the *Enable Detailed Output for Each Node in a Loop* measure.
+If Water Cooled Chiller is selected, the measure will add a condenser loop with a variable speed cooling tower, and optionally enable water-side economizing when wet bulb conditions allow.
+By default, the slab system does not include carpet. Carpet greatly reduces the heat transfer capacity of the radiant system.  If carpet is preferred, a ceiling-type slab and no lockout are recommended to avoid unmet hours.
+The measure includes several control parameters for radiant system operation. Use the defaults unless you have strong reasons to deviate from them.
+This measure runs a sizing run to set equipment efficiency values, so it may take up to a few minutes to run.
+This measure adds many EnergyManagementSystem objects to the model. **DO NOT** change design days after running this measure.  Adding additional HVAC measures after applying this measure may break the model.
+Radiant systems are particularly limited in cooling capacity and the model may have many unmet hours as a result.
+To reduce unmet hours, use an expanded comfort range as mentioned above, remove carpet, reduce internal loads, reduce solar and envelope gains during peak times, or disable the lockout.</modeler_description>
+  <arguments>
+    <argument>
+      <name>remove_existing_hvac</name>
+      <display_name>Remove existing HVAC system (keeps service water heating and zone exhaust fans)</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>heating_plant_type</name>
+      <display_name>Heating Plant Type</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Air Source Heat Pump</default_value>
+      <choices>
+        <choice>
+          <value>Air Source Heat Pump</value>
+          <display_name>Air Source Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Boiler</value>
+          <display_name>Boiler</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>cooling_plant_type</name>
+      <display_name>Cooling Plant Type</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Air Cooled Chiller</default_value>
+      <choices>
+        <choice>
+          <value>Air Cooled Chiller</value>
+          <display_name>Air Cooled Chiller</display_name>
+        </choice>
+        <choice>
+          <value>Water Cooled Chiller</value>
+          <display_name>Water Cooled Chiller</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>waterside_economizer</name>
+      <display_name>Water-side economizer (water cooled chiller only)</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>none</default_value>
+      <choices>
+        <choice>
+          <value>none</value>
+          <display_name>none</display_name>
+        </choice>
+        <choice>
+          <value>integrated</value>
+          <display_name>integrated</display_name>
+        </choice>
+        <choice>
+          <value>non-integrated</value>
+          <display_name>non-integrated</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>radiant_type</name>
+      <display_name>Radiant System Type</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>floor</default_value>
+      <choices>
+        <choice>
+          <value>floor</value>
+          <display_name>floor</display_name>
+        </choice>
+        <choice>
+          <value>ceiling</value>
+          <display_name>ceiling</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>include_carpet</name>
+      <display_name>Include carpet over the radiant slab</display_name>
+      <description>Only applicable in radiant floor systems. This will greatly reduce system effectiveness and controllability.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>control_strategy</name>
+      <display_name>Control Strategy</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>proportional_control</default_value>
+      <choices>
+        <choice>
+          <value>proportional_control</value>
+          <display_name>proportional_control</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>proportional_gain</name>
+      <display_name>Proportional Gain</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0.3</default_value>
+    </argument>
+    <argument>
+      <name>minimum_operation</name>
+      <display_name>Minimum Operating Hours</display_name>
+      <description>Fractional Hours Allowed, e.g. 30 min = 0.5</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>switch_over_time</name>
+      <display_name>Switch Over Time</display_name>
+      <description>Minimum time limitation for when the system can switch between heating and cooling.  Fractional hours allowed, e.g. 30 min = 0.5.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>24</default_value>
+    </argument>
+    <argument>
+      <name>radiant_lockout</name>
+      <display_name>Enable radiant lockout</display_name>
+      <description>Lockout the radiant system to avoid operating during peak hours.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>lockout_start_time</name>
+      <display_name>Lockout Start Time</display_name>
+      <description>Decimal hour of when radiant lockout starts.  Fractional hours allowed, e.g. 30 min = 0.5.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>12</default_value>
+    </argument>
+    <argument>
+      <name>lockout_end_time</name>
+      <display_name>Lockout End Time</display_name>
+      <description>Decimal hour of when radiant lockout ends.  Fractional hours allowed, e.g. 30 min = 0.5.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>20</default_value>
+    </argument>
+    <argument>
+      <name>add_output_variables</name>
+      <display_name>Add output variables for radiant system</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>standards_template</name>
+      <display_name>Standards Template</display_name>
+      <description>Standards template to use for HVAC equipment efficiencies and controls.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>90.1-2013</default_value>
+      <choices>
+        <choice>
+          <value>90.1-2013</value>
+          <display_name>90.1-2013</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2017</value>
+          <display_name>DEER 2017</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2020</value>
+          <display_name>DEER 2020</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Whole System</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EF1A69B0</checksum>
+    </file>
+    <file>
+      <filename>USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C254B53F</checksum>
+    </file>
+    <file>
+      <filename>multi_zone_office_3C.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7CBAD8AA</checksum>
+    </file>
+    <file>
+      <filename>single_zone_office_5A.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>44FD3DF2</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>8618B20F</checksum>
+    </file>
+    <file>
+      <filename>radiant_slab_with_doas_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E355D2C1</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.9.0</identifier>
+        <min_compatible>2.9.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>BFFFBECB</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+  </files>
+</measure>

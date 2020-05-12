@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_co_pfor_two_speed_dx_cooling_units</name>
   <uid>f5a8d60a-e60f-4097-99c3-28bfda3f29a3</uid>
-  <version_id>ce4171c2-7b89-4b06-8d69-04b84723b84c</version_id>
-  <version_modified>20191029T231304Z</version_modified>
+  <version_id>eb565e32-febc-43ae-bb64-92170e02fdab</version_id>
+  <version_modified>20200229T024304Z</version_modified>
   <xml_checksum>9E2537CD</xml_checksum>
   <class_name>SetCOPforTwoSpeedDXCoolingUnits</class_name>
   <display_name>Set COP for Two Speed DX Cooling Units</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All Air Loops*</default_value>
       <choices>
         <choice>
-          <value>{7f2bda0a-1918-4623-8bb7-15cd82fdac88}</value>
+          <value>{158eee98-5690-43a7-a155-b600713e1284}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>
@@ -170,19 +170,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7A082D2F</checksum>
+      <checksum>696A0FBE</checksum>
     </file>
     <file>
       <filename>SetCOPforTwoSpeedDXCoolingUnits_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>0AE18167</checksum>
+      <checksum>081BAF97</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

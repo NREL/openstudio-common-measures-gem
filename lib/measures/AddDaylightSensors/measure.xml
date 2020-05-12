@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>add_daylight_sensors</name>
   <uid>62babdc7-c81e-4dfd-96e8-af1628a55167</uid>
-  <version_id>ac2b68e7-4376-47b3-bc08-f645a7d38a8d</version_id>
-  <version_modified>20191029T231254Z</version_modified>
+  <version_id>5c889c90-31e5-40e9-835e-bb3230ad6fb8</version_id>
+  <version_modified>20200229T024319Z</version_modified>
   <xml_checksum>0AC58119</xml_checksum>
   <class_name>AddDaylightSensors</class_name>
   <display_name>Add Daylight Sensor at the Center of Spaces with a Specified Space Type Assigned</display_name>
@@ -69,6 +69,14 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0.2</default_value>
+    </argument>
+    <argument>
+      <name>fraction_zone_controlled</name>
+      <display_name>Fraction of zone controlled by daylight sensors</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
     </argument>
     <argument>
       <name>height</name>
@@ -196,7 +204,13 @@
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>0E14C1CA</checksum>
+      <checksum>F3117543</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
     <file>
       <version>
@@ -207,19 +221,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>68356650</checksum>
+      <checksum>46FDF582</checksum>
     </file>
     <file>
       <filename>AddDaylightSensors_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>37498842</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>5C6D0627</checksum>
     </file>
   </files>
 </measure>

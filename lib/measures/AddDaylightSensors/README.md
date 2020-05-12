@@ -59,6 +59,14 @@ min = 0 max = 0.6
 **Required:** true,
 **Model Dependent:** false
 
+### Fraction of zone controlled by daylight sensors
+
+**Name:** fraction_zone_controlled,
+**Type:** Double,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
 ### Sensor Height
 
 **Name:** height,

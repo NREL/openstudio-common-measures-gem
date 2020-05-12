@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>improve_fan_belt_efficiency</name>
   <uid>ebeca0aa-a432-4283-a714-17116f7c8f8c</uid>
-  <version_id>afff0d71-8156-4f6d-9671-9ea10199a627</version_id>
-  <version_modified>20191029T231254Z</version_modified>
+  <version_id>48c68838-44c3-40b1-8f56-732c034f4764</version_id>
+  <version_modified>20200229T024321Z</version_modified>
   <xml_checksum>F78494F2</xml_checksum>
   <class_name>ImproveFanBeltEfficiency</class_name>
   <display_name>Improve Fan Belt Efficiency</display_name>
@@ -24,7 +24,7 @@ Well-adjusted belts run cooler, last longer, and operate at higher efficiency th
       <default_value>*All Air Loops*</default_value>
       <choices>
         <choice>
-          <value>{efee896e-f75e-41a7-b628-ed0f84b4b857}</value>
+          <value>{8e9617e2-ac3d-457c-9735-ae1662b21b1b}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>
@@ -167,19 +167,19 @@ Well-adjusted belts run cooler, last longer, and operate at higher efficiency th
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E40C9FFE</checksum>
+      <checksum>D17557CD</checksum>
     </file>
     <file>
       <filename>ImproveFanBeltEfficiency_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>190278EB</checksum>
+      <checksum>7D820170</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

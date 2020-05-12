@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>improve_motor_efficiency</name>
   <uid>52013ba9-7b9b-4ffd-bc67-d4c0fa05d7ae</uid>
-  <version_id>a4223e6e-194b-478c-89e6-d16bb3918638</version_id>
-  <version_modified>20191029T231254Z</version_modified>
+  <version_id>293e911b-9d89-4f8f-a854-b2339579f345</version_id>
+  <version_modified>20200229T024320Z</version_modified>
   <xml_checksum>F78494F2</xml_checksum>
   <class_name>ImproveMotorEfficiency</class_name>
   <display_name>Improve Motor Efficiency in Selected Fans and Pumps</display_name>
@@ -21,7 +21,7 @@ The cost arguments are user arguments that start with a default of $0. Operation
       <default_value>*All Plant and Air Loops*</default_value>
       <choices>
         <choice>
-          <value>{11596bf6-1062-4121-ba56-c41de117e706}</value>
+          <value>{ca25adae-f609-46d5-9ff3-861b242e68a9}</value>
           <display_name>*All Plant and Air Loops*</display_name>
         </choice>
       </choices>
@@ -164,19 +164,19 @@ The cost arguments are user arguments that start with a default of $0. Operation
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E7A8B814</checksum>
+      <checksum>8556FF95</checksum>
     </file>
     <file>
       <filename>ImproveMotorEfficiency_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>A8ECC58D</checksum>
+      <checksum>AF55BBB6</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

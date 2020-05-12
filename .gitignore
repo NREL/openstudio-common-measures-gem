@@ -20,3 +20,9 @@
 
 # Ignore IDE files
 /.idea
+
+# Ignore mac specific files
+.DS_Store
+
+# Skip test results form local measure tester gem run
+/test_results/

@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -59,7 +59,7 @@ class AddDaylightSensors_Test < Minitest::Test
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(13, arguments.size)
+    assert_equal(14, arguments.size)
     assert_equal('space_type', arguments[0].name)
     assert(!arguments[0].hasDefaultValue)
 
@@ -95,6 +95,10 @@ class AddDaylightSensors_Test < Minitest::Test
     min_light_fraction = arguments[count += 1].clone
     assert(min_light_fraction.setValue(0.2))
     argument_map['min_light_fraction'] = min_light_fraction
+
+    fraction_zone_controlled = arguments[count += 1].clone
+    assert(fraction_zone_controlled.setValue(0.2))
+    argument_map['fraction_zone_controlled'] = fraction_zone_controlled
 
     height = arguments[count += 1].clone
     assert(height.setValue(30.0))

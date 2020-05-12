@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>hvac_psychrometric_chart</name>
+  <uid>97213780-0727-4462-8ec0-9a6c3e475cd6</uid>
+  <version_id>e7f1939b-2224-4ec4-a64a-16ad3d261f3c</version_id>
+  <version_modified>20200509T041912Z</version_modified>
+  <xml_checksum>F657B621</xml_checksum>
+  <class_name>HVACPsychrometricChart</class_name>
+  <display_name>HVAC Psychrometric Chart</display_name>
+  <description>A psychrometric chart shows the relationship between air temperature and humidity conditions.</description>
+  <modeler_description>WARNING: the report takes a long time to render (can be several minutes!) in the OpenStudio App.  Open it in a web browser if this is too slow for you. Creates a psychrometric chart in SI units that shows the air conditions at each node on the supply side of the selected air loop.  These conditions are obtained by requesting hourly temperature and humidity for these specific nodes.  </modeler_description>
+  <arguments>
+    <argument>
+      <name>air_loop_name</name>
+      <display_name>Air Loop Name</display_name>
+      <description>The name of an Air Loop to create a psychrometric chart for.  Case sensitive.</description>
+      <type>String</type>
+      <units></units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value></default_value>
+      <min_value></min_value>
+      <max_value></max_value>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Reporting.Troubleshooting</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ReportingMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>test_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>34E3E58A</checksum>
+    </file>
+    <file>
+      <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BDF687C1</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>536E0D5E</checksum>
+    </file>
+    <file>
+      <filename>hvac_psychrometric_chart_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>201B9AF5</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3D5D8BA4</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0B68E96D</checksum>
+    </file>
+  </files>
+</measure>
+<error>wrong number of arguments (given 1, expected 0)</error>

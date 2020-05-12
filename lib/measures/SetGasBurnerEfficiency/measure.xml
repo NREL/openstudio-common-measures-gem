@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_gas_burner_efficiency</name>
   <uid>afabec3d-cd02-4908-a367-84e21657421f</uid>
-  <version_id>0206dc90-eb17-4fc5-aef7-44420f1a00c5</version_id>
-  <version_modified>20191029T231305Z</version_modified>
+  <version_id>536d414a-0579-4c71-b74c-3f6503c0f16d</version_id>
+  <version_modified>20200229T024317Z</version_modified>
   <xml_checksum>0DA5C9E6</xml_checksum>
   <class_name>SetGasBurnerEfficiency</class_name>
   <display_name>Set Gas Burner Efficiency</display_name>
@@ -19,7 +19,7 @@
       <default_value>*All Air Loops*</default_value>
       <choices>
         <choice>
-          <value>{1db9bd53-ad07-41c6-b819-688fd4ca8875}</value>
+          <value>{b9950076-0170-428b-b94f-6afe9ba7d0d6}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>
@@ -162,19 +162,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>006803C3</checksum>
+      <checksum>A144E8E1</checksum>
     </file>
     <file>
       <filename>SetGasBurnerEfficiency_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>941E2F9C</checksum>
+      <checksum>027958F4</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

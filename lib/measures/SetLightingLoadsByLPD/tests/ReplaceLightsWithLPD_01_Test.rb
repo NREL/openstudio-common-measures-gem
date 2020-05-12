@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -72,6 +72,7 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     argument_map['lpd'] = lpd
 
     add_instance_all_spaces = arguments[count += 1].clone
+    assert(add_instance_all_spaces.setValue(false))
     argument_map['add_instance_all_spaces'] = add_instance_all_spaces
 
     material_cost = arguments[count += 1].clone
@@ -132,6 +133,7 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     argument_map['lpd'] = lpd
 
     add_instance_all_spaces = arguments[count += 1].clone
+    assert(add_instance_all_spaces.setValue(false))
     argument_map['add_instance_all_spaces'] = add_instance_all_spaces
 
     material_cost = arguments[count += 1].clone
@@ -198,6 +200,7 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     argument_map['lpd'] = lpd
 
     add_instance_all_spaces = arguments[count += 1].clone
+    assert(add_instance_all_spaces.setValue(false))
     argument_map['add_instance_all_spaces'] = add_instance_all_spaces
 
     material_cost = arguments[count += 1].clone
@@ -265,6 +268,7 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     argument_map['lpd'] = lpd
 
     add_instance_all_spaces = arguments[count += 1].clone
+    assert(add_instance_all_spaces.setValue(false))
     argument_map['add_instance_all_spaces'] = add_instance_all_spaces
 
     material_cost = arguments[count += 1].clone
@@ -332,6 +336,7 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     argument_map['lpd'] = lpd
 
     add_instance_all_spaces = arguments[count += 1].clone
+    assert(add_instance_all_spaces.setValue(false))
     argument_map['add_instance_all_spaces'] = add_instance_all_spaces
 
     material_cost = arguments[count += 1].clone
@@ -399,6 +404,7 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     argument_map['lpd'] = lpd
 
     add_instance_all_spaces = arguments[count += 1].clone
+    assert(add_instance_all_spaces.setValue(false))
     argument_map['add_instance_all_spaces'] = add_instance_all_spaces
 
     material_cost = arguments[count += 1].clone
@@ -477,6 +483,7 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     argument_map['lpd'] = lpd
 
     add_instance_all_spaces = arguments[count += 1].clone
+    assert(add_instance_all_spaces.setValue(false))
     argument_map['add_instance_all_spaces'] = add_instance_all_spaces
 
     material_cost = arguments[count += 1].clone
@@ -511,5 +518,73 @@ class SetLightingLoadsByLPD_Test < Minitest::Test
     result = runner.result
     show_output(result)
     assert(result.value.valueName == 'Success')
+  end
+
+  def test_SetLightingLoadsByLPD_space_wo_light
+    # create an instance of the measure
+    measure = SetLightingLoadsByLPD.new
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+
+    # load the test model
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/HasSpaceWithNoLightsOrElec.osm')
+    model = translator.loadModel(path)
+    assert(!model.empty?)
+    model = model.get
+
+    # refresh arguments
+    arguments = measure.arguments(model)
+
+    # set argument values to good values and run the measure on entire model with spaces
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    count = -1
+
+    space_type = arguments[count += 1].clone
+    assert(space_type.setValue('*Entire Building*'))
+    argument_map['space_type'] = space_type
+
+    lpd = arguments[count += 1].clone
+    assert(lpd.setValue(5.0))
+    argument_map['lpd'] = lpd
+
+    add_instance_all_spaces = arguments[count += 1].clone
+    assert(add_instance_all_spaces.setValue(true))
+    argument_map['add_instance_all_spaces'] = add_instance_all_spaces
+
+    material_cost = arguments[count += 1].clone
+    assert(material_cost.setValue(5.0))
+    argument_map['material_cost'] = material_cost
+
+    demolition_cost = arguments[count += 1].clone
+    assert(demolition_cost.setValue(1.0))
+    argument_map['demolition_cost'] = demolition_cost
+
+    years_until_costs_start = arguments[count += 1].clone
+    assert(years_until_costs_start.setValue(0))
+    argument_map['years_until_costs_start'] = years_until_costs_start
+
+    demo_cost_initial_const = arguments[count += 1].clone
+    assert(demo_cost_initial_const.setValue(false))
+    argument_map['demo_cost_initial_const'] = demo_cost_initial_const
+
+    expected_life = arguments[count += 1].clone
+    assert(expected_life.setValue(20))
+    argument_map['expected_life'] = expected_life
+
+    om_cost = arguments[count += 1].clone
+    assert(om_cost.setValue(0.25))
+    argument_map['om_cost'] = om_cost
+
+    om_frequency = arguments[count += 1].clone
+    assert(om_frequency.setValue(1))
+    argument_map['om_frequency'] = om_frequency
+
+    measure.run(model, runner, argument_map)
+    result = runner.result
+    show_output(result)
+    assert(result.value.valueName == 'Success')
+    assert(result.warnings.size == 2)
   end
 end

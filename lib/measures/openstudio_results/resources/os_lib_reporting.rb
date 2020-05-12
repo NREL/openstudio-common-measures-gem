@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -810,6 +810,7 @@ module OsLib_Reporting
     summary_types << ['Heating Capacity', 'maxHeatingCapacity', 'W', 1, 'Btu/hr', 1]
     summary_types << ['Cooling Capacity', 'maxCoolingCapacity', 'W', 1, 'ton', 1]
     summary_types << ['Water Flow Rate', 'maxWaterFlowRate', 'm^3/s', 4, 'gal/min', 2]
+    summary_types << ['Rated Power', 'ratedPower', 'W', 1, 'W', 1]
     summary_types.each do |s|
       val_name = s[0]
       val_method = s[1]
@@ -1212,46 +1213,24 @@ module OsLib_Reporting
       thermal_zones.each do |zone|
         total_loop_floor_area += zone.floorArea
       end
-      # julien
+
       source_units = 'm^2'
       if is_ip_units
         target_units = 'ft^2'
       else
         target_units = source_units
       end
-      total_loop_floor_area_ip = OpenStudio.convert(total_loop_floor_area, source_units, target_units).get
-      total_loop_floor_area_ip_neat = OpenStudio.toNeatString(total_loop_floor_area_ip, 0, true)
+      total_loop_floor_area = OpenStudio.convert(total_loop_floor_area, source_units, target_units).get
+      total_loop_floor_area_neat = OpenStudio.toNeatString(total_loop_floor_area, 0, true)
 
       # output zone and terminal data
-      # julien
       if is_ip_units
-        output_data_air_loops[:data] << ['Thermal Zones', 'Total Floor Area', "#{total_loop_floor_area_ip_neat} ft^2", '', thermal_zones.size]
+        output_data_air_loops[:data] << ['Thermal Zones', 'Total Floor Area', "#{total_loop_floor_area_neat} ft^2", '', thermal_zones.size]
       else
-        output_data_air_loops[:data] << ['Thermal Zones', 'Total Floor Area', "#{total_loop_floor_area_ip_neat} m^2", '', thermal_zones.size]
-      end
-      if cooling_temp_ranges.empty?
-        cooling_temp_ranges_pretty = "can't inspect schedules"
-
-        # julien
-        source_units = 'C'
-        if is_ip_units
-          target_units = 'F'
-          target_units_display = 'F'
-        else
-          target_units = source_units
-          target_units_display = 'C'
-        end
-
-      else
-        cooling_temp_ranges_pretty = "#{OpenStudio.convert(cooling_temp_ranges.min, source_units, target_units).get.round(1)} to #{OpenStudio.convert(cooling_temp_ranges.max, source_units, target_units).get.round(1)}"
-      end
-      if heating_temps_ranges.empty?
-        heating_temps_ranges_pretty = "can't inspect schedules"
-      else
-        heating_temps_ranges_pretty = "#{OpenStudio.convert(heating_temps_ranges.min, source_units, target_units).get.round(1)} to #{OpenStudio.convert(heating_temps_ranges.max, source_units, target_units).get.round(1)}"
+        output_data_air_loops[:data] << ['Thermal Zones', 'Total Floor Area', "#{total_loop_floor_area_neat} m^2", '', thermal_zones.size]
       end
 
-      # julien
+      # heating and cooling temperature range data
       source_units = 'C'
       if is_ip_units
         target_units = 'F'
@@ -1260,7 +1239,16 @@ module OsLib_Reporting
         target_units = source_units
         target_units_display = 'C'
       end
-      # julien => ok? Tjs dans la boucle?
+      if cooling_temp_ranges.empty?
+        cooling_temp_ranges_pretty = "can't inspect schedules"
+      else
+        cooling_temp_ranges_pretty = "#{OpenStudio.convert(cooling_temp_ranges.min, source_units, target_units).get.round(1)} to #{OpenStudio.convert(cooling_temp_ranges.max, source_units, target_units).get.round(1)}"
+      end
+      if heating_temps_ranges.empty?
+        heating_temps_ranges_pretty = "can't inspect schedules"
+      else
+        heating_temps_ranges_pretty = "#{OpenStudio.convert(heating_temps_ranges.min, source_units, target_units).get.round(1)} to #{OpenStudio.convert(heating_temps_ranges.max, source_units, target_units).get.round(1)}"
+      end
       output_data_air_loops[:data] << ['Thermal Zones', 'Cooling Setpoint Range', "#{cooling_temp_ranges_pretty} #{target_units_display}", '', '']
       output_data_air_loops[:data] << ['Thermal Zones', 'Heating Setpoint Range', "#{heating_temps_ranges_pretty} #{target_units_display}", '', '']
       output_data_air_loops[:data] << ['Terminal Types Used', terminals.uniq.sort.join(', '), '', '', terminals.size]
@@ -2550,7 +2538,7 @@ module OsLib_Reporting
                 month_str = OpenStudio::MonthOfYear.new(month).valueDescription[0..2]
                 # this specific string chosen to match design case for a specific project
                 prefix_str = OpenStudio.toUnderscoreCase("end_use_#{fuel_type}_#{category_str}_#{month_str}")
-                runner.registerValue(prefix_str.downcase.tr(' ', '_'), valInUnits, unit_str)
+                runner.registerValue(prefix_str.downcase.gsub(' ', '_'), valInUnits, unit_str)
               end
 
               # populate hash for monthly totals
@@ -2615,7 +2603,7 @@ module OsLib_Reporting
           # return jsut first three characters of month
           month_str = k[0..2]
           prefix_str = OpenStudio.toUnderscoreCase("#{fuel_type}_ip_#{month_str}")
-          runner.registerValue(prefix_str.downcase.tr(' ', '_'), OpenStudio.convert(v, 'J', unit_str).get, unit_str)
+          runner.registerValue(prefix_str.downcase.gsub(' ', '_'), OpenStudio.convert(v, 'J', unit_str).get, unit_str)
         end
       end
 
@@ -3016,6 +3004,13 @@ module OsLib_Reporting
     ann_env_pd = OsLib_Reporting.ann_env_pd(sqlFile)
     if ann_env_pd
 
+      # store values about humidity fir reguster values
+      zone_max_hours_over_70_rh = 0
+      zone_max_hours_over_55_rh = 0
+      rh_hours_threshold = 10 # hr
+      num_zones_x_hours_over_70 = 0
+      num_zones_x_hours_over_55 = 0
+
       # get keys
       keys = sqlFile.availableKeyValues(ann_env_pd, 'Hourly', 'Zone Air Relative Humidity')
       keys.each do |key|
@@ -3023,6 +3018,10 @@ module OsLib_Reporting
         humidity_bins.each do |k, v|
           humidity_bins[k] = 0
         end
+
+        # reset humidity zone flag
+        zone_rh_count_hr_55 = 0.0
+        zone_rh_count_hr_70 = 0.0
 
         # get desired variable
         output_timeseries = sqlFile.timeSeries(ann_env_pd, 'Hourly', 'Zone Air Relative Humidity', key)
@@ -3071,11 +3070,32 @@ module OsLib_Reporting
           else
             row_color << ''
           end
+
+          # populate rh data for register_values
+          # catch greater than 70 and 80 for runner.registerValue
+          if ['55-60', '60-65', '65-70', '70-75', '75-80', '>= 80'].include?(k)
+            zone_rh_count_hr_55 += v
+          end
+          if ['70-75', '75-80', '>= 80'].include?(k)
+            zone_rh_count_hr_70 += v
+          end
         end
         row_data += ["#{mean.round(1)} (%)"]
         row_color += ['']
         humidity_table[:data] << row_data
         humidity_table[:data_color] << row_color
+
+        # apply rh zones and max hours
+        if zone_rh_count_hr_55 >= rh_hours_threshold then num_zones_x_hours_over_55 += 1 end
+        if zone_rh_count_hr_70 >= rh_hours_threshold then num_zones_x_hours_over_70 += 1 end
+        if zone_max_hours_over_55_rh < zone_rh_count_hr_55 then zone_max_hours_over_55_rh = zone_rh_count_hr_55 end
+        if zone_max_hours_over_70_rh < zone_rh_count_hr_70 then zone_max_hours_over_70_rh = zone_rh_count_hr_70 end
+
+        # add rh runner.registerValues to be used as output in analyses
+        runner.registerValue('zone_max_hours_over_70_rh', zone_max_hours_over_70_rh, 'hr')
+        runner.registerValue('zone_max_hours_over_55_rh', zone_max_hours_over_55_rh, 'hr')
+        runner.registerValue('num_zones_x_hours_over_70', num_zones_x_hours_over_70, 'zones')
+        runner.registerValue('num_zones_x_hours_over_55', num_zones_x_hours_over_55, 'zones')
       end
     else
       runner.registerWarning('An annual simulation was not run. Cannot get annual timeseries data')
@@ -4636,5 +4656,86 @@ module OsLib_Reporting
     end
 
     return @schedules_overview_section
+  end
+
+  # create measure_warning_section (creates tables and runner.registerValues)
+  def self.measure_warning_section(model, sqlFile, runner, name_only = false, is_ip_units = true)
+    # array to hold tables
+    measure_tables = []
+
+    # gather data for section
+    @measure_warnings_section = {}
+    @measure_warnings_section[:title] = 'Measure Warnings'
+    @measure_warnings_section[:tables] = measure_tables
+
+    # stop here if only name is requested this is used to populate display name for arguments
+    if name_only == true
+      return @measure_warnings_section
+    end
+
+    # will be used for registerValues
+    num_measures_with_warnings = 0
+    num_warnings = 0
+    num_measures = 0
+
+    # loop through workflow steps
+    runner.workflow.workflowSteps.each do |step|
+      if step.to_MeasureStep.is_initialized
+        measure_step = step.to_MeasureStep.get
+        measure_name = measure_step.measureDirName
+        num_measures += 1
+        if measure_step.name.is_initialized
+          measure_name = measure_step.name.get # this is instance name in PAT
+        end
+        if measure_step.result.is_initialized
+          result = measure_step.result.get
+          # create and populate table if warnings exist
+          if !result.warnings.empty?
+            measure_table_01 = {}
+            measure_table_01[:title] = measure_name
+            measure_table_01[:header] = ['Warning']
+            measure_table_01[:data] = []
+            num_measures_with_warnings += 1
+
+            # step through warnings
+            start_counter = num_warnings
+            result.warnings.each do |step|
+              # add rows to table and register value
+              num_warnings += 1
+              if num_warnings < start_counter + 25
+                measure_table_01[:data] << [step.logMessage]
+              else
+                measure_table_01[:data] << ["* See OSW file for full list of warnings. This measure has #{result.warnings.size} warnings."]
+              end
+            end
+            # add table to section
+            measure_tables << measure_table_01
+          end
+        else
+          # puts "No result for #{measure_name}"
+        end
+      else
+        # puts "This step is not a measure"
+      end
+    end
+
+    # add summary table (even when there are no warnings)
+    measure_table_summary = {}
+    measure_table_summary[:title] = 'Measure Warning Summary'
+    measure_table_summary[:header] = ['Description', 'Count']
+    measure_table_summary[:data] = []
+
+    # add summary rows
+    measure_table_summary[:data] << ['Number of measures in workflow', num_measures]
+    measure_table_summary[:data] << ['Number of measures with warnings', num_measures_with_warnings]
+    measure_table_summary[:data] << ['Total number of warnings', num_warnings]
+
+    # add table to section
+    measure_tables << measure_table_summary
+
+    runner.registerValue('number_of_measures_with_warnings', num_measures_with_warnings)
+    runner.registerValue('number_warnings', num_warnings)
+
+    return @measure_warnings_section
   end
 end

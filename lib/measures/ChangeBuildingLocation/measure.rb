@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -36,11 +36,17 @@
 # Authors : Nicholas Long, David Goldwasser
 # Simple measure to load the EPW file and DDY file
 
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_helper_methods'
+require 'openstudio/extension/core/os_lib_model_generation.rb'
+
 class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
   # resource file modules
   include OsLib_HelperMethods
+  include OsLib_ModelGeneration
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
@@ -59,32 +65,16 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
 
     # make choice argument for climate zone
     choices = OpenStudio::StringVector.new
-    choices << '1A'
-    choices << '1B'
-    choices << '2A'
-    choices << '2B'
-    choices << '3A'
-    choices << '3B'
-    choices << '3C'
-    choices << '4A'
-    choices << '4B'
-    choices << '4C'
-    choices << '5A'
-    choices << '5B'
-    choices << '5C'
-    choices << '6A'
-    choices << '6B'
-    choices << '7'
-    choices << '8'
     choices << 'Lookup From Stat File'
-    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', choices, true)
+
+    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', get_climate_zones(false, 'Lookup From Stat File'), true)
     climate_zone.setDisplayName('Climate Zone.')
     climate_zone.setDefaultValue('Lookup From Stat File')
     args << climate_zone
 
     set_year = OpenStudio::Measure::OSArgument.makeIntegerArgument('set_year', true)
     set_year.setDisplayName('Set Calendar Year')
-    set_year.setDefaultValue(0)
+    set_year.setDefaultValue 0
     set_year.setDescription('This will impact the day of the week the simulation starts on. An input value of 0 will leave the year un-altered')
     args << set_year
 
@@ -94,6 +84,17 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     use_upstream_args.setDescription('When true this will look for arguments or registerValues in upstream measures that match arguments from this measure, and will use the value from the upstream measure in place of what is entered for this measure.')
     use_upstream_args.setDefaultValue(true)
     args << use_upstream_args
+
+    # make choice argument for climate zone
+    choices = OpenStudio::StringVector.new
+    choices << 'Do Nothing'
+    choices << 'TMY3,AMY'
+    choices << 'AMY,TMY3'
+    epw_gsub = OpenStudio::Measure::OSArgument.makeChoiceArgument('epw_gsub', choices, true)
+    epw_gsub.setDisplayName('Find and replace option from existing weather file name.')
+    epw_gsub.setDescription('This will override what is entered in weather file name or from upstream measures, unless Do Nothing is selected.')
+    epw_gsub.setDefaultValue('Do Nothing')
+    args << epw_gsub
 
     args
   end
@@ -135,12 +136,31 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
       runner.registerInitialCondition("No weather file is set. The model has #{model.getDesignDays.size} design day objects")
     end
 
-    # find weather file
-    osw_file = runner.workflow.findFile(args['weather_file_name'])
-    if osw_file.is_initialized
-      weather_file = osw_file.get.to_s
+    # use gsub if requested
+    if args['epw_gsub'] != 'Do Nothing'
+      # get the orig weather file from OSM
+      file_name = model.getWeatherFile.url.get.split('/').last
+      runner.registerInfo(file_name)
+
+      if model.getWeatherFile.file.is_initialized
+        orig_epw = model.getWeatherFile.url.get.split('/').last
+        gsub_array = args['epw_gsub'].split(',')
+        # updated line below so it doesn't matter what the user argument is, it always modifies what was in the seed OSM
+        args['weather_file_name'] = orig_epw.gsub(gsub_array[0], gsub_array[1])
+        runner.registerInfo("Changing target weather file from #{orig_epw} to #{args['weather_file_name']}.")
+      end
+    end
+
+    # find weather file, checking both the location specified in the osw
+    # and the path used by ComStock meta-measure
+    comstock_weather_file = File.absolute_path(File.join(Dir.pwd, '../../../weather', args['weather_file_name']))
+    osw_weather_file = runner.workflow.findFile(args['weather_file_name'])
+    if File.file? comstock_weather_file
+      weather_file = comstock_weather_file
+    elsif osw_weather_file.is_initialized
+      weather_file = osw_weather_file.get.to_s
     else
-      runner.registerError("Did not find #{args['weather_file_name']} in paths described in OSW file.")
+      runner.registerError("Did not find #{args['weather_file_name']} in paths described in OSW file or in default ComStock workflow location of #{comstock_weather_file}.")
       return false
     end
 
@@ -157,15 +177,7 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     weather_file.setLongitude(epw_file.lon)
     weather_file.setTimeZone(epw_file.gmt)
     weather_file.setElevation(epw_file.elevation)
-
-    # try without the file:/// protocol
     weather_file.setString(10, epw_file.filename)
-    runner.registerWarning("weather_file.path is #{weather_file.path.get}.")
-
-    if weather_file.path.empty? || !File.exist?(weather_file.path.get.to_s)
-      # include the file:/// protocol
-      weather_file.setString(10, "file:///#{epw_file.filename}")
-    end
 
     weather_name = "#{epw_file.city}_#{epw_file.state}_#{epw_file.country}"
     weather_lat = epw_file.lat
@@ -242,15 +254,45 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     end
 
     ddy_model = OpenStudio::EnergyPlus.loadAndTranslateIdf(ddy_file).get
-    ddy_model.getObjectsByType('OS:SizingPeriod:DesignDay'.to_IddObjectType).each do |d|
-      # grab only the ones that matter
-      ddy_list = /(Htg 99.6. Condns DB)|(Clg .4. Condns WB=>MDB)|(Clg .4% Condns DB=>MWB)/
-      if d.name.get =~ ddy_list
-        runner.registerInfo("Adding object #{d.name}")
 
-        # add the object to the existing model
-        model.addObject(d.clone)
+    # Warn if no design days are present in the ddy file
+    if ddy_model.getDesignDays.size.zero?
+      runner.registerWarning('No design days were found in the ddy file.')
+    end
+
+    ddy_model.getDesignDays.sort.each do |d|
+      # grab only the ones that matter
+      ddy_list = [
+        /Htg 99.6. Condns DB/, # Annual heating
+        /Clg .4. Condns WB=>MDB/, # Annual cooling
+        /Clg .4. Condns DB=>MWB/, # Annual humidity (for cooling towers and evap coolers)
+        /January .4. Condns DB=>MCWB/, # Monthly cooling (to handle solar-gain-driven cooling)
+        /February .4. Condns DB=>MCWB/,
+        /March .4. Condns DB=>MCWB/,
+        /April .4. Condns DB=>MCWB/,
+        /May .4. Condns DB=>MCWB/,
+        /June .4. Condns DB=>MCWB/,
+        /July .4. Condns DB=>MCWB/,
+        /August .4. Condns DB=>MCWB/,
+        /September .4. Condns DB=>MCWB/,
+        /October .4. Condns DB=>MCWB/,
+        /November .4. Condns DB=>MCWB/,
+        /December .4. Condns DB=>MCWB/
+      ]
+      ddy_list.each do |ddy_name_regex|
+        if d.name.get.to_s.match?(ddy_name_regex)
+          runner.registerInfo("Adding object #{d.name}")
+
+          # add the object to the existing model
+          model.addObject(d.clone)
+          break
+        end
       end
+    end
+
+    # Warn if no design days were added
+    if model.getDesignDays.size.zero?
+      runner.registerWarning('No design days were added to the model.')
     end
 
     # Set climate zone
@@ -275,10 +317,19 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
       end
 
     end
+
+    # report time zone for use in results.csv
+    runner.registerValue('reported_climate_zone', args['climate_zone'])
+
     # set climate zone
     climateZones.clear
-    climateZones.setClimateZone('ASHRAE', args['climate_zone'])
-    runner.registerInfo("Setting Climate Zone to #{climateZones.getClimateZones('ASHRAE').first.value}")
+    if args['climate_zone'].include?('CEC')
+      climateZones.setClimateZone('CEC', args['climate_zone'].gsub('CEC T24-CEC', ''))
+      runner.registerInfo("Setting CEC Climate Zone to #{climateZones.getClimateZones('CEC').first.value}")
+    else
+      climateZones.setClimateZone('ASHRAE', args['climate_zone'].gsub('ASHRAE 169-2013-', ''))
+      runner.registerInfo("Setting ASHRAE Climate Zone to #{climateZones.getClimateZones('ASHRAE').first.value}")
+    end
 
     # add final condition
     runner.registerFinalCondition("The final weather file is #{model.getWeatherFile.city} and the model has #{model.getDesignDays.size} design day objects.")

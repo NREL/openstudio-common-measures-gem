@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -73,7 +73,7 @@ module OpenStudio
       end
 
       def self.load(filename)
-        raise "EPW file does not exist: #{filename}" unless File.exist?(filename)
+        raise "EPW file does not exist: #{filename}" unless File.file?(filename)
         f = OpenStudio::Weather::Epw.new(filename)
       end
 
@@ -156,11 +156,12 @@ module OpenStudio
         header_section = true
         row_count = 0
 
+        # this breaks in Ruby 2.5.x
         CSV.foreach(@filename) do |row|
           row_count += 1
 
           if header_section
-            if row[0] =~ /data.periods/i
+            if row[0].match?(/data.periods/i)
               @data_period = {
                 count: row[1].to_i,
                 records_per_hour: row[2].to_i,
@@ -189,11 +190,11 @@ module OpenStudio
             @state = row[2]
             @country = row[3]
             @data_type = row[4]
-            if @data_type =~ /TMY3/i
+            if @data_type.match?(/TMY3/i)
               @data_type = 'TMY3'
-            elsif @data_type =~ /TMY2/i
+            elsif @data_type.match?(/TMY2/i)
               @data_type = 'TMY2'
-            elsif @data_type =~ /TMY/i
+            elsif @data_type.match?(/TMY/i)
               @data_type = 'TMY'
             end
             @wmo = row[5]
