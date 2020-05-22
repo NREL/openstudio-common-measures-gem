@@ -71,6 +71,9 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
       result << section.to_s
     end
 
+    # old method is passing in wrong order and breaking function of measure. Hard coding the desired order below
+    result = ['heat_gains_section','heat_gains_summary_section','heat_losses_section','heat_loss_summary_section']
+
     result
   end
 
