@@ -72,7 +72,7 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
       method_hash[section.to_s] = OsLib_ReportingHeatGainLoss.method(section).source_location.last
     end
     # sort methods by location in file (this was not necessary when using Ruby 2.2.4)
-    result = method_hash.sort_by {|_key, value| value}.to_h.keys
+    result = method_hash.sort_by { |_key, value| value }.to_h.keys
 
     result
   end

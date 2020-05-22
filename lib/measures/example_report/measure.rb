@@ -72,7 +72,7 @@ class ExampleReport < OpenStudio::Measure::ReportingMeasure
       method_hash[section.to_s] = OsLib_Reporting_example.method(section).source_location.last
     end
     # sort methods by location in file (this was not necessary when using Ruby 2.2.4)
-    result = method_hash.sort_by {|_key, value| value}.to_h.keys
+    result = method_hash.sort_by { |_key, value| value }.to_h.keys
 
     result
   end
