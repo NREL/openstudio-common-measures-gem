@@ -167,7 +167,7 @@ class EnvelopeAndInternalLoadBreakdown_Test < MiniTest::Unit::TestCase
 
   # assert that no section errors were thrown
   def section_errors(runner)
-    test_string = 'Error prevented QAQC check from running'
+    test_string = 'section failed and was skipped because'
 
     if is_openstudio_2?
       section_errors = []
