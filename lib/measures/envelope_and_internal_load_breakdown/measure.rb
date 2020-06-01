@@ -65,11 +65,14 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
     result = []
 
     # instead of hand populating, any methods with 'section' in the name will be added in the order they appear
-    all_setions = OsLib_ReportingHeatGainLoss.methods(false)
-    all_setions.each do |section|
+    all_sections = OsLib_ReportingHeatGainLoss.methods(false)
+    method_hash = {}
+    all_sections.each do |section|
       next if !section.to_s.include? 'section'
-      result << section.to_s
+      method_hash[section.to_s] = OsLib_ReportingHeatGainLoss.method(section).source_location.last
     end
+    # sort methods by location in file (this was not necessary when using Ruby 2.2.4)
+    result = method_hash.sort_by { |_key, value| value }.to_h.keys
 
     result
   end
