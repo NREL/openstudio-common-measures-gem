@@ -108,7 +108,7 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
   end
 
   # define the arguments that the user will input
-  def (model = nil)
+  def arguments(model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make an argument for the template

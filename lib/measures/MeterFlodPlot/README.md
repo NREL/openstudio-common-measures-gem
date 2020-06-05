@@ -2,7 +2,7 @@
 
 ###### (Automatically generated documentation)
 
-# 
+# MeterFloodPlot
 
 ## Description
 
@@ -11,7 +11,7 @@
 
 
 ## Measure Type
-ModelMeasure
+ReportingMeasure
 
 ## Taxonomy
 
@@ -19,8 +19,14 @@ ModelMeasure
 ## Arguments
 
 
+### Enter Meter Name.
+
+**Name:** meter_name,
+**Type:** String,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
 
 
-This measure does not have any user arguments
 
 

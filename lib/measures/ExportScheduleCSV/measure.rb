@@ -42,7 +42,7 @@ class ExportScheduleCSV < OpenStudio::Measure::ReportingMeasure
   end
 
   # define the arguments that the user will input
-  def (model = nil)
+  def arguments(model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     interval_arg = OpenStudio::Measure::OSArgument.makeIntegerArgument('interval', false)
