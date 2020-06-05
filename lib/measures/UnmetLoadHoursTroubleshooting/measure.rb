@@ -58,7 +58,7 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
     return requested_args
   end
 
-  def arguments
+  def (model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Future functionality

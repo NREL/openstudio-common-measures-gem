@@ -2,7 +2,7 @@
 
 ###### (Automatically generated documentation)
 
-# ExportScheduleCSV
+# 
 
 ## Description
 
@@ -11,7 +11,7 @@
 
 
 ## Measure Type
-ReportingMeasure
+ModelMeasure
 
 ## Taxonomy
 
@@ -19,14 +19,8 @@ ReportingMeasure
 ## Arguments
 
 
-### Time Interval (minutes)
-
-**Name:** interval,
-**Type:** Integer,
-**Units:** ,
-**Required:** false,
-**Model Dependent:** false
 
 
+This measure does not have any user arguments
 
 

@@ -70,7 +70,7 @@ class VentilationQAQC < OpenStudio::Measure::ReportingMeasure
   #   note - there is no 'model' argument provided here.  This may cause an issue.
   #
 
-  def arguments
+  def (model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Future functionality

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>250c809c-d96f-4023-8035-766f71c9e84b</version_id>
-  <version_modified>20200509T041913Z</version_modified>
+  <version_id>b9efefd2-7286-41c4-b543-dd4c5f338b03</version_id>
+  <version_modified>20200605T175907Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -749,8 +749,16 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>720C8B98</checksum>
+      <checksum>4DF82F59</checksum>
     </file>
   </files>
 </measure>
-<error>wrong number of arguments (given 1, expected 0)</error>
+<error>/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/generic_qaqc/measure.rb:111: syntax error, unexpected '\n', expecting :: or '.'
+  def (model = nil)
+                   ^
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/generic_qaqc/measure.rb:182: Invalid return in class/module body
+    return args
+    ^~~~~~
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/generic_qaqc/measure.rb:383: syntax error, unexpected keyword_end, expecting end-of-input
+end # end the measure
+^~~</error>

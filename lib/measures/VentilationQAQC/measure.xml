@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>ventilation_qaqc</name>
   <uid>cb13be0e-88f6-494c-b3b1-dc748b42e205</uid>
-  <version_id>b2ac0143-5938-4a75-b97d-8a846324c93a</version_id>
-  <version_modified>20200509T041912Z</version_modified>
+  <version_id>40ce21d2-260d-4ab8-b800-ad7a4bc13963</version_id>
+  <version_modified>20200605T175858Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>VentilationQAQC</class_name>
   <display_name>Ventilation Report</display_name>
@@ -79,17 +79,6 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>318C6E15</checksum>
-    </file>
-    <file>
       <filename>VentilationQAQC_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -101,6 +90,23 @@
       <usage_type>readme</usage_type>
       <checksum>0B68E96D</checksum>
     </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>3726578E</checksum>
+    </file>
   </files>
 </measure>
-<error>wrong number of arguments (given 1, expected 0)</error>
+<error>/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/VentilationQAQC/measure.rb:73: syntax error, unexpected '\n', expecting :: or '.'
+  def (model = nil)
+                   ^
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/VentilationQAQC/measure.rb:90: Invalid return in class/module body
+    return args
+    ^~~~~~
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/VentilationQAQC/measure.rb:489: syntax error, unexpected keyword_end, expecting end-of-input</error>

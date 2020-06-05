@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>e6734a7d-07db-4327-8362-9e110a9683d0</version_id>
-  <version_modified>20200509T041911Z</version_modified>
+  <version_id>b00fe4d1-9cb1-4759-a28b-3440cd95bcf0</version_id>
+  <version_modified>20200605T175857Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -1584,8 +1584,11 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>59064ABB</checksum>
+      <checksum>1A83C5F4</checksum>
     </file>
   </files>
 </measure>
-<error>wrong number of arguments (given 1, expected 0)</error>
+<error>/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/openstudio_results/measure.rb:128: syntax error, unexpected '\n', expecting :: or '.'
+  def (model = nil)
+                   ^
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/openstudio_results/measure.rb:397: syntax error, unexpected keyword_end, expecting end-of-input</error>

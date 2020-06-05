@@ -3,14 +3,68 @@
   <schema_version>3.0</schema_version>
   <name>unmet_load_hours_troubleshooting</name>
   <uid>edf8fc3a-5607-4e0f-9dd2-4a1e1545433b</uid>
-  <version_id>b9d5c4d9-f049-4b5c-aed9-e4acc594856b</version_id>
-  <version_modified>20200509T041912Z</version_modified>
+  <version_id>49363b6e-9e19-430c-9b53-37e0fcfcbe74</version_id>
+  <version_modified>20200605T175901Z</version_modified>
   <xml_checksum>5BFE84C4</xml_checksum>
   <class_name>UnmetLoadHoursTroubleshooting</class_name>
   <display_name>Unmet Load Hours Troubleshooting</display_name>
-  <description>Unmet load hours are any hours of operation when conditioned spaces are outside the throttling range for heating or cooling controls. That is, they are the hours in a year that the HVAC system serving a space cannot maintain space setpoint. This measure performs a series of checks against various model input variables and when applicable informs the user of possible sources of unmet cooling and heating hours. The measure also creates a dynamic time series plot of unmet cooling and heating hours, by zone - whose patterns may be interpreted to assist in troubleshooting unmet cooling and heating hours. Prior to running this measure, users will need to add the following output variables to their model: 1) Zone Mean Air Temperature,hourly  2) Zone Thermostat Heating Setpoint Temperature, hourly 3) Zone Thermostat Cooling Setpoint Temperature, hourly 4) Zone People Occupant Count, hourly using the AddOutputVariable OS measure, or the add output variables screen in the OpenStudio application.
+  <description>Unmet load hours are any hours of operation when conditioned spaces are outside the throttling range for heating or cooling controls. That is, they are the hours in a year that the HVAC system serving a space cannot maintain space setpoint. This measure performs a series of checks against various model input variables and when applicable informs the user of possible sources of unmet cooling and heating hours. The measure also creates a dynamic time series plot of unmet cooling and heating hours, by zone - whose patterns may be interpreted to assist in troubleshooting unmet cooling and heating hours. Prior to running this measure, users will need to add the following output variables to their model: 1) Zone Mean Air Temperature,hourly  2) Zone Thermostat Heating Setpoint Temperature, hourly 3) Zone Thermostat Cooling Setpoint Temperature, hourly 4) Zone People Occupant Count, hourly using the AddOutputVariable OS measure, or the add output variables screen in the OpenStudio application.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </description>
-  <modeler_description>This measure performs a series of logic checks against model inputs for diagnosing common issues responsible for unmet cooling and heating hours. The measure will also create a time series interactive chart (using dygraph libraries) to provide a visual inspection of when unmet heating and cooling hours are occurring.
+  <modeler_description>This measure performs a series of logic checks against model inputs for diagnosing common issues responsible for unmet cooling and heating hours. The measure will also create a time series interactive chart (using dygraph libraries) to provide a visual inspection of when unmet heating and cooling hours are occurring.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </modeler_description>
   <arguments>
     <argument>
@@ -93,17 +147,6 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>3109FCD4</checksum>
-    </file>
-    <file>
       <filename>UnmetLoadHoursTroubleshooting_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -115,6 +158,23 @@
       <usage_type>readme</usage_type>
       <checksum>0B68E96D</checksum>
     </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>FD59ED07</checksum>
+    </file>
   </files>
 </measure>
-<error>wrong number of arguments (given 1, expected 0)</error>
+<error>/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/UnmetLoadHoursTroubleshooting/measure.rb:61: syntax error, unexpected '\n', expecting :: or '.'
+  def (model = nil)
+                   ^
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/UnmetLoadHoursTroubleshooting/measure.rb:78: Invalid return in class/module body
+    return args
+    ^~~~~~
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/UnmetLoadHoursTroubleshooting/measure.rb:821: syntax error, unexpected keyword_end, expecting end-of-input</error>

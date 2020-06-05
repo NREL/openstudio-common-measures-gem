@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>server_directory_cleanup</name>
   <uid>ec7d04ad-0b7b-495b-825a-e1b6d28d1d3f</uid>
-  <version_id>d590e5c9-2b25-4dbb-8b22-bc267550b89b</version_id>
-  <version_modified>20200509T041911Z</version_modified>
+  <version_id>11a6d2aa-f6dc-4482-be0c-3bfaf0280d0e</version_id>
+  <version_modified>20200605T175857Z</version_modified>
   <xml_checksum>5BFE84C4</xml_checksum>
   <class_name>ServerDirectoryCleanup</class_name>
   <display_name>Server Directory Cleanup</display_name>
@@ -319,17 +319,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>1.11.0</identifier>
-        <min_compatible>1.11.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>1B545F6C</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
@@ -341,6 +330,22 @@
       <usage_type>test</usage_type>
       <checksum>7278D224</checksum>
     </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>1.11.0</identifier>
+        <min_compatible>1.11.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>9047D001</checksum>
+    </file>
   </files>
 </measure>
-<error>wrong number of arguments (given 1, expected 0)</error>
+<error>/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/ServerDirectoryCleanup/measure.rb:66: syntax error, unexpected '\n', expecting :: or '.'
+  def (model = nil)
+                   ^
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/ServerDirectoryCleanup/measure.rb:137: syntax error, unexpected keyword_end, expecting end-of-input
+end # end the measure
+^~~</error>

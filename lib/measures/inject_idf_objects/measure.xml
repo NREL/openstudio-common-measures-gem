@@ -1,15 +1,16 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>inject_idf_objects</name>
   <uid>f567dfbc-d280-4d68-b061-019ab2630cd0</uid>
-  <version_id>844f4910-d87b-40fb-921f-3e295c6cbf9f</version_id>
-  <version_modified>20200229T024317Z</version_modified>
+  <version_id>bb8ddc9d-0e2b-4ee9-813b-86999d49a6c7</version_id>
+  <version_modified>20200605T175904Z</version_modified>
   <xml_checksum>A8BAB05F</xml_checksum>
   <class_name>InjectIDFObjects</class_name>
   <display_name> Inject IDF Objects</display_name>
   <description>This measure allows you to inject IDF objects into an OSM generated IDF prior to passing the IDF off to EnergyPlus.</description>
-  <modeler_description>This provides a stepping stone between exporting an IDF from OpenStudio and hand editing the IDF and writing fully functional OpenStudio EnergyPlus measures.&#xd;
-&#xd;
+  <modeler_description>This provides a stepping stone between exporting an IDF from OpenStudio and hand editing the IDF and writing fully functional OpenStudio EnergyPlus measures.
+
 This measure works for when you just need to add new IDF objects. If you need to interact with or alter IDF objects made by the OpenStudio forward translator, you will want to write an EnergyPlus measure wtih more use-case specific logic.</modeler_description>
   <arguments>
     <argument>
@@ -21,8 +22,8 @@ This measure works for when you just need to add new IDF objects. If you need to
       <model_dependent>false</model_dependent>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -78,23 +79,6 @@ This measure works for when you just need to add new IDF objects. If you need to
       <checksum>F5FABCCF</checksum>
     </file>
     <file>
-      <filename>measure_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>617BF7D2</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>7F05D1DE</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -111,6 +95,23 @@ This measure works for when you just need to add new IDF objects. If you need to
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>3D0882F2</checksum>
+    </file>
+    <file>
+      <filename>measure_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B75C632C</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>83CDE9EB</checksum>
     </file>
   </files>
 </measure>

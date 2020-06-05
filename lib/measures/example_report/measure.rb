@@ -78,7 +78,7 @@ class ExampleReport < OpenStudio::Measure::ReportingMeasure
   end
 
   # define the arguments that the user will input
-  def arguments
+  def (model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # populate arguments

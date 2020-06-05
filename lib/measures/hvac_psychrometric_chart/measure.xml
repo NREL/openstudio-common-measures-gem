@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>hvac_psychrometric_chart</name>
   <uid>97213780-0727-4462-8ec0-9a6c3e475cd6</uid>
-  <version_id>e7f1939b-2224-4ec4-a64a-16ad3d261f3c</version_id>
-  <version_modified>20200509T041912Z</version_modified>
+  <version_id>b4f0daca-cd1b-4291-94b0-b5a6e4c634df</version_id>
+  <version_modified>20200605T175859Z</version_modified>
   <xml_checksum>F657B621</xml_checksum>
   <class_name>HVACPsychrometricChart</class_name>
   <display_name>HVAC Psychrometric Chart</display_name>
@@ -72,17 +72,6 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>536E0D5E</checksum>
-    </file>
-    <file>
       <filename>hvac_psychrometric_chart_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -100,6 +89,23 @@
       <usage_type>readme</usage_type>
       <checksum>0B68E96D</checksum>
     </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>B4A6D906</checksum>
+    </file>
   </files>
 </measure>
-<error>wrong number of arguments (given 1, expected 0)</error>
+<error>/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/hvac_psychrometric_chart/measure.rb:59: syntax error, unexpected '\n', expecting :: or '.'
+  def (model = nil)
+                   ^
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/hvac_psychrometric_chart/measure.rb:68: Invalid return in class/module body
+    return args
+    ^~~~~~
+/Users/dgoldwas/Documents/GitHub/URBANopt/openstudio-common-measures-gem/lib/measures/hvac_psychrometric_chart/measure.rb:365: syntax error, unexpected keyword_end, expecting end-of-input</error>

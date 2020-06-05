@@ -56,7 +56,7 @@ class HVACPsychrometricChart < OpenStudio::Measure::ReportingMeasure
   end
 
   # define the arguments that the user will input
-  def arguments
+  def (model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an argument for air loop
