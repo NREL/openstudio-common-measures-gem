@@ -2,7 +2,7 @@
 
 ###### (Automatically generated documentation)
 
-# 
+# Ventilation Report
 
 ## Description
 
@@ -11,7 +11,7 @@
 
 
 ## Measure Type
-ModelMeasure
+ReportingMeasure
 
 ## Taxonomy
 
@@ -19,8 +19,14 @@ ModelMeasure
 ## Arguments
 
 
+### Pick a Zone (or all Zones)
+
+**Name:** measure_zone,
+**Type:** Choice,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
 
 
-This measure does not have any user arguments
 
 
