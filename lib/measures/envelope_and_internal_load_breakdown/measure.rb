@@ -78,7 +78,7 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
   end
 
   # define the arguments that the user will input
-  def arguments
+  def arguments(model = nil)
     args = OpenStudio::Ruleset::OSArgumentVector.new
 
     #     # populate arguments
