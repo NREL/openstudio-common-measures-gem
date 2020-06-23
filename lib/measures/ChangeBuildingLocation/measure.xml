@@ -254,7 +254,7 @@
       <checksum>E8C83421</checksum>
     </file>
     <file>
-      <filename>test.osm</filename>
+      <filename>model_test.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>0B8479BC</checksum>
@@ -314,7 +314,7 @@
       <checksum>7C51425E</checksum>
     </file>
     <file>
-      <filename>test.osw</filename>
+      <filename>model_test.osw</filename>
       <filetype>osw</filetype>
       <usage_type>test</usage_type>
       <checksum>F5FABCCF</checksum>
@@ -362,7 +362,7 @@
       <checksum>8657DDB9</checksum>
     </file>
     <file>
-      <filename>test_with_epw.osm</filename>
+      <filename>model_test_with_epw.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>D1551F9A</checksum>

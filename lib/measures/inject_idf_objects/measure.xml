@@ -73,7 +73,7 @@ This measure works for when you just need to add new IDF objects. If you need to
       <checksum>F90DD242</checksum>
     </file>
     <file>
-      <filename>test.osw</filename>
+      <filename>model_test.osw</filename>
       <filetype>osw</filetype>
       <usage_type>test</usage_type>
       <checksum>F5FABCCF</checksum>

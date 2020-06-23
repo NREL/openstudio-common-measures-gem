@@ -51,7 +51,7 @@ class HVACPsychrometricChart_Test < Minitest::Test
   end
 
   def model_in_path_default
-    return "#{File.dirname(__FILE__)}/test_model.osm"
+    return "#{File.dirname(__FILE__)}/model_test.osm"
   end
 
   def epw_path_default

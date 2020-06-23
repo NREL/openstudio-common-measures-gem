@@ -44,7 +44,7 @@
   </attributes>
   <files>
     <file>
-      <filename>test_model.osm</filename>
+      <filename>model_test.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>34E3E58A</checksum>
