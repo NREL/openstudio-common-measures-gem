@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>hvac_psychrometric_chart</name>
   <uid>97213780-0727-4462-8ec0-9a6c3e475cd6</uid>
-  <version_id>86c7163b-8b66-441f-bac3-5933d86bb6e3</version_id>
-  <version_modified>20200623T192450Z</version_modified>
+  <version_id>15fef178-c6a4-4c51-a011-61785817b924</version_id>
+  <version_modified>20200623T195835Z</version_modified>
   <xml_checksum>F657B621</xml_checksum>
   <class_name>HVACPsychrometricChart</class_name>
   <display_name>HVAC Psychrometric Chart</display_name>
@@ -68,12 +68,6 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>hvac_psychrometric_chart_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>201B9AF5</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -95,6 +89,12 @@
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
       <checksum>FC1A190D</checksum>
+    </file>
+    <file>
+      <filename>hvac_psychrometric_chart_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>07B326D0</checksum>
     </file>
   </files>
 </measure>
