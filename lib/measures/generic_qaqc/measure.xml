@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>6b040160-b26e-4590-9e1d-708264a25e9b</version_id>
-  <version_modified>20200605T185059Z</version_modified>
+  <version_id>d5440237-cf84-4f6b-9369-611c253371a3</version_id>
+  <version_modified>20200623T192456Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -648,12 +648,6 @@
       <checksum>F47A1139</checksum>
     </file>
     <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>708516C5</checksum>
-    </file>
-    <file>
       <filename>CreateResults.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -681,6 +675,12 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>BBC2D3D5</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>AD451814</checksum>
     </file>
   </files>
 </measure>
