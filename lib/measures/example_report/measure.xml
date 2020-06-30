@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>example_report</name>
   <uid>174a6f71-3e8c-4f99-9e7a-b64f2e7535d4</uid>
-  <version_id>a1077426-a292-442c-8c9c-ee5484c7ec1d</version_id>
-  <version_modified>20200605T185050Z</version_modified>
+  <version_id>4a8f98cc-b27f-411d-a80d-e9d89bf64806</version_id>
+  <version_modified>20200623T192428Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>ExampleReport</class_name>
   <display_name>Example Report</display_name>
@@ -141,12 +141,6 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>708516C5</checksum>
-    </file>
-    <file>
       <filename>ExampleReport_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -168,6 +162,12 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>3C0851D8</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>AD451814</checksum>
     </file>
   </files>
 </measure>
