@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>set_exterior_walls_and_floors_to_adiabatic</name>
   <uid>63c7f9ba-8c85-4545-bbc0-d25babefb2c3</uid>
-  <version_id>d8387847-0688-4374-9015-e042536ed932</version_id>
-  <version_modified>20200229T024320Z</version_modified>
+  <version_id>75a958b7-2bf7-496a-80e5-dcae03703541</version_id>
+  <version_modified>20200715T184924Z</version_modified>
   <xml_checksum>5091078B</xml_checksum>
   <class_name>SetExteriorWallsAndFloorsToAdiabatic</class_name>
   <display_name>Set Exterior Walls and Floors to Adiabatic</display_name>
@@ -136,9 +137,27 @@
         </choice>
       </choices>
     </argument>
+    <argument>
+      <name>inclusion_list</name>
+      <display_name>Adiabatic Inclusion List</display_name>
+      <description>Surfaces listed here will be changed to adiabatic boundary condition. This can contain one or more surface names. It is case sensitive and multiple names should be separated with a vertical pipe character like this. |</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>make_me_adiabatic_01|make_me_adiabatic_02</default_value>
+    </argument>
+    <argument>
+      <name>exclusion_list</name>
+      <display_name>Adiabatic Exclusion List</display_name>
+      <description>Surfaces listed here will not be changed to adiabatic boundary condition. This can contain one or more surface names. It is case sensitive and multiple names should be separated with a vertical pipe character like this. |</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>do_not_change_me_01|do_not_change_me_02</default_value>
+    </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Opaque</tag>
   </tags>
@@ -168,12 +187,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>26B5B453</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -188,13 +201,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B401A276</checksum>
+      <checksum>D073FC2A</checksum>
     </file>
     <file>
       <filename>set_exterior_walls_and_floors_to_adiabatic_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>52BB63BA</checksum>
+      <checksum>2078C06A</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>610E0A71</checksum>
     </file>
   </files>
 </measure>
