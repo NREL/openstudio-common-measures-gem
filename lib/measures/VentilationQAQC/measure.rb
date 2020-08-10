@@ -236,10 +236,10 @@ class VentilationQAQC < OpenStudio::Measure::ReportingMeasure
           spec = space.designSpecificationOutdoorAir.get
 
           # spaceMetrics[:specMethod] = spec.outdoorAirMethod
-          spaceMetrics[:specOutdoorAirFlowperPerson] = spec.getOutdoorAirFlowperPerson.value
-          spaceMetrics[:specOutdoorAirFlowperFloorArea] = spec.getOutdoorAirFlowperFloorArea.value
+          spaceMetrics[:specOutdoorAirFlowperPerson] = spec.outdoorAirFlowperPerson
+          spaceMetrics[:specOutdoorAirFlowperFloorArea] = spec.outdoorAirFlowperFloorArea
           spaceMetrics[:specOutdoorAirFlowRate] = spec.outdoorAirFlowRate
-          spaceMetrics[:specOutdoorAirFlowAirChangesperHour] = spec.getOutdoorAirFlowAirChangesperHour.value
+          spaceMetrics[:specOutdoorAirFlowAirChangesperHour] = spec.outdoorAirFlowAirChangesperHour
 
           # Outdoor Air Method
           # Outdoor Air Flow per Person {m3/s-person}
