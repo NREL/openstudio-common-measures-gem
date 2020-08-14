@@ -159,10 +159,14 @@ class VentilationQAQC < OpenStudio::Measure::ReportingMeasure
 
       zone_infiltration_vals = getTimeSeries('Zone Infiltration Air Change Rate', zone_name.upcase, annEnvPd, 'Hourly', runner)
 
-      puts('Get Occupant')
-
       zone_occupant_vals = getTimeSeries('Zone People Occupant Count', zone_name.upcase, annEnvPd, 'Hourly', runner)
       zone_occupant_max = !zone_occupant_vals.nil? ? zone_occupant_vals.max : 0
+
+      # stop here if zone_occupant_max is 0 is don't divide by 0 and catch zone_occupant_vals when nil before .map
+      if zone_occupant_max == 0
+        runner.registerInfo("Skipping #{zone_name}, can't noramlize occupancy with max of 0.")
+        next
+      end
 
       zone_occupant_normalized = zone_occupant_vals.map { |v| v / zone_occupant_max }
 
