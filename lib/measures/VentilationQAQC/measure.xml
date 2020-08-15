@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>ventilation_qaqc</name>
   <uid>cb13be0e-88f6-494c-b3b1-dc748b42e205</uid>
-  <version_id>74f25597-999f-4151-ab68-1085aba4b190</version_id>
-  <version_modified>20200814T202113Z</version_modified>
+  <version_id>40930801-1a66-4312-9f0b-f5c45c234b45</version_id>
+  <version_modified>20200815T060217Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>VentilationQAQC</class_name>
   <display_name>Ventilation Report</display_name>
@@ -45,18 +45,6 @@
   </attributes>
   <files>
     <file>
-      <filename>ExampleModel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4E11CF11</checksum>
-    </file>
-    <file>
-      <filename>report.html.in</filename>
-      <filetype>in</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E5A4911E</checksum>
-    </file>
-    <file>
       <filename>USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>
       <filetype>epw</filetype>
       <usage_type>test</usage_type>
@@ -75,16 +63,22 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>VentilationQAQC_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B2AE57AC</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>7A7F2C94</checksum>
+    </file>
+    <file>
+      <filename>small_office.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>358253AE</checksum>
+    </file>
+    <file>
+      <filename>report.html.in</filename>
+      <filetype>in</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>96277E4B</checksum>
     </file>
     <file>
       <version>
@@ -95,13 +89,31 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>0354B5C6</checksum>
+      <checksum>E8B67453</checksum>
     </file>
     <file>
-      <filename>small_office.osm</filename>
+      <filename>in.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
-      <checksum>358253AE</checksum>
+      <checksum>CD0684CD</checksum>
+    </file>
+    <file>
+      <filename>ventilation_qaqc_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8B2F9EC2</checksum>
+    </file>
+    <file>
+      <filename>USA_CO_Denver.Intl.AP.725650_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E23378AA</checksum>
+    </file>
+    <file>
+      <filename>asdf_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B2AE57AC</checksum>
     </file>
   </files>
 </measure>

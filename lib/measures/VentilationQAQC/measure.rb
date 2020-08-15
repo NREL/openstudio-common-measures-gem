@@ -165,47 +165,48 @@ class VentilationQAQC < OpenStudio::Measure::ReportingMeasure
       # stop here if zone_occupant_max is 0 is don't divide by 0 and catch zone_occupant_vals when nil before .map
       if zone_occupant_max == 0
         runner.registerInfo("Skipping #{zone_name}, can't noramlize occupancy with max of 0.")
-        next
-      end
-
-      zone_occupant_normalized = zone_occupant_vals.map { |v| v / zone_occupant_max }
-
-      unoccupied = 0
-      lightly_occupied = 0
-
-      coordinated = zone_occupant_normalized.zip(zone_mechanical_ventilation_vals)
-
-      coordinated.each do |vals|
-        normalized_occupancy = vals[0]
-        zone_mech_vent = vals[1]
-
-        if normalized_occupancy == 0 && zone_mech_vent > 0
-          unoccupied += 1
-        end
-
-        if normalized_occupancy < 0.05 && zone_mech_vent > 20
-          lightly_occupied += 1
-        end
-      end
-
-      puts "Unoccupied: #{unoccupied}, Lightly Occupied: #{lightly_occupied}"
-
-      if unoccupied > 10
-        warnings.push("Thermal Zone <strong>#{zone_name}</strong> appears to have mechanical ventilation during periods when the zone is unoccupied, resulting in potentially unnecessary ventilation energy. This occurs <strong>#{unoccupied}</strong> hours per run period. Please ensure this is a correct representation of the modeling scenario. Minimum fraction OA schedules may need adjusting.")
-      end
-
-      if lightly_occupied > 1500
-        warnings.push("Thermal Zone <strong>#{zone_name}</strong> appears to have mechanical ventilation during periods when the zone is lightly occupied, resulting in potentially unnecessary ventilation energy. This occurs <strong>#{lightly_occupied}</strong> hours per run period. Please ensure this is a correct representation of the modeling scenario.")
-      end
-
-      times = getTimesForSeries('Zone People Occupant Count', zone_name.upcase, annEnvPd, 'Hourly', runner)
-      js_date_times = times.map { |t| to_JSTime(t) }
-
-      # Create an array of arrays [timestamp, zone_mechanical_ventilation_vals, zone_infiltration_vals]
-      if zone_infiltration_vals
-        hourly_vals = js_date_times.zip(zone_infiltration_vals)
       else
-        hourly_vals = nil
+
+        zone_occupant_normalized = zone_occupant_vals.map { |v| v / zone_occupant_max }
+
+        unoccupied = 0
+        lightly_occupied = 0
+
+        coordinated = zone_occupant_normalized.zip(zone_mechanical_ventilation_vals)
+
+        coordinated.each do |vals|
+          normalized_occupancy = vals[0]
+          zone_mech_vent = vals[1]
+
+          if normalized_occupancy == 0 && zone_mech_vent > 0
+            unoccupied += 1
+          end
+
+          if normalized_occupancy < 0.05 && zone_mech_vent > 20
+            lightly_occupied += 1
+          end
+        end
+
+        puts "Unoccupied: #{unoccupied}, Lightly Occupied: #{lightly_occupied}"
+
+        if unoccupied > 10
+          warnings.push("Thermal Zone <strong>#{zone_name}</strong> appears to have mechanical ventilation during periods when the zone is unoccupied, resulting in potentially unnecessary ventilation energy. This occurs <strong>#{unoccupied}</strong> hours per run period. Please ensure this is a correct representation of the modeling scenario. Minimum fraction OA schedules may need adjusting.")
+        end
+
+        if lightly_occupied > 1500
+          warnings.push("Thermal Zone <strong>#{zone_name}</strong> appears to have mechanical ventilation during periods when the zone is lightly occupied, resulting in potentially unnecessary ventilation energy. This occurs <strong>#{lightly_occupied}</strong> hours per run period. Please ensure this is a correct representation of the modeling scenario.")
+        end
+
+        times = getTimesForSeries('Zone People Occupant Count', zone_name.upcase, annEnvPd, 'Hourly', runner)
+        js_date_times = times.map { |t| to_JSTime(t) }
+
+        # Create an array of arrays [timestamp, zone_mechanical_ventilation_vals, zone_infiltration_vals]
+        if zone_infiltration_vals
+          hourly_vals = js_date_times.zip(zone_infiltration_vals)
+        else
+          hourly_vals = nil
+        end
+
       end
 
       # Add the hourly load data to JSON for the report.html
@@ -218,7 +219,7 @@ class VentilationQAQC < OpenStudio::Measure::ReportingMeasure
       graph['timeseries'] = hourly_vals
 
       # This measure requires ruby 2.0.0 to create the JSON for the report graph
-      if RUBY_VERSION >= '2.0.0'
+      if RUBY_VERSION >= '2.0.0' && ! hourly_vals.nil?
         annualGraphData << graph
       end
 

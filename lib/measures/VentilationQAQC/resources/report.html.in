@@ -15,7 +15,7 @@ $(document).ready(function () {
     $.each(obj, function (index, graphData) {
         var graph = obj[index];
 
-        for (var i = 0; i < graph.timeseries.length; i++) {
+        for (var i = 0; i < 8760; i++) {
             graph.timeseries[i][0] = new Date(graph.timeseries[i][0]);
         }
         //console.log(graph.timeseries);
