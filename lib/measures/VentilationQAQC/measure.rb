@@ -197,7 +197,10 @@ class VentilationQAQC < OpenStudio::Measure::ReportingMeasure
           warnings.push("Thermal Zone <strong>#{zone_name}</strong> appears to have mechanical ventilation during periods when the zone is lightly occupied, resulting in potentially unnecessary ventilation energy. This occurs <strong>#{lightly_occupied}</strong> hours per run period. Please ensure this is a correct representation of the modeling scenario.")
         end
 
-        times = getTimesForSeries('Zone People Occupant Count', zone_name.upcase, annEnvPd, 'Hourly', runner)
+      end
+
+      times = getTimesForSeries('Zone Infiltration Air Change Rate', zone_name.upcase, annEnvPd, 'Hourly', runner)
+      if ! times.nil?
         js_date_times = times.map { |t| to_JSTime(t) }
 
         # Create an array of arrays [timestamp, zone_mechanical_ventilation_vals, zone_infiltration_vals]
@@ -207,20 +210,19 @@ class VentilationQAQC < OpenStudio::Measure::ReportingMeasure
           hourly_vals = nil
         end
 
-      end
+        # Add the hourly load data to JSON for the report.html
+        graph = {}
+        graph['title'] = "#{zone_name} - Hourly Infiltration"
+        graph['xaxislabel'] = 'Time'
+        graph['yaxislabel'] = 'Infiltration (ACH)'
+        graph['labels'] = ['Date', 'Infiltration (ACH)']
+        graph['colors'] = ['#FF5050', '#0066FF']
+        graph['timeseries'] = hourly_vals
 
-      # Add the hourly load data to JSON for the report.html
-      graph = {}
-      graph['title'] = "#{zone_name} - Hourly Infiltration"
-      graph['xaxislabel'] = 'Time'
-      graph['yaxislabel'] = 'Infiltration (ACH)'
-      graph['labels'] = ['Date', 'Infiltration (ACH)']
-      graph['colors'] = ['#FF5050', '#0066FF']
-      graph['timeseries'] = hourly_vals
-
-      # This measure requires ruby 2.0.0 to create the JSON for the report graph
-      if RUBY_VERSION >= '2.0.0' && ! hourly_vals.nil?
-        annualGraphData << graph
+        # This measure requires ruby 2.0.0 to create the JSON for the report graph
+        if RUBY_VERSION >= '2.0.0'
+          annualGraphData << graph
+        end
       end
 
       zoneMetrics = {}
