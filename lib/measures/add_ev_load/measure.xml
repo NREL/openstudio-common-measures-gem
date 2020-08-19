@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>add_ev_load</name>
+  <uid>a23e0493-7357-48ca-b089-4d902efd6b50</uid>
+  <version_id>2dd86555-b62f-44c3-b003-5f28bf749079</version_id>
+  <version_modified>20200819T053608Z</version_modified>
+  <xml_checksum>9A202986</xml_checksum>
+  <class_name>AddEVLoad</class_name>
+  <display_name>Add_EV_Load</display_name>
+  <description>This measure adds a load associated with charging of electric vehicles (EVs) to a building in URBANopt. EV load profiles were generated in EVI-Pro for specific building types. This measure allows running of customized load profiles for buildings in the Pena Station Next project, and also for generating typical charging load profiles based on the location type (home, public, or office).</description>
+  <modeler_description>This measure adds an EV charging load to a building model. Load profiles for EV charging were generated in EVI-Pro. Different options are available for charging control type and charging behavior.</modeler_description>
+  <arguments>
+    <argument>
+      <name>delay_type</name>
+      <display_name>Charging Flexibility Option</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Min Delay</default_value>
+      <choices>
+        <choice>
+          <value>Max Delay</value>
+          <display_name>Max Delay</display_name>
+        </choice>
+        <choice>
+          <value>Min Delay</value>
+          <display_name>Min Delay</display_name>
+        </choice>
+        <choice>
+          <value>Min Power</value>
+          <display_name>Min Power</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>charge_behavior</name>
+      <display_name>Consumer Charging Behavior</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Business as Usual</default_value>
+      <choices>
+        <choice>
+          <value>Business as Usual</value>
+          <display_name>Business as Usual</display_name>
+        </choice>
+        <choice>
+          <value>Free Workplace Charging at Project Site</value>
+          <display_name>Free Workplace Charging at Project Site</display_name>
+        </choice>
+        <choice>
+          <value>Free Workplace Charging Across Metro Area</value>
+          <display_name>Free Workplace Charging Across Metro Area</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>chg_station_type</name>
+      <display_name>Charging Station Type</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Typical Public</default_value>
+      <choices>
+        <choice>
+          <value>Typical Home</value>
+          <display_name>Typical Home</display_name>
+        </choice>
+        <choice>
+          <value>Typical Public</value>
+          <display_name>Typical Public</display_name>
+        </choice>
+        <choice>
+          <value>Typical Work</value>
+          <display_name>Typical Work</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>ev_percent</name>
+      <display_name>Percent of Vehicles Parked at Building That Are EVs</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Equipment.Electric Equipment</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>Model Files.txt</filename>
+      <filetype>txt</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>2C04B1EC</checksum>
+    </file>
+    <file>
+      <filename>RefBldgMediumOfficeNew2004_v1.4_7.2_5B_USA_CO_BOULDER.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>1DC06145</checksum>
+    </file>
+    <file>
+      <filename>STF_version_updated_var_added_forURBANopt.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>500C8C2E</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E925F127</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>2293F4B3</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.5.1</identifier>
+        <min_compatible>2.5.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>7D4DC299</checksum>
+    </file>
+    <file>
+      <filename>add_ev_load_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4C137463</checksum>
+    </file>
+  </files>
+</measure>
