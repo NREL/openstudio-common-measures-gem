@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_ev_load</name>
   <uid>a23e0493-7357-48ca-b089-4d902efd6b50</uid>
-  <version_id>2dd86555-b62f-44c3-b003-5f28bf749079</version_id>
-  <version_modified>20200819T053608Z</version_modified>
+  <version_id>582a5aea-6836-4224-96ca-cb90e42e61e5</version_id>
+  <version_modified>20200901T153151Z</version_modified>
   <xml_checksum>9A202986</xml_checksum>
   <class_name>AddEVLoad</class_name>
   <display_name>Add_EV_Load</display_name>
@@ -115,24 +115,6 @@
   </attributes>
   <files>
     <file>
-      <filename>Model Files.txt</filename>
-      <filetype>txt</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>2C04B1EC</checksum>
-    </file>
-    <file>
-      <filename>RefBldgMediumOfficeNew2004_v1.4_7.2_5B_USA_CO_BOULDER.idf</filename>
-      <filetype>idf</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>1DC06145</checksum>
-    </file>
-    <file>
-      <filename>STF_version_updated_var_added_forURBANopt.idf</filename>
-      <filetype>idf</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>500C8C2E</checksum>
-    </file>
-    <file>
       <filename>example_model.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -153,13 +135,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7D4DC299</checksum>
+      <checksum>1456E130</checksum>
     </file>
     <file>
       <filename>add_ev_load_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>4C137463</checksum>
+      <checksum>25BF6E70</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>
