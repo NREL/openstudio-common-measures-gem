@@ -335,7 +335,7 @@ module OsLib_Reporting
       runner.registerValue(OsLib_Reporting.reg_val_string_prep(display), value, target_units)
     end
 
-    # temp code to check OS vs. E+ area
+    # code to check OS vs. E+ area
     energy_plus_area = query_results.get
     open_studio_area = model.getBuilding.floorArea
     if (energy_plus_area - open_studio_area).abs >= 1.0
@@ -373,6 +373,52 @@ module OsLib_Reporting
     # always register value, but only add to table if net is different than total
     if sqlFile.totalSiteEnergy.get != sqlFile.netSiteEnergy.get
       general_building_information[:data] << ['Net Site EUI', value_neat]
+    end
+
+    # todo - add total EUI for conditioned floor area if not the same as total. Doesn't seem necessary to also calculate net conditioned EUI if it exists as a unique value.
+
+    # conditioned building area
+    query = 'SELECT Value FROM tabulardatawithstrings WHERE '
+    query << "ReportName='AnnualBuildingUtilityPerformanceSummary' and "
+    query << "ReportForString='Entire Facility' and "
+    query << "TableName='Building Area' and "
+    query << "RowName='Net Conditioned Building Area' and "
+    query << "ColumnName='Area' and "
+    query << "Units='m2';"
+    query_results = sqlFile.execAndReturnFirstDouble(query)
+    if query_results.empty? || query_results.get == 0.0
+      runner.registerWarning('Did not find value for net conditioned building area.')
+      return false
+    else
+      display_a = 'Conditioned Building Area'
+      source_units_a = 'm^2'
+      if is_ip_units
+        target_units_a = 'ft^2'
+      else
+        target_units_a = source_units
+      end
+      value_a = OpenStudio.convert(query_results.get, source_units_a, target_units_a).get
+      value_neat_a = "#{OpenStudio.toNeatString(value_a, 0, true)} #{target_units_a}"
+      runner.registerValue(OsLib_Reporting.reg_val_string_prep(display_a), value_a, target_units_a)
+
+      # conditioned EUI
+      eui = sqlFile.totalSiteEnergy.get / energy_plus_area
+      display_e = 'Conditioned Site EUI'
+      source_units_e = 'GJ/m^2'
+      if is_ip_units
+        target_units_e = 'kBtu/ft^2'
+      else
+        target_units_e = "kWh/m^2"
+      end
+      value_e = OpenStudio.convert(eui, source_units_e, target_units_e).get
+      value_neat_e = "#{OpenStudio.toNeatString(value_e, 2, true)} #{target_units_e}"
+      runner.registerValue(OsLib_Reporting.reg_val_string_prep(display_e), value_e, target_units_e)
+
+      # always register value, but only add to table if net is different than total
+      if energy_plus_area - query_results.get >= 1.0
+        general_building_information[:data] << [display_a, value_neat_a]
+        general_building_information[:data] << [display_e, value_neat_e]
+      end
     end
 
     # get standards building type
@@ -4717,7 +4763,7 @@ module OsLib_Reporting
               num_warnings += 1
               if num_warnings < start_counter + 25
                 measure_table_01[:data] << [step.logMessage]
-              else
+              elsif num_warnings == start_counter + 25
                 measure_table_01[:data] << ["* See OSW file for full list of warnings. This measure has #{result.warnings.size} warnings."]
               end
             end
@@ -4732,6 +4778,21 @@ module OsLib_Reporting
       end
     end
 
+    # check for warnings in openstudio_results and add table for it if there are warnings.
+    if runner.result.stepWarnings.size > 0
+      measure_table_os_results = {}
+      measure_table_os_results[:title] = "OpenStudio Results"
+      measure_table_os_results[:header] = ['Warning']
+      measure_table_os_results[:data] = []
+      num_measures_with_warnings += 1
+      runner.result.stepWarnings.each do |warning|
+        measure_table_os_results[:data] << [warning]
+        num_warnings += 1
+      end
+    end
+    measure_tables << measure_table_os_results
+
+
     # add summary table (even when there are no warnings)
     measure_table_summary = {}
     measure_table_summary[:title] = "Measure Warning Summary"
@@ -4744,7 +4805,7 @@ module OsLib_Reporting
     measure_table_summary[:data] << ['Total number of warnings',num_warnings]
 
     # add table to section
-    measure_tables << measure_table_summary
+    measure_tables.insert(0,measure_table_summary)
 
     runner.registerValue("number_of_measures_with_warnings", num_measures_with_warnings)
     runner.registerValue("number_warnings", num_warnings)
