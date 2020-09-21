@@ -2469,7 +2469,7 @@ module OsLib_Reporting
     OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
       standard_fuel_types << OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
     end
-    additional_fuel_types = ["FuelOil#1", "FuelOil#2", "PropaneGas", "Coal", "Diesel", "Gasoline", "OtherFuel1", "OtherFuel2"]
+    additional_fuel_types = ["FuelOilNo1", "FuelOilNo2", "PropaneGas", "Coal", "Diesel", "Gasoline", "OtherFuel1", "OtherFuel2"]
     extended_fuel_type_names = standard_fuel_types + additional_fuel_types
 
     # loop through fuels for consumption tables
