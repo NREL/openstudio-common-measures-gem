@@ -386,16 +386,16 @@ module OsLib_Reporting
     query << "ColumnName='Area' and "
     query << "Units='m2';"
     query_results = sqlFile.execAndReturnFirstDouble(query)
-    if query_results.empty? || query_results.get == 0.0
+    if query_results.empty?
       runner.registerWarning('Did not find value for net conditioned building area.')
       return false
-    else
+    elsif query_results.get == 0.0
       display_a = 'Conditioned Building Area'
       source_units_a = 'm^2'
       if is_ip_units
         target_units_a = 'ft^2'
       else
-        target_units_a = source_units
+        target_units_a = source_units_a
       end
       value_a = OpenStudio.convert(query_results.get, source_units_a, target_units_a).get
       value_neat_a = "#{OpenStudio.toNeatString(value_a, 0, true)} #{target_units_a}"
@@ -2969,7 +2969,7 @@ module OsLib_Reporting
 
           end # end of for i in 0..(output_timeseries.size - 1)
         else
-          runner.registerWarning("Didn't find data for Zone Air Temperature")
+          runner.registerWarning("Didn't find data for Zone Air Temperature") # not getting triggered when variable missing
         end # end of if output_timeseries.is_initialized
 
         # get unmet hours for each zone from tabular data
@@ -3103,7 +3103,7 @@ module OsLib_Reporting
 
           end # end of for i in 0..(output_timeseries.size - 1)
         else
-          runner.registerWarning("Didn't find data for Zone Air Relative Humidity")
+          runner.registerWarning("Didn't find data for Zone Air Relative Humidity")  # not getting triggered when variable missing
         end # end of if output_timeseries.is_initialized
 
         # get mean humidity
@@ -3742,6 +3742,7 @@ module OsLib_Reporting
         end
 
       else
+        # todo - see why this is getting thrown on some models
         runner.registerWarning("Didn't find data for Site Outdoor Air Drybulb Temperature")
       end # end of if output_timeseries.is_initialized
     else
@@ -4789,8 +4790,8 @@ module OsLib_Reporting
         measure_table_os_results[:data] << [warning]
         num_warnings += 1
       end
+      measure_tables << measure_table_os_results
     end
-    measure_tables << measure_table_os_results
 
 
     # add summary table (even when there are no warnings)

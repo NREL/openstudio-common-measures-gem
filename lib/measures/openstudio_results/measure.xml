@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>5d24f032-e2e4-407f-a20d-9f76e15d4ac1</version_id>
-  <version_modified>20200626T221404Z</version_modified>
+  <version_id>39e33b24-b718-4c6c-8f58-6197ad0ac15b</version_id>
+  <version_modified>20200922T075727Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -544,6 +544,20 @@
       <type>Double</type>
       <model_dependent>false</model_dependent>
     </output>
+    <output>
+      <name>number_of_measures_with_warnings</name>
+      <display_name>number_of_measures_with_warnings</display_name>
+      <short_name>number_of_measures_with_warnings</short_name>
+      <type>Double</type>
+      <model_dependent>false</model_dependent>
+    </output>
+    <output>
+      <name>number_warnings</name>
+      <display_name>number_warnings</display_name>
+      <short_name>number_warnings</short_name>
+      <type>Double</type>
+      <model_dependent>false</model_dependent>
+    </output>
   </outputs>
   <provenances />
   <tags>
@@ -607,12 +621,6 @@
       <checksum>C62949E8</checksum>
     </file>
     <file>
-      <filename>PeriodInConstName.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>D67C186D</checksum>
-    </file>
-    <file>
       <filename>HeatingOnly.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -629,12 +637,6 @@
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>4F81E2EA</checksum>
-    </file>
-    <file>
-      <filename>add_tariff.osw</filename>
-      <filetype>osw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>1F52F669</checksum>
     </file>
     <file>
       <filename>ExampleModel.osm</filename>
@@ -1393,12 +1395,6 @@
       <checksum>8A8CE353</checksum>
     </file>
     <file>
-      <filename>OpenStudioResults_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4DFBB60F</checksum>
-    </file>
-    <file>
       <filename>Siz.HumidifierSteamElectric.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -1435,16 +1431,22 @@
       <checksum>0169F9F8</checksum>
     </file>
     <file>
-      <filename>os_lib_reporting.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E15D2A3D</checksum>
-    </file>
-    <file>
       <filename>os_lib_schedules.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>C82D00CC</checksum>
+    </file>
+    <file>
+      <filename>PeriodInConstName.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E41FBCFF</checksum>
+    </file>
+    <file>
+      <filename>add_tariff.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BF680A60</checksum>
     </file>
     <file>
       <version>
@@ -1455,13 +1457,31 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>CBB2420E</checksum>
+      <checksum>898B5464</checksum>
+    </file>
+    <file>
+      <filename>os_results.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8BE06CC3</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>F7DEA5C8</checksum>
+      <checksum>42709140</checksum>
+    </file>
+    <file>
+      <filename>OpenStudioResults_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7EECB3DE</checksum>
+    </file>
+    <file>
+      <filename>os_lib_reporting.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>00E3EEE9</checksum>
     </file>
   </files>
 </measure>
