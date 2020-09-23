@@ -571,22 +571,36 @@ module OsLib_Reporting
 
     end_use_colors = ['#EF1C21', '#0071BD', '#F7DF10', '#DEC310', '#4A4D4A', '#B5B2B5', '#FF79AD', '#632C94', '#F75921', '#293094', '#CE5921', '#FFB239', '#29AAE7', '#8CC739']
 
+    # with EnergyPlus 9.4 adding list of fuel (Additional Fuel broken out to many)
+    # not including Water from table
+    fuel_types = []
+    fuel_types << 'Electricity'
+    fuel_types << 'Natural Gas'
+    fuel_types << 'Diesel'
+    fuel_types << 'Coal'
+    fuel_types << 'Fuel Oil No 1'
+    fuel_types << 'Fuel Oil No 2'
+    fuel_types << 'Propane'
+    fuel_types << 'Other Fuel 1'
+    fuel_types << 'Other Fuel 2'
+    fuel_types << 'District Cooling'
+    fuel_types << 'District Heating'
+
     # loop through fuels for consumption tables
     counter = 0
     OpenStudio::EndUseCategoryType.getValues.each do |end_use|
       # get end uses
       end_use = OpenStudio::EndUseCategoryType.new(end_use).valueDescription
-      query_elec = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'Electricity'"
-      query_gas = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'Natural Gas'"
-      query_add = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'Additional Fuel'"
-      query_dc = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'District Cooling'"
-      query_dh = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'District Heating'"
-      results_elec = sqlFile.execAndReturnFirstDouble(query_elec).get
-      results_gas = sqlFile.execAndReturnFirstDouble(query_gas).get
-      results_add = sqlFile.execAndReturnFirstDouble(query_add).get
-      results_dc = sqlFile.execAndReturnFirstDouble(query_dc).get
-      results_dh = sqlFile.execAndReturnFirstDouble(query_dh).get
-      total_end_use = results_elec + results_gas + results_add + results_dc + results_dh
+
+      # loop through fuels
+      total_end_use = 0.0
+      fuel_types.each do |fuel_type|
+      	query_fuel = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= '#{fuel_type}'"
+     	results_fuel = sqlFile.execAndReturnFirstDouble(query_fuel).get
+     	total_end_use += results_fuel
+  	  end
+
+  	  # convert value and populate table
       value = OpenStudio.convert(total_end_use, 'GJ', target_units).get
       value_neat = OpenStudio.toNeatString(value, 0, true)
       output_data_end_use[:data] << [end_use, value_neat]
@@ -702,17 +716,43 @@ module OsLib_Reporting
     color = []
     color << '#DDCC77' # Electricity
     color << '#999933' # Natural Gas
-    color << '#AA4499' # Additional Fuel
-    color << '#88CCEE' # District Cooling
+    
+    # not used for 9.4
+    #color << '#AA4499' # Additional Fuel
+   	
+   	# todo - new colors to add for 9.4 (for nwo using color of Additional Fuel)
+   	color << '#AA4499'
+   	color << '#AA4499'
+   	color << '#AA4499'
+   	color << '#AA4499'
+   	color << '#AA4499'
+   	color << '#AA4499'
+   	color << '#AA4499'
+
+   	color << '#88CCEE' # District Cooling
     color << '#CC6677' # District Heating
     # color << "#332288" # Water (not used here but is in cash flow chart)
     # color << "#117733" # Capital and O&M (not used here but is in cash flow chart)
 
+    # added this earlier as well for E+ 9.4 shouldn't have it twice, should eventually come form OS
+    fuel_types = []
+    fuel_types << 'Electricity'
+    fuel_types << 'Natural Gas'
+    fuel_types << 'Diesel'
+    fuel_types << 'Coal'
+    fuel_types << 'Fuel Oil No 1'
+    fuel_types << 'Fuel Oil No 2'
+    fuel_types << 'Propane'
+    fuel_types << 'Other Fuel 1'
+    fuel_types << 'Other Fuel 2'
+    fuel_types << 'District Cooling'
+    fuel_types << 'District Heating'
+
     # loop through fuels for consumption tables
     counter = 0
-    OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
+    fuel_types.each do |fuel_type| #OpenStudio::EndUseFuelType.getValues
       # get fuel type and units
-      fuel_type = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
+      #fuel_type = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
       next if fuel_type == 'Water'
       query = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= 'Total End Uses' and ColumnName= '#{fuel_type}'"
       results = sqlFile.execAndReturnFirstDouble(query)
