@@ -150,26 +150,17 @@ module OsLib_Reporting
     return string
   end
 
-
   # hard code fuel types (for E+ 9.4 shouldn't have it twice, should eventually come form OS)
-  def self.hard_coded_fuel_types(extended = false)
+  def self.fuel_type_names(extended = false)
 
-
-  	# get short or extended list
-
+  	# get short or extended list (not using now)
     fuel_types = []
-    fuel_types << 'Electricity'
-    fuel_types << 'Natural Gas'
-    #fuel_types << 'Diesel' # triggers Unknown OpenStudio Enum Value 'DIESEL'
-    #fuel_types << 'Coal'
-    #fuel_types << 'Fuel Oil No 1'
-    #fuel_types << 'Fuel Oil No 2'
-    #fuel_types << 'Propane'
-    #fuel_types << 'Other Fuel 1'
-    #fuel_types << 'Other Fuel 2'
-    fuel_types << 'District Cooling'
-    fuel_types << 'District Heating'
-
+    OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
+    	# convert integer to string
+    	fuel_name = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
+    	next if fuel_name == "Water"
+    	fuel_types << fuel_name
+	end
     return fuel_types
   end
 
@@ -602,7 +593,7 @@ module OsLib_Reporting
 
       # loop through fuels
       total_end_use = 0.0
-      hard_coded_fuel_types.each do |fuel_type|
+      fuel_type_names.each do |fuel_type|
       	query_fuel = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= '#{fuel_type}'"
      	results_fuel = sqlFile.execAndReturnFirstDouble(query_fuel).get
      	total_end_use += results_fuel
@@ -744,7 +735,7 @@ module OsLib_Reporting
 
     # loop through fuels for consumption tables
     counter = 0
-    hard_coded_fuel_types.each do |fuel_type| #OpenStudio::EndUseFuelType.getValues
+    fuel_type_names.each do |fuel_type| #OpenStudio::EndUseFuelType.getValues
       # get fuel type and units
       #fuel_type = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
       next if fuel_type == 'Water'
@@ -2544,16 +2535,8 @@ module OsLib_Reporting
     end_use_order = []
     month_order = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    extended_fuel_type_names = []
-    standard_fuel_types = []
-    OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
-      standard_fuel_types << OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
-    end
-    additional_fuel_types = ["FuelOilNo1", "FuelOilNo2", "PropaneGas", "Coal", "Diesel", "Gasoline", "OtherFuel1", "OtherFuel2"]
-    extended_fuel_type_names = standard_fuel_types + additional_fuel_types
-
     # loop through fuels for consumption tables
-    hard_coded_fuel_types.each do |fuel_type|
+    fuel_type_names.each do |fuel_type|
       # get fuel type and units
       if fuel_type == 'Electricity'
         units = '"kWh"'
@@ -2595,7 +2578,7 @@ module OsLib_Reporting
         OpenStudio::MonthOfYear.getValues.each do |month|
           if month >= 1 && month <= 12
             valInJ  = nil
-            if standard_fuel_types.include?(fuel_type)
+            if fuel_type_names.include?(fuel_type)
               if !sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
                                                 OpenStudio::EndUseCategoryType.new(category_type),
                                                 OpenStudio::MonthOfYear.new(month)).empty?
@@ -2705,9 +2688,8 @@ module OsLib_Reporting
     end
 
     # loop through fuels for peak demand tables
-    OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
+    fuel_type_names.each do |fuel_type|
       # get fuel type and units
-      fuel_type = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
       if fuel_type == 'Electricity'
         unit_str = 'kW'
       else
@@ -3684,7 +3666,7 @@ module OsLib_Reporting
     end
 
     # loop through fuel types
-    hard_coded_fuel_types.each do |fuel_type|
+    fuel_type_names.each do |fuel_type|
       OpenStudio::MonthOfYear.getValues.each do |month|
         if month >= 1 && month <= 12
 

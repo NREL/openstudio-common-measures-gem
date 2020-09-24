@@ -182,10 +182,12 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
       category_str = OpenStudio::EndUseCategoryType.new(category_type).valueDescription
       category_strs << category_str
     end
+
     additional_fuel_types = ['FuelOilNo1', 'FuelOilNo2', 'PropaneGas', 'Coal', 'Diesel', 'Gasoline', 'OtherFuel1', 'OtherFuel2']
+    #additional_fuel_types = OsLib_Reporting.fuel_type_names # getting all fuels instead of additional until fixed in OS
     additional_fuel_types.each do |additional_fuel_type|
       monthly_array = ['Output:Table:Monthly']
-      monthly_array << 'Building Energy Performance - FuelOilNo1'
+      monthly_array << "Building Energy Performance - #{additional_fuel_type}"
       monthly_array << '2'
       category_strs.each do |category_string|
         monthly_array << "#{category_string}:#{additional_fuel_type}"
