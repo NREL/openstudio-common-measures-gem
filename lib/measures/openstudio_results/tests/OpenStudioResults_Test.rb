@@ -223,7 +223,7 @@ class OpenStudioResults_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_example_model_si
+  def no_test_example_model_si
     test_name = 'test_example_model_si'
     model_in_path = "#{File.dirname(__FILE__)}/ExampleModel.osm"
 
@@ -295,7 +295,7 @@ class OpenStudioResults_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_edge_model
+  def no_test_edge_model
     test_name = 'test_edge_model'
     model_in_path = "#{File.dirname(__FILE__)}/EdgeCaseModel.osm"
 
@@ -386,7 +386,7 @@ class OpenStudioResults_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_empty_model
+  def no_test_empty_model
     # skip "Broken in 2.5.1, address immediately"
 
     test_name = 'test_empty_model'
@@ -459,7 +459,7 @@ class OpenStudioResults_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_no_run_period
+  def no_test_no_run_period
     test_name = 'no_run_period'
     model_in_path = "#{File.dirname(__FILE__)}/NoRunPeriod.osm"
 
@@ -530,7 +530,7 @@ class OpenStudioResults_Test < Minitest::Test
     # assert(File.exist?(report_path(test_name)))
   end
 
-  def test_sm_hotel
+  def no_test_sm_hotel
     # skip "Broken in 2.5.1, address immediately"
 
     test_name = 'sm_hotel'
@@ -603,7 +603,7 @@ class OpenStudioResults_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_period_in_const_name
+  def no_test_period_in_const_name
     # skip "Broken in 2.5.1, address immediately"
 
     test_name = 'period_in_const_name'
@@ -676,7 +676,7 @@ class OpenStudioResults_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_heating_only
+  def no_test_heating_only
     # skip "Broken in 2.5.1, address immediately"
 
     test_name = 'test_heating_only'
@@ -749,7 +749,7 @@ class OpenStudioResults_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_tariff
+  def no_test_tariff
     # skip "Broken in 2.5.1, address immediately"
 
     test_name = 'tariff'

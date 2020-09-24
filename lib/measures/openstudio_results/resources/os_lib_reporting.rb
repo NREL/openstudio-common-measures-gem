@@ -150,6 +150,29 @@ module OsLib_Reporting
     return string
   end
 
+
+  # hard code fuel types (for E+ 9.4 shouldn't have it twice, should eventually come form OS)
+  def self.hard_coded_fuel_types(extended = false)
+
+
+  	# get short or extended list
+
+    fuel_types = []
+    fuel_types << 'Electricity'
+    fuel_types << 'Natural Gas'
+    #fuel_types << 'Diesel' # triggers Unknown OpenStudio Enum Value 'DIESEL'
+    #fuel_types << 'Coal'
+    #fuel_types << 'Fuel Oil No 1'
+    #fuel_types << 'Fuel Oil No 2'
+    #fuel_types << 'Propane'
+    #fuel_types << 'Other Fuel 1'
+    #fuel_types << 'Other Fuel 2'
+    fuel_types << 'District Cooling'
+    fuel_types << 'District Heating'
+
+    return fuel_types
+  end
+
   # create template section
   def self.template_section(model, sqlFile, runner, name_only = false, is_ip_units = true)
     # array to hold tables
@@ -571,21 +594,6 @@ module OsLib_Reporting
 
     end_use_colors = ['#EF1C21', '#0071BD', '#F7DF10', '#DEC310', '#4A4D4A', '#B5B2B5', '#FF79AD', '#632C94', '#F75921', '#293094', '#CE5921', '#FFB239', '#29AAE7', '#8CC739']
 
-    # with EnergyPlus 9.4 adding list of fuel (Additional Fuel broken out to many)
-    # not including Water from table
-    fuel_types = []
-    fuel_types << 'Electricity'
-    fuel_types << 'Natural Gas'
-    fuel_types << 'Diesel'
-    fuel_types << 'Coal'
-    fuel_types << 'Fuel Oil No 1'
-    fuel_types << 'Fuel Oil No 2'
-    fuel_types << 'Propane'
-    fuel_types << 'Other Fuel 1'
-    fuel_types << 'Other Fuel 2'
-    fuel_types << 'District Cooling'
-    fuel_types << 'District Heating'
-
     # loop through fuels for consumption tables
     counter = 0
     OpenStudio::EndUseCategoryType.getValues.each do |end_use|
@@ -594,7 +602,7 @@ module OsLib_Reporting
 
       # loop through fuels
       total_end_use = 0.0
-      fuel_types.each do |fuel_type|
+      hard_coded_fuel_types.each do |fuel_type|
       	query_fuel = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= '#{fuel_type}'"
      	results_fuel = sqlFile.execAndReturnFirstDouble(query_fuel).get
      	total_end_use += results_fuel
@@ -734,23 +742,9 @@ module OsLib_Reporting
     # color << "#332288" # Water (not used here but is in cash flow chart)
     # color << "#117733" # Capital and O&M (not used here but is in cash flow chart)
 
-    # added this earlier as well for E+ 9.4 shouldn't have it twice, should eventually come form OS
-    fuel_types = []
-    fuel_types << 'Electricity'
-    fuel_types << 'Natural Gas'
-    fuel_types << 'Diesel'
-    fuel_types << 'Coal'
-    fuel_types << 'Fuel Oil No 1'
-    fuel_types << 'Fuel Oil No 2'
-    fuel_types << 'Propane'
-    fuel_types << 'Other Fuel 1'
-    fuel_types << 'Other Fuel 2'
-    fuel_types << 'District Cooling'
-    fuel_types << 'District Heating'
-
     # loop through fuels for consumption tables
     counter = 0
-    fuel_types.each do |fuel_type| #OpenStudio::EndUseFuelType.getValues
+    hard_coded_fuel_types.each do |fuel_type| #OpenStudio::EndUseFuelType.getValues
       # get fuel type and units
       #fuel_type = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
       next if fuel_type == 'Water'
@@ -2559,7 +2553,7 @@ module OsLib_Reporting
     extended_fuel_type_names = standard_fuel_types + additional_fuel_types
 
     # loop through fuels for consumption tables
-    extended_fuel_type_names.each do |fuel_type|
+    hard_coded_fuel_types.each do |fuel_type|
       # get fuel type and units
       if fuel_type == 'Electricity'
         units = '"kWh"'
@@ -3690,9 +3684,11 @@ module OsLib_Reporting
     end
 
     # loop through fuel types
-    OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
+    hard_coded_fuel_types.each do |fuel_type|
       OpenStudio::MonthOfYear.getValues.each do |month|
         if month >= 1 && month <= 12
+
+          if fuel_type == 'Natural Gas' then fuel_type = 'Gas' end
 
           # get cooling value for this fuel and month
           if !sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
