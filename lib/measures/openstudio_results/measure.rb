@@ -112,7 +112,7 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     result << 'schedules_overview_section'
     # TODO: - clean up code to gather schedule profiles so I don't have to grab every 15 minutes
 
-    # TODO: - add in section to report warnings for this and other measures
+    # add in section to report warnings for this and other measures
     result << 'measure_warning_section'
 
     # see the method below in os_lib_reporting.rb to see a simple example of code to make a section of tables
@@ -182,10 +182,12 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
       category_str = OpenStudio::EndUseCategoryType.new(category_type).valueDescription
       category_strs << category_str
     end
-    additional_fuel_types = ['FuelOil#1', 'FuelOil#2', 'PropaneGas', 'Coal', 'Diesel', 'Gasoline', 'OtherFuel1', 'OtherFuel2']
+
+    additional_fuel_types = ['FuelOilNo1', 'FuelOilNo2', 'PropaneGas', 'Coal', 'Diesel', 'Gasoline', 'OtherFuel1', 'OtherFuel2']
+    #additional_fuel_types = OsLib_Reporting.fuel_type_names # getting all fuels instead of additional until fixed in OS
     additional_fuel_types.each do |additional_fuel_type|
       monthly_array = ['Output:Table:Monthly']
-      monthly_array << 'Building Energy Performance - FuelOil#1'
+      monthly_array << "Building Energy Performance - #{additional_fuel_type}"
       monthly_array << '2'
       category_strs.each do |category_string|
         monthly_array << "#{category_string}:#{additional_fuel_type}"
@@ -217,7 +219,10 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('annual_utility_cost') # $
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('total_lifecycle_cost') # $
 
-    # TODO: - add warning counts, but only if they will always be made.
+    # add warning counts
+    result << OpenStudio::Measure::OSOutput.makeDoubleOutput('number_of_measures_with_warnings')
+    result << OpenStudio::Measure::OSOutput.makeDoubleOutput('number_warnings')
+
 
     return result
   end
@@ -307,16 +312,16 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
         rescue StandardError => e
           display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
           if display_name.nil? then display_name == method_name end
-          runner.registerWarning("#{display_name} section failed and was skipped because: #{e}. Detail on error follows.")
-          runner.registerWarning(e.backtrace.join("\n").to_s)
+          runner.registerWarning("#{display_name} section failed and was skipped because: #{e}. Detail on error follows: #{e.backtrace.join("\n").to_s}")
 
           # add in section heading with message if section fails
           section = {}
           section[:title] = display_name.to_s
           section[:tables] = []
           section[:messages] = []
-          section[:messages] << "#{display_name} section failed and was skipped because: #{e}. Detail on error follows."
-          section[:messages] << [e.backtrace.join("\n").to_s]
+          section[:messages] << "#{display_name} section failed and was skipped because: #{e}. Detail on error is in Measure Warnings section, if enabled at the bottom of this report."
+          # backtrace is now in Measure Warning section and doesn't need to be in line with the report section.
+          #section[:messages] << [e.backtrace.join("\n").to_s]
           @sections << section
         end
       end
