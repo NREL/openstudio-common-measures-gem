@@ -3464,24 +3464,24 @@ module OsLib_Reporting
         elec_equip_array.each do |elec_equip|
           if elec_equip.electricEquipmentDefinition.designLevelCalculationMethod == 'Watts/Area'
             if is_ip_units
-              ee_power = elec_equip.powerPerFloorArea.to_f * 0.092903 # IP
+              ee_power = elec_equip.electricEquipmentDefinition.wattsperSpaceFloorArea.to_f * 0.092903 # IP
               ee_power = "#{ee_power.round(2)} (W/ft^2)"
               ee_total_power = ((elec_equip.powerPerFloorArea.to_f * space.floorArea))
             else
-              ee_power = elec_equip.powerPerFloorArea.to_f
+              ee_power = elec_equip.electricEquipmentDefinition.wattsperSpaceFloorArea.to_f
               ee_power = "#{ee_power.round(2)} (W/m^2)"
               ee_total_power = ((elec_equip.powerPerFloorArea.to_f * space.floorArea))
             end
           end
 
           if elec_equip.electricEquipmentDefinition.designLevelCalculationMethod == 'Watts/Person'
-            ee_power = "#{elec_equip.powerPerPerson.to_f.round(2)} (W/person)"
+            ee_power = "#{elec_equip.electricEquipmentDefinition.wattsperPerson .to_f.round(2)} (W/person)"
             ee_total_power = (elec_equip.powerPerPerson.to_f * space.numberOfPeople)
           end
 
           if elec_equip.electricEquipmentDefinition.designLevelCalculationMethod == 'EquipmentLevel'
-            ee_power = "#{elec_equip.designLevel.to_f.round(0)} (W)"
-            ee_total_power = elec_equip.designLevel.to_f.round(0) * elec_equip.multiplier
+            ee_power = "#{elec_equip.electricEquipmentDefinition.designLevel.to_f.round(0)} (W)"
+            ee_total_power = elec_equip.designLevel.to_f.round(0)
           end
 
           table[:data] << [elec_equip.name, elec_equip.electricEquipmentDefinition.name, ee_power, inheritance_level, elec_equip.multiplier.round(1), ee_total_power.round(0)]
