@@ -115,6 +115,7 @@ class RadiantSlabWithDoasTest < Minitest::Test
     # save model
     model.save(model_output_path(test_name), true)
 
+    errs = []
     if run_model && (result.value.valueName == 'Success')
       puts "\nRUNNING ANNUAL SIMULATION..."
 
@@ -134,7 +135,6 @@ class RadiantSlabWithDoasTest < Minitest::Test
       model.setSqlFile(sql)
 
       # test for unmet hours
-      errs = []
       unmet_heating_hrs = std.model_annual_occupied_unmet_heating_hours(model)
       unmet_cooling_hrs = std.model_annual_occupied_unmet_cooling_hours(model)
       unmet_hrs = std.model_annual_occupied_unmet_hours(model)
