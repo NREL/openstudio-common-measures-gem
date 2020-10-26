@@ -92,17 +92,16 @@ module OsLib_QAQC
       OpenStudio::EndUseCategoryType.getValues.each do |end_use|
         # get end uses
         end_use = OpenStudio::EndUseCategoryType.new(end_use).valueDescription
-        query_elec = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'Electricity'"
-        query_gas = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'Natural Gas'"
-        query_add = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'Additional Fuel'"
-        query_dc = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'District Cooling'"
-        query_dh = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'District Heating'"
-        results_elec = @sql.execAndReturnFirstDouble(query_elec).get
-        results_gas = @sql.execAndReturnFirstDouble(query_gas).get
-        results_add = @sql.execAndReturnFirstDouble(query_add).get
-        results_dc = @sql.execAndReturnFirstDouble(query_dc).get
-        results_dh = @sql.execAndReturnFirstDouble(query_dh).get
-        total_end_use = results_elec + results_gas + results_add + results_dc + results_dh
+
+        total_end_use = 0
+        OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
+          # convert integer to string
+          fuel_name = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
+          next if fuel_name == "Water"
+          query_fuel = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= '#{fuel_name}'"
+          results_fuel = @sql.execAndReturnFirstDouble(query_fuel).get
+          total_end_use += results_fuel
+        end
 
         # populate hash for actual end use normalized by area
         actual_eui_by_end_use[end_use] = total_end_use / energy_plus_area

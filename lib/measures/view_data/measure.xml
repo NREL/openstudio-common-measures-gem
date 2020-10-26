@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>view_data</name>
   <uid>18cf0de7-48b8-48dc-ab68-0dd29f0b8bd0</uid>
-  <version_id>eaf327cf-9cdd-4f32-9051-fc443406391c</version_id>
-  <version_modified>20200623T192452Z</version_modified>
+  <version_id>fbdd9c08-3a27-42c9-b9f9-f3bdbfd5b314</version_id>
+  <version_modified>20200929T002731Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ViewData</class_name>
   <display_name>ViewData</display_name>
@@ -103,12 +103,6 @@
       <checksum>BDF687C1</checksum>
     </file>
     <file>
-      <filename>ExampleModel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>1B6496DE</checksum>
-    </file>
-    <file>
       <filename>report.html.in</filename>
       <filetype>in</filetype>
       <usage_type>resource</usage_type>
@@ -154,6 +148,12 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>70F4784D</checksum>
+    </file>
+    <file>
+      <filename>ExampleModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FFFE0281</checksum>
     </file>
   </files>
 </measure>

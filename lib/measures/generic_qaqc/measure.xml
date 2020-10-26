@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>d5440237-cf84-4f6b-9369-611c253371a3</version_id>
-  <version_modified>20200623T192456Z</version_modified>
+  <version_id>0adab61f-9365-42cd-b6ab-ce548fafff91</version_id>
+  <version_modified>20201001T054735Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -528,12 +528,6 @@
       <checksum>A46F04B4</checksum>
     </file>
     <file>
-      <filename>check_eui_by_end_use.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>D81E33DD</checksum>
-    </file>
-    <file>
       <filename>check_mech_sys_part_load_eff.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -624,12 +618,6 @@
       <checksum>E3D75A8F</checksum>
     </file>
     <file>
-      <filename>check_envelope_conductance.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>4F5626E2</checksum>
-    </file>
-    <file>
       <filename>check_weather_files.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -681,6 +669,18 @@
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
       <checksum>AD451814</checksum>
+    </file>
+    <file>
+      <filename>check_eui_by_end_use.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>504C5330</checksum>
+    </file>
+    <file>
+      <filename>check_envelope_conductance.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>7814F60A</checksum>
     </file>
   </files>
 </measure>
