@@ -81,7 +81,7 @@
       <checksum>2E192C55</checksum>
     </file>
     <file>
-      <filename>test.rb</filename>
+      <filename>gem_env_report_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>57B19EEF</checksum>
