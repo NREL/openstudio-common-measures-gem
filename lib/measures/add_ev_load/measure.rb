@@ -46,12 +46,12 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
 
   # human readable description
   def description
-    return "This measure adds a load associated with charging of electric vehicles (EVs) to a building in URBANopt. EV load profiles were generated in EVI-Pro for specific building types. This measure allows running of customized load profiles for buildings in the Pena Station Next project, and also for generating typical charging load profiles based on the location type (home, public, or office)."
+    return 'This measure adds a load associated with charging of electric vehicles (EVs) to a building in URBANopt. EV load profiles were generated in EVI-Pro for specific building types. This measure allows running of customized load profiles for buildings in the Pena Station Next project, and also for generating typical charging load profiles based on the location type (home, public, or office).'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return "This measure adds an EV charging load to a building model. Load profiles for EV charging were generated in EVI-Pro. Different options are available for charging control type and charging behavior."
+    return 'This measure adds an EV charging load to a building model. Load profiles for EV charging were generated in EVI-Pro. Different options are available for charging control type and charging behavior.'
   end
 
   # Note: If a DC Fast Charger at the PSN site is the intended option, the charging behavior and control choices are ignored. Thus far, there is one load profile for a DC fast charger; not different ones for different bldgs.
@@ -128,11 +128,11 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       charge_key = 1
       runner.registerInfo("charge key = #{charge_key}")
     elsif charge_behavior == 'Free Workplace Charging at Project Site'
-       charge_key = 2
-       runner.registerInfo("charge key = #{charge_key}")
+      charge_key = 2
+      runner.registerInfo("charge key = #{charge_key}")
     else
-       charge_key = 3
-       runner.registerInfo("charge key = #{charge_key}")
+      charge_key = 3
+      runner.registerInfo("charge key = #{charge_key}")
     end
 
     # Set key based on user-selected charging flexibility.
@@ -213,7 +213,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       avg_load_wkday = []
       wkday_load_sel = wkday_load_sel.transpose
       for i in 0..wkday_load[0].length - 1
-        avg_load_wkday[i] = (wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) * ev_percent / assumed_percent  #Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
+        avg_load_wkday[i] = (wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) * ev_percent / assumed_percent # Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
       end
 
       wkday_max_load = avg_load_wkday.max
@@ -223,17 +223,17 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       avg_load_sat = []
       sat_load_sel = sat_load_sel.transpose
       for i in 0..sat_load[0].length - 1
-        avg_load_sat[i] = (sat_load_sel[i].reduce(0, :+) / sat_load_sel[i].length) * ev_percent / assumed_percent #Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
+        avg_load_sat[i] = (sat_load_sel[i].reduce(0, :+) / sat_load_sel[i].length) * ev_percent / assumed_percent # Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
       end
 
-       sat_max_load = avg_load_sat.max
+      sat_max_load = avg_load_sat.max
 
-    # Populate the average Sunday load.
+      # Populate the average Sunday load.
       sun_load_sel = sun_load.values_at(*indices)
       avg_load_sun = []
       sun_load_sel = sun_load_sel.transpose
       for i in 0..sun_load[0].length - 1
-        avg_load_sun[i] = (sun_load_sel[i].reduce(0, :+) / sun_load_sel[i].length) * ev_percent / assumed_percent  #Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
+        avg_load_sun[i] = (sun_load_sel[i].reduce(0, :+) / sun_load_sel[i].length) * ev_percent / assumed_percent # Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
       end
 
       sun_max_load = avg_load_sun.max
@@ -243,9 +243,9 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
 
       # Normalize each load profile based on the overall maximum load.
 
-      avg_load_wkday_norm = avg_load_wkday.map { |value|value / max_load}
-      avg_load_sat_norm = avg_load_sat.map { |value|value / max_load}
-      avg_load_sun_norm = avg_load_sun.map { |value|value / max_load}
+      avg_load_wkday_norm = avg_load_wkday.map { |value| value / max_load }
+      avg_load_sat_norm = avg_load_sat.map { |value| value / max_load }
+      avg_load_sun_norm = avg_load_sun.map { |value| value / max_load }
 
     end
 
@@ -281,7 +281,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
         ev_sch.defaultDaySchedule.addValue(time, value)
       end
 
-    # Saturday
+      # Saturday
       ev_sch_sat_rule = OpenStudio::Model::ScheduleRule.new(ev_sch)
       ev_sch_sat_rule.setName('ev_sch_sat_rule')
       ev_sch_sat_rule.setApplySaturday(true)
@@ -293,7 +293,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
         ev_sch_sat.addValue(time, value)
       end
 
-    # Sunday
+      # Sunday
       ev_sch_sun_rule = OpenStudio::Model::ScheduleRule.new(ev_sch)
       ev_sch_sun_rule.setName('ev_sch_sun_rule')
       ev_sch_sun_rule.setApplySunday(true)
@@ -318,7 +318,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       ev_charger = OpenStudio::Model::ExteriorFuelEquipment.new(ev_charger_def, ev_sch)
       ev_charger.setName("#{ev_charger_level} w EV Charger")
       ev_charger.setFuelType('Electricity')
-      ev_charger.setEndUseSubcategory("Electric Vehicles")
+      ev_charger.setEndUseSubcategory('Electric Vehicles')
       runner.registerInfo("multiplier (kW) = #{max_load}}")
     end
     return true

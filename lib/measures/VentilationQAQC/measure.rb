@@ -200,7 +200,7 @@ class VentilationQAQC < OpenStudio::Measure::ReportingMeasure
       end
 
       times = getTimesForSeries('Zone Infiltration Air Change Rate', zone_name.upcase, annEnvPd, 'Hourly', runner)
-      if ! times.nil?
+      if !times.nil?
         js_date_times = times.map { |t| to_JSTime(t) }
 
         # Create an array of arrays [timestamp, zone_mechanical_ventilation_vals, zone_infiltration_vals]
