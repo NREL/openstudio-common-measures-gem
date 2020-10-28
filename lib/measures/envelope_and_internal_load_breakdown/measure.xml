@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>envelope_and_internal_load_breakdown</name>
   <uid>8f0e1fbb-8bc6-46e5-b6e4-db59177e2c02</uid>
-  <version_id>dc19cbc4-8b3c-4676-9c67-79fc751ba6c0</version_id>
-  <version_modified>20200509T041912Z</version_modified>
+  <version_id>e34803df-fdf0-4227-86a6-f2d2c9e84d00</version_id>
+  <version_modified>20200623T192451Z</version_modified>
   <xml_checksum>69BA4D91</xml_checksum>
   <class_name>EnvelopeAndInternalLoadBreakdown</class_name>
   <display_name>Envelope and Internal Load Breakdown</display_name>
@@ -116,19 +116,7 @@
       <filename>EnvelopeAndInternalLoadBreakdown_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>A8844C42</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>0B68E96D</checksum>
-    </file>
-    <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>BDF70EAA</checksum>
+      <checksum>FFA0DD94</checksum>
     </file>
     <file>
       <version>
@@ -139,8 +127,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>1D8E4DB0</checksum>
+      <checksum>8E7B695F</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>F66552F1</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>708516C5</checksum>
     </file>
   </files>
 </measure>
-<error>wrong number of arguments (given 1, expected 0)</error>

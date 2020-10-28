@@ -56,7 +56,7 @@ class ChangeBuildingLocation_Test < Minitest::Test
     measure = ChangeBuildingLocation.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
+    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/model_test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
@@ -132,14 +132,14 @@ class ChangeBuildingLocation_Test < Minitest::Test
   def test_weather_file
     args = {}
     args['weather_file_name'] = 'USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw' # seems to search directory of OSW even with empty file_paths
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test.osm', nil, nil, nil)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'model_test.osm', nil, nil, nil)
   end
 
   def test_weather_file_WA_Renton
     args = {}
     args['weather_file_name'] = 'USA_WA_Renton.Muni.AP.727934_TMY3.epw' # seems to search directory of OSW even with empty file_paths
     args['set_year'] = 2012
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test.osm', nil, 2, nil, 0)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'model_test.osm', nil, 2, nil, 0)
   end
 
   def test_weather_file_WA_Renton_test_as_deer
@@ -147,31 +147,31 @@ class ChangeBuildingLocation_Test < Minitest::Test
     args['weather_file_name'] = 'USA_WA_Renton.Muni.AP.727934_TMY3.epw' # seems to search directory of OSW even with empty file_paths
     args['climate_zone'] = 'CEC T24-CEC5'
     args['use_upstream_args'] = false
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test.osm', nil, 2, nil, 0)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'model_test.osm', nil, 2, nil, 0)
   end
 
   def test_multiyear_weather_file
     args = {}
     args['weather_file_name'] = 'multiyear.epw' # seems to search directory of OSW even with empty file_paths
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test.osm', nil, nil, nil)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'model_test.osm', nil, nil, nil)
   end
 
   def test_weather_file_bad
     args = {}
     args['weather_file_name'] = 'BadFileName.epw' # seems to search directory of OSW even with empty file_paths
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test.osm', 'Fail', nil, nil)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'model_test.osm', 'Fail', nil, nil)
   end
 
   def test_weather_file_monthly_design_days
     args = {}
     args['weather_file_name'] = 'CA_LOS-ANGELES-IAP_722950S_12.epw' # seems to search directory of OSW even with empty file_paths
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test.osm', nil, nil, nil, 10)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'model_test.osm', nil, nil, nil, 10)
   end
 
   def test_swap
     args = {}
     args['weather_file_name'] = 'USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw'
     args['epw_gsub'] = 'TMY3,AMY'
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'test_with_epw.osm', nil, nil)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'model_test_with_epw.osm', nil, nil)
   end
 end

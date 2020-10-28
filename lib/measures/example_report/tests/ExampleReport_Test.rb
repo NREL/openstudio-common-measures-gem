@@ -172,7 +172,7 @@ class ExampleReport_Test < Minitest::Test
 
   # assert that no section errors were thrown
   def section_errors(runner)
-    test_string = 'Error prevented QAQC check from running'
+    test_string = 'section returned false and was skipped'
 
     if is_openstudio_2?
       section_errors = []

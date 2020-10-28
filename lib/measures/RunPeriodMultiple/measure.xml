@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>run_period_multiple</name>
   <uid>100a5eba-0442-42cb-bdf1-9cf75e102f71</uid>
-  <version_id>fe138460-d723-4f30-8244-4bed107025d6</version_id>
-  <version_modified>20200229T024319Z</version_modified>
+  <version_id>8a62a70b-5f67-4ac1-848e-f70f003648b9</version_id>
+  <version_modified>20200605T175907Z</version_modified>
   <xml_checksum>87C4F8A7</xml_checksum>
   <class_name>RunPeriodMultiple</class_name>
   <display_name>Set Multiple Run Period Object</display_name>
@@ -51,8 +52,8 @@
       <default_value>8</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -82,6 +83,12 @@
       <checksum>1CF1E24C</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.1.0</identifier>
@@ -90,13 +97,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D2CF15FC</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>BC156A7E</checksum>
     </file>
   </files>
 </measure>

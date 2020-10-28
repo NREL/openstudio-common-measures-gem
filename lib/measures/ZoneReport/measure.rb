@@ -46,7 +46,7 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
   end
 
   # define the arguments that the user will input
-  def arguments
+  def arguments(model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
     return args
   end
