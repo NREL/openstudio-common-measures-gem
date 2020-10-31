@@ -1,7 +1,7 @@
 
 OS:Version,
-  {24733ba5-ec19-4ccc-a19c-e30efa74a9f3}, !- Handle
-  2.9.1;                                  !- Version Identifier
+  {5b83f93e-d90a-4d86-ae30-8c33687f2d7e}, !- Handle
+  3.0.0;                                  !- Version Identifier
 
 OS:SimulationControl,
   {41f65c43-2dc9-4d82-a6e4-a562bae08803}, !- Handle
@@ -37,8 +37,16 @@ OS:ConvergenceLimits,
 
 OS:ShadowCalculation,
   {2c59bec7-e7be-489b-8d3d-042e6bf6bda3}, !- Handle
-  7,                                      !- Calculation Frequency
-  15000;                                  !- Maximum Figures in Shadow Overlap Calculations
+  PolygonClipping,                        !- Shading Calculation Method
+  ,                                       !- Shading Calculation Update Frequency Method
+  7,                                      !- Shading Calculation Update Frequency
+  15000,                                  !- Maximum Figures in Shadow Overlap Calculations
+  ,                                       !- Polygon Clipping Algorithm
+  512,                                    !- Pixel Counting Resolution
+  ,                                       !- Sky Diffuse Modeling Algorithm
+  No,                                     !- Output External Shading Calculation Results
+  No,                                     !- Disable Self-Shading Within Shading Zone Groups
+  No;                                     !- Disable Self-Shading From Shading Zone Groups to Other Zones
 
 OS:Site,
   {5c1f9d16-87a5-488e-aa99-a6dd668a2146}, !- Handle
@@ -1774,9 +1782,9 @@ OS:SpaceType,
 OS:Lights:Definition,
   {30077710-ec09-456a-b5ce-93ac9d61937b}, !- Handle
   Lights Definition 1,                    !- Name
-  Watts/Area,                             !- Design Level Calculation Method
-  ,                                       !- Lighting Level {W}
-  10,                                     !- Watts per Space Floor Area {W/m2}
+  LightingLevel,                          !- Design Level Calculation Method
+  60,                                     !- Lighting Level {W}
+  ,                                       !- Watts per Space Floor Area {W/m2}
   ;                                       !- Watts per Person {W/person}
 
 OS:Lights,
@@ -1895,8 +1903,6 @@ OS:Sizing:Zone,
   ,                                       !- Heating Maximum Air Flow per Zone Floor Area {m3/s-m2}
   ,                                       !- Heating Maximum Air Flow {m3/s}
   ,                                       !- Heating Maximum Air Flow Fraction
-  ,                                       !- Design Zone Air Distribution Effectiveness in Cooling Mode
-  ,                                       !- Design Zone Air Distribution Effectiveness in Heating Mode
   No,                                     !- Account for Dedicated Outdoor Air System
   NeutralSupplyAir,                       !- Dedicated Outdoor Air System Control Strategy
   Autosize,                               !- Dedicated Outdoor Air Low Setpoint Temperature for Design {C}
@@ -2502,7 +2508,9 @@ OS:ElectricEquipment,
   {e7518ed4-26d4-4f92-800d-81e09944a6d0}, !- Handle
   Printer,                                !- Name
   {37445666-38da-4d13-ab38-3c3656fc1c37}, !- Electric Equipment Definition Name
-  {3a7a81ff-50b5-4417-8f8b-0147fba16d67}; !- Space or SpaceType Name
+  {3a7a81ff-50b5-4417-8f8b-0147fba16d67}, !- Space or SpaceType Name
+  ,                                       !- Schedule Name
+  5;                                      !- Multiplier
 
 OS:ShadingSurfaceGroup,
   {cf35fbd4-5b94-4566-8ff5-0306382ac579}, !- Handle
@@ -3333,8 +3341,6 @@ OS:Sizing:Zone,
   ,                                       !- Heating Maximum Air Flow per Zone Floor Area {m3/s-m2}
   ,                                       !- Heating Maximum Air Flow {m3/s}
   ,                                       !- Heating Maximum Air Flow Fraction
-  ,                                       !- Design Zone Air Distribution Effectiveness in Cooling Mode
-  ,                                       !- Design Zone Air Distribution Effectiveness in Heating Mode
   No,                                     !- Account for Dedicated Outdoor Air System
   NeutralSupplyAir,                       !- Dedicated Outdoor Air System Control Strategy
   Autosize,                               !- Dedicated Outdoor Air Low Setpoint Temperature for Design {C}
@@ -3464,44 +3470,42 @@ OS:Schedule:Day,
   0;                                      ! Value Until Time 1
 
 OS:Schedule:Rule,
-  {528c3ab2-5268-4dfc-b467-f133b2b4de3f}, ! Handle
-  Medium Office Bldg Occ Rule 1,          ! Name
-  {0cace12b-9319-47cb-9b90-3e9871cbbb47}, ! Schedule Ruleset Name
-  0,                                      ! Rule Order
-  {ad9f0faf-2ed8-44b5-94f0-346336447619}, ! Day Schedule Name
-  Yes,                                    ! Apply Sunday
-  No,                                     ! Apply Monday
-  No,                                     ! Apply Tuesday
-  No,                                     ! Apply Wednesday
-  No,                                     ! Apply Thursday
-  No,                                     ! Apply Friday
-  No,                                     ! Apply Saturday
-  ,                                       ! Apply Holiday
-  DateRange,                              ! Date Specification Type
-  1,                                      ! Start Month
-  1,                                      ! Start Day
-  12,                                     ! End Month
-  31;                                     ! End Day
+  {528c3ab2-5268-4dfc-b467-f133b2b4de3f}, !- Handle
+  Medium Office Bldg Occ Rule 1,          !- Name
+  {0cace12b-9319-47cb-9b90-3e9871cbbb47}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {ad9f0faf-2ed8-44b5-94f0-346336447619}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  No,                                     !- Apply Monday
+  No,                                     !- Apply Tuesday
+  No,                                     !- Apply Wednesday
+  No,                                     !- Apply Thursday
+  No,                                     !- Apply Friday
+  No,                                     !- Apply Saturday
+  DateRange,                              !- Date Specification Type
+  1,                                      !- Start Month
+  1,                                      !- Start Day
+  12,                                     !- End Month
+  31;                                     !- End Day
 
 OS:Schedule:Rule,
-  {de1d0e7a-3580-484f-bfc3-94570fa7e190}, ! Handle
-  Medium Office Bldg Occ Rule 2,          ! Name
-  {0cace12b-9319-47cb-9b90-3e9871cbbb47}, ! Schedule Ruleset Name
-  1,                                      ! Rule Order
-  {0a096fed-b4be-4f90-9a92-5b6722814df5}, ! Day Schedule Name
-  No,                                     ! Apply Sunday
-  No,                                     ! Apply Monday
-  No,                                     ! Apply Tuesday
-  No,                                     ! Apply Wednesday
-  No,                                     ! Apply Thursday
-  No,                                     ! Apply Friday
-  Yes,                                    ! Apply Saturday
-  ,                                       ! Apply Holiday
-  DateRange,                              ! Date Specification Type
-  1,                                      ! Start Month
-  1,                                      ! Start Day
-  12,                                     ! End Month
-  31;                                     ! End Day
+  {de1d0e7a-3580-484f-bfc3-94570fa7e190}, !- Handle
+  Medium Office Bldg Occ Rule 2,          !- Name
+  {0cace12b-9319-47cb-9b90-3e9871cbbb47}, !- Schedule Ruleset Name
+  1,                                      !- Rule Order
+  {0a096fed-b4be-4f90-9a92-5b6722814df5}, !- Day Schedule Name
+  No,                                     !- Apply Sunday
+  No,                                     !- Apply Monday
+  No,                                     !- Apply Tuesday
+  No,                                     !- Apply Wednesday
+  No,                                     !- Apply Thursday
+  No,                                     !- Apply Friday
+  Yes,                                    !- Apply Saturday
+  DateRange,                              !- Date Specification Type
+  1,                                      !- Start Month
+  1,                                      !- Start Day
+  12,                                     !- End Month
+  31;                                     !- End Day
 
 OS:Schedule:Day,
   {ad9f0faf-2ed8-44b5-94f0-346336447619}, ! Handle
@@ -3628,44 +3632,42 @@ OS:Schedule:Day,
   0;                                      ! Value Until Time 1
 
 OS:Schedule:Rule,
-  {4b4d39ca-31a3-4ada-9e71-5462c67a946c}, ! Handle
-  Medium Office Bldg Light Rule 1,        ! Name
-  {426b3362-db38-4273-8ae7-031b8ef73747}, ! Schedule Ruleset Name
-  0,                                      ! Rule Order
-  {b7ed5a9b-6d2a-4c14-95bb-b19db17c6ee5}, ! Day Schedule Name
-  Yes,                                    ! Apply Sunday
-  No,                                     ! Apply Monday
-  No,                                     ! Apply Tuesday
-  No,                                     ! Apply Wednesday
-  No,                                     ! Apply Thursday
-  No,                                     ! Apply Friday
-  No,                                     ! Apply Saturday
-  ,                                       ! Apply Holiday
-  DateRange,                              ! Date Specification Type
-  1,                                      ! Start Month
-  1,                                      ! Start Day
-  12,                                     ! End Month
-  31;                                     ! End Day
+  {4b4d39ca-31a3-4ada-9e71-5462c67a946c}, !- Handle
+  Medium Office Bldg Light Rule 1,        !- Name
+  {426b3362-db38-4273-8ae7-031b8ef73747}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {b7ed5a9b-6d2a-4c14-95bb-b19db17c6ee5}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  No,                                     !- Apply Monday
+  No,                                     !- Apply Tuesday
+  No,                                     !- Apply Wednesday
+  No,                                     !- Apply Thursday
+  No,                                     !- Apply Friday
+  No,                                     !- Apply Saturday
+  DateRange,                              !- Date Specification Type
+  1,                                      !- Start Month
+  1,                                      !- Start Day
+  12,                                     !- End Month
+  31;                                     !- End Day
 
 OS:Schedule:Rule,
-  {2246bf22-72be-4ba1-ba23-3daa2178e8d2}, ! Handle
-  Medium Office Bldg Light Rule 2,        ! Name
-  {426b3362-db38-4273-8ae7-031b8ef73747}, ! Schedule Ruleset Name
-  1,                                      ! Rule Order
-  {826191b2-3f9b-4565-8573-e5dfd1c7aece}, ! Day Schedule Name
-  No,                                     ! Apply Sunday
-  No,                                     ! Apply Monday
-  No,                                     ! Apply Tuesday
-  No,                                     ! Apply Wednesday
-  No,                                     ! Apply Thursday
-  No,                                     ! Apply Friday
-  Yes,                                    ! Apply Saturday
-  ,                                       ! Apply Holiday
-  DateRange,                              ! Date Specification Type
-  1,                                      ! Start Month
-  1,                                      ! Start Day
-  12,                                     ! End Month
-  31;                                     ! End Day
+  {2246bf22-72be-4ba1-ba23-3daa2178e8d2}, !- Handle
+  Medium Office Bldg Light Rule 2,        !- Name
+  {426b3362-db38-4273-8ae7-031b8ef73747}, !- Schedule Ruleset Name
+  1,                                      !- Rule Order
+  {826191b2-3f9b-4565-8573-e5dfd1c7aece}, !- Day Schedule Name
+  No,                                     !- Apply Sunday
+  No,                                     !- Apply Monday
+  No,                                     !- Apply Tuesday
+  No,                                     !- Apply Wednesday
+  No,                                     !- Apply Thursday
+  No,                                     !- Apply Friday
+  Yes,                                    !- Apply Saturday
+  DateRange,                              !- Date Specification Type
+  1,                                      !- Start Month
+  1,                                      !- Start Day
+  12,                                     !- End Month
+  31;                                     !- End Day
 
 OS:Schedule:Day,
   {b7ed5a9b-6d2a-4c14-95bb-b19db17c6ee5}, ! Handle
@@ -3754,44 +3756,42 @@ OS:Schedule:Day,
   0;                                      ! Value Until Time 1
 
 OS:Schedule:Rule,
-  {6c5eee20-3020-454f-9aa0-942d1f7ba225}, ! Handle
-  Medium Office Bldg Equip Rule 1,        ! Name
-  {4c8296de-ae22-4370-a320-46a31c24cb88}, ! Schedule Ruleset Name
-  0,                                      ! Rule Order
-  {5a8e9f7a-75f6-4864-a180-8adc2cc88eb5}, ! Day Schedule Name
-  Yes,                                    ! Apply Sunday
-  No,                                     ! Apply Monday
-  No,                                     ! Apply Tuesday
-  No,                                     ! Apply Wednesday
-  No,                                     ! Apply Thursday
-  No,                                     ! Apply Friday
-  No,                                     ! Apply Saturday
-  ,                                       ! Apply Holiday
-  DateRange,                              ! Date Specification Type
-  1,                                      ! Start Month
-  1,                                      ! Start Day
-  12,                                     ! End Month
-  31;                                     ! End Day
+  {6c5eee20-3020-454f-9aa0-942d1f7ba225}, !- Handle
+  Medium Office Bldg Equip Rule 1,        !- Name
+  {4c8296de-ae22-4370-a320-46a31c24cb88}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {5a8e9f7a-75f6-4864-a180-8adc2cc88eb5}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  No,                                     !- Apply Monday
+  No,                                     !- Apply Tuesday
+  No,                                     !- Apply Wednesday
+  No,                                     !- Apply Thursday
+  No,                                     !- Apply Friday
+  No,                                     !- Apply Saturday
+  DateRange,                              !- Date Specification Type
+  1,                                      !- Start Month
+  1,                                      !- Start Day
+  12,                                     !- End Month
+  31;                                     !- End Day
 
 OS:Schedule:Rule,
-  {7bce668f-a439-4b0f-ab8c-3efd78729cc5}, ! Handle
-  Medium Office Bldg Equip Rule 2,        ! Name
-  {4c8296de-ae22-4370-a320-46a31c24cb88}, ! Schedule Ruleset Name
-  1,                                      ! Rule Order
-  {4e87e5ac-fb5a-4b6c-b6f2-bb3acce95625}, ! Day Schedule Name
-  No,                                     ! Apply Sunday
-  No,                                     ! Apply Monday
-  No,                                     ! Apply Tuesday
-  No,                                     ! Apply Wednesday
-  No,                                     ! Apply Thursday
-  No,                                     ! Apply Friday
-  Yes,                                    ! Apply Saturday
-  ,                                       ! Apply Holiday
-  DateRange,                              ! Date Specification Type
-  1,                                      ! Start Month
-  1,                                      ! Start Day
-  12,                                     ! End Month
-  31;                                     ! End Day
+  {7bce668f-a439-4b0f-ab8c-3efd78729cc5}, !- Handle
+  Medium Office Bldg Equip Rule 2,        !- Name
+  {4c8296de-ae22-4370-a320-46a31c24cb88}, !- Schedule Ruleset Name
+  1,                                      !- Rule Order
+  {4e87e5ac-fb5a-4b6c-b6f2-bb3acce95625}, !- Day Schedule Name
+  No,                                     !- Apply Sunday
+  No,                                     !- Apply Monday
+  No,                                     !- Apply Tuesday
+  No,                                     !- Apply Wednesday
+  No,                                     !- Apply Thursday
+  No,                                     !- Apply Friday
+  Yes,                                    !- Apply Saturday
+  DateRange,                              !- Date Specification Type
+  1,                                      !- Start Month
+  1,                                      !- Start Day
+  12,                                     !- End Month
+  31;                                     !- End Day
 
 OS:Schedule:Day,
   {5a8e9f7a-75f6-4864-a180-8adc2cc88eb5}, ! Handle
@@ -3877,44 +3877,42 @@ OS:Schedule:Day,
   1;                                      ! Value Until Time 3
 
 OS:Schedule:Rule,
-  {7e6a0899-a468-4e8f-9d31-3d8c04594a89}, ! Handle
-  Medium Office Infil Quarter On Rule 1,  ! Name
-  {071ab6e5-28fd-4e3b-9033-f885334eadb6}, ! Schedule Ruleset Name
-  0,                                      ! Rule Order
-  {1939acd7-934a-41ea-b309-9d970760e441}, ! Day Schedule Name
-  Yes,                                    ! Apply Sunday
-  No,                                     ! Apply Monday
-  No,                                     ! Apply Tuesday
-  No,                                     ! Apply Wednesday
-  No,                                     ! Apply Thursday
-  No,                                     ! Apply Friday
-  No,                                     ! Apply Saturday
-  ,                                       ! Apply Holiday
-  DateRange,                              ! Date Specification Type
-  1,                                      ! Start Month
-  1,                                      ! Start Day
-  12,                                     ! End Month
-  31;                                     ! End Day
+  {7e6a0899-a468-4e8f-9d31-3d8c04594a89}, !- Handle
+  Medium Office Infil Quarter On Rule 1,  !- Name
+  {071ab6e5-28fd-4e3b-9033-f885334eadb6}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {1939acd7-934a-41ea-b309-9d970760e441}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  No,                                     !- Apply Monday
+  No,                                     !- Apply Tuesday
+  No,                                     !- Apply Wednesday
+  No,                                     !- Apply Thursday
+  No,                                     !- Apply Friday
+  No,                                     !- Apply Saturday
+  DateRange,                              !- Date Specification Type
+  1,                                      !- Start Month
+  1,                                      !- Start Day
+  12,                                     !- End Month
+  31;                                     !- End Day
 
 OS:Schedule:Rule,
-  {e3aa49b9-2432-4e40-940b-e7968c8f6da6}, ! Handle
-  Medium Office Infil Quarter On Rule 2,  ! Name
-  {071ab6e5-28fd-4e3b-9033-f885334eadb6}, ! Schedule Ruleset Name
-  1,                                      ! Rule Order
-  {8758c0bc-452d-4720-8085-d8ac9952c929}, ! Day Schedule Name
-  No,                                     ! Apply Sunday
-  No,                                     ! Apply Monday
-  No,                                     ! Apply Tuesday
-  No,                                     ! Apply Wednesday
-  No,                                     ! Apply Thursday
-  No,                                     ! Apply Friday
-  Yes,                                    ! Apply Saturday
-  ,                                       ! Apply Holiday
-  DateRange,                              ! Date Specification Type
-  1,                                      ! Start Month
-  1,                                      ! Start Day
-  12,                                     ! End Month
-  31;                                     ! End Day
+  {e3aa49b9-2432-4e40-940b-e7968c8f6da6}, !- Handle
+  Medium Office Infil Quarter On Rule 2,  !- Name
+  {071ab6e5-28fd-4e3b-9033-f885334eadb6}, !- Schedule Ruleset Name
+  1,                                      !- Rule Order
+  {8758c0bc-452d-4720-8085-d8ac9952c929}, !- Day Schedule Name
+  No,                                     !- Apply Sunday
+  No,                                     !- Apply Monday
+  No,                                     !- Apply Tuesday
+  No,                                     !- Apply Wednesday
+  No,                                     !- Apply Thursday
+  No,                                     !- Apply Friday
+  Yes,                                    !- Apply Saturday
+  DateRange,                              !- Date Specification Type
+  1,                                      !- Start Month
+  1,                                      !- Start Day
+  12,                                     !- End Month
+  31;                                     !- End Day
 
 OS:Schedule:Day,
   {1939acd7-934a-41ea-b309-9d970760e441}, ! Handle
@@ -4058,8 +4056,6 @@ OS:Building,
 
 OS:ClimateZones,
   {a5ff52c9-3afa-4761-8e52-6da7a4886ff4}, !- Handle
-  ,                                       !- Active Institution
-  ,                                       !- Active Year
   ASHRAE,                                 !- Climate Zone Institution Name 1
   ANSI/ASHRAE Standard 169,               !- Climate Zone Document Name 1
   2006,                                   !- Climate Zone Document Year 1
@@ -4864,7 +4860,6 @@ OS:Boiler:HotWater,
   ,                                       !- Nominal Thermal Efficiency
   LeavingBoiler,                          !- Efficiency Curve Temperature Evaluation Variable
   {92774814-8871-4529-b774-d1d1cbe58dac}, !- Normalized Boiler Efficiency Curve Name
-  ,                                       !- Design Water Outlet Temperature {C}
   ,                                       !- Design Water Flow Rate {m3/s}
   ,                                       !- Minimum Part Load Ratio
   ,                                       !- Maximum Part Load Ratio
@@ -5446,7 +5441,7 @@ OS:Chiller:Electric:EIR,
   5.5,                                    !- Reference COP {W/W}
   ,                                       !- Reference Leaving Chilled Water Temperature {C}
   ,                                       !- Reference Entering Condenser Fluid Temperature {C}
-  ,                                       !- Reference Chilled Water Flow Rate {m3/s}
+  Autosize,                               !- Reference Chilled Water Flow Rate {m3/s}
   ,                                       !- Reference Condenser Fluid Flow Rate {m3/s}
   {6e777890-991c-4cee-8c8d-78da617b8c68}, !- Cooling Capacity Function of Temperature Curve Name
   {cf45654d-51c4-42ea-8073-09f11f9fcba5}, !- Electric Input to Cooling Output Ratio Function of Temperature Curve Name
@@ -5461,7 +5456,7 @@ OS:Chiller:Electric:EIR,
   {eef4ff16-0e20-4d75-aee0-114b11103776}, !- Condenser Outlet Node Name
   WaterCooled,                            !- Condenser Type
   ,                                       !- Condenser Fan Power Ratio {W/W}
-  ,                                       !- Compressor Motor Efficiency
+  ,                                       !- Fraction of Compressor Electric Consumption Rejected by Condenser
   ,                                       !- Leaving Chilled Water Lower Temperature Limit {C}
   ,                                       !- Chiller Flow Mode
   0,                                      !- Design Heat Recovery Water Flow Rate {m3/s}
@@ -5471,7 +5466,7 @@ OS:Chiller:Electric:EIR,
   0,                                      !- Basin Heater Capacity {W/K}
   10,                                     !- Basin Heater Setpoint Temperature {C}
   ,                                       !- Basin Heater Operating Schedule Name
-  ,                                       !- Condenser Heat Recovery Relative Capacity Fraction
+  1,                                      !- Condenser Heat Recovery Relative Capacity Fraction
   ,                                       !- Heat Recovery Inlet High Temperature Limit Schedule Name
   ,                                       !- Heat Recovery Leaving Temperature Setpoint Node Name
   General;                                !- End-Use Subcategory
@@ -6913,4 +6908,23 @@ OS:SetpointManager:SingleZone:Reheat,
   99,                                     ! Maximum Supply Air Temperature {C}
   {fc71e57a-151a-46b8-a678-25e6fe6f7b47}, ! Control Zone Name
   {d24ce95a-634b-4e5e-8753-e839b4b79dd0}; ! Setpoint Node or NodeList Name
+
+OS:Lights,
+  {a814cd57-c73f-4e49-a806-0881831c56cc}, !- Handle
+  Lights 2,                               !- Name
+  {30077710-ec09-456a-b5ce-93ac9d61937b}, !- Lights Definition Name
+  {3a7a81ff-50b5-4417-8f8b-0147fba16d67}, !- Space or SpaceType Name
+  ,                                       !- Schedule Name
+  1,                                      !- Fraction Replaceable
+  5,                                      !- Multiplier
+  General;                                !- End-Use Subcategory
+
+OS:ElectricEquipment,
+  {27bc5a59-0743-4c10-831e-9fc68b2c8e30}, !- Handle
+  Electric Equipment 2,                   !- Name
+  {6c0c5604-54db-4c44-8119-49b7f9b80012}, !- Electric Equipment Definition Name
+  {3a7a81ff-50b5-4417-8f8b-0147fba16d67}, !- Space or SpaceType Name
+  ,                                       !- Schedule Name
+  5,                                      !- Multiplier
+  General;                                !- End-Use Subcategory
 

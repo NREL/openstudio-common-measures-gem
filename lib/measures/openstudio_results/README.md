@@ -246,7 +246,11 @@ This argument does not effect HTML file, instead it makes data from individal ce
 
 
 
-electricity_ip, natural_gas_ip, additional_fuel_ip, district_heating_ip, district_cooling_ip, total_site_eui, eui, net_site_energy, annual_peak_electric_demand, unmet_hours_during_occupied_cooling, unmet_hours_during_occupied_heating, first_year_capital_cost, annual_utility_cost, total_lifecycle_cost
+
+
+
+
+electricity_ip, natural_gas_ip, additional_fuel_ip, district_heating_ip, district_cooling_ip, total_site_eui, eui, net_site_energy, annual_peak_electric_demand, unmet_hours_during_occupied_cooling, unmet_hours_during_occupied_heating, first_year_capital_cost, annual_utility_cost, total_lifecycle_cost, number_of_measures_with_warnings, number_warnings
 
 
 ## Contributors
