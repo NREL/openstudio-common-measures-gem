@@ -1,5 +1,9 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.3.0
+
+* Support for OpenStudio 3.1 (upgrade to extension gem 0.3.1)
+
 ## Version 0.2.0
 
 * Support for OpenStudio 3.0
