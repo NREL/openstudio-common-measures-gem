@@ -152,15 +152,14 @@ module OsLib_Reporting
 
   # hard code fuel types (for E+ 9.4 shouldn't have it twice, should eventually come form OS)
   def self.fuel_type_names(extended = false)
-
-  	# get short or extended list (not using now)
+    # get short or extended list (not using now)
     fuel_types = []
     OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
-    	# convert integer to string
-    	fuel_name = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
-    	next if fuel_name == "Water"
-    	fuel_types << fuel_name
-	end
+      # convert integer to string
+      fuel_name = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
+      next if fuel_name == 'Water'
+      fuel_types << fuel_name
+    end
     return fuel_types
   end
 
@@ -300,7 +299,7 @@ module OsLib_Reporting
     if is_ip_units
       target_units = 'kBtu'
     else
-      target_units = "kWh"
+      target_units = 'kWh'
     end
     value = OpenStudio.convert(sqlFile.totalSiteEnergy.get, source_units, target_units).get
     value_neat = "#{OpenStudio.toNeatString(value, 0, true)} #{target_units}"
@@ -313,7 +312,7 @@ module OsLib_Reporting
     if is_ip_units
       target_units = 'kBtu'
     else
-      target_units = "kWh"
+      target_units = 'kWh'
     end
     value = OpenStudio.convert(sqlFile.netSiteEnergy.get, source_units, target_units).get
     value_neat = "#{OpenStudio.toNeatString(value, 0, true)} #{target_units}"
@@ -363,7 +362,7 @@ module OsLib_Reporting
     if is_ip_units
       target_units = 'kBtu/ft^2'
     else
-      target_units = "kWh/m^2"
+      target_units = 'kWh/m^2'
     end
     if query_results.get > 0.0 # don't calculate EUI if building doesn't have any area
       value = OpenStudio.convert(eui, source_units, target_units).get
@@ -389,7 +388,7 @@ module OsLib_Reporting
       general_building_information[:data] << ['Net Site EUI', value_neat]
     end
 
-    # todo - add total EUI for conditioned floor area if not the same as total. Doesn't seem necessary to also calculate net conditioned EUI if it exists as a unique value.
+    # TODO: - add total EUI for conditioned floor area if not the same as total. Doesn't seem necessary to also calculate net conditioned EUI if it exists as a unique value.
 
     # conditioned building area
     query = 'SELECT Value FROM tabulardatawithstrings WHERE '
@@ -422,7 +421,7 @@ module OsLib_Reporting
       if is_ip_units
         target_units_e = 'kBtu/ft^2'
       else
-        target_units_e = "kWh/m^2"
+        target_units_e = 'kWh/m^2'
       end
       value_e = OpenStudio.convert(eui, source_units_e, target_units_e).get
       value_neat_e = "#{OpenStudio.toNeatString(value_e, 2, true)} #{target_units_e}"
@@ -499,7 +498,7 @@ module OsLib_Reporting
         floor_area_si += space.floorArea * space.multiplier
       end
 
-      #julien
+      # julien
       source_units = 'm^2'
       if is_ip_units
         target_units = 'ft^2'
@@ -544,7 +543,7 @@ module OsLib_Reporting
 
     if no_space_type_area_counter > 0
       display = 'No Space Type'
-      #julien
+      # julien
       source_units = 'm^2'
       if is_ip_units
         target_units = 'ft^2'
@@ -576,7 +575,7 @@ module OsLib_Reporting
     if is_ip_units
       target_units = 'kBtu'
     else
-      target_units = "kWh"
+      target_units = 'kWh'
     end
     output_data_end_use[:units] = ['', target_units]
     output_data_end_use[:data] = []
@@ -594,12 +593,12 @@ module OsLib_Reporting
       # loop through fuels
       total_end_use = 0.0
       fuel_type_names.each do |fuel_type|
-      	query_fuel = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= '#{fuel_type}'"
-     	results_fuel = sqlFile.execAndReturnFirstDouble(query_fuel).get
-     	total_end_use += results_fuel
-  	  end
+        query_fuel = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= '#{fuel_type}'"
+        results_fuel = sqlFile.execAndReturnFirstDouble(query_fuel).get
+        total_end_use += results_fuel
+      end
 
-  	  # convert value and populate table
+      # convert value and populate table
       value = OpenStudio.convert(total_end_use, 'GJ', target_units).get
       value_neat = OpenStudio.toNeatString(value, 0, true)
       output_data_end_use[:data] << [end_use, value_neat]
@@ -661,8 +660,8 @@ module OsLib_Reporting
       target_units = 'therm'
       target_display_unit = 'therms'
     else
-      target_units = "kWh"
-      target_display_unit = "kWh"
+      target_units = 'kWh'
+      target_display_unit = 'kWh'
     end
     output_data_end_use_gas[:units] = ['', target_display_unit]
     output_data_end_use_gas[:data] = []
@@ -680,7 +679,7 @@ module OsLib_Reporting
       end_use = OpenStudio::EndUseCategoryType.new(end_use).valueDescription
       query = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= 'Natural Gas'"
       results = sqlFile.execAndReturnFirstDouble(query)
-      value = OpenStudio.convert(results.get, "GJ", target_units).get
+      value = OpenStudio.convert(results.get, 'GJ', target_units).get
       value_neat = OpenStudio.toNeatString(value, 0, true)
       output_data_end_use_gas[:data] << [end_use, value_neat]
       runner.registerValue("end_use_natural_gas_#{end_use.downcase.tr(' ', '_')}", value, target_units)
@@ -704,7 +703,7 @@ module OsLib_Reporting
     if is_ip_units
       target_units = 'kBtu'
     else
-      target_units = "kWh"
+      target_units = 'kWh'
     end
     output_data_energy_use[:units] = ['', target_units]
     output_data_energy_use[:data] = []
@@ -715,34 +714,34 @@ module OsLib_Reporting
     color = []
     color << '#DDCC77' # Electricity
     color << '#999933' # Natural Gas
-    
-    # not used for 9.4
-    #color << '#AA4499' # Additional Fuel
-   	
-   	# todo - new colors to add for 9.4 (for nwo using color of Additional Fuel)
-   	color << '#AA4499'
-   	color << '#AA4499'
-   	color << '#AA4499'
-   	color << '#AA4499'
-   	color << '#AA4499'
-   	color << '#AA4499'
-   	color << '#AA4499'
 
-   	color << '#88CCEE' # District Cooling
+    # not used for 9.4
+    # color << '#AA4499' # Additional Fuel
+
+    # TODO: - new colors to add for 9.4 (for nwo using color of Additional Fuel)
+    color << '#AA4499'
+    color << '#AA4499'
+    color << '#AA4499'
+    color << '#AA4499'
+    color << '#AA4499'
+    color << '#AA4499'
+    color << '#AA4499'
+
+    color << '#88CCEE' # District Cooling
     color << '#CC6677' # District Heating
     # color << "#332288" # Water (not used here but is in cash flow chart)
     # color << "#117733" # Capital and O&M (not used here but is in cash flow chart)
 
     # loop through fuels for consumption tables
     counter = 0
-    fuel_type_names.each do |fuel_type| #OpenStudio::EndUseFuelType.getValues
+    fuel_type_names.each do |fuel_type| # OpenStudio::EndUseFuelType.getValues
       # get fuel type and units
-      #fuel_type = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
+      # fuel_type = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
       next if fuel_type == 'Water'
       query = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= 'Total End Uses' and ColumnName= '#{fuel_type}'"
       results = sqlFile.execAndReturnFirstDouble(query)
 
-      #julien
+      # julien
       source_units = 'kWh'
       if is_ip_units
         target_units = 'kBtu'
@@ -812,7 +811,7 @@ module OsLib_Reporting
     tolerance_summary[:title] = 'Unmet Hours Tolerance'
     tolerance_summary[:header] = ['Tolerance for Time Setpoint Not Met', 'Temperature']
 
-    #julien
+    # julien
     source_units = 'C'
     if is_ip_units
       target_units = 'F'
@@ -840,7 +839,7 @@ module OsLib_Reporting
         # net site energy
         display = cat
 
-        #julien
+        # julien
         source_units = 'K'
         if is_ip_units
           target_units = 'R'
@@ -1019,7 +1018,7 @@ module OsLib_Reporting
         target_units = ''
       else
         if setpoint.controlVariable.to_s == 'Temperature'
-          #julien
+          # julien
           source_units = 'C'
           if is_ip_units
             target_units = 'F'
@@ -1063,7 +1062,7 @@ module OsLib_Reporting
       wt_at_lo_oat_f = OpenStudio.convert(setpoint.setpointatOutdoorLowTemperature, source_units, target_units).get.round(1)
       hi_oat_f = OpenStudio.convert(setpoint.outdoorHighTemperature, source_units, target_units).get.round(1)
       lo_oat_f = OpenStudio.convert(setpoint.outdoorLowTemperature, source_units, target_units).get.round(1)
-      #julien
+      # julien
       if is_ip_units
         desc = "#{wt_at_lo_oat_f} F to #{wt_at_hi_oat_f.round} F btwn OAT #{lo_oat_f} F to #{hi_oat_f} F."
       else
@@ -1123,7 +1122,7 @@ module OsLib_Reporting
       controller_oa = component.getControllerOutdoorAir
 
       # Min OA
-      #julien
+      # julien
       source_units = 'm^3/s'
       if is_ip_units
         target_units = 'cfm'
@@ -1325,14 +1324,14 @@ module OsLib_Reporting
       output_data_air_loops[:data] << ['Terminal Types Used', terminals.uniq.sort.join(', '), '', '', terminals.size]
 
       # controls summary
-      #julien
+      # julien
       source_units = 'C'
       if is_ip_units
         target_units = 'F'
-        target_units_display = "F"
+        target_units_display = 'F'
       else
         target_units = source_units
-        target_units_display = "C"
+        target_units_display = 'C'
       end
       output_data_air_loops[:data] << [{ sub_header: 'controls' }, '', '', '', '']
       output_data_air_loops[:data] << ['HVAC Operation Schedule', '', air_loop.availabilitySchedule.name, '', ''] # I think this is a bool
@@ -1942,8 +1941,8 @@ module OsLib_Reporting
     # data for query
     report_name = 'LightingSummary'
     table_name = 'Exterior Lighting'
-    columns = ['Description', 'Total Power', 'Astronomical', 'Schedule Name','Annual Consumption']
-    columns_query = ['', 'Total Watts','Astronomical Clock/Schedule','Schedule Name','Consumption']
+    columns = ['Description', 'Total Power', 'Astronomical', 'Schedule Name', 'Annual Consumption']
+    columns_query = ['', 'Total Watts', 'Astronomical Clock/Schedule', 'Schedule Name', 'Consumption']
 
     # populate dynamic rows
     rows_name_query = "SELECT DISTINCT  RowName FROM tabulardatawithstrings WHERE ReportName='#{report_name}' and TableName='#{table_name}'"
@@ -2041,7 +2040,6 @@ module OsLib_Reporting
       return @output_data_space_type_section
     end
 
-
     source_units_surf = 'm^2'
     source_units_temp = 'C'
     source_units_FlowRate = 'm^3/s'
@@ -2077,7 +2075,6 @@ module OsLib_Reporting
       def_units_peoplePerFloorArea = 'people/m^2'
     end
 
-
     # loop through space types
     model.getSpaceTypes.sort.each do |spaceType|
       next if spaceType.floorArea == 0
@@ -2107,7 +2104,6 @@ module OsLib_Reporting
       output_data_space_type_details[:header] = ['Definition', 'Value', 'Unit', 'Inst. Multiplier']
       output_data_space_type_details[:units] = [] # won't use this for these tables since units change
       output_data_space_type_details[:data] = []
-
 
       # data for space type details
       instances = spaceType.internalMass
@@ -2392,8 +2388,6 @@ module OsLib_Reporting
             #  TODO:  <11-12-18, jmarrec> # That doesn't seem right to me
             results = results.gsub('[C]', '[F]')
             results = results.gsub('[J/kg]', '[Btu/lb]')
-          else
-
           end
           # any other types?
         elsif header == 'Humidity Value'
@@ -2408,7 +2402,6 @@ module OsLib_Reporting
               results = OpenStudio.convert(results, 'J/kg', 'Btu/lb').get.round(2)
               # any other types?
             end
-          else
           end
         else
           results_si = sqlFile.execAndReturnFirstString(query).get.to_s.delete(' ').to_f
@@ -2526,7 +2519,7 @@ module OsLib_Reporting
     end
 
     # alert user if report_detailed is requested
-    if report_detailed then runner.registerInfo("Monthly End Use by Fuel registerValues have been requested.") end
+    if report_detailed then runner.registerInfo('Monthly End Use by Fuel registerValues have been requested.') end
 
     # end use colors by index
     end_use_colors = ['#EF1C21', '#0071BD', '#F7DF10', '#DEC310', '#4A4D4A', '#B5B2B5', '#FF79AD', '#632C94', '#F75921', '#293094', '#CE5921', '#FFB239', '#29AAE7', '#8CC739']
@@ -2580,8 +2573,8 @@ module OsLib_Reporting
             valInJ  = nil
             if fuel_type_names.include?(fuel_type)
               if !sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
-                                                OpenStudio::EndUseCategoryType.new(category_type),
-                                                OpenStudio::MonthOfYear.new(month)).empty?
+                                                   OpenStudio::EndUseCategoryType.new(category_type),
+                                                   OpenStudio::MonthOfYear.new(month)).empty?
                 valInJ = sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
                                                           OpenStudio::EndUseCategoryType.new(category_type),
                                                           OpenStudio::MonthOfYear.new(month)).get
@@ -2606,8 +2599,8 @@ module OsLib_Reporting
                 # return just first three characters of month
                 month_str = OpenStudio::MonthOfYear.new(month).valueDescription[0..2]
                 # this specific string chosen to match design case for a specific project
-                prefix_str = OpenStudio::toUnderscoreCase("end_use_#{fuel_type}_#{category_str}_#{month_str}")
-                runner.registerValue(prefix_str.downcase.gsub(" ","_"),valInUnits,unit_str)
+                prefix_str = OpenStudio.toUnderscoreCase("end_use_#{fuel_type}_#{category_str}_#{month_str}")
+                runner.registerValue(prefix_str.downcase.gsub(' ', '_'), valInUnits, unit_str)
               end
 
               # populate hash for monthly totals
@@ -2671,10 +2664,9 @@ module OsLib_Reporting
         if report_detailed
           # return jsut first three characters of month
           month_str = k[0..2]
-          prefix_str = OpenStudio::toUnderscoreCase("#{fuel_type}_ip_#{month_str}")
-          runner.registerValue(prefix_str.downcase.gsub(" ","_"),OpenStudio.convert(v, 'J', unit_str).get,unit_str)
+          prefix_str = OpenStudio.toUnderscoreCase("#{fuel_type}_ip_#{month_str}")
+          runner.registerValue(prefix_str.downcase.gsub(' ', '_'), OpenStudio.convert(v, 'J', unit_str).get, unit_str)
         end
-
       end
 
       table_total = OpenStudio.convert(site_energy_use, 'J', unit_str).get
@@ -2724,8 +2716,8 @@ module OsLib_Reporting
         OpenStudio::MonthOfYear.getValues.each do |month|
           if month >= 1 && month <= 12
             if !sqlFile.peakEnergyDemandByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
-                OpenStudio::EndUseCategoryType.new(category_type),
-                OpenStudio::MonthOfYear.new(month)).empty?
+                                                OpenStudio::EndUseCategoryType.new(category_type),
+                                                OpenStudio::MonthOfYear.new(month)).empty?
               valInJ = sqlFile.peakEnergyDemandByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
                                                        OpenStudio::EndUseCategoryType.new(category_type),
                                                        OpenStudio::MonthOfYear.new(month)).get
@@ -2892,9 +2884,9 @@ module OsLib_Reporting
 
     temperature_bins_temps_ip = [56, 61, 66, 68, 70, 72, 74, 76, 78, 83, 88]
     temperature_bins_temps_si = [13, 16, 18, 20, 21, 22, 23, 24, 26, 28, 30]
-    #temperature_bins_temps_ip.each do |i|
-    #temperature_bins_temps_si << OpenStudio.convert(i, 'F', 'C').get.round(2)
-    #end
+    # temperature_bins_temps_ip.each do |i|
+    # temperature_bins_temps_si << OpenStudio.convert(i, 'F', 'C').get.round(2)
+    # end
 
     # hash to store hours
     temperature_bins = {}
@@ -3076,7 +3068,7 @@ module OsLib_Reporting
       # store values about humidity fir reguster values
       zone_max_hours_over_70_rh = 0
       zone_max_hours_over_55_rh = 0
-      rh_hours_threshold = 10 #hr
+      rh_hours_threshold = 10 # hr
       num_zones_x_hours_over_70 = 0
       num_zones_x_hours_over_55 = 0
 
@@ -3119,7 +3111,7 @@ module OsLib_Reporting
 
           end # end of for i in 0..(output_timeseries.size - 1)
         else
-          runner.registerWarning("Didn't find data for Zone Air Relative Humidity")  # not getting triggered when variable missing
+          runner.registerWarning("Didn't find data for Zone Air Relative Humidity") # not getting triggered when variable missing
         end # end of if output_timeseries.is_initialized
 
         # get mean humidity
@@ -3142,13 +3134,12 @@ module OsLib_Reporting
 
           # populate rh data for register_values
           # catch greater than 70 and 80 for runner.registerValue
-          if ['55-60','60-65','65-70','70-75','75-80','>= 80'].include?(k)
+          if ['55-60', '60-65', '65-70', '70-75', '75-80', '>= 80'].include?(k)
             zone_rh_count_hr_55 += v
           end
-          if ['70-75','75-80','>= 80'].include?(k)
+          if ['70-75', '75-80', '>= 80'].include?(k)
             zone_rh_count_hr_70 += v
           end
-
         end
         row_data += ["#{mean.round(1)} (%)"]
         row_color += ['']
@@ -3157,16 +3148,15 @@ module OsLib_Reporting
 
         # apply rh zones and max hours
         if zone_rh_count_hr_55 >= rh_hours_threshold then num_zones_x_hours_over_55 += 1 end
-        if zone_rh_count_hr_70 >= rh_hours_threshold  then num_zones_x_hours_over_70 += 1 end
+        if zone_rh_count_hr_70 >= rh_hours_threshold then num_zones_x_hours_over_70 += 1 end
         if zone_max_hours_over_55_rh < zone_rh_count_hr_55 then zone_max_hours_over_55_rh = zone_rh_count_hr_55 end
         if zone_max_hours_over_70_rh < zone_rh_count_hr_70 then zone_max_hours_over_70_rh = zone_rh_count_hr_70 end
 
         # add rh runner.registerValues to be used as output in analyses
-        runner.registerValue("zone_max_hours_over_70_rh",zone_max_hours_over_70_rh,"hr")
-        runner.registerValue("zone_max_hours_over_55_rh",zone_max_hours_over_55_rh,"hr")
-        runner.registerValue("num_zones_x_hours_over_70",num_zones_x_hours_over_70,"zones")
-        runner.registerValue("num_zones_x_hours_over_55",num_zones_x_hours_over_55,"zones")
-
+        runner.registerValue('zone_max_hours_over_70_rh', zone_max_hours_over_70_rh, 'hr')
+        runner.registerValue('zone_max_hours_over_55_rh', zone_max_hours_over_55_rh, 'hr')
+        runner.registerValue('num_zones_x_hours_over_70', num_zones_x_hours_over_70, 'zones')
+        runner.registerValue('num_zones_x_hours_over_55', num_zones_x_hours_over_55, 'zones')
       end
     else
       runner.registerWarning('An annual simulation was not run. Cannot get annual timeseries data')
@@ -3213,15 +3203,15 @@ module OsLib_Reporting
     table = {}
     table[:title] = 'Zone Lighting'
     table[:header] = columns
-    source_units_area = "m^2"
+    source_units_area = 'm^2'
     source_units_lpd = 'W/m^2'
     source_units_energy = 'GJ'
     if is_ip_units
-      target_units_area = "ft^2"
+      target_units_area = 'ft^2'
       target_units_lpd = 'W/ft^2'
       target_units_energy = 'kWh'
     else
-      target_units_area = "m^2"
+      target_units_area = 'm^2'
       target_units_lpd = 'W/m^2'
       target_units_energy = 'kWh'
     end
@@ -3285,7 +3275,7 @@ module OsLib_Reporting
 
           if lights_object.lightsDefinition.designLevelCalculationMethod == 'Watts/Area'
 
-            val_conv = OpenStudio::convert(lights_object.lightsDefinition.wattsperSpaceFloorArea.to_f, source_units_lpd, target_units_lpd).get
+            val_conv = OpenStudio.convert(lights_object.lightsDefinition.wattsperSpaceFloorArea.to_f, source_units_lpd, target_units_lpd).get
             val = "#{val_conv.to_f.round(2)} (#{target_units_lpd})"
             tlp = (lights_object.lightsDefinition.wattsperSpaceFloorArea.to_f * space.floorArea) * lights_object.multiplier
 
@@ -3318,7 +3308,7 @@ module OsLib_Reporting
 
         if sl.lightsDefinition.designLevelCalculationMethod == 'Watts/Area'
 
-          val_conv = OpenStudio::convert(sl.lightsDefinition.wattsperSpaceFloorArea.to_f, source_units_lpd, target_units_lpd).get
+          val_conv = OpenStudio.convert(sl.lightsDefinition.wattsperSpaceFloorArea.to_f, source_units_lpd, target_units_lpd).get
           val = "#{val_conv.to_f.round(2)} (#{target_units_lpd})"
           tlp = (sl.lightsDefinition.wattsperSpaceFloorArea.to_f * space.floorArea) * sl.multiplier
 
@@ -3345,7 +3335,6 @@ module OsLib_Reporting
     else
       target_units_illuminance = source_units_illuminance
     end
-
 
     lighting_controls_table = {}
     lighting_controls_table[:title] = 'Lighting Controls Details'
@@ -3674,8 +3663,8 @@ module OsLib_Reporting
 
           # get cooling value for this fuel and month
           if !sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
-              OpenStudio::EndUseCategoryType.new('Cooling'),
-              OpenStudio::MonthOfYear.new(month)).empty?
+                                               OpenStudio::EndUseCategoryType.new('Cooling'),
+                                               OpenStudio::MonthOfYear.new(month)).empty?
             cooling_valInJ = sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
                                                               OpenStudio::EndUseCategoryType.new('Cooling'),
                                                               OpenStudio::MonthOfYear.new(month)).get
@@ -3688,8 +3677,8 @@ module OsLib_Reporting
 
           # get heating value for this fuel and month
           if !sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
-              OpenStudio::EndUseCategoryType.new('Heating'),
-              OpenStudio::MonthOfYear.new(month)).empty?
+                                               OpenStudio::EndUseCategoryType.new('Heating'),
+                                               OpenStudio::MonthOfYear.new(month)).empty?
             heating_valInJ = sqlFile.energyConsumptionByMonth(OpenStudio::EndUseFuelType.new(fuel_type),
                                                               OpenStudio::EndUseCategoryType.new('Heating'),
                                                               OpenStudio::MonthOfYear.new(month)).get
@@ -3760,7 +3749,7 @@ module OsLib_Reporting
         end
 
       else
-        # todo - see why this is getting thrown on some models
+        # TODO: - see why this is getting thrown on some models
         runner.registerWarning("Didn't find data for Site Outdoor Air Drybulb Temperature")
       end # end of if output_timeseries.is_initialized
     else
@@ -3941,13 +3930,11 @@ module OsLib_Reporting
     source_units_air_flow = 'm^3/s'
     source_units_temp = 'C'
 
-
     if is_ip_units
       target_units_power_clg = 'ton'
       target_units_power_htg = 'kBtu/h'
       target_units_air_flow = 'ft^3/min'
       target_units_temp = 'F'
-
 
       # This one's a ratio... so it doesn't matter really, we don't convert
       # but we want to display something pretty
@@ -3962,7 +3949,6 @@ module OsLib_Reporting
       target_units_humrat_display = 'kgWater/kgAir'
 
     end
-
 
     zone_dd_table[:units] = ['', '', '', '', target_units_air_flow, target_units_air_flow, '', target_units_temp, target_units_humrat_display]
     # used for convertion, not needed for rendering.
@@ -4768,7 +4754,7 @@ module OsLib_Reporting
         if measure_step.result.is_initialized
           result = measure_step.result.get
           # create and populate table if warnings exist
-          if result.warnings.size > 0
+          if !result.warnings.empty?
             measure_table_01 = {}
             measure_table_01[:title] = measure_name
             measure_table_01[:header] = ['Warning']
@@ -4798,9 +4784,9 @@ module OsLib_Reporting
     end
 
     # check for warnings in openstudio_results and add table for it if there are warnings.
-    if runner.result.stepWarnings.size > 0
+    if !runner.result.stepWarnings.empty?
       measure_table_os_results = {}
-      measure_table_os_results[:title] = "OpenStudio Results"
+      measure_table_os_results[:title] = 'OpenStudio Results'
       measure_table_os_results[:header] = ['Warning']
       measure_table_os_results[:data] = []
       num_measures_with_warnings += 1
@@ -4811,25 +4797,23 @@ module OsLib_Reporting
       measure_tables << measure_table_os_results
     end
 
-
     # add summary table (even when there are no warnings)
     measure_table_summary = {}
-    measure_table_summary[:title] = "Measure Warning Summary"
-    measure_table_summary[:header] = ['Description','Count']
+    measure_table_summary[:title] = 'Measure Warning Summary'
+    measure_table_summary[:header] = ['Description', 'Count']
     measure_table_summary[:data] = []
 
     # add summary rows
-    measure_table_summary[:data] << ['Number of measures in workflow',num_measures]
-    measure_table_summary[:data] << ['Number of measures with warnings',num_measures_with_warnings]
-    measure_table_summary[:data] << ['Total number of warnings',num_warnings]
+    measure_table_summary[:data] << ['Number of measures in workflow', num_measures]
+    measure_table_summary[:data] << ['Number of measures with warnings', num_measures_with_warnings]
+    measure_table_summary[:data] << ['Total number of warnings', num_warnings]
 
     # add table to section
-    measure_tables.insert(0,measure_table_summary)
+    measure_tables.insert(0, measure_table_summary)
 
-    runner.registerValue("number_of_measures_with_warnings", num_measures_with_warnings)
-    runner.registerValue("number_warnings", num_warnings)
+    runner.registerValue('number_of_measures_with_warnings', num_measures_with_warnings)
+    runner.registerValue('number_warnings', num_warnings)
 
     return @measure_warnings_section
   end
-
 end

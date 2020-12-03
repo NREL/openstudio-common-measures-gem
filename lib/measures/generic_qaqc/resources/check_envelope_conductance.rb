@@ -395,7 +395,7 @@ module OsLib_QAQC
                 construction_set_data = std.model_get_construction_set(building_type)
                 building_type_category = construction_set_data['exterior_wall_building_category']
 
-                data = std.model_get_construction_properties(@model, intended_surface_type, standards_construction_type,building_type_category)
+                data = std.model_get_construction_properties(@model, intended_surface_type, standards_construction_type, building_type_category)
               end
 
               if data.nil?

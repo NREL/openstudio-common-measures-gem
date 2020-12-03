@@ -60,7 +60,7 @@ class AddEMSToControlEVCharging < OpenStudio::Measure::ModelMeasure
     curtailment_frac.setDefaultValue(0.5)
     args << curtailment_frac
 
-  return args
+    return args
   end
 
   # define what happens when the measure is run
@@ -69,7 +69,7 @@ class AddEMSToControlEVCharging < OpenStudio::Measure::ModelMeasure
 
     # use the built-in error checking
     if !runner.validateUserArguments(arguments(model), user_arguments)
-       return false
+      return false
     end
 
     curtailment_frac = runner.getDoubleArgumentValue('curtailment_frac', user_arguments)
@@ -89,9 +89,9 @@ class AddEMSToControlEVCharging < OpenStudio::Measure::ModelMeasure
     ext_fuel_equip = model.getFacility.exteriorFuelEquipments
     ext_equip_sched = []
     ext_fuel_equip.each do |equip|
-    if equip.exteriorFuelEquipmentDefinition.name.to_s.include?("EV") || equip.exteriorFuelEquipmentDefinition.name.to_s.include?("vehicle") || equip.exteriorFuelEquipmentDefinition.name.to_s.include?("Vehicle")
+      if equip.exteriorFuelEquipmentDefinition.name.to_s.include?('EV') || equip.exteriorFuelEquipmentDefinition.name.to_s.include?('vehicle') || equip.exteriorFuelEquipmentDefinition.name.to_s.include?('Vehicle')
         ext_equip_sched << equip.schedule
-    end
+      end
     end
     ev_sched = ext_equip_sched [0]
     if ext_equip_sched.empty?

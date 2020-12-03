@@ -152,7 +152,7 @@ class VentilationQAQCTest < Minitest::Test
       result = runner.result
       show_output(result)
       assert_equal('Success', result.value.valueName)
-      #assert(result.warnings.empty?)
+      # assert(result.warnings.empty?)
     ensure
       Dir.chdir(start_dir)
     end
@@ -161,4 +161,3 @@ class VentilationQAQCTest < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 end
-

@@ -41,7 +41,6 @@ require_relative '../measure.rb'
 require 'minitest/autorun'
 
 class OpenStudioResults_Test < Minitest::Test
-
   def model_in_path_default
     return "#{File.dirname(__FILE__)}/ExampleModel.osm"
   end
@@ -114,7 +113,7 @@ class OpenStudioResults_Test < Minitest::Test
 
     # convert output requests to OSM for testing, OS App and PAT will add these to the E+ Idf
     workspace = OpenStudio::Workspace.new('Draft'.to_StrictnessLevel, 'EnergyPlus'.to_IddFileType)
-    workspace.addObjects(idf_output_requests) # todo - this isn't getting added when empty OSW
+    workspace.addObjects(idf_output_requests) # TODO: - this isn't getting added when empty OSW
     rt = OpenStudio::EnergyPlus::ReverseTranslator.new
     request_model = rt.translateWorkspace(workspace)
 
@@ -137,7 +136,7 @@ class OpenStudioResults_Test < Minitest::Test
   # assert that no section errors were thrown
   def section_errors(runner)
     test_string = 'section failed and was skipped because'
-    test_string_2 = "returned false and was skipped"
+    test_string_2 = 'returned false and was skipped'
 
     section_errors = []
     runner.result.stepWarnings.each do |warning|
@@ -180,7 +179,7 @@ class OpenStudioResults_Test < Minitest::Test
 
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new), argument_map)
-    #assert_equal(11, idf_output_requests.size)
+    # assert_equal(11, idf_output_requests.size)
 
     # mimic the process of running this measure in OS App or PAT
     epw_path = epw_path_default

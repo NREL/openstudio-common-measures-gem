@@ -97,7 +97,7 @@ module OsLib_QAQC
         OpenStudio::EndUseFuelType.getValues.each do |fuel_type|
           # convert integer to string
           fuel_name = OpenStudio::EndUseFuelType.new(fuel_type).valueDescription
-          next if fuel_name == "Water"
+          next if fuel_name == 'Water'
           query_fuel = "SELECT Value FROM tabulardatawithstrings WHERE ReportName='AnnualBuildingUtilityPerformanceSummary' and TableName='End Uses' and RowName= '#{end_use}' and ColumnName= '#{fuel_name}'"
           results_fuel = @sql.execAndReturnFirstDouble(query_fuel).get
           total_end_use += results_fuel

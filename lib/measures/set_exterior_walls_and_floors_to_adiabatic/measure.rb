@@ -137,8 +137,8 @@ class SetExteriorWallsAndFloorsToAdiabatic < OpenStudio::Measure::ModelMeasure
 
     # add warning if same item on inclusion_list and exclusion_list
     common_items = inclusion_list & exclusion_list
-    if common_items.size > 0
-      runner.registerWarning("One or more items (#{common_items.join(",")}) were on both the inclusion and exclusion list. The exclusion list will take precedence.")
+    if !common_items.empty?
+      runner.registerWarning("One or more items (#{common_items.join(',')}) were on both the inclusion and exclusion list. The exclusion list will take precedence.")
     end
 
     # counter for number of constructions use for interior walls in initial construction

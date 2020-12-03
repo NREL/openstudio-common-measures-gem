@@ -184,7 +184,7 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     end
 
     additional_fuel_types = ['FuelOilNo1', 'FuelOilNo2', 'PropaneGas', 'Coal', 'Diesel', 'Gasoline', 'OtherFuel1', 'OtherFuel2']
-    #additional_fuel_types = OsLib_Reporting.fuel_type_names # getting all fuels instead of additional until fixed in OS
+    # additional_fuel_types = OsLib_Reporting.fuel_type_names # getting all fuels instead of additional until fixed in OS
     additional_fuel_types.each do |additional_fuel_type|
       monthly_array = ['Output:Table:Monthly']
       monthly_array << "Building Energy Performance - #{additional_fuel_type}"
@@ -222,7 +222,6 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     # add warning counts
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('number_of_measures_with_warnings')
     result << OpenStudio::Measure::OSOutput.makeDoubleOutput('number_warnings')
-
 
     return result
   end
@@ -285,45 +284,43 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
       # generate data for requested sections
       sections_made = 0
       possible_sections.each do |method_name|
-        begin
-          next unless args[method_name]
-          section = false
-          eval("section = OsLib_Reporting.#{method_name}(model,sql_file,runner,false,is_ip_units)")
-          display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
-          if section
-            @sections << section
-            sections_made += 1
-            # look for empty tables and warn if skipped because returned empty
-            section[:tables].each do |table|
-              if !table
-                runner.registerWarning("A table in #{display_name} section returned false and was skipped.")
-                section[:messages] = ["One or more tables in #{display_name} section returned false and was skipped."]
-              end
+        next unless args[method_name]
+        section = false
+        eval("section = OsLib_Reporting.#{method_name}(model,sql_file,runner,false,is_ip_units)")
+        display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
+        if section
+          @sections << section
+          sections_made += 1
+          # look for empty tables and warn if skipped because returned empty
+          section[:tables].each do |table|
+            if !table
+              runner.registerWarning("A table in #{display_name} section returned false and was skipped.")
+              section[:messages] = ["One or more tables in #{display_name} section returned false and was skipped."]
             end
-          else
-            runner.registerWarning("#{display_name} section returned false and was skipped.")
-            section = {}
-            section[:title] = display_name.to_s
-            section[:tables] = []
-            section[:messages] = []
-            section[:messages] << "#{display_name} section returned false and was skipped."
-            @sections << section
           end
-        rescue StandardError => e
-          display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
-          if display_name.nil? then display_name == method_name end
-          runner.registerWarning("#{display_name} section failed and was skipped because: #{e}. Detail on error follows: #{e.backtrace.join("\n").to_s}")
-
-          # add in section heading with message if section fails
+        else
+          runner.registerWarning("#{display_name} section returned false and was skipped.")
           section = {}
           section[:title] = display_name.to_s
           section[:tables] = []
           section[:messages] = []
-          section[:messages] << "#{display_name} section failed and was skipped because: #{e}. Detail on error is in Measure Warnings section, if enabled at the bottom of this report."
-          # backtrace is now in Measure Warning section and doesn't need to be in line with the report section.
-          #section[:messages] << [e.backtrace.join("\n").to_s]
+          section[:messages] << "#{display_name} section returned false and was skipped."
           @sections << section
         end
+      rescue StandardError => e
+        display_name = eval("OsLib_Reporting.#{method_name}(nil,nil,nil,true)[:title]")
+        if display_name.nil? then display_name == method_name end
+        runner.registerWarning("#{display_name} section failed and was skipped because: #{e}. Detail on error follows: #{e.backtrace.join("\n")}")
+
+        # add in section heading with message if section fails
+        section = {}
+        section[:title] = display_name.to_s
+        section[:tables] = []
+        section[:messages] = []
+        section[:messages] << "#{display_name} section failed and was skipped because: #{e}. Detail on error is in Measure Warnings section, if enabled at the bottom of this report."
+        # backtrace is now in Measure Warning section and doesn't need to be in line with the report section.
+        # section[:messages] << [e.backtrace.join("\n").to_s]
+        @sections << section
       end
 
     else

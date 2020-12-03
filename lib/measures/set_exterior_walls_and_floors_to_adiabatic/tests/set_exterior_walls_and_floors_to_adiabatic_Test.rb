@@ -41,7 +41,6 @@ require_relative '../measure.rb'
 require 'minitest/autorun'
 
 class SetExteriorWallsAndFloorsToAdiabatic_Test < Minitest::Test
-
   def test_SetExteriorWallsAndFloorsToAdiabatic
     # create an instance of the measure
     measure = SetExteriorWallsAndFloorsToAdiabatic.new
@@ -201,5 +200,4 @@ class SetExteriorWallsAndFloorsToAdiabatic_Test < Minitest::Test
     output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/roof.osm')
     model.save(output_file_path, true)
   end
-
 end
