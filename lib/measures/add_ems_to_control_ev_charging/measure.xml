@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>add_ems_to_control_ev_charging</name>
+  <uid>df97997f-d02a-4e35-af7a-5aed16cb5772</uid>
+  <version_id>0ad18ca6-32ff-4264-9451-36a1bcb0aadf</version_id>
+  <version_modified>20200901T153152Z</version_modified>
+  <xml_checksum>976EB6EB</xml_checksum>
+  <class_name>AddEMSToControlEVCharging</class_name>
+  <display_name>Add EMS to Control EV Charging</display_name>
+  <description>This measure implements a control system to curtail an electric vehicle (EV) charging load to better align EV charging with expected energy production from a solar PV system.</description>
+  <modeler_description>This measure uses EnergyPlus' Energy Management System to control an electric vehicle (EV) charging load to better align charging power draw with expected energy production from solar PV. There must already be an EV charging load present in the model when this measure is applied, and the measure is configured based on the assumption of a typical office operating schedule.</modeler_description>
+  <arguments>
+    <argument>
+      <name>curtailment_frac</name>
+      <display_name>Fraction by Which to Curtail EV Charging During Load Shifting Events</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0.5</default_value>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Equipment.Equipment Controls</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E925F127</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>70CA2C6E</checksum>
+    </file>
+    <file>
+      <filename>add_ems_to_control_ev_charging_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B6C25840</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.5.1</identifier>
+        <min_compatible>2.5.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>31F0CB5F</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+  </files>
+</measure>

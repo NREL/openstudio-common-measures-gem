@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>import_envelope_and_internal_loads_from_idf</name>
   <uid>10a3ffb4-de25-4cb3-87ff-5922219716f9</uid>
-  <version_id>fed7dbbd-d74c-45ce-8e48-15433f0c3e3a</version_id>
-  <version_modified>20200229T024304Z</version_modified>
+  <version_id>aac4e794-50d2-45ea-80ec-828f60e5480c</version_id>
+  <version_modified>20200623T204750Z</version_modified>
   <xml_checksum>45097B60</xml_checksum>
   <class_name>ImportEnvelopeAndInternalLoadsFromIdf</class_name>
   <display_name>ImportEnvelopeAndInternalLoadsFromIdf</display_name>
@@ -37,8 +38,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Form</tag>
   </tags>
@@ -68,7 +69,7 @@
       <checksum>5AC6FC9B</checksum>
     </file>
     <file>
-      <filename>test.osw</filename>
+      <filename>measure_test.osw</filename>
       <filetype>osw</filetype>
       <usage_type>test</usage_type>
       <checksum>F5FABCCF</checksum>
@@ -106,7 +107,7 @@
       <filename>ImportEnvelopeAndInternalLoadsFromIdf_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>C2EFB0FB</checksum>
+      <checksum>947ACC87</checksum>
     </file>
   </files>
 </measure>

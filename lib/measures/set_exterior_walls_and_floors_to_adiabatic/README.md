@@ -75,6 +75,22 @@ ModelMeasure
 **Required:** true,
 **Model Dependent:** false
 
+### Adiabatic Inclusion List
+Surfaces listed here will be changed to adiabatic boundary condition. This can contain one or more surface names. It is case sensitive and multiple names should be separated with a vertical pipe character like this. |
+**Name:** inclusion_list,
+**Type:** String,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
+### Adiabatic Exclusion List
+Surfaces listed here will not be changed to adiabatic boundary condition. This can contain one or more surface names. It is case sensitive and multiple names should be separated with a vertical pipe character like this. |
+**Name:** exclusion_list,
+**Type:** String,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
 
 
 
