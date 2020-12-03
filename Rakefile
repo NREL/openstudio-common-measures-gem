@@ -55,6 +55,6 @@ task :delete_measure_test_outputs do
   measures.each do |i|
     FileUtils.rm_rf(i.gsub("measure.rb","tests/output"))
   end
-  puts "deleteting test outputs"
+  puts "Deleted test outputs"
 
 end
