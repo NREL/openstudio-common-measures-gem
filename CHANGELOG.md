@@ -1,5 +1,21 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.3.1
+
+* Removes the following from lib/measures and moves them to the OpenStudio-ee-gem:
+    * AddDaylightSensors
+    * EnableDemandControlledVentilation
+    * EnableEconomizerControl
+    * IncreaseInsulationRValueForExteriorWalls
+    * IncreaseInsulationRValueForExteriorWallsByPercentage
+    * IncreaseInsulationRValueForRoofs
+    * IncreaseInsulationRValueForRoofsByPercentage
+    * ReduceElectricEquipmentLoadsByPercentage
+    * ReduceLightingLoadsByPercentage
+    * ReduceSpaceInfiltrationByPercentage
+    * ReduceVentilationByPercentage
+    * create_variable_speed_rtu
+
 ## Version 0.3.0
 
 * Support for OpenStudio 3.1 (upgrade to extension gem 0.3.1)
