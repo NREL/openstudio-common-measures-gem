@@ -1,5 +1,9 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.3.2
+
+* Bump openstudio-extension-gem version to 0.3.2 to support updated workflow-gem
+
 ## Version 0.3.1
 
 * Removes the following from lib/measures and moves them to the OpenStudio-ee-gem:
