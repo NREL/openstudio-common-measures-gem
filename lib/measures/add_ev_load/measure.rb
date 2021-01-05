@@ -147,7 +147,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       runner.registerInfo("flex key = #{flex_key}")
     end
 
-    file_path = "#{__dir__}/resources/EV_Load_Profiles"
+    file_path = "#{__dir__}/resources/"
 
     # Sets key based on charging station type, for general charging load profiles. Will use this to average columns appropriately.
     if chg_station_type == 'Typical Home'

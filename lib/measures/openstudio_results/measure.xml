@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>5d24f032-e2e4-407f-a20d-9f76e15d4ac1</version_id>
-  <version_modified>20200626T221404Z</version_modified>
+  <version_id>82de0a5f-0d00-432c-b442-c62a720032e4</version_id>
+  <version_modified>20210105T180802Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -1435,16 +1435,22 @@
       <checksum>0169F9F8</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>F7DEA5C8</checksum>
+    </file>
+    <file>
       <filename>os_lib_reporting.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>E15D2A3D</checksum>
+      <checksum>15407F5C</checksum>
     </file>
     <file>
       <filename>os_lib_schedules.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>C82D00CC</checksum>
+      <checksum>B88E9700</checksum>
     </file>
     <file>
       <version>
@@ -1455,13 +1461,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>CBB2420E</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>F7DEA5C8</checksum>
+      <checksum>978496EF</checksum>
     </file>
   </files>
 </measure>
