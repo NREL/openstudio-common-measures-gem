@@ -196,8 +196,8 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     runner.registerInfo("city is #{epw_file.city}. State is #{epw_file.state}")
 
     # actual year of start date
-    if args['set_year'] > 0
-      model.getYearDescription.setCalendarYear(args['set_year'])
+    if args['set_year'].to_i > 0
+      model.getYearDescription.setCalendarYear(args['set_year'].to_i)
       runner.registerInfo("Changing Calendar Year to #{args['set_year']},")
     end
 
