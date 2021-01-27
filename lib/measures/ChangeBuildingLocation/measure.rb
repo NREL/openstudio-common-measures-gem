@@ -122,6 +122,8 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
             args[arg] = new_val.to_f
           elsif arg == 'zipcode'
             args[arg] = new_val.to_i
+          elsif arg == 'set_year'
+            args[arg] = new_val.to_i
           else
             args[arg] = new_val
           end
