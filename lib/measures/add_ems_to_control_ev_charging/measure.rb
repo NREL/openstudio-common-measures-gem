@@ -58,6 +58,7 @@ class AddEMSToControlEVCharging < OpenStudio::Measure::ModelMeasure
     curtailment_frac = OpenStudio::Measure::OSArgument.makeDoubleArgument('curtailment_frac', true)
     curtailment_frac.setDisplayName('Fraction by Which to Curtail EV Charging During Load Shifting Events')
     curtailment_frac.setDefaultValue(0.5)
+    curtailment_frac.setDescription('Number between 0 and 1 that denotes the fraction by which EV charging')
     args << curtailment_frac
 
     return args
