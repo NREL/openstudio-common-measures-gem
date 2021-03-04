@@ -68,7 +68,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
     delay_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('delay_type', charge_delay_chs, true)
     delay_type.setDisplayName('Charging Flexibility Option')
     delay_type.setDefaultValue('Min Delay')
-    delay_type.setDescription('Represents charging flexibility scenarios applied to workplace charging. Min Delay indicating EVs begin charging immediately upon arriving at work, Max Delay indicating EVs are plugged in immediately but do not begin charging until necessary and Min Power indicating EVs are charged at minimum rate over the parking event.')
+    delay_type.setDescription('Represents charging flexibility scenarios applied to workplace charging. Min Delay indicates EVs begin charging immediately upon arriving at work, Max Delay indicates EVs are plugged in immediately but do not begin charging until necessary and Min Power indicates EVs are charged at minimum rate over the parking event.')
     args << delay_type
 
     # Make an argument for the consumer charging behavior parameter.
