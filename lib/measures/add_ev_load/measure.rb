@@ -68,6 +68,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
     delay_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('delay_type', charge_delay_chs, true)
     delay_type.setDisplayName('Charging Flexibility Option')
     delay_type.setDefaultValue('Min Delay')
+    delay_type.setDescription('Represents charging flexibility scenarios applied to workplace charging. Min Delay indicates EVs begin charging immediately upon arriving at work, Max Delay indicates EVs are plugged in immediately but do not begin charging until necessary and Min Power indicates EVs are charged at minimum rate over the parking event.')
     args << delay_type
 
     # Make an argument for the consumer charging behavior parameter.
@@ -79,6 +80,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
     charge_behavior = OpenStudio::Measure::OSArgument.makeChoiceArgument('charge_behavior', consumer_charge_chs, true)
     charge_behavior.setDisplayName('Consumer Charging Behavior')
     charge_behavior.setDefaultValue('Business as Usual')
+    charge_behavior.setDescription('Describes different scenarios of EV Charging. Business as Usual represents home dominant charging behavior where the majority of the electrical energy consumed by EV charging is during evening hours and overnight. Free Workplace Charging at Project Site indicates that the peak power draw from EV charging on weekdays occurs during morning hours, due to EV charging at workplaces. Overnight residential charging remains a significant share of the total electricity use for EV charging. Free Workplace Charging Across Metro Area reduces the Home EV charging relative to the Free Workplace Charging at Project Site scenario, for people who work elsewhere and can charge their vehicles for free at those workplaces.')
     args << charge_behavior
 
     # Make a vector for the charging station type argument.
@@ -97,6 +99,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
     ev_percent = OpenStudio::Measure::OSArgument.makeDoubleArgument('ev_percent', true)
     ev_percent.setDisplayName('Percent of Vehicles Parked at Building That Are EVs')
     ev_percent.setDefaultValue(1.0)
+    ev_percent.setDescription('Denotes percentage of vehicles between 0 to 100 that are electric on site.')
     args << ev_percent
 
     return args
