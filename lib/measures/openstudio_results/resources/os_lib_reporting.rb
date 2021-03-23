@@ -1735,7 +1735,7 @@ module OsLib_Reporting
     end
     ext_const_sub.sort.each do |construction, count|
       net_area = construction.getNetArea
-      net_area_conv = OpenStudio.convert(net_area, target_area_units, source_area_units).get
+      net_area_conv = OpenStudio.convert(net_area, source_area_units, target_area_units).get
       net_area_neat = OpenStudio.toNeatString(net_area_conv, n_decimals_area, true)
       surface_count = count
       vlt_neat = 'n/a'
