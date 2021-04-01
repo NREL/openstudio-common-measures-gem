@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_ems_to_control_ev_charging</name>
   <uid>df97997f-d02a-4e35-af7a-5aed16cb5772</uid>
-  <version_id>f1f02fad-1b2a-4077-98de-30b8d4f4626d</version_id>
-  <version_modified>20210105T180756Z</version_modified>
+  <version_id>5397e13e-6013-45a2-b44c-91c8074b223f</version_id>
+  <version_modified>20210304T040200Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSToControlEVCharging</class_name>
   <display_name>Add EMS to Control EV Charging</display_name>
@@ -14,7 +13,7 @@
     <argument>
       <name>curtailment_frac</name>
       <display_name>Fraction by Which to Curtail EV Charging During Load Shifting Events</display_name>
-      <description></description>
+      <description>Number between 0 and 1 that denotes the fraction by which EV charging</description>
       <type>Double</type>
       <units></units>
       <required>true</required>
@@ -24,8 +23,8 @@
       <max_value></max_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Equipment.Equipment Controls</tag>
   </tags>
@@ -85,7 +84,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7AB9668D</checksum>
+      <checksum>60ABFAB9</checksum>
     </file>
   </files>
 </measure>

@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_ev_load</name>
   <uid>a23e0493-7357-48ca-b089-4d902efd6b50</uid>
-  <version_id>3c675a43-99f7-46b3-be6c-4e096f281bda</version_id>
-  <version_modified>20210105T181619Z</version_modified>
+  <version_id>f338ee9d-beaa-4da6-bc8d-8a6f99443635</version_id>
+  <version_modified>20210304T040242Z</version_modified>
   <xml_checksum>9A202986</xml_checksum>
   <class_name>AddEVLoad</class_name>
   <display_name>Add_EV_Load</display_name>
@@ -14,6 +13,7 @@
     <argument>
       <name>delay_type</name>
       <display_name>Charging Flexibility Option</display_name>
+      <description>Represents charging flexibility scenarios applied to workplace charging. Min Delay indicating EVs begin charging immediately upon arriving at work, Max Delay indicating EVs are plugged in immediately but do not begin charging until necessary and Min Power indicating EVs are charged at minimum rate over the parking event.</description>
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -36,6 +36,7 @@
     <argument>
       <name>charge_behavior</name>
       <display_name>Consumer Charging Behavior</display_name>
+      <description>Describes different scenarios of EV Charging. Business as Usual represents home dominant charging behavior where the majority of the electrical energy consumed by EV charging is during evening hours and overnight. Free Workplace Charging at Project Site indicates that the peak power draw from EV charging on weekdays occurs during morning hours, due to EV charging at workplaces. Overnight residential charging remains a significant share of the total electricity use for EV charging. Free Workplace Charging Across Metro Area reduces the Home EV charging relative to the Free Workplace Charging at Project Site scenario, for people who work elsewhere and can charge their vehicles for free at those workplaces.</description>
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -80,14 +81,15 @@
     <argument>
       <name>ev_percent</name>
       <display_name>Percent of Vehicles Parked at Building That Are EVs</display_name>
+      <description>Denotes percentage of vehicles between 0 to 100 that are electric on site.</description>
       <type>Double</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs />
-  <provenances />
+  <outputs/>
+  <provenances/>
   <tags>
     <tag>Equipment.Electric Equipment</tag>
   </tags>
@@ -133,6 +135,7 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
+<<<<<<< HEAD
       <filename>chg1_dow1_flex1.csv</filename>
       <filetype>csv</filetype>
       <usage_type>resource</usage_type>
@@ -339,7 +342,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>5ABA46FC</checksum>
+      <checksum>4CCA6666</checksum>
+    </file>
+    <file>
+      <filename>add_ev_load_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>898CF813</checksum>
     </file>
   </files>
 </measure>

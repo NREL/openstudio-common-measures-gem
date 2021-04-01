@@ -96,6 +96,20 @@ class SetExteriorWallsAndFloorsToAdiabatic < OpenStudio::Measure::ModelMeasure
     west_walls.setDefaultValue(false)
     args << west_walls
 
+    # make an argument for inclusion_list
+    inclusion_list = OpenStudio::Measure::OSArgument.makeStringArgument('inclusion_list', true)
+    inclusion_list.setDisplayName('Adiabatic Inclusion List')
+    inclusion_list.setDescription('Surfaces listed here will be changed to adiabatic boundary condition. This can contain one or more surface names. It is case sensitive and multiple names should be separated with a vertical pipe character like this. |')
+    inclusion_list.setDefaultValue('make_me_adiabatic_01|make_me_adiabatic_02')
+    args << inclusion_list
+
+    # make an argument for exclusion_list
+    exclusion_list = OpenStudio::Measure::OSArgument.makeStringArgument('exclusion_list', true)
+    exclusion_list.setDisplayName('Adiabatic Exclusion List')
+    exclusion_list.setDescription('Surfaces listed here will not be changed to adiabatic boundary condition. This can contain one or more surface names. It is case sensitive and multiple names should be separated with a vertical pipe character like this. |')
+    exclusion_list.setDefaultValue('do_not_change_me_01|do_not_change_me_02')
+    args << exclusion_list
+
     return args
   end
 
@@ -117,6 +131,16 @@ class SetExteriorWallsAndFloorsToAdiabatic < OpenStudio::Measure::ModelMeasure
     east_walls = runner.getBoolArgumentValue('east_walls', user_arguments)
     west_walls = runner.getBoolArgumentValue('west_walls', user_arguments)
 
+    # split list arguments inoto an array
+    inclusion_list = runner.getStringArgumentValue('inclusion_list', user_arguments).split('|')
+    exclusion_list = runner.getStringArgumentValue('exclusion_list', user_arguments).split('|')
+
+    # add warning if same item on inclusion_list and exclusion_list
+    common_items = inclusion_list & exclusion_list
+    if !common_items.empty?
+      runner.registerWarning("One or more items (#{common_items.join(',')}) were on both the inclusion and exclusion list. The exclusion list will take precedence.")
+    end
+
     # counter for number of constructions use for interior walls in initial construction
     orig_adiabatic = 0
 
@@ -128,7 +152,14 @@ class SetExteriorWallsAndFloorsToAdiabatic < OpenStudio::Measure::ModelMeasure
       if surface.outsideBoundaryCondition == 'Adiabatic'
         orig_adiabatic += 1
       end
-      if ext_roofs && (surface.surfaceType == 'RoofCeiling') && (surface.outsideBoundaryCondition == 'Outdoors')
+
+      # stop here if in exclusion list
+      next if exclusion_list.include?(surface.name.to_s)
+
+      if inclusion_list.include?(surface.name.to_s)
+        # if on list gets added without having to check orientation
+        surfaces_to_change << surface
+      elsif ext_roofs && (surface.surfaceType == 'RoofCeiling') && (surface.outsideBoundaryCondition == 'Outdoors')
         surfaces_to_change << surface
       elsif ext_floors && (surface.surfaceType == 'Floor') && (surface.outsideBoundaryCondition == 'Outdoors')
         surfaces_to_change << surface

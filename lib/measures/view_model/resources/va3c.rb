@@ -921,28 +921,34 @@ class VA3C
       end
 
       geometries, user_datas = make_geometries(surface)
-      geometries&.each_index do |i|
-        geometry = geometries[i]
-        user_data = user_datas[i]
+      if geometries
+        geometries.each_index do |i|
+          geometry = geometries[i]
+          user_data = user_datas[i]
 
-        all_geometries << geometry
+          all_geometries << geometry
 
-        scene_child = SceneChild.new
-        scene_child.uuid = format_uuid(OpenStudio.createUUID)
-        scene_child.name = user_data[:name]
-        scene_child.type = 'Mesh'
-        scene_child.geometry = geometry[:uuid]
+          scene_child = SceneChild.new
+          scene_child.uuid = format_uuid(OpenStudio.createUUID)
+          scene_child.name = user_data[:name]
+          scene_child.type = 'Mesh'
+          scene_child.geometry = geometry[:uuid]
 
-        if i == 0
-          # first geometry is base surface
-          scene_child.material = material[:uuid]
-        else
-          # sub surface
-          if /Window/.match(user_data[:surfaceType]) || /Glass/.match(user_data[:surfaceType])
-            scene_child.material =  window_material[:uuid]
+          if i == 0
+            # first geometry is base surface
+            scene_child.material = material[:uuid]
           else
-            scene_child.material =  door_material[:uuid]
+            # sub surface
+            if /Window/.match(user_data[:surfaceType]) || /Glass/.match(user_data[:surfaceType])
+              scene_child.material =  window_material[:uuid]
+            else
+              scene_child.material =  door_material[:uuid]
+            end
           end
+
+          scene_child.matrix = identity_matrix
+          scene_child.userData = user_data
+          object[:children] << scene_child.to_h
         end
 
         scene_child.matrix = identity_matrix
@@ -954,17 +960,31 @@ class VA3C
     # loop over all shading surfaces
     model.getShadingSurfaces.each do |surface|
       geometries, user_datas = make_shade_geometries(surface)
-      geometries&.each_index do |i|
-        geometry = geometries[i]
-        user_data = user_datas[i]
+      if geometries
+        geometries.each_index do |i|
+          geometry = geometries[i]
+          user_data = user_datas[i]
 
-        material = nil
-        if /Site/.match(user_data[:surfaceType])
-          material = site_shading_material
-        elsif /Building/.match(user_data[:surfaceType])
-          material = building_shading_material
-        elsif /Space/.match(user_data[:surfaceType])
-          material = space_shading_material
+          material = nil
+          if /Site/.match(user_data[:surfaceType])
+            material = site_shading_material
+          elsif /Building/.match(user_data[:surfaceType])
+            material = building_shading_material
+          elsif /Space/.match(user_data[:surfaceType])
+            material = space_shading_material
+          end
+
+          all_geometries << geometry
+
+          scene_child = SceneChild.new
+          scene_child.uuid = format_uuid(OpenStudio.createUUID)
+          scene_child.name = user_data[:name]
+          scene_child.type = 'Mesh'
+          scene_child.geometry = geometry[:uuid]
+          scene_child.material = material[:uuid]
+          scene_child.matrix = identity_matrix
+          scene_child.userData = user_data
+          object[:children] << scene_child.to_h
         end
 
         all_geometries << geometry

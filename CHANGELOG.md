@@ -1,49 +1,4 @@
 # OpenStudio Common Measures Gem
-
-## Version 0.2.1
-* Removes the following from lib/measures:
-    * AddDaylightSensors
-    * EnableDemandControlledVentilation
-    * EnableEconomizerControl
-    * ImproveFanBeltEfficiency
-    * ImproveMotorEfficiency
-    * IncreaseInsulationRValueForExteriorWalls
-    * IncreaseInsulationRValueForRoofs
-    * ReduceElectricEquipmentLoadsByPercentage
-    * ReduceLightingLoadsByPercentage
-    * ReduceSpaceInfiltrationByPercentage
-    * ReduceVentilationByPercentage
-    * create_variable_speed_rtu
-    * radiant_slab_with_doas
-* Updates the following in lib/measures:
-    * ChangeBuildingLocation
-    * ExportScheduleCSV
-    * ImportEnvelopeAndInternalLoadsFromIdf
-    * MeterFlodPlot
-    * ReportModelChanges
-    * RunPeriodMultiple
-    * ServerDirectoryCleanup
-    * UnmetLoadHoursTroubleshooting
-    * Ventilation QAQC
-    * ZoneReport
-    * envelope_and_internal_load_breakdown
-    * example_report
-    * gem_env_report
-    * generic_qaqc
-    * hvac_psychrometric_chart
-    * inject_idf_objects
-    * openstudio_results
-    * set_run_period
-* Adds the following to lib/measures:
-    * add_ems_to_control_ev_charging
-    * add_ev_load
-    * view_data
-    * view_model
-* Upgrade Bundler to 2.1.0
-* Upgrade openstudio-extension to 0.2.3
-
-
-
 ## Version 0.2.0
 
 * Support for OpenStudio 3.0

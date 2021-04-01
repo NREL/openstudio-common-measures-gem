@@ -389,7 +389,13 @@ module OsLib_QAQC
               if use_old_gem_code
                 data = @model.get_construction_properties(target_standard, intended_surface_type, standards_construction_type)
               else
-                data = std.model_get_construction_properties(@model, intended_surface_type, standards_construction_type)
+
+                # model_get_construction_properties takes additional arguments now, maybe standard should update to add default
+                building_type = std.model_get_standards_building_type(@model)
+                construction_set_data = std.model_get_construction_set(building_type)
+                building_type_category = construction_set_data['exterior_wall_building_category']
+
+                data = std.model_get_construction_properties(@model, intended_surface_type, standards_construction_type, building_type_category)
               end
 
               if data.nil?
