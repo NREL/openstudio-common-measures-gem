@@ -88,4 +88,3 @@
     </file>
   </files>
 </measure>
-<error>Unable to extract OpenStudio::Measure::OSMeasure object from C:/Users/User/Documents/GitHub/openstudio-common-measures-gem/lib/measures/add_ems_to_control_ev_charging/measure.rb. The script should contain a class that derives from OpenStudio::Measure::OSMeasure and should close with a line stating the class name followed by .new.registerWithApplication.</error>
