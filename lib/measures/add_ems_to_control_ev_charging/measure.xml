@@ -15,9 +15,12 @@
       <display_name>Fraction by Which to Curtail EV Charging During Load Shifting Events</display_name>
       <description>Number between 0 and 1 that denotes the fraction by which EV charging</description>
       <type>Double</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0.5</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
   </arguments>
   <outputs/>
