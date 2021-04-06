@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>7e6d5dbe-27e3-4f72-990b-28cc25246798</version_id>
-  <version_modified>20210406T202645Z</version_modified>
+  <version_id>334d3a82-2707-4ed4-8f50-e2ab13b0c6fc</version_id>
+  <version_modified>20210406T224055Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -1511,7 +1511,7 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>0AF6518B</checksum>
+      <checksum>2A24CB29</checksum>
     </file>
   </files>
 </measure>

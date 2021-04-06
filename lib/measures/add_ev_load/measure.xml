@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_ev_load</name>
   <uid>a23e0493-7357-48ca-b089-4d902efd6b50</uid>
-  <version_id>3b41cc2e-c8d0-4843-9e96-8801950bb676</version_id>
-  <version_modified>20210406T202637Z</version_modified>
+  <version_id>90476d7d-d880-4ce4-ada0-5dad10a82954</version_id>
+  <version_modified>20210406T224047Z</version_modified>
   <xml_checksum>9A202986</xml_checksum>
   <class_name>AddEVLoad</class_name>
   <display_name>Add_EV_Load</display_name>
@@ -140,12 +140,6 @@
       <filetype>csv</filetype>
       <usage_type>resource</usage_type>
       <checksum>E4226271</checksum>
-    </file>
-    <file>
-      <filename>add_ev_load_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>898CF813</checksum>
     </file>
     <file>
       <filename>chg1_dow1_flex2.csv</filename>
@@ -337,7 +331,7 @@
       <filename>add_ev_load_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>898CF813</checksum>
+      <checksum>5E255354</checksum>
     </file>
     <file>
       <version>
@@ -348,7 +342,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>8C864967</checksum>
+      <checksum>93A1C055</checksum>
     </file>
   </files>
 </measure>
