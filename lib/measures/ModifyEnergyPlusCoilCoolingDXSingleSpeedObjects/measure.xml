@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>modify_energyplus_coil_cooling_dx_single_speed_objects</name>
   <uid>b224bd36-213e-4b0e-b3fe-70371e04533d</uid>
-  <version_id>f2614a2b-2077-4322-bdcf-6227a0b42d52</version_id>
-  <version_modified>20200229T024313Z</version_modified>
+  <version_id>3562b631-2d23-47bb-a384-da9687b52044</version_id>
+  <version_modified>20210406T220257Z</version_modified>
   <xml_checksum>C7ED76C0</xml_checksum>
   <class_name>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects</class_name>
   <display_name>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects</display_name>
@@ -53,8 +54,8 @@
       <model_dependent>false</model_dependent>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Cooling</tag>
   </tags>
@@ -93,13 +94,13 @@
       <filename>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>EFC6D32D</checksum>
+      <checksum>C0A6B294</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -110,7 +111,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>77D7ABBC</checksum>
+      <checksum>EFFF913D</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>inject_idf_objects</name>
   <uid>f567dfbc-d280-4d68-b061-019ab2630cd0</uid>
-  <version_id>50ae3f92-5650-4971-a14e-370c542eb6bf</version_id>
-  <version_modified>20200623T195835Z</version_modified>
+  <version_id>27bc8e62-185b-4670-b5ce-548ee42ec4e7</version_id>
+  <version_modified>20210406T220305Z</version_modified>
   <xml_checksum>A8BAB05F</xml_checksum>
   <class_name>InjectIDFObjects</class_name>
   <display_name> Inject IDF Objects</display_name>
@@ -79,12 +79,6 @@ This measure works for when you just need to add new IDF objects. If you need to
       <checksum>F5FABCCF</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -97,6 +91,12 @@ This measure works for when you just need to add new IDF objects. If you need to
       <checksum>3D0882F2</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -105,13 +105,13 @@ This measure works for when you just need to add new IDF objects. If you need to
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>83CDE9EB</checksum>
+      <checksum>FFC40353</checksum>
     </file>
     <file>
       <filename>measure_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B8EDD274</checksum>
+      <checksum>BCA08D25</checksum>
     </file>
   </files>
 </measure>

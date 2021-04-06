@@ -1,17 +1,18 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>remove_internal_loads_directly_assigned_to_spaces</name>
   <uid>019999e0-3e0c-4a77-abbf-a3352de12384</uid>
-  <version_id>91f63907-02ae-4803-942f-d90375e77fc3</version_id>
-  <version_modified>20200229T024313Z</version_modified>
+  <version_id>10e1300e-314d-448a-81ad-a1b79367db54</version_id>
+  <version_modified>20210406T220257Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>RemoveInternalLoadsDirectlyAssignedToSpaces</class_name>
   <display_name>RemoveInternalLoadsDirectlyAssignedToSpaces</display_name>
   <description>This will removed all internal loads assigned directly to spaces. This can be useful if your model started as an IDF, and now you want to assign space types.</description>
   <modeler_description> If you just assign space types without removing loads assigned directly to space, you can end up with double loads.</modeler_description>
-  <arguments/>
-  <outputs/>
-  <provenances/>
+  <arguments />
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -55,19 +56,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>EA843DD0</checksum>
+      <checksum>BF17E1AE</checksum>
     </file>
     <file>
       <filename>RemoveInternalLoadsDirectlyAssignedToSpaces_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>895BC4A2</checksum>
+      <checksum>F92F918B</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
   </files>
 </measure>

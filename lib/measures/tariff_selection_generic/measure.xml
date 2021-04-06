@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>tariff_selection_generic</name>
   <uid>d65ae535-f0ea-4745-9f5b-8d42c7070741</uid>
-  <version_id>852a1d4f-c670-4ff3-931b-f2e4a697ffab</version_id>
-  <version_modified>20200401T050100Z</version_modified>
+  <version_id>cf478c63-d482-4e68-9354-f05768faff23</version_id>
+  <version_modified>20210406T220308Z</version_modified>
   <xml_checksum>43564105</xml_checksum>
   <class_name>TariffSelectionGeneric</class_name>
   <display_name> Tariff Selection-Generic</display_name>
@@ -17,8 +17,28 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>Example_F</default_value>
+      <default_value>Example_A</default_value>
       <choices>
+        <choice>
+          <value>Example_A</value>
+          <display_name>Example A FlatEnergyCharge</display_name>
+        </choice>
+        <choice>
+          <value>Example_B</value>
+          <display_name>Example B BlockEnergyCharge</display_name>
+        </choice>
+        <choice>
+          <value>Example_C</value>
+          <display_name>Example C BlockEnergyAndDemandCharges</display_name>
+        </choice>
+        <choice>
+          <value>Example_D</value>
+          <display_name>Example D SeasonalEnergyCharngesWithMinimumCharge</display_name>
+        </choice>
+        <choice>
+          <value>Example_E</value>
+          <display_name>Example E KWh per kW Energy Charges</display_name>
+        </choice>
         <choice>
           <value>Example_F</value>
           <display_name>Example F SeasonalTimeOfUseEnergy</display_name>
@@ -26,26 +46,6 @@
         <choice>
           <value>Example_G</value>
           <display_name>Example G BlocksWithinBlocks</display_name>
-        </choice>
-        <choice>
-          <value>Example_E</value>
-          <display_name>Example E KWh per kW Energy Charges</display_name>
-        </choice>
-        <choice>
-          <value>Example_D</value>
-          <display_name>Example D SeasonalEnergyCharngesWithMinimumCharge</display_name>
-        </choice>
-        <choice>
-          <value>Example_A</value>
-          <display_name>Example A FlatEnergyCharge</display_name>
-        </choice>
-        <choice>
-          <value>Example_C</value>
-          <display_name>Example C BlockEnergyAndDemandCharges</display_name>
-        </choice>
-        <choice>
-          <value>Example_B</value>
-          <display_name>Example B BlockEnergyCharge</display_name>
         </choice>
         <choice>
           <value>Example_H</value>
@@ -59,15 +59,15 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>IN-EIAMonthlyRateGas</default_value>
+      <default_value>FlatEnergyCharge-Gas</default_value>
       <choices>
-        <choice>
-          <value>IN-EIAMonthlyRateGas</value>
-          <display_name>IN EIAMonthlyRateGas</display_name>
-        </choice>
         <choice>
           <value>FlatEnergyCharge-Gas</value>
           <display_name>FlatEnergyCharge-Gas</display_name>
+        </choice>
+        <choice>
+          <value>IN-EIAMonthlyRateGas</value>
+          <display_name>IN EIAMonthlyRateGas</display_name>
         </choice>
       </choices>
     </argument>
@@ -207,13 +207,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>tariff_selection_generic_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>3B660459</checksum>
+      <checksum>9ED8B8E6</checksum>
     </file>
     <file>
       <version>
@@ -224,7 +224,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>234F1E3C</checksum>
+      <checksum>88068F90</checksum>
     </file>
   </files>
 </measure>

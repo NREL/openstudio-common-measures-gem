@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>envelope_and_internal_load_breakdown</name>
   <uid>8f0e1fbb-8bc6-46e5-b6e4-db59177e2c02</uid>
-  <version_id>e34803df-fdf0-4227-86a6-f2d2c9e84d00</version_id>
-  <version_modified>20200623T192451Z</version_modified>
+  <version_id>c4608886-b9a2-4cd8-b42d-32207281923f</version_id>
+  <version_modified>20210406T220301Z</version_modified>
   <xml_checksum>69BA4D91</xml_checksum>
   <class_name>EnvelopeAndInternalLoadBreakdown</class_name>
   <display_name>Envelope and Internal Load Breakdown</display_name>
@@ -101,22 +101,28 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>F66552F1</checksum>
+    </file>
+    <file>
       <filename>os_lib_reporting_envelope_and_internal_loads_breakdown.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>F01B22FB</checksum>
+      <checksum>AB999863</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>EnvelopeAndInternalLoadBreakdown_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>FFA0DD94</checksum>
+      <checksum>092C8D11</checksum>
     </file>
     <file>
       <version>
@@ -127,19 +133,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>8E7B695F</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>F66552F1</checksum>
+      <checksum>01602504</checksum>
     </file>
     <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>708516C5</checksum>
+      <checksum>5632CFAC</checksum>
     </file>
   </files>
 </measure>

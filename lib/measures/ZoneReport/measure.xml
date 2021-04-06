@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>zone_report</name>
   <uid>81ac119f-4841-434c-9e11-824310fe1cb7</uid>
-  <version_id>dc0d67d0-ee03-4459-acd8-a0dcf61c83ac</version_id>
-  <version_modified>20200605T175858Z</version_modified>
+  <version_id>7d7e961b-e7fa-4148-a3f1-881003426650</version_id>
+  <version_modified>20210406T220300Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ZoneReport</class_name>
   <display_name>Zone Report</display_name>
@@ -54,16 +54,22 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>C013AECE</checksum>
+    </file>
+    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>ZoneReport_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>23FA651F</checksum>
+      <checksum>B1178B90</checksum>
     </file>
     <file>
       <version>
@@ -74,13 +80,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>BB90DAAC</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>C013AECE</checksum>
+      <checksum>0A989832</checksum>
     </file>
   </files>
 </measure>

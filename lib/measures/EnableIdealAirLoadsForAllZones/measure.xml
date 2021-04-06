@@ -1,17 +1,18 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>enable_ideal_air_loads_for_all_zones</name>
   <uid>f70d4a3d-8b93-4fef-b679-858fe1e05acc</uid>
-  <version_id>595a8700-e2a3-4068-badc-f8968f0e9f0e</version_id>
-  <version_modified>20200229T024317Z</version_modified>
+  <version_id>43925108-cc08-4f10-a99f-32e25dcd6e4c</version_id>
+  <version_modified>20210406T220257Z</version_modified>
   <xml_checksum>4435983D</xml_checksum>
   <class_name>EnableIdealAirLoadsForAllZones</class_name>
   <display_name>EnableIdealAirLoadsForAllZones</display_name>
   <description>This will enable Ideal Air Loads for all thermal zones in the model. This will result in disconnecting any pre-existing HVAC systems from the zones.</description>
   <modeler_description>This doesn't clean up any air or plant loops that are left. It was developed to use on models without HVAC. If you use it in another way you may have to clean up remaining objects prior to running a simulation.</modeler_description>
-  <arguments/>
-  <outputs/>
-  <provenances/>
+  <arguments />
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Whole System</tag>
   </tags>
@@ -50,7 +51,7 @@
       <filename>EnableIdealAirLoadsForAllZones_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>3510338F</checksum>
+      <checksum>96E3CC98</checksum>
     </file>
     <file>
       <version>
@@ -61,13 +62,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>77739D3D</checksum>
+      <checksum>DA3A593A</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
   </files>
 </measure>

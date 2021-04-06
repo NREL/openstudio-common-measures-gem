@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_zone_ventilation_design_flow_rate_object</name>
   <uid>c31e2212-720d-413f-bdb9-f38e198dcfa3</uid>
-  <version_id>d63299a7-c7ef-426b-9ee7-d22754fe5c54</version_id>
-  <version_modified>20200229T024304Z</version_modified>
+  <version_id>6c7280a8-8422-4bb2-b2af-ad68a56a1188</version_id>
+  <version_modified>20210406T220300Z</version_modified>
   <xml_checksum>3B6B95A6</xml_checksum>
   <class_name>AddZoneVentilationDesignFlowRateObject</class_name>
   <display_name>Add Zone Ventilation Design Flow Rate Object</display_name>
@@ -65,8 +66,8 @@
       <model_dependent>false</model_dependent>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Ventilation</tag>
   </tags>
@@ -130,19 +131,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>35B9AE62</checksum>
+      <checksum>0FDD0F9B</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>add_zone_ventilation_design_flow_rate_object_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>0A27D73E</checksum>
+      <checksum>0D3CD7DA</checksum>
     </file>
   </files>
 </measure>

@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_simple_pv_to_shading_surfaces_by_type</name>
   <uid>27627c16-75d4-4fc3-add9-2d7d538c0130</uid>
-  <version_id>7efbb76d-72fd-432e-9e06-8f6b2410a751</version_id>
-  <version_modified>20200229T024318Z</version_modified>
+  <version_id>263a8572-cfd3-43ed-8cba-fa7b28398034</version_id>
+  <version_modified>20210406T220254Z</version_modified>
   <xml_checksum>92C8C204</xml_checksum>
   <class_name>AddSimplePvToShadingSurfacesByType</class_name>
   <display_name>Add Simple PV to Specified Shading Surfaces</display_name>
@@ -85,8 +86,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Onsite Power Generation.Photovoltaic</tag>
   </tags>
@@ -135,13 +136,13 @@
       <filename>AddSimplePvToShadingSurfacesByType_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>70128578</checksum>
+      <checksum>F73F9B23</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -152,7 +153,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>362C32D7</checksum>
+      <checksum>7F195550</checksum>
     </file>
   </files>
 </measure>

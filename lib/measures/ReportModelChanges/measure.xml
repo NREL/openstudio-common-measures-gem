@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>report_model_changes</name>
   <uid>6d66b426-908f-4528-9fe5-523b9d2f49c5</uid>
-  <version_id>9d0b61af-8680-4b6c-973a-7d06fda7c229</version_id>
-  <version_modified>20200623T205026Z</version_modified>
+  <version_id>7a86b814-638d-485d-8c26-5a3dde2ba910</version_id>
+  <version_modified>20210406T220258Z</version_modified>
   <xml_checksum>1E1F8B97</xml_checksum>
   <class_name>ReportModelChanges</class_name>
   <display_name>ReportModelChanges</display_name>
@@ -70,19 +70,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>5964F4E9</checksum>
+      <checksum>C2DB10DD</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>ReportModelChanges_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>E86DB233</checksum>
+      <checksum>3DF67DE4</checksum>
     </file>
   </files>
 </measure>

@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_ev_load</name>
   <uid>a23e0493-7357-48ca-b089-4d902efd6b50</uid>
-  <version_id>f338ee9d-beaa-4da6-bc8d-8a6f99443635</version_id>
-  <version_modified>20210304T040242Z</version_modified>
+  <version_id>61446fe0-6c20-49c8-8761-79544de12de7</version_id>
+  <version_modified>20210406T220300Z</version_modified>
   <xml_checksum>9A202986</xml_checksum>
   <class_name>AddEVLoad</class_name>
   <display_name>Add_EV_Load</display_name>
@@ -13,7 +14,7 @@
     <argument>
       <name>delay_type</name>
       <display_name>Charging Flexibility Option</display_name>
-      <description>Represents charging flexibility scenarios applied to workplace charging. Min Delay indicating EVs begin charging immediately upon arriving at work, Max Delay indicating EVs are plugged in immediately but do not begin charging until necessary and Min Power indicating EVs are charged at minimum rate over the parking event.</description>
+      <description>Represents charging flexibility scenarios applied to workplace charging. Min Delay indicates EVs begin charging immediately upon arriving at work, Max Delay indicates EVs are plugged in immediately but do not begin charging until necessary and Min Power indicates EVs are charged at minimum rate over the parking event.</description>
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -88,8 +89,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Equipment.Electric Equipment</tag>
   </tags>
@@ -132,7 +133,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -143,13 +144,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>4CCA6666</checksum>
+      <checksum>8C864967</checksum>
     </file>
     <file>
       <filename>add_ev_load_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>898CF813</checksum>
+      <checksum>5E255354</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>ventilation_qaqc</name>
   <uid>cb13be0e-88f6-494c-b3b1-dc748b42e205</uid>
-  <version_id>b97442fd-7920-4a03-95b2-d4e3e7006d5a</version_id>
-  <version_modified>20200817T202906Z</version_modified>
+  <version_id>7344a494-62f7-4dd4-867c-e4b0e86de915</version_id>
+  <version_modified>20210406T220300Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>VentilationQAQC</class_name>
   <display_name>Ventilation Report</display_name>
@@ -57,12 +57,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
@@ -75,10 +69,22 @@
       <checksum>358253AE</checksum>
     </file>
     <file>
+      <filename>report.html.in</filename>
+      <filetype>in</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E5A4911E</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <filename>ventilation_qaqc_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>8B2F9EC2</checksum>
+      <checksum>AEA00AC7</checksum>
     </file>
     <file>
       <version>
@@ -89,13 +95,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>42120CDD</checksum>
-    </file>
-    <file>
-      <filename>report.html.in</filename>
-      <filetype>in</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E5A4911E</checksum>
+      <checksum>0AD86D10</checksum>
     </file>
   </files>
 </measure>

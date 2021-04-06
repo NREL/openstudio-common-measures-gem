@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>get_site_from_building_component_library</name>
   <uid>a6dff045-6f62-4288-a3f0-a5549f4c292a</uid>
-  <version_id>2a807499-50fc-4472-b873-928056eeabea</version_id>
-  <version_modified>20200509T041913Z</version_modified>
+  <version_id>df86d4f6-1e3c-4724-8215-807aa1f4e991</version_id>
+  <version_modified>20210406T220305Z</version_modified>
   <xml_checksum>99E7000D</xml_checksum>
   <class_name>GetSiteFromBuildingComponentLibrary</class_name>
   <display_name>Get Site from Building Component Library</display_name>
@@ -115,19 +115,19 @@
       <filename>bcl_api_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>2B96ED07</checksum>
+      <checksum>9C9180AD</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>get_site_from_building_component_library_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>D2DF7036</checksum>
+      <checksum>C16D4B39</checksum>
     </file>
     <file>
       <version>
@@ -138,7 +138,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A0260DC0</checksum>
+      <checksum>02536E57</checksum>
     </file>
   </files>
 </measure>

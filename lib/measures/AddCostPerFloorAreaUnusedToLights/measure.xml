@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_cost_per_floor_area_to_unused_lights</name>
   <uid>a5f5ddcf-48bb-413a-a712-0ee22f0b40a4</uid>
-  <version_id>1b691206-0c60-48ba-8d34-2ae9ba833e34</version_id>
-  <version_modified>20200229T024319Z</version_modified>
+  <version_id>4f3727ae-8c82-4a9a-9cba-56971f84f772</version_id>
+  <version_modified>20210406T220253Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerFloorAreaToUnusedLights</class_name>
   <display_name>Add Cost per Floor Area to Unused Lights</display_name>
@@ -108,8 +109,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Economics.Life Cycle Cost Analysis</tag>
   </tags>
@@ -169,19 +170,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>1DABE4CF</checksum>
+      <checksum>474F8B68</checksum>
     </file>
     <file>
       <filename>AddCostPerFloorAreaToUusedLights_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>9E52068B</checksum>
+      <checksum>F7773D52</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
   </files>
 </measure>

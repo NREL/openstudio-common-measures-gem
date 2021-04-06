@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>set_energyplus_minimum_outdoor_air_flow_rate</name>
   <uid>90e4574a-b4cc-4a00-9b43-1fe9bb7e6e77</uid>
-  <version_id>8d4fc7e1-013d-4a0e-a1b3-57d3dbb4c97c</version_id>
-  <version_modified>20200229T024304Z</version_modified>
+  <version_id>afd2e013-90b0-4a51-95d3-77e7e83452b5</version_id>
+  <version_modified>20210406T220259Z</version_modified>
   <xml_checksum>7E41814C</xml_checksum>
   <class_name>SetEnergyPlusMinimumOutdoorAirFlowRate</class_name>
   <display_name>SetEnergyPlusMinimumOutdoorAirFlowRate</display_name>
@@ -18,8 +19,8 @@
       <model_dependent>false</model_dependent>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Ventilation</tag>
   </tags>
@@ -58,13 +59,13 @@
       <filename>SetEnergyPlusMinimumOutdoorAirFlowRate_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>8FBA906F</checksum>
+      <checksum>2C1C3CA3</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -75,7 +76,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DC306A86</checksum>
+      <checksum>E986C4C0</checksum>
     </file>
   </files>
 </measure>
