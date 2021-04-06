@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_exterior_walls_and_floors_to_adiabatic</name>
   <uid>63c7f9ba-8c85-4545-bbc0-d25babefb2c3</uid>
-  <version_id>75a958b7-2bf7-496a-80e5-dcae03703541</version_id>
-  <version_modified>20200715T184924Z</version_modified>
+  <version_id>e0da0d47-e9c0-44b8-813e-40971347c268</version_id>
+  <version_modified>20210406T202645Z</version_modified>
   <xml_checksum>5091078B</xml_checksum>
   <class_name>SetExteriorWallsAndFloorsToAdiabatic</class_name>
   <display_name>Set Exterior Walls and Floors to Adiabatic</display_name>
@@ -193,6 +193,12 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>610E0A71</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -201,19 +207,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D073FC2A</checksum>
+      <checksum>B2EF6BF7</checksum>
     </file>
     <file>
       <filename>set_exterior_walls_and_floors_to_adiabatic_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>2078C06A</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>610E0A71</checksum>
+      <checksum>6BB3F14D</checksum>
     </file>
   </files>
 </measure>

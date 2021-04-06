@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>ventilation_qaqc</name>
   <uid>cb13be0e-88f6-494c-b3b1-dc748b42e205</uid>
-  <version_id>a79aa260-c19c-4e81-9502-fe156d3e8af6</version_id>
-  <version_modified>20210105T180805Z</version_modified>
+  <version_id>b6f9be5c-be57-4c7f-9451-47a884c4968b</version_id>
+  <version_modified>20210406T202637Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>VentilationQAQC</class_name>
   <display_name>Ventilation Report</display_name>
@@ -81,12 +81,6 @@
       <checksum>E5A4911E</checksum>
     </file>
     <file>
-      <filename>ventilation_qaqc_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4A6CFF43</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -96,6 +90,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>48767EF0</checksum>
+    </file>
+    <file>
+      <filename>ventilation_qaqc_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>0A8D0089</checksum>
     </file>
   </files>
 </measure>
