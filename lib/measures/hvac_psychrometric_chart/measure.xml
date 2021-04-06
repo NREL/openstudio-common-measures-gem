@@ -84,17 +84,16 @@
       <usage_type>script</usage_type>
       <checksum>1F7F5021</checksum>
     </file>
-    <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>55BF8784</checksum>
-    </file>
-    <file>
       <filename>hvac_psychrometric_chart_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>63508164</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>53D145D3</checksum>
     </file>
   </files>
 </measure>

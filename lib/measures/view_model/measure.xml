@@ -3,8 +3,13 @@
   <schema_version>3.0</schema_version>
   <name>view_model</name>
   <uid>f4669f10-fda5-489d-8e1c-7ca3c2d40378</uid>
+<<<<<<< HEAD
   <version_id>c4ef2a71-4e3b-4608-af7d-e5c5433641b9</version_id>
   <version_modified>20210406T220308Z</version_modified>
+=======
+  <version_id>de960ca7-2791-4d43-9783-9c7523d3e9f3</version_id>
+  <version_modified>20210406T202646Z</version_modified>
+>>>>>>> origin/develop
   <xml_checksum>1E1F8B97</xml_checksum>
   <class_name>ViewModel</class_name>
   <display_name>ViewModel</display_name>
@@ -54,6 +59,15 @@
       <checksum>B313B958</checksum>
     </file>
     <file>
+<<<<<<< HEAD
+=======
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+>>>>>>> origin/develop
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -64,12 +78,15 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>AF845B1C</checksum>
+<<<<<<< HEAD
     </file>
     <file>
       <filename>va3c.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>1FD61D41</checksum>
+=======
+>>>>>>> origin/develop
     </file>
     <file>
       <version>
@@ -80,12 +97,17 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
+<<<<<<< HEAD
       <checksum>13D3ACA9</checksum>
+=======
+      <checksum>E45B3599</checksum>
+>>>>>>> origin/develop
     </file>
     <file>
       <filename>ViewModel_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
+<<<<<<< HEAD
       <checksum>81008696</checksum>
     </file>
     <file>
@@ -93,6 +115,15 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
+=======
+      <checksum>F9B33E01</checksum>
+    </file>
+    <file>
+      <filename>va3c.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3564D62E</checksum>
+>>>>>>> origin/develop
     </file>
   </files>
 </measure>

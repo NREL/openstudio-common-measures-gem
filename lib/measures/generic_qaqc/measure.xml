@@ -668,19 +668,19 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>990D7631</checksum>
+      <checksum>5C4C3A58</checksum>
     </file>
     <file>
       <filename>check_eui_by_end_use.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>F188B64A</checksum>
+      <checksum>398D6826</checksum>
     </file>
     <file>
       <filename>check_envelope_conductance.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>243DDE18</checksum>
+      <checksum>EB98CBEF</checksum>
     </file>
   </files>
 </measure>

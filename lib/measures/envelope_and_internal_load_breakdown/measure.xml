@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>envelope_and_internal_load_breakdown</name>
   <uid>8f0e1fbb-8bc6-46e5-b6e4-db59177e2c02</uid>
-  <version_id>c4608886-b9a2-4cd8-b42d-32207281923f</version_id>
-  <version_modified>20210406T220301Z</version_modified>
+  <version_id>703d7796-afde-425e-9336-3e4ea1d6a08b</version_id>
+  <version_modified>20210406T202637Z</version_modified>
   <xml_checksum>69BA4D91</xml_checksum>
   <class_name>EnvelopeAndInternalLoadBreakdown</class_name>
   <display_name>Envelope and Internal Load Breakdown</display_name>
@@ -139,7 +139,7 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>5632CFAC</checksum>
+      <checksum>AD451814</checksum>
     </file>
   </files>
 </measure>
