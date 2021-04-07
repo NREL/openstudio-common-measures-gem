@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>set_electric_equipment_loads_by_epd</name>
   <uid>b1d87b95-a6d1-4999-bd0d-16da879f4340</uid>
-  <version_id>77eb1d04-16e0-48eb-9cb5-e43c99d8252d</version_id>
-  <version_modified>20200229T024316Z</version_modified>
+  <version_id>be45836d-f09d-4a03-986f-0aa886657f16</version_id>
+  <version_modified>20210406T220307Z</version_modified>
   <xml_checksum>5C8B3381</xml_checksum>
   <class_name>SetElectricEquipmentLoadsByEPD</class_name>
   <display_name>Set Electric Equipment loads by EPD</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*Entire Building*</default_value>
+      <default_value>{6bfbbaf1-85ba-4864-b699-52843ee11458}</default_value>
       <choices>
         <choice>
-          <value>{f2489a8b-9fdc-45d0-a5f9-da5b7e1fc2ab}</value>
+          <value>{6bfbbaf1-85ba-4864-b699-52843ee11458}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -117,8 +118,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Equipment.Electric Equipment</tag>
   </tags>
@@ -179,7 +180,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -190,13 +191,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>9187A779</checksum>
+      <checksum>42152E9B</checksum>
     </file>
     <file>
       <filename>ReplaceElectricEquipmentWithEPD_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>EDCC59FE</checksum>
+      <checksum>E4E7683A</checksum>
     </file>
   </files>
 </measure>

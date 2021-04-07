@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>hvac_psychrometric_chart</name>
   <uid>97213780-0727-4462-8ec0-9a6c3e475cd6</uid>
-  <version_id>be34450b-2568-4713-aa57-a88841c2b5cc</version_id>
-  <version_modified>20210406T202644Z</version_modified>
+  <version_id>87771ad7-b9df-4c7f-bb0b-b46b399ef1f9</version_id>
+  <version_modified>20210406T220305Z</version_modified>
   <xml_checksum>F657B621</xml_checksum>
   <class_name>HVACPsychrometricChart</class_name>
   <display_name>HVAC Psychrometric Chart</display_name>
@@ -62,10 +62,16 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>3DE900D7</checksum>
+    </file>
+    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -76,19 +82,12 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>3E6E7724</checksum>
+      <checksum>1F7F5021</checksum>
     </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>3DE900D7</checksum>
-    </file>
-    <file>
       <filename>hvac_psychrometric_chart_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>07B326D0</checksum>
+      <checksum>63508164</checksum>
     </file>
     <file>
       <filename>report.html.erb</filename>

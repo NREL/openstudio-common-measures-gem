@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_ems_to_control_ev_charging</name>
   <uid>df97997f-d02a-4e35-af7a-5aed16cb5772</uid>
-  <version_id>5397e13e-6013-45a2-b44c-91c8074b223f</version_id>
-  <version_modified>20210304T040200Z</version_modified>
+  <version_id>d6e93ae3-9066-4fef-84b1-bf7177ebd015</version_id>
+  <version_modified>20210406T220300Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSToControlEVCharging</class_name>
   <display_name>Add EMS to Control EV Charging</display_name>
@@ -23,8 +24,8 @@
       <max_value></max_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Equipment.Equipment Controls</tag>
   </tags>
@@ -67,13 +68,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>add_ems_to_control_ev_charging_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>F1CE7CE7</checksum>
+      <checksum>8CD767D3</checksum>
     </file>
     <file>
       <version>
@@ -84,7 +85,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>60ABFAB9</checksum>
+      <checksum>822775FB</checksum>
     </file>
   </files>
 </measure>

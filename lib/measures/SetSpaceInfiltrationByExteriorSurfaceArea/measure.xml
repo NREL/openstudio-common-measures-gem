@@ -1,25 +1,26 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>set_space_infiltration_by_exterior_surface_area</name>
   <uid>9d7b0789-3974-4869-a2a8-055391857e3c</uid>
-  <version_id>009df721-461a-45d4-8751-ae9c999c3ff7</version_id>
-  <version_modified>20200229T024316Z</version_modified>
+  <version_id>b2ff01cf-db13-46a9-8569-99e7a73ee6a9</version_id>
+  <version_modified>20210406T220259Z</version_modified>
   <xml_checksum>E88CCCA7</xml_checksum>
   <class_name>SetSpaceInfiltrationByExteriorSurfaceArea</class_name>
   <display_name>Set Space Infiltration by Exterior Surface Area</display_name>
-  <description>Replace all Space Infiltration objects with a new one that has a prescribed flow rate per exterior surface area.  There are many strategies that can be used to reduce infiltration.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-Seal Windows ? Seal all windows and doors with weather strip and fill any air gaps with insulation and caulking to prevent air infiltration.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-Install Revolving Doors on the Inner Door Entrance - Replace the high traffic entrance doors with revolving doors.  This will reduce the air infiltration associated with the doors.  Notice that loading dock doors and handicapped accessible entrances cannot be replaced with revolving doors.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-Install an Air Curtain for the Loading Dock Door - An air curtain should be installed in the entryway of loading dock doors.  This will greatly reduce outside air from infiltrating during periods of time when loading dock doors are open.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-Identify and seal other sources of infiltration ? Look for other uncontrolled infiltration sources and work to air seal.  These could be former electrical chases, abandoned HVAC ducting, general envelope deterioration, or many other sources.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+  <description>Replace all Space Infiltration objects with a new one that has a prescribed flow rate per exterior surface area.  There are many strategies that can be used to reduce infiltration.
+
+Seal Windows ? Seal all windows and doors with weather strip and fill any air gaps with insulation and caulking to prevent air infiltration.
+
+Install Revolving Doors on the Inner Door Entrance - Replace the high traffic entrance doors with revolving doors.  This will reduce the air infiltration associated with the doors.  Notice that loading dock doors and handicapped accessible entrances cannot be replaced with revolving doors.
+
+Install an Air Curtain for the Loading Dock Door - An air curtain should be installed in the entryway of loading dock doors.  This will greatly reduce outside air from infiltrating during periods of time when loading dock doors are open.
+
+Identify and seal other sources of infiltration ? Look for other uncontrolled infiltration sources and work to air seal.  These could be former electrical chases, abandoned HVAC ducting, general envelope deterioration, or many other sources.
   </description>
-  <modeler_description>Remove all infiltration objects used in the model and add in a new object to each space type, and then to spaces without space types. Schedules come from the schedule sets. Warn user if there is no schedule set associated with a space type.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-A one time material &amp; installation cost can be added to the building object to reflect improvements made throughout the envelope. "Years Until Costs Start? is typically "0?, but you can use a larger number if you want to delay the improvements.  O&amp;M cost and frequency can be whatever is appropriate for the component. This measure hard sizes the costs based on current infiltration levels.  As a result any change to the models made by measures run after this that have an impact on infiltration will not affect the cost. An example of a problematic measure would be deleting a space from the model or making each floor taller; in both cases adjusting the total exterior envelope area.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+  <modeler_description>Remove all infiltration objects used in the model and add in a new object to each space type, and then to spaces without space types. Schedules come from the schedule sets. Warn user if there is no schedule set associated with a space type.
+
+A one time material &amp; installation cost can be added to the building object to reflect improvements made throughout the envelope. "Years Until Costs Start? is typically "0?, but you can use a larger number if you want to delay the improvements.  O&amp;M cost and frequency can be whatever is appropriate for the component. This measure hard sizes the costs based on current infiltration levels.  As a result any change to the models made by measures run after this that have an impact on infiltration will not affect the cost. An example of a problematic measure would be deleting a space from the model or making each floor taller; in both cases adjusting the total exterior envelope area.
   </modeler_description>
   <arguments>
     <argument>
@@ -55,8 +56,8 @@ A one time material &amp; installation cost can be added to the building object 
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Infiltration</tag>
   </tags>
@@ -116,19 +117,19 @@ A one time material &amp; installation cost can be added to the building object 
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>2A4F5C31</checksum>
+      <checksum>FF3AFB40</checksum>
     </file>
     <file>
       <filename>SetSpaceInfiltrationByExteriorSurfaceArea_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>352CBB25</checksum>
+      <checksum>7F668E36</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
   </files>
 </measure>

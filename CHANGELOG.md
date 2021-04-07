@@ -1,5 +1,11 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.4.0 (Unreleased)
+
+* Support Ruby ~> 2.7
+* Add EV measure load files
+* Update copyrights
+
 ## Version 0.3.2
 
 * Bump openstudio-extension-gem version to 0.3.2 to support updated workflow-gem

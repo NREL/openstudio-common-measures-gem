@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_zone_mixing_object</name>
   <uid>6ed65817-1d97-43da-a4c2-1d738eafcde5</uid>
-  <version_id>c3e8d9b1-07ec-4c0e-bb0b-7e6f14bee36b</version_id>
-  <version_modified>20200229T024316Z</version_modified>
+  <version_id>b3cfccc8-3748-4ed9-a2e2-195f6824bdb0</version_id>
+  <version_modified>20210406T220300Z</version_modified>
   <xml_checksum>61000E02</xml_checksum>
   <class_name>AddZoneMixingObject</class_name>
   <display_name>Add Zone Mixing Object</display_name>
@@ -40,8 +41,8 @@
       <model_dependent>false</model_dependent>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Distribution</tag>
   </tags>
@@ -90,7 +91,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -101,13 +102,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>431269A2</checksum>
+      <checksum>AC0619F8</checksum>
     </file>
     <file>
       <filename>add_zone_mixing_object_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>56C5E3B1</checksum>
+      <checksum>32FAEAA2</checksum>
     </file>
   </files>
 </measure>

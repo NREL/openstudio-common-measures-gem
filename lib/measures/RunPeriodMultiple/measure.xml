@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>run_period_multiple</name>
   <uid>100a5eba-0442-42cb-bdf1-9cf75e102f71</uid>
-  <version_id>8a62a70b-5f67-4ac1-848e-f70f003648b9</version_id>
-  <version_modified>20200605T175907Z</version_modified>
+  <version_id>bbc5823b-372a-4110-912d-dd686fc58d59</version_id>
+  <version_modified>20210406T220258Z</version_modified>
   <xml_checksum>87C4F8A7</xml_checksum>
   <class_name>RunPeriodMultiple</class_name>
   <display_name>Set Multiple Run Period Object</display_name>
@@ -86,7 +86,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -97,7 +97,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>BC156A7E</checksum>
+      <checksum>DEA5A8CC</checksum>
     </file>
   </files>
 </measure>
