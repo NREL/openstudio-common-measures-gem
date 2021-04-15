@@ -430,7 +430,7 @@ class TariffSelectionTimeAndDateDependant < OpenStudio::Measure::EnergyPlusMeasu
       new_object_string = "
       UtilityCost:Tariff,
         Gas Tariff,                             !- Name
-        Gas:Facility,                           !- Output Meter Name
+        NaturalGas:Facility,                    !- Output Meter Name
         Therm,                                  !- Conversion Factor Choice
         ,                                       !- Energy Conversion Factor
         ,                                       !- Demand Conversion Factor

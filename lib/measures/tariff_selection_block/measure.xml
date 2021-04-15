@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>tariff_selection_block</name>
   <uid>42e9f831-f39a-4709-a79b-41db49c94f8c</uid>
-  <version_id>d2db7c7e-996b-4704-9a6d-8193778a15a4</version_id>
-  <version_modified>20210406T220307Z</version_modified>
+  <version_id>c9817b8c-fcdb-4ce8-956f-6757da3256f3</version_id>
+  <version_modified>20210415T213528Z</version_modified>
   <xml_checksum>92578CE8</xml_checksum>
   <class_name>TariffSelectionBlock</class_name>
   <display_name> Tariff Selection-Block</display_name>
@@ -272,7 +272,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A0BFA620</checksum>
+      <checksum>500354AC</checksum>
     </file>
   </files>
 </measure>
