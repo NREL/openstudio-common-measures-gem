@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>d0d37563-1e1e-4235-a686-ac0de11299ec</version_id>
-  <version_modified>20210415T221238Z</version_modified>
+  <version_id>64cfacaf-955d-4449-bddf-3af366a77322</version_id>
+  <version_modified>20210415T223900Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -667,12 +667,6 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B91D04D5</checksum>
     </file>
     <file>
       <filename>Siz.AirConditionerVariableRefrigerantFlow.rb</filename>
@@ -1467,12 +1461,6 @@
       <checksum>42C65747</checksum>
     </file>
     <file>
-      <filename>os_lib_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>71E1011F</checksum>
-    </file>
-    <file>
       <filename>OpenStudioResults_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -1491,6 +1479,12 @@
       <checksum>2A24CB29</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>42709140</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1499,13 +1493,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>03F41BA9</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>42709140</checksum>
+      <checksum>0702587D</checksum>
     </file>
   </files>
 </measure>
