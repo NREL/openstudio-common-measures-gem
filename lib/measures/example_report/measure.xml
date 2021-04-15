@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>example_report</name>
   <uid>174a6f71-3e8c-4f99-9e7a-b64f2e7535d4</uid>
-  <version_id>12238616-7520-4cbd-a410-8ed6c37e96b0</version_id>
-  <version_modified>20210406T224050Z</version_modified>
+  <version_id>df523fff-4c6c-4527-83c1-3bda0d51967a</version_id>
+  <version_modified>20210415T221215Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>ExampleReport</class_name>
   <display_name>Example Report</display_name>
@@ -153,6 +153,12 @@
       <checksum>9236651D</checksum>
     </file>
     <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>177CA671</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -162,12 +168,6 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>F11E0560</checksum>
-    </file>
-    <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>177CA671</checksum>
     </file>
   </files>
 </measure>

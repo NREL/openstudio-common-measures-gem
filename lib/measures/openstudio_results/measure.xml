@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>334d3a82-2707-4ed4-8f50-e2ab13b0c6fc</version_id>
-  <version_modified>20210406T224055Z</version_modified>
+  <version_id>d0d37563-1e1e-4235-a686-ac0de11299ec</version_id>
+  <version_modified>20210415T221238Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -661,12 +661,6 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>42C65747</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>42709140</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
@@ -1473,27 +1467,10 @@
       <checksum>42C65747</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>42709140</checksum>
-    </file>
-    <file>
       <filename>os_lib_schedules.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>71E1011F</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>03F41BA9</checksum>
     </file>
     <file>
       <filename>OpenStudioResults_Test.rb</filename>
@@ -1512,6 +1489,23 @@
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
       <checksum>2A24CB29</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>3.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>03F41BA9</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>42709140</checksum>
     </file>
   </files>
 </measure>

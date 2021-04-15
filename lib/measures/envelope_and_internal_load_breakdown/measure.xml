@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>envelope_and_internal_load_breakdown</name>
   <uid>8f0e1fbb-8bc6-46e5-b6e4-db59177e2c02</uid>
-  <version_id>50cfb308-75af-40ff-add0-f147ac768558</version_id>
-  <version_modified>20210406T224048Z</version_modified>
+  <version_id>d5c351d3-231e-4cf5-b13b-5432dbcac3b2</version_id>
+  <version_modified>20210415T221209Z</version_modified>
   <xml_checksum>69BA4D91</xml_checksum>
   <class_name>EnvelopeAndInternalLoadBreakdown</class_name>
   <display_name>Envelope and Internal Load Breakdown</display_name>
@@ -101,12 +101,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>F66552F1</checksum>
-    </file>
-    <file>
       <filename>os_lib_reporting_envelope_and_internal_loads_breakdown.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -125,6 +119,12 @@
       <checksum>092C8D11</checksum>
     </file>
     <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>990D7631</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -136,10 +136,10 @@
       <checksum>01602504</checksum>
     </file>
     <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>990D7631</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>F66552F1</checksum>
     </file>
   </files>
 </measure>
