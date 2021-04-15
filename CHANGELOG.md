@@ -5,6 +5,14 @@
 * Support Ruby ~> 2.7
 * Add EV measure load files
 * Update copyrights
+* Fixed [#36]( https://github.com/NREL/openstudio-common-measures-gem/issues/36 ), update generic QAQC to use the extension gem
+* Fixed [#52]( https://github.com/NREL/openstudio-common-measures-gem/issues/52 ), Bump envelope and internal load min version
+* Fixed [#55]( https://github.com/NREL/openstudio-common-measures-gem/issues/55 ), ChangeBuildingLocation Error: Comparison of String with 0 failed 
+* Fixed [#56]( https://github.com/NREL/openstudio-common-measures-gem/pull/56 ), Convert `args['set_year']` to integer
+* Fixed [#63]( https://github.com/NREL/openstudio-common-measures-gem/issues/63 ), Issue with OpenStudio Results fenestration calculations
+* Fixed [#65]( https://github.com/NREL/openstudio-common-measures-gem/issues/65 ), Tariff Selection-Flat measure needs to be updated for newer E+ versions
+* Fixed [#68]( https://github.com/NREL/openstudio-common-measures-gem/issues/68 ), envelope_and_internal_load_breakdown syntax error
+* Fixed [#64]( https://github.com/NREL/openstudio-common-measures-gem/pull/64 ), Fix to area reporting of sub-surfaces
 
 ## Version 0.3.2
 
