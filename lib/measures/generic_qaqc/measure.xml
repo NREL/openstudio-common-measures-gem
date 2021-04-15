@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>44608f13-2bec-4aeb-a793-8a8e07d93e7e</version_id>
-  <version_modified>20210415T221225Z</version_modified>
+  <version_id>64a1f9f6-86a4-4eb7-bd21-c39a34d1d3bd</version_id>
+  <version_modified>20210415T225627Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -552,12 +552,6 @@
       <checksum>97D9A3D1</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B91D04D5</checksum>
-    </file>
-    <file>
       <filename>check_simultaneous_heating_and_cooling.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -666,6 +660,12 @@
       <checksum>243DDE18</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>BBC2D3D5</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -674,13 +674,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7D2D75CB</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>BBC2D3D5</checksum>
+      <checksum>6DD4E3C2</checksum>
     </file>
   </files>
 </measure>
