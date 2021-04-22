@@ -3,7 +3,7 @@
 ## Version 0.4.0
 
 * Support Ruby ~> 2.7
-* Support for OpenStudio 3.2 (upgrade to extension gem 0.4.1 and standards gem 0.2.13.rc3)
+* Support for OpenStudio 3.2 (upgrade to extension gem 0.4.2 and standards gem 0.2.13)
 * Add EV measure load files
 * Update copyrights
 * Fixed [#36]( https://github.com/NREL/openstudio-common-measures-gem/issues/36 ), update generic QAQC to use the extension gem
