@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>tariff_selection_time_and_date_dependant</name>
   <uid>a890e296-b357-432f-8d53-6428d9bf3c0a</uid>
-  <version_id>87929681-c420-48df-a2e3-66139b891597</version_id>
-  <version_modified>20210406T220308Z</version_modified>
+  <version_id>7a771f4b-ce8d-4ed6-a777-d01c3768a14f</version_id>
+  <version_modified>20210415T213605Z</version_modified>
   <xml_checksum>135F7E88</xml_checksum>
   <class_name>TariffSelectionTimeAndDateDependant</class_name>
   <display_name>Tariff Selection-Time and Date Dependant</display_name>
@@ -290,7 +290,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>F0FC1395</checksum>
+      <checksum>046BFECE</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>334d3a82-2707-4ed4-8f50-e2ab13b0c6fc</version_id>
-  <version_modified>20210406T224055Z</version_modified>
+  <version_id>da737820-833d-4734-8131-f962d58ea8e2</version_id>
+  <version_modified>20210423T144543Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -663,22 +663,10 @@
       <checksum>42C65747</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>42709140</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B91D04D5</checksum>
     </file>
     <file>
       <filename>Siz.AirConditionerVariableRefrigerantFlow.rb</filename>
@@ -1473,29 +1461,6 @@
       <checksum>42C65747</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>42709140</checksum>
-    </file>
-    <file>
-      <filename>os_lib_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>71E1011F</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>3.1.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>03F41BA9</checksum>
-    </file>
-    <file>
       <filename>OpenStudioResults_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -1508,10 +1473,27 @@
       <checksum>3F113A2D</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>42709140</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>3.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>9C1DCE2E</checksum>
+    </file>
+    <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>2A24CB29</checksum>
+      <checksum>FB09FEFB</checksum>
     </file>
   </files>
 </measure>
