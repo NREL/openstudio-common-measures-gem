@@ -1,6 +1,6 @@
   UtilityCost:Tariff,
-    FlatEnergyCharge-Gas,            !- Name
-    Gas:Facility,            !- Output Meter Name
+    FlatEnergyCharge-Gas,    !- Name
+    NaturalGas:Facility,     !- Output Meter Name
     Therm,                   !- Conversion Factor Choice
     ,                        !- Energy Conversion Factor
     ,                        !- Demand Conversion Factor
@@ -11,7 +11,7 @@
     15.;                     !- Monthly Charge or Variable Name
 
   UtilityCost:Charge:Simple,
-    SimpleEnergyCharge,    !- Name
+    SimpleEnergyCharge,      !- Name
     FlatEnergyCharge-Gas,    !- Tariff Name
     totalEnergy,             !- Source Variable
     Annual,                  !- Season

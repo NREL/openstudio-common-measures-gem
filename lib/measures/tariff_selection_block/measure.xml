@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>tariff_selection_block</name>
   <uid>42e9f831-f39a-4709-a79b-41db49c94f8c</uid>
-  <version_id>8636ed6c-3998-42ef-9cc8-98fd1d5fb6cf</version_id>
-  <version_modified>20200401T050058Z</version_modified>
+  <version_id>c9817b8c-fcdb-4ce8-956f-6757da3256f3</version_id>
+  <version_modified>20210415T213528Z</version_modified>
   <xml_checksum>92578CE8</xml_checksum>
   <class_name>TariffSelectionBlock</class_name>
   <display_name> Tariff Selection-Block</display_name>
@@ -255,13 +255,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>tariff_selection_block_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>4F006849</checksum>
+      <checksum>119C13C2</checksum>
     </file>
     <file>
       <version>
@@ -272,7 +272,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>0DE324C3</checksum>
+      <checksum>500354AC</checksum>
     </file>
   </files>
 </measure>

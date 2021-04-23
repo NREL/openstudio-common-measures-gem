@@ -27,9 +27,9 @@ EnergyPlusMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Select a Tariff for Gas:Facility.
+### Select a Tariff for NaturalGas:Facility.
 
-**Name:** Gas:Facility,
+**Name:** NaturalGas:Facility,
 **Type:** Choice,
 **Units:** ,
 **Required:** true,

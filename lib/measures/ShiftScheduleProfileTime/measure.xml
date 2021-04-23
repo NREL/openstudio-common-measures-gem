@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>shift_schedule_profile_time</name>
   <uid>1c642348-f074-4ad1-98ee-2208ddc89ac7</uid>
-  <version_id>5404621c-fd40-40c5-9151-84cc29061110</version_id>
-  <version_modified>20200229T024319Z</version_modified>
+  <version_id>7482b65c-0478-49b3-9b54-eb3a627bc2ab</version_id>
+  <version_modified>20210406T220259Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>ShiftScheduleProfileTime</class_name>
   <display_name>ShiftScheduleProfileTime</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All Ruleset Schedules*</default_value>
+      <default_value>{15966d58-132a-443f-9dcd-2a3886efe059}</default_value>
       <choices>
         <choice>
-          <value>{f218f307-4c6f-4fcb-bd01-f0044042f9f0}</value>
+          <value>{15966d58-132a-443f-9dcd-2a3886efe059}</value>
           <display_name>*All Ruleset Schedules*</display_name>
         </choice>
       </choices>
@@ -33,8 +34,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Whole Building Schedules</tag>
   </tags>
@@ -88,19 +89,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>003AA7A4</checksum>
+      <checksum>C1D066F5</checksum>
     </file>
     <file>
       <filename>ShiftScheduleProfileTime_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>51BB433C</checksum>
+      <checksum>92F095AD</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
   </files>
 </measure>

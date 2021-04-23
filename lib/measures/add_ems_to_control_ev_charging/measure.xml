@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_ems_to_control_ev_charging</name>
   <uid>df97997f-d02a-4e35-af7a-5aed16cb5772</uid>
-  <version_id>0ad18ca6-32ff-4264-9451-36a1bcb0aadf</version_id>
-  <version_modified>20200901T153152Z</version_modified>
+  <version_id>d6e93ae3-9066-4fef-84b1-bf7177ebd015</version_id>
+  <version_modified>20210406T220300Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSToControlEVCharging</class_name>
   <display_name>Add EMS to Control EV Charging</display_name>
@@ -14,10 +14,14 @@
     <argument>
       <name>curtailment_frac</name>
       <display_name>Fraction by Which to Curtail EV Charging During Load Shifting Events</display_name>
+      <description>Number between 0 and 1 that denotes the fraction by which EV charging</description>
       <type>Double</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0.5</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
   </arguments>
   <outputs />
@@ -61,10 +65,16 @@
       <checksum>70CA2C6E</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <filename>add_ems_to_control_ev_charging_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B6C25840</checksum>
+      <checksum>8CD767D3</checksum>
     </file>
     <file>
       <version>
@@ -75,13 +85,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>31F0CB5F</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>822775FB</checksum>
     </file>
   </files>
 </measure>

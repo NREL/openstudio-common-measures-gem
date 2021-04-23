@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>set_thermostat_schedules</name>
   <uid>2978cde0-53d5-4096-bdab-11f9f6e074f1</uid>
-  <version_id>c08c1cff-1e5e-474c-915e-c1a3abe0c0b8</version_id>
-  <version_modified>20200229T024315Z</version_modified>
+  <version_id>6ab8322c-a3ad-4ce2-8035-ed5407a28383</version_id>
+  <version_modified>20210406T220259Z</version_modified>
   <xml_checksum>F4CEA58B</xml_checksum>
   <class_name>SetThermostatSchedules</class_name>
   <display_name>Set Thermostat Schedules</display_name>
@@ -16,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*All Thermal Zones*</default_value>
+      <default_value>{16ed4270-57a1-4ebe-9724-abc6ba413a3a}</default_value>
       <choices>
         <choice>
-          <value>{6a241220-4789-4fcb-b416-3432f86d7b2d}</value>
+          <value>{16ed4270-57a1-4ebe-9724-abc6ba413a3a}</value>
           <display_name>*All Thermal Zones*</display_name>
         </choice>
       </choices>
@@ -30,7 +31,7 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*No Change*</default_value>
+      <default_value>{00000000-0000-0000-0000-000000000000}</default_value>
       <choices>
         <choice>
           <value>{00000000-0000-0000-0000-000000000000}</value>
@@ -44,7 +45,7 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>*No Change*</default_value>
+      <default_value>{00000000-0000-0000-0000-000000000000}</default_value>
       <choices>
         <choice>
           <value>{00000000-0000-0000-0000-000000000000}</value>
@@ -61,8 +62,8 @@
       <default_value>0</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.HVAC Controls</tag>
   </tags>
@@ -110,19 +111,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C53B40AB</checksum>
+      <checksum>F19C744A</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>SetThermostatSchedules_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>101470AA</checksum>
+      <checksum>1D5AFE7F</checksum>
     </file>
   </files>
 </measure>

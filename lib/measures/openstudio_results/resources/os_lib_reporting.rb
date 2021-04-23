@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -1735,7 +1735,7 @@ module OsLib_Reporting
     end
     ext_const_sub.sort.each do |construction, count|
       net_area = construction.getNetArea
-      net_area_conv = OpenStudio.convert(net_area, target_area_units, source_area_units).get
+      net_area_conv = OpenStudio.convert(net_area, source_area_units, target_area_units).get
       net_area_neat = OpenStudio.toNeatString(net_area_conv, n_decimals_area, true)
       surface_count = count
       vlt_neat = 'n/a'

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>tariff_selection_generic</name>
   <uid>d65ae535-f0ea-4745-9f5b-8d42c7070741</uid>
-  <version_id>852a1d4f-c670-4ff3-931b-f2e4a697ffab</version_id>
-  <version_modified>20200401T050100Z</version_modified>
+  <version_id>4bf6e77a-5b7f-4489-9c9c-f3e2321f2e38</version_id>
+  <version_modified>20210415T213555Z</version_modified>
   <xml_checksum>43564105</xml_checksum>
   <class_name>TariffSelectionGeneric</class_name>
   <display_name> Tariff Selection-Generic</display_name>
@@ -54,8 +54,8 @@
       </choices>
     </argument>
     <argument>
-      <name>Gas:Facility</name>
-      <display_name>Select a Tariff for Gas:Facility.</display_name>
+      <name>NaturalGas:Facility</name>
+      <display_name>Select a Tariff for NaturalGas:Facility.</display_name>
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -138,18 +138,6 @@
       <checksum>98AC420A</checksum>
     </file>
     <file>
-      <filename>FlatEnergyCharge-Gas.idf</filename>
-      <filetype>idf</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>300CF076</checksum>
-    </file>
-    <file>
-      <filename>IN-EIAMonthlyRateGas.idf</filename>
-      <filetype>idf</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>6AA3EBFF</checksum>
-    </file>
-    <file>
       <filename>Example_A.idf</filename>
       <filetype>idf</filetype>
       <usage_type>resource</usage_type>
@@ -198,22 +186,16 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>5EEF1AF4</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>tariff_selection_generic_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>3B660459</checksum>
+      <checksum>9ED8B8E6</checksum>
     </file>
     <file>
       <version>
@@ -224,7 +206,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>234F1E3C</checksum>
+      <checksum>88068F90</checksum>
+    </file>
+    <file>
+      <filename>FlatEnergyCharge-Gas.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E0541646</checksum>
+    </file>
+    <file>
+      <filename>IN-EIAMonthlyRateGas.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>8DAD6C69</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>27EC34FF</checksum>
     </file>
   </files>
 </measure>

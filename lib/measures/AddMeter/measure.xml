@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_meter</name>
   <uid>ad4015f2-6d1d-4bb2-84b1-db47bc67a5b2</uid>
-  <version_id>a235b313-8272-4538-a1b3-6b016de9b615</version_id>
-  <version_modified>20200229T024317Z</version_modified>
+  <version_id>7277df8b-7dde-47b1-b612-ea07008988d1</version_id>
+  <version_modified>20210406T220254Z</version_modified>
   <xml_checksum>0CA4D54C</xml_checksum>
   <class_name>AddMeter</class_name>
   <display_name>Add Meter</display_name>
@@ -49,8 +50,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Reporting.QAQC</tag>
   </tags>
@@ -98,19 +99,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>10519AF1</checksum>
+      <checksum>E42791F3</checksum>
     </file>
     <file>
       <filename>AddMeter_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>4BF5E361</checksum>
+      <checksum>E5D383A1</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
   </files>
 </measure>

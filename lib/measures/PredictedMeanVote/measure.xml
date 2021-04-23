@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>predicted_mean_vote</name>
   <uid>11cd3144-dac6-4f64-90e4-b8804c6bfc5e</uid>
-  <version_id>3351a0f8-9ffc-4dbd-a36b-873d8f45851b</version_id>
-  <version_modified>20200228T204851Z</version_modified>
+  <version_id>2e872db6-0423-40bb-aebb-014e354eddda</version_id>
+  <version_modified>20210406T220257Z</version_modified>
   <xml_checksum>0CA4D54C</xml_checksum>
   <class_name>PredictedMeanVote</class_name>
   <display_name>Predicted Mean Vote</display_name>
@@ -103,8 +104,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Reporting.QAQC</tag>
   </tags>
@@ -150,6 +151,12 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>C2BA306D</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -158,25 +165,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>EB49CC9D</checksum>
+      <checksum>20187C74</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>PredictedMeanVote_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>981F085D</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>C2BA306D</checksum>
+      <checksum>E528C92D</checksum>
     </file>
   </files>
 </measure>

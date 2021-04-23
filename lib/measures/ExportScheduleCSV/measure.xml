@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>export_schedule_csv</name>
   <uid>6fc1a46d-4912-47af-8ace-a7c453fbe363</uid>
-  <version_id>90f272f0-a08b-44e9-bc76-03aa61726424</version_id>
-  <version_modified>20200605T185058Z</version_modified>
+  <version_id>8385cf30-d6e1-4246-9d0e-f9ffb7d9c21c</version_id>
+  <version_modified>20210406T220257Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ExportScheduleCSV</class_name>
   <display_name>ExportScheduleCSV</display_name>
@@ -57,16 +57,22 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>6F5139DD</checksum>
+    </file>
+    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>ExportScheduleCSV_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>6A0C2D44</checksum>
+      <checksum>FDC26D64</checksum>
     </file>
     <file>
       <version>
@@ -77,13 +83,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>5B725BD0</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>6F5139DD</checksum>
+      <checksum>54C0308F</checksum>
     </file>
   </files>
 </measure>

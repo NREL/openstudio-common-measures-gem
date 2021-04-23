@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_output_diagnostics</name>
   <uid>cb957503-4a01-42c4-a918-a44df4ea759c</uid>
-  <version_id>a7506eaf-51ed-4409-a00e-3b84c6feb5b9</version_id>
-  <version_modified>20200229T024313Z</version_modified>
+  <version_id>507953df-6092-4146-aca6-9b038ca02cb3</version_id>
+  <version_modified>20210406T220254Z</version_modified>
   <xml_checksum>AA6ADD14</xml_checksum>
   <class_name>AddOutputDiagnostics</class_name>
   <display_name>Add Output Diagnostics</display_name>
@@ -61,8 +62,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Reporting.QAQC</tag>
   </tags>
@@ -95,13 +96,13 @@
       <filename>AddOutputDiagnostics_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>7E45B613</checksum>
+      <checksum>6E09508E</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -112,7 +113,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>8E6BEA31</checksum>
+      <checksum>3D8CB383</checksum>
     </file>
   </files>
 </measure>

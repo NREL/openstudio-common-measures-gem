@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>add_cost_per_floor_area_to_lights</name>
   <uid>eeec5adf-b3a8-498a-b0d1-eabd81ca0620</uid>
-  <version_id>f78ddee0-57d7-4e2b-be60-27255d12b5fb</version_id>
-  <version_modified>20200229T024316Z</version_modified>
+  <version_id>dffad386-eb26-453b-a36f-edb11dc96d16</version_id>
+  <version_modified>20210406T220253Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerFloorAreaToLights</class_name>
   <display_name>Add Cost per FloorArea to Lights</display_name>
@@ -110,8 +111,8 @@ For baseline costs, 'Years Until Costs Start' indicates the year that the capita
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Economics.Life Cycle Cost Analysis</tag>
   </tags>
@@ -165,19 +166,19 @@ For baseline costs, 'Years Until Costs Start' indicates the year that the capita
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DBCA222E</checksum>
+      <checksum>A9BE58F7</checksum>
     </file>
     <file>
       <filename>AddCostPerFloorAreaToLights_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>A7212CA9</checksum>
+      <checksum>024C4068</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
   </files>
 </measure>
