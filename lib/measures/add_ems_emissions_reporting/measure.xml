@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>add_ems_emissions_reporting</name>
+  <uid>e8fe9153-5e70-4769-afa0-6da0045aa529</uid>
+  <version_id>e82db9b6-6b0d-44d3-9f2d-c9fc39570cf3</version_id>
+  <version_modified>20210722T155717Z</version_modified>
+  <xml_checksum>976EB6EB</xml_checksum>
+  <class_name>AddEMSEmissionsReporting</class_name>
+  <display_name>Add EMS to Report Emissions</display_name>
+  <description>This measure reports emissions based on user-provided CSVs.</description>
+  <modeler_description>This measure uses EnergyPlus' Energy Management System to log and report emissions based on user provided CSV file(s).</modeler_description>
+  <arguments>
+    <argument>
+      <name>csv_path</name>
+      <display_name>Hourly emissions CSV path</display_name>
+      <description>Path to CSV which contains hourly emissions information</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Equipment.Equipment Controls</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E925F127</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>09820273</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.5.1</identifier>
+        <min_compatible>2.5.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>849404C0</checksum>
+    </file>
+    <file>
+      <filename>add_ems_emissions_reporting_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BC949539</checksum>
+    </file>
+  </files>
+</measure>
