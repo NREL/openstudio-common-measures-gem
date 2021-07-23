@@ -1,17 +1,4 @@
----
-title: "ReadMe"
-author: "Eric Bonnema"
-date: "7/22/2020"
-output:
-  pdf_document: default
-  html_document: default
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Add EMS to Control EV Charging Load
+## Add EMS to Report Emissions
 ## Description
 This measure reports emissions based on user-provided CSVs.
 
