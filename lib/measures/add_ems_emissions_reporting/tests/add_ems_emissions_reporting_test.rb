@@ -37,8 +37,10 @@ require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require_relative '../measure.rb'
 
-class AddEMSEmissionsReporting_Test < MiniTest::Unit::TestCase
-  def test_number_of_arguments_and_argument_names
+class AddEMSEmissionsReporting_Test < MiniTest::Test
+
+  def test_num_of_args_and_arg_names
+
     # create an instance of the measure
     measure = AddEMSEmissionsReporting.new
 
@@ -47,50 +49,15 @@ class AddEMSEmissionsReporting_Test < MiniTest::Unit::TestCase
 
     # get arguments and test that they are what we are expecting
     args = measure.arguments(model)
-    assert_equal(1, args.size)
-    assert_equal('csv_path', arguments[0].name)
+    assert_equal(3, args.size)
+    assert_equal('sub_regn', args[0].name)
+    assert_equal('fut_year', args[1].name)
+    assert_equal('his_year', args[2].name)
+
   end
 
-  def test_bad_argument_values
-    # create an instance of the measure
-    measure = AddEMSEmissionsReporting.new
+  def test_good_arg_vals
 
-    # create runner with empty OSW
-    osw = OpenStudio::WorkflowJSON.new
-    runner = OpenStudio::Measure::OSRunner.new(osw)
-
-    # make an empty model
-    model = OpenStudio::Model::Model.new
-
-    # get arguments
-    args = measure.arguments(model)
-    arg_map = OpenStudio::Measure.convertOSArgumentVectorToMap(args)
-
-    # create hash of argument values
-    args_hash = {}
-    args_hash['csv_path'] = -1
-
-    # populate argument with specified hash value if specified
-    args.each do |arg|
-      temp_arg_var = arg.clone
-      if args_hash.key?(arg.name)
-        assert(temp_arg_var.setValue(args_hash[arg.name]))
-      end
-      arg_map[arg.name] = temp_arg_var
-    end
-
-    # run the measure
-    measure.run(model, runner, argument_map)
-    result = runner.result
-
-    # show the output
-    show_output(result)
-
-    # assert that it ran correctly
-    assert_equal('Fail', result.value.valueName)
-  end
-
-  def test_good_argument_values
     # create an instance of the measure
     measure = AddEMSEmissionsReporting.new
 
@@ -100,9 +67,9 @@ class AddEMSEmissionsReporting_Test < MiniTest::Unit::TestCase
     runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
-    translator = OpenStudio::OSVersion::VersionTranslator.new
+    trans = OpenStudio::OSVersion::VersionTranslator.new
     path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
-    model = translator.loadModel(path)
+    model = trans.loadModel(path)
     assert(!model.empty?)
     model = model.get
 
@@ -111,21 +78,19 @@ class AddEMSEmissionsReporting_Test < MiniTest::Unit::TestCase
     arg_map = OpenStudio::Measure.convertOSArgumentVectorToMap(args)
 
     # create hash of argument values
-    # if the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash['csv_path'] = ''
 
     # populate argument with specified hash value if specified
     args.each do |arg|
-      temp_arg_var = arg.clone
+      tmp_arg = arg.clone
       if args_hash.key?(arg.name)
-        assert(temp_arg_var.setValue(args_hash[arg.name]))
+        assert(tmp_arg.setValue(args_hash[arg.name]))
       end
-      arg_map[arg.name] = temp_arg_var
+      arg_map[arg.name] = tmp_arg
     end
 
     # run the measure
-    measure.run(model, runner, argument_map)
+    measure.run(model, runner, arg_map)
     result = runner.result
 
     # show the output
@@ -137,5 +102,7 @@ class AddEMSEmissionsReporting_Test < MiniTest::Unit::TestCase
     # save the model to test output directory
     output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
     model.save(output_file_path, true)
+
   end
+
 end
