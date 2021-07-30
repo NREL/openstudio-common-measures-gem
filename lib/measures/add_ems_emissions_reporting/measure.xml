@@ -3,21 +3,40 @@
   <schema_version>3.0</schema_version>
   <name>add_ems_emissions_reporting</name>
   <uid>e8fe9153-5e70-4769-afa0-6da0045aa529</uid>
-  <version_id>e82db9b6-6b0d-44d3-9f2d-c9fc39570cf3</version_id>
-  <version_modified>20210722T155717Z</version_modified>
+  <version_id>71ce8f32-4637-4b8d-ac2c-b5935827ffc4</version_id>
+  <version_modified>20210730T145814Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSEmissionsReporting</class_name>
   <display_name>Add EMS to Report Emissions</display_name>
-  <description>This measure reports emissions based on user-provided CSVs.</description>
-  <modeler_description>This measure uses EnergyPlus' Energy Management System to log and report emissions based on user provided CSV file(s).</modeler_description>
+  <description>This measure reports emissions based on user-provided eGrid subregion.</description>
+  <modeler_description>This measure uses the EnergyPlus Energy Management System to log and report emissions based on user provided eGrid subregion.</modeler_description>
   <arguments>
     <argument>
-      <name>csv_path</name>
-      <display_name>Hourly emissions CSV path</display_name>
-      <description>Path to CSV which contains hourly emissions information</description>
+      <name>sub_regn</name>
+      <display_name>eGrid subregion</display_name>
+      <description>eGrid subregion. Options are: AZNM, CAMX, ERCT, FRCC, MROE, MROW, NEWE, NWPP, NYST, RFCE, RFCM, RFCW, RMPA, SPNO, SPSO, SRMV, SRMW, SRSO, SRTV, and SRVC</description>
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
+      <default_value>RMPA</default_value>
+    </argument>
+    <argument>
+      <name>fut_year</name>
+      <display_name>Future Year</display_name>
+      <description>Future Year. Options are: 2020 to 2050 in two year increments</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>2030</default_value>
+    </argument>
+    <argument>
+      <name>his_year</name>
+      <display_name>Historial Year</display_name>
+      <description>Historial Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>2010</default_value>
     </argument>
   </arguments>
   <outputs />
@@ -49,22 +68,46 @@
   </attributes>
   <files>
     <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E925F127</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
     </file>
     <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8EA06A27</checksum>
+    </file>
+    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>09820273</checksum>
+      <checksum>289A1D6A</checksum>
+    </file>
+    <file>
+      <filename>add_ems_emissions_reporting_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9FC1DB8E</checksum>
+    </file>
+    <file>
+      <filename>future_annual_subregion.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>45EA0E06</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_2030.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>1447A288</checksum>
+    </file>
+    <file>
+      <filename>historical_annual_subregion.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>74F83653</checksum>
     </file>
     <file>
       <version>
@@ -75,13 +118,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>849404C0</checksum>
-    </file>
-    <file>
-      <filename>add_ems_emissions_reporting_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>BC949539</checksum>
+      <checksum>3E6E1F1C</checksum>
     </file>
   </files>
 </measure>
