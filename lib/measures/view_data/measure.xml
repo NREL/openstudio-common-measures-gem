@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>view_data</name>
   <uid>18cf0de7-48b8-48dc-ab68-0dd29f0b8bd0</uid>
-  <version_id>066ca6c6-2c73-4b02-910a-5aba023b2117</version_id>
-  <version_modified>20210406T224056Z</version_modified>
+  <version_id>735a1615-20af-4edc-838f-b8166d375587</version_id>
+  <version_modified>20210801T053516Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ViewData</class_name>
   <display_name>ViewData</display_name>
@@ -103,12 +103,6 @@
       <checksum>BDF687C1</checksum>
     </file>
     <file>
-      <filename>report.html.in</filename>
-      <filetype>in</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>61B6B47E</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -154,6 +148,12 @@
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>1FD61D41</checksum>
+    </file>
+    <file>
+      <filename>report.html.in</filename>
+      <filetype>in</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>59FADD1B</checksum>
     </file>
   </files>
 </measure>
