@@ -94,18 +94,18 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     fut_year = runner.getStringArgumentValue('fut_year', usr_args)
     his_year = runner.getStringArgumentValue('his_year', usr_args)
 
-    csv_path = "#{File.expand_path(File.dirname(__FILE__))}/resources/future_hourly_#{fut_year}.csv"
-    fut_path = "#{File.expand_path(File.dirname(__FILE__))}/resources/future_annual_subregion.csv"
-    his_path = "#{File.expand_path(File.dirname(__FILE__))}/resources/historical_annual_subregion.csv"
+    csv_path = "#{__dir__}/resources/future_hourly_#{fut_year}.csv"
+    fut_path = "#{__dir__}/resources/future_annual_subregion.csv"
+    his_path = "#{__dir__}/resources/historical_annual_subregion.csv"
 
     # find external file
     if File.exist?(csv_path)
-      csv_file = OpenStudio::Model::ExternalFile::getExternalFile(model, csv_path)
+      csv_file = OpenStudio::Model::ExternalFile.getExternalFile(model, csv_path)
       if csv_file.is_initialized
         csv_file = csv_file.get
-        csv_data = CSV.read(csv_path, headers:true)
-        fut_data = CSV.read("#{File.expand_path(File.dirname(__FILE__))}/resources/future_annual_subregion.csv", headers:true)
-        his_data = CSV.read("#{File.expand_path(File.dirname(__FILE__))}/resources/historical_annual_subregion.csv", headers:true)
+        csv_data = CSV.read(csv_path, headers: true)
+        fut_data = CSV.read("#{__dir__}/resources/future_annual_subregion.csv", headers: true)
+        his_data = CSV.read("#{__dir__}/resources/historical_annual_subregion.csv", headers: true)
       end
     else
       runner.registerError("Could not find CSV file at #{csv_path}")
@@ -139,8 +139,8 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
 
     ems_prgm = OpenStudio::Model::EnergyManagementSystemProgram.new(model)
     ems_prgm.setName('Emissions_Calc_Prgm')
-    fut_data.each {|r| ems_prgm.addLine("SET fann = #{r['co2_rate']}") if r['subregion'] == sub_regn && r['year'] == fut_year}
-    his_data.each {|r| ems_prgm.addLine("SET hann = #{r['co2_rate']}") if r['subregion'] == sub_regn && r['year'] == his_year}
+    fut_data.each { |r| ems_prgm.addLine("SET fann = #{r['co2_rate']}") if r['subregion'] == sub_regn && r['year'] == fut_year }
+    his_data.each { |r| ems_prgm.addLine("SET hann = #{r['co2_rate']}") if r['subregion'] == sub_regn && r['year'] == his_year }
     ems_prgm.addLine('SET hval = Hour_Sen')
     ems_prgm.addLine('SET elec = Elec_Sen')
     ems_prgm.addLine('SET mult = 1000 * 60 * 60') # J to kWh (1000J/kJ * 60hr/min * 60 min/sec)

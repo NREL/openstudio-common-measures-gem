@@ -35,12 +35,10 @@
 
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 
 class AddEMSEmissionsReporting_Test < MiniTest::Test
-
   def test_num_of_args_and_arg_names
-
     # create an instance of the measure
     measure = AddEMSEmissionsReporting.new
 
@@ -53,11 +51,9 @@ class AddEMSEmissionsReporting_Test < MiniTest::Test
     assert_equal('sub_regn', args[0].name)
     assert_equal('fut_year', args[1].name)
     assert_equal('his_year', args[2].name)
-
   end
 
   def test_good_arg_vals
-
     # create an instance of the measure
     measure = AddEMSEmissionsReporting.new
 
@@ -68,7 +64,7 @@ class AddEMSEmissionsReporting_Test < MiniTest::Test
 
     # load the test model
     trans = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = trans.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -100,9 +96,7 @@ class AddEMSEmissionsReporting_Test < MiniTest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_output.osm")
     model.save(output_file_path, true)
-
   end
-
 end
