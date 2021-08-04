@@ -48,9 +48,9 @@ class AddEMSEmissionsReporting_Test < MiniTest::Test
     # get arguments and test that they are what we are expecting
     args = measure.arguments(model)
     assert_equal(3, args.size)
-    assert_equal('sub_regn', args[0].name)
-    assert_equal('fut_year', args[1].name)
-    assert_equal('his_year', args[2].name)
+    assert_equal('subregion', args[0].name)
+    assert_equal('future_year', args[1].name)
+    assert_equal('historical_year', args[2].name)
   end
 
   def test_good_arg_vals
