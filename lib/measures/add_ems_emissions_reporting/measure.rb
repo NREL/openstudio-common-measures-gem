@@ -75,7 +75,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     # historical year
     historical_year = OpenStudio::Measure::OSArgument.makeIntegerArgument('historical_year', true)
     historical_year.setDisplayName('Historical Year')
-    historical_year.setDescription('Historial Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.')
+    historical_year.setDescription('Historical Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.')
     historical_year.setDefaultValue(2010)
     args << historical_year
 
