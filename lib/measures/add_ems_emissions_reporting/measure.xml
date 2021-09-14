@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_ems_emissions_reporting</name>
   <uid>e8fe9153-5e70-4769-afa0-6da0045aa529</uid>
-  <version_id>581839ad-ef88-4855-9c4d-5e814023a217</version_id>
-  <version_modified>20210804T160602Z</version_modified>
+  <version_id>782d437e-3f0a-4d29-b57f-386a8c58c053</version_id>
+  <version_modified>20210914T180347Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSEmissionsReporting</class_name>
   <display_name>Add EMS to Report Emissions</display_name>
@@ -31,8 +31,8 @@
     </argument>
     <argument>
       <name>historical_year</name>
-      <display_name>Historial Year</display_name>
-      <description>Historial Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.</description>
+      <display_name>Historical Year</display_name>
+      <description>Historical Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.</description>
       <type>Integer</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -107,7 +107,7 @@
       <filename>add_ems_emissions_reporting_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>E29026A1</checksum>
+      <checksum>9FF953C1</checksum>
     </file>
     <file>
       <version>
@@ -118,7 +118,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DAE1AF12</checksum>
+      <checksum>18C9992A</checksum>
     </file>
   </files>
 </measure>
