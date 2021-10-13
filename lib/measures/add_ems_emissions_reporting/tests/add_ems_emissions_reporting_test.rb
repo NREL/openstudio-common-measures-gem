@@ -38,6 +38,7 @@ require 'minitest/autorun'
 require_relative '../measure'
 
 class AddEMSEmissionsReporting_Test < MiniTest::Test
+
   def test_num_of_args_and_arg_names
     # create an instance of the measure
     measure = AddEMSEmissionsReporting.new
@@ -99,4 +100,5 @@ class AddEMSEmissionsReporting_Test < MiniTest::Test
     output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_output.osm")
     model.save(output_file_path, true)
   end
+
 end
