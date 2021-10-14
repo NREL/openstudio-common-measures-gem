@@ -46,38 +46,59 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
 
   # human readable description
   def description
-    return 'This measure reports emissions based on user-provided eGrid subregion.'
+    return 'This measure reports emissions based on user-provided future and historical years as well as future, historical hourly, and historical annual subregions.'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This measure uses the EnergyPlus Energy Management System to log and report emissions based on user provided eGrid subregion.'
+    return 'This measure uses the EnergyPlus Energy Management System to log and report emissions based on user-provided future and historical years as well as future, historical hourly, and historical annual subregions.'
   end
 
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    # eGrid subregion
-    subregion = OpenStudio::Measure::OSArgument.makeStringArgument('subregion', true)
-    subregion.setDisplayName('eGrid subregion')
-    subregion.setDescription('eGrid subregion. Options are: AZNM, CAMX, ERCT, FRCC, MROE, MROW, NEWE, NWPP, NYST, RFCE, RFCM, RFCW, RMPA, SPNO, SPSO, SRMV, SRMW, SRSO, SRTV, and SRVC')
-    subregion.setDefaultValue('RMPA')
-    args << subregion
+    # future subregion
+    future_subregion = OpenStudio::Measure::OSArgument.makeStringArgument('future_subregion', true)
+    future_subregion.setDisplayName('Future subregion')
+    future_subregion.setDescription('Future subregion. Options are: AZNMc, CAMXc, ERCTc, FRCCc, MROEc, MROWc, NEWEc, NWPPc, NYSTc, RFCEc, RFCMc, RFCWc, RMPAc, SPNOc, SPSOc, SRMVc, SRMWc, SRSOc, SRTVc, and SRVCc')
+    future_subregion.setDefaultValue('RMPAc')
+    args << future_subregion
+
+    # historical hourly subregion
+    hourly_historical_subregion = OpenStudio::Measure::OSArgument.makeStringArgument('hourly_historical_subregion', true)
+    hourly_historical_subregion.setDisplayName('Historical hourly subregion')
+    hourly_historical_subregion.setDescription('Historical hourly subregion. Options are: California, Carolinas, Central, Florida, Mid-Atlantic, Midwest, New England, New York, Northwest, Rocky Mountains, Southeast, Southwest, Tennessee, and Texas')
+    hourly_historical_subregion.setDefaultValue('Rocky Mountains')
+    args << hourly_historical_subregion
+
+    # historical annual subregion
+    annual_historical_subregion = OpenStudio::Measure::OSArgument.makeStringArgument('annual_historical_subregion', true)
+    annual_historical_subregion.setDisplayName('Historical annual subregion')
+    annual_historical_subregion.setDescription('Historical annual subregion. Options are: AKGD, AKMS, AZNM, CAMX, ERCT, FRCC, HIMS, HIOA, MROE, MROW, NEWE, NWPP, NYCW, NYLI, NYUP, RFCE, RFCM, RFCW, RMPA, SPNO, SPSO, SRMV, SRMW, SRSO, SRTV, and SRVC')
+    annual_historical_subregion.setDefaultValue('RMPA')
+    args << annual_historical_subregion
 
     # future year
     future_year = OpenStudio::Measure::OSArgument.makeIntegerArgument('future_year', true)
     future_year.setDisplayName('Future Year')
     future_year.setDescription('Future Year. Options are: 2020 to 2050 in two year increments')
-    future_year.setDefaultValue(2030)
+    future_year.setDefaultValue(2020)
     args << future_year
 
-    # historical year
-    historical_year = OpenStudio::Measure::OSArgument.makeIntegerArgument('historical_year', true)
-    historical_year.setDisplayName('Historical Year')
-    historical_year.setDescription('Historical Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.')
-    historical_year.setDefaultValue(2010)
-    args << historical_year
+    # hourly historical year
+    hourly_historical_year = OpenStudio::Measure::OSArgument.makeIntegerArgument('hourly_historical_year', true)
+    hourly_historical_year.setDisplayName('Hourly Historical Year')
+    hourly_historical_year.setDescription('Hourly Historical Year. Options are: 2019.')
+    hourly_historical_year.setDefaultValue(2019)
+    args << hourly_historical_year
+
+    # annual historical year
+    annual_historical_year = OpenStudio::Measure::OSArgument.makeIntegerArgument('annual_historical_year', true)
+    annual_historical_year.setDisplayName('Annual Historical Year')
+    annual_historical_year.setDescription('Annual Historical Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.')
+    annual_historical_year.setDefaultValue(2019)
+    args << annual_historical_year
 
     return args
   end
@@ -90,25 +111,36 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     return false unless runner.validateUserArguments(arguments(model), usr_args)
 
     # assign the user inputs to variables
-    subregion = runner.getStringArgumentValue('subregion', usr_args)
-    future_year = runner.getStringArgumentValue('future_year', usr_args)
-    historical_year = runner.getStringArgumentValue('historical_year', usr_args)
+    future_subregion = runner.getStringArgumentValue('future_subregion', usr_args)
+    hourly_historical_subregion = runner.getStringArgumentValue('hourly_historical_subregion', usr_args)
+    annual_historical_subregion = runner.getStringArgumentValue('annual_historical_subregion', usr_args)
+    future_year = runner.getIntegerArgumentValue('future_year', usr_args)
+    hourly_historical_year = runner.getIntegerArgumentValue('hourly_historical_year', usr_args)
+    annual_historical_year = runner.getIntegerArgumentValue('annual_historical_year', usr_args)
 
-    csv_path = "#{__dir__}/resources/future_hourly_#{future_year}.csv"
-    fut_path = "#{__dir__}/resources/future_annual_subregion.csv"
-    his_path = "#{__dir__}/resources/historical_annual_subregion.csv"
+    fut_hr_path = "#{__dir__}/resources/future_hourly_co2e_#{future_year}.csv"
+    his_hr_path = "#{__dir__}/resources/historical_hourly_co2e_#{hourly_historical_year}.csv"
+    fut_yr_path = "#{__dir__}/resources/future_annual_co2e.csv"
+    his_yr_path = "#{__dir__}/resources/historical_annual_co2e.csv"
 
-    # find external file
-    if File.exist?(csv_path)
-      csv_file = OpenStudio::Model::ExternalFile.getExternalFile(model, csv_path)
-      if csv_file.is_initialized
-        csv_file = csv_file.get
-        csv_data = CSV.read(csv_path, headers: true)
-        fut_data = CSV.read("#{__dir__}/resources/future_annual_subregion.csv", headers: true)
-        his_data = CSV.read("#{__dir__}/resources/historical_annual_subregion.csv", headers: true)
+    # find external files
+    if ((File.exist?(fut_hr_path)) and (File.exist?(fut_yr_path)) and (File.exist?(his_hr_path)) and (File.exist?(his_yr_path)))
+      fut_hr_file = OpenStudio::Model::ExternalFile.getExternalFile(model, fut_hr_path)
+      his_hr_file = OpenStudio::Model::ExternalFile.getExternalFile(model, his_hr_path)
+      fut_yr_file = OpenStudio::Model::ExternalFile.getExternalFile(model, fut_yr_path)
+      his_yr_file = OpenStudio::Model::ExternalFile.getExternalFile(model, his_yr_path)
+      if ((fut_hr_file.is_initialized) and (his_hr_file.is_initialized) and (fut_yr_file.is_initialized) and (his_yr_file.is_initialized))
+        fut_hr_file = fut_hr_file.get
+        his_hr_file = his_hr_file.get
+        fut_yr_file = fut_yr_file.get
+        his_yr_file = his_yr_file.get
+        fut_hr_data = CSV.read(fut_hr_path, headers: true)
+        his_hr_data = CSV.read(his_hr_path, headers: true)
+        fut_yr_data = CSV.read(fut_yr_path, headers: true)
+        his_yr_data = CSV.read(his_yr_path, headers: true)
       end
     else
-      runner.registerError("Could not find CSV file at #{csv_path}")
+      runner.registerError("Could not find CSV file at one of more of the following paths: #{fut_hr_path}, #{his_hr_path}, #{fut_yr_path}, or #{his_yr_path}")
       return false
     end
 
@@ -116,37 +148,55 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     lim_type = OpenStudio::Model::ScheduleTypeLimits.new(model)
     lim_type.setName('Emissions Sch File Type Limits')
 
-    # add schedule file
-    sch_file = OpenStudio::Model::ScheduleFile.new(csv_file)
-    sch_file.setName("#{subregion} #{future_year} Hourly Emissions Sch")
+    # add future schedule file
+    sch_file = OpenStudio::Model::ScheduleFile.new(fut_hr_file)
+    sch_file.setName("#{future_subregion} #{future_year} Future Hourly Emissions Sch")
     sch_file.setScheduleTypeLimits(lim_type)
-    sch_file.setColumnNumber(csv_data.headers.index(subregion) + 1)
+    sch_file.setColumnNumber(fut_hr_data.headers.index(future_subregion) + 1)
     sch_file.setRowstoSkipatTop(1)
     sch_file.setNumberofHoursofData(8760)
     sch_file.setColumnSeparator('Comma')
     sch_file.setInterpolatetoTimestep(false)
     sch_file.setMinutesperItem(60)
 
-    # add EMS sensor for schedule file
+    # add historical schedule file
+    sch_file = OpenStudio::Model::ScheduleFile.new(his_hr_file)
+    sch_file.setName("#{hourly_historical_subregion} #{hourly_historical_year} Historical Hourly Emissions Sch")
+    sch_file.setScheduleTypeLimits(lim_type)
+    sch_file.setColumnNumber(his_hr_data.headers.index(hourly_historical_subregion) + 1)
+    sch_file.setRowstoSkipatTop(1)
+    sch_file.setNumberofHoursofData(8760)
+    sch_file.setColumnSeparator('Comma')
+    sch_file.setInterpolatetoTimestep(false)
+    sch_file.setMinutesperItem(60)
+
+    # add EMS sensor for future schedule file
     sch_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Schedule Value')
-    sch_sens.setKeyName("#{subregion} #{future_year} Hourly Emissions Sch")
-    sch_sens.setName('Hour_Sen')
+    sch_sens.setKeyName("#{future_subregion} #{future_year} Future Hourly Emissions Sch")
+    sch_sens.setName('Fut_Sen')
+
+    # add EMS sensor for historical schedule file
+    sch_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Schedule Value')
+    sch_sens.setKeyName("#{hourly_historical_subregion} #{hourly_historical_year} Historical Hourly Emissions Sch")
+    sch_sens.setName('His_Sen')
 
     # add whole-building electricity sensor
     sch_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Facility Total Purchased Electricity Energy')
     sch_sens.setKeyName('Whole Building')
-    sch_sens.setName('Elec_Sen')
+    sch_sens.setName('Ele_Sen')
 
     ems_prgm = OpenStudio::Model::EnergyManagementSystemProgram.new(model)
     ems_prgm.setName('Emissions_Calc_Prgm')
-    fut_data.each { |r| ems_prgm.addLine("SET fann = #{r['co2_rate']}") if r['subregion'] == subregion && r['year'] == future_year }
-    his_data.each { |r| ems_prgm.addLine("SET hann = #{r['co2_rate']}") if r['subregion'] == subregion && r['year'] == historical_year }
-    ems_prgm.addLine('SET hval = Hour_Sen')
-    ems_prgm.addLine('SET elec = Elec_Sen')
-    ems_prgm.addLine('SET mult = 1000 * 60 * 60') # J to kWh (1000J/kJ * 60hr/min * 60 min/sec)
-    ems_prgm.addLine('SET hrly = hval * elec / mult')
-    ems_prgm.addLine('SET futr = fann * elec / mult')
-    ems_prgm.addLine('SET hist = hann * elec / mult')
+    ems_prgm.addLine('SET fut_hr_val = Fut_Sen')
+    ems_prgm.addLine('SET his_hr_val = His_Sen')
+    fut_yr_data.each {|r| ems_prgm.addLine("SET fut_yr_val = #{r[future_subregion]}") if r[0].to_i == future_year}
+    his_yr_data.each {|r| ems_prgm.addLine("SET his_yr_val = #{r[annual_historical_subregion]}") if r[0].to_i == annual_historical_year}
+    ems_prgm.addLine('SET elec = Ele_Sen')
+    ems_prgm.addLine('SET conv = 1000000 * 60 * 60') # J to MWh (1000000J/MJ * 60hr/min * 60 min/sec)
+    ems_prgm.addLine('SET fut_hr = fut_hr_val * elec / conv')
+    ems_prgm.addLine('SET his_hr = his_hr_val * elec / conv')
+    ems_prgm.addLine('SET fut_yr = fut_yr_val * elec / conv')
+    ems_prgm.addLine('SET his_yr = his_yr_val * elec / conv')
 
     # add EMS program calling manager
     mgr_prgm = OpenStudio::Model::EnergyManagementSystemProgramCallingManager.new(model)
@@ -155,46 +205,60 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     mgr_prgm.setProgram(ems_prgm, 0)
 
     # add future hourly EMS output variable
-    ems_var1 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'hrly')
-    ems_var1.setName("#{subregion}_#{future_year}_Hourly_Emissions_Var")
-    ems_var1.setEMSVariableName('hrly')
+    ems_var1 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'fut_hr')
+    ems_var1.setName("#{future_subregion}_#{future_year}_Hourly_Emissions_Var")
+    ems_var1.setEMSVariableName('fut_hr')
     ems_var1.setTypeOfDataInVariable('Summed')
     ems_var1.setUpdateFrequency('SystemTimestep')
     ems_var1.setEMSProgramOrSubroutineName(ems_prgm)
     ems_var1.setUnits('kg')
 
-    # add future annual EMS output variable
-    ems_var2 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'futr')
-    ems_var2.setName("#{subregion}_#{future_year}_Annual_Emissions_Var")
-    ems_var2.setEMSVariableName('futr')
+    # add historical hourly EMS output variable
+    ems_var2 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'his_hr')
+    ems_var2.setName("#{hourly_historical_subregion.gsub(' ','_')}_#{hourly_historical_year}_Hourly_Emissions_Var")
+    ems_var2.setEMSVariableName('his_hr')
     ems_var2.setTypeOfDataInVariable('Summed')
     ems_var2.setUpdateFrequency('SystemTimestep')
     ems_var2.setEMSProgramOrSubroutineName(ems_prgm)
     ems_var2.setUnits('kg')
 
-    # add historical annual EMS output variable
-    ems_var3 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'hist')
-    ems_var3.setName("#{subregion}_#{historical_year}_Annual_Emissions_Var")
-    ems_var3.setEMSVariableName('hrly')
+    # add future annual EMS output variable
+    ems_var3 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'fut_yr')
+    ems_var3.setName("#{future_subregion}_#{future_year}_Annual_Emissions_Var")
+    ems_var3.setEMSVariableName('fut_yr')
     ems_var3.setTypeOfDataInVariable('Summed')
     ems_var3.setUpdateFrequency('SystemTimestep')
     ems_var3.setEMSProgramOrSubroutineName(ems_prgm)
     ems_var3.setUnits('kg')
 
+    # add historical annual EMS output variable
+    ems_var4 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'his_yr')
+    ems_var4.setName("#{annual_historical_subregion}_#{annual_historical_year}_Annual_Emissions_Var")
+    ems_var4.setEMSVariableName('his_yr')
+    ems_var4.setTypeOfDataInVariable('Summed')
+    ems_var4.setUpdateFrequency('SystemTimestep')
+    ems_var4.setEMSProgramOrSubroutineName(ems_prgm)
+    ems_var4.setUnits('kg')
+
     # add future hourly reporting output variable
-    out_var1 = OpenStudio::Model::OutputVariable.new("#{subregion}_#{future_year}_Hourly_Emissions_Var", model)
+    out_var1 = OpenStudio::Model::OutputVariable.new("#{future_subregion}_#{future_year}_Hourly_Emissions_Var", model)
     out_var1.setKeyValue('EMS')
     out_var1.setReportingFrequency('hourly')
 
-    # add future annual reporting output variable
-    out_var2 = OpenStudio::Model::OutputVariable.new("#{subregion}_#{future_year}_Annual_Emissions_Var", model)
+    # add historical hourly reporting output variable
+    out_var2 = OpenStudio::Model::OutputVariable.new("#{hourly_historical_subregion.gsub(' ','_')}_#{hourly_historical_year}_Hourly_Emissions_Var", model)
     out_var2.setKeyValue('EMS')
     out_var2.setReportingFrequency('hourly')
 
-    # add historical annual reporting output variable
-    out_var3 = OpenStudio::Model::OutputVariable.new("#{subregion}_#{historical_year}_Annual_Emissions_Var", model)
+    # add future annual reporting output variable
+    out_var3 = OpenStudio::Model::OutputVariable.new("#{future_subregion}_#{future_year}_Annual_Emissions_Var", model)
     out_var3.setKeyValue('EMS')
     out_var3.setReportingFrequency('hourly')
+
+    # add historical annual reporting output variable
+    out_var4 = OpenStudio::Model::OutputVariable.new("#{annual_historical_subregion}_#{annual_historical_year}_Annual_Emissions_Var", model)
+    out_var4.setKeyValue('EMS')
+    out_var4.setReportingFrequency('hourly')
 
     return true
   end
