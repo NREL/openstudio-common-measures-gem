@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>view_model</name>
   <uid>f4669f10-fda5-489d-8e1c-7ca3c2d40378</uid>
-  <version_id>52e96bf5-f4a6-4d62-8049-c6ef90711a0e</version_id>
-  <version_modified>20210708T212057Z</version_modified>
+  <version_id>8e4cf2b6-75ec-406e-8bd6-e1f4367e81f5</version_id>
+  <version_modified>20210801T054201Z</version_modified>
   <xml_checksum>1E1F8B97</xml_checksum>
   <class_name>ViewModel</class_name>
   <display_name>ViewModel</display_name>
@@ -54,12 +54,6 @@
       <checksum>AC094EF8</checksum>
     </file>
     <file>
-      <filename>report.html.in</filename>
-      <filetype>in</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>61B6B47E</checksum>
-    </file>
-    <file>
       <filename>va3c.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -69,6 +63,7 @@
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>3.2.0</identifier>
+        <min_compatible>3.2.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
@@ -92,6 +87,12 @@
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>report.html.in</filename>
+      <filetype>in</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E7E95149</checksum>
     </file>
   </files>
 </measure>
