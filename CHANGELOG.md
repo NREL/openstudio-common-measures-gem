@@ -2,6 +2,14 @@
 
 ## Version 0.4.0
 
+* Support for OpenStudio 3.3 (upgrade to extension gem 0.5.1 and standards gem 0.2.15)
+* Fixed [#80]( https://github.com/NREL/openstudio-common-measures-gem/pull/80 ), Custom emissions reporting measure
+* Fixed [#82]( https://github.com/NREL/openstudio-common-measures-gem/pull/82 ), adding compatibility matrix and contribution policy
+* Fixed [#84]( https://github.com/NREL/openstudio-common-measures-gem/pull/84 ), Add latest CO2 CSVs from LBNL
+* Adding surface search to view model and view data commited by macumber
+
+## Version 0.4.0
+
 * Support Ruby ~> 2.7
 * Support for OpenStudio 3.2 (upgrade to extension gem 0.4.2 and standards gem 0.2.13)
 * Add EV measure load files
