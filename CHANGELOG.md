@@ -1,6 +1,6 @@
 # OpenStudio Common Measures Gem
 
-## Version 0.4.0
+## Version 0.5.0
 
 * Support for OpenStudio 3.3 (upgrade to extension gem 0.5.1 and standards gem 0.2.15)
 * Fixed [#80]( https://github.com/NREL/openstudio-common-measures-gem/pull/80 ), Custom emissions reporting measure
