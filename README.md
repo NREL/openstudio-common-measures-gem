@@ -34,6 +34,20 @@ bundle exec rake openstudio:test_with_openstudio
 
 - [ ] Update measures to follow coding standards
 
+# Compatibility Matrix
+
+|OpenStudio Common Measures Gem|OpenStudio|Ruby|
+|:--------------:|:----------:|:--------:|
+| 0.5.0  | 3.3      | 2.7    |
+| 0.4.0 - 0,4.2 | 3.2      | 2.7    |
+| 0.3.0 - 0.3.2  | 3.1      | 2.5    |
+| 0.2.0 - 0.2.1  | 3.0      | 2.5    |
+| 0.1.2 and below | 2.9 and below      | 2.2.4    |
+
+# Contributing 
+
+Please review the [OpenStudio Contribution Policy](https://openstudio.net/openstudio-contribution-policy) if you would like to contribute code to this gem.
+
 # Releasing
 
 * Update CHANGELOG.md

@@ -12,6 +12,7 @@
 /test/
 /lib/measures/test_results
 /lib/measures/*/tests/output
+/lib/measures/*/tests/files
 /lib/measures/staged
 
 .rubocop*s3*

@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>add_ems_emissions_reporting</name>
+  <uid>e8fe9153-5e70-4769-afa0-6da0045aa529</uid>
+  <version_id>0395788b-e770-4887-bec9-149c0b88bcf9</version_id>
+  <version_modified>20211013T192425Z</version_modified>
+  <xml_checksum>976EB6EB</xml_checksum>
+  <class_name>AddEMSEmissionsReporting</class_name>
+  <display_name>Add EMS to Report Emissions</display_name>
+  <description>This measure reports emissions based on user-provided future and historical years as well as future, historical hourly, and historical annual subregions.</description>
+  <modeler_description>This measure uses the EnergyPlus Energy Management System to log and report emissions based on user-provided future and historical years as well as future, historical hourly, and historical annual subregions.</modeler_description>
+  <arguments>
+    <argument>
+      <name>future_subregion</name>
+      <display_name>Future subregion</display_name>
+      <description>Future subregion. Options are: AZNMc, CAMXc, ERCTc, FRCCc, MROEc, MROWc, NEWEc, NWPPc, NYSTc, RFCEc, RFCMc, RFCWc, RMPAc, SPNOc, SPSOc, SRMVc, SRMWc, SRSOc, SRTVc, and SRVCc</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>RMPAc</default_value>
+    </argument>
+    <argument>
+      <name>hourly_historical_subregion</name>
+      <display_name>Historical hourly subregion</display_name>
+      <description>Historical hourly subregion. Options are: California, Carolinas, Central, Florida, Mid-Atlantic, Midwest, New England, New York, Northwest, Rocky Mountains, Southeast, Southwest, Tennessee, and Texas</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Rocky Mountains</default_value>
+    </argument>
+    <argument>
+      <name>annual_historical_subregion</name>
+      <display_name>Historical annual subregion</display_name>
+      <description>Historical annual subregion. Options are: AKGD, AKMS, AZNM, CAMX, ERCT, FRCC, HIMS, HIOA, MROE, MROW, NEWE, NWPP, NYCW, NYLI, NYUP, RFCE, RFCM, RFCW, RMPA, SPNO, SPSO, SRMV, SRMW, SRSO, SRTV, and SRVC</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>RMPA</default_value>
+    </argument>
+    <argument>
+      <name>future_year</name>
+      <display_name>Future Year</display_name>
+      <description>Future Year. Options are: 2020 to 2050 in two year increments</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>2020</default_value>
+    </argument>
+    <argument>
+      <name>hourly_historical_year</name>
+      <display_name>Hourly Historical Year</display_name>
+      <description>Hourly Historical Year. Options are: 2019.</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>2019</default_value>
+    </argument>
+    <argument>
+      <name>annual_historical_year</name>
+      <display_name>Annual Historical Year</display_name>
+      <description>Annual Historical Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>2019</default_value>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Equipment.Equipment Controls</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8EA06A27</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>D90928F0</checksum>
+    </file>
+    <file>
+      <filename>future_annual_co2e.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>68D6F2FF</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2020.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>7F6FBFEF</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2022.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B3366E3F</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2024.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B2CCE349</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2026.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>A4F2D252</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2028.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>300261DB</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2030.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3915B70B</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2032.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>DB3FE58C</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2034.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>6D1F32C2</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2036.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>0F38FDD7</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2038.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>87850670</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2040.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>546B4C66</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2042.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>ACB58818</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2044.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>6304E0BA</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2046.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>31F8B3E2</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2048.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>6AAE5452</checksum>
+    </file>
+    <file>
+      <filename>future_hourly_co2e_2050.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>EA30D696</checksum>
+    </file>
+    <file>
+      <filename>historical_annual_co2e.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>5001E3BC</checksum>
+    </file>
+    <file>
+      <filename>historical_hourly_co2e_2019.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>6C952ECC</checksum>
+    </file>
+    <file>
+      <filename>add_ems_emissions_reporting_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2124C39D</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.5.1</identifier>
+        <min_compatible>2.5.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>097E1A3B</checksum>
+    </file>
+  </files>
+</measure>
