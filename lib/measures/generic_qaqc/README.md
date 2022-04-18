@@ -203,6 +203,21 @@ Check if fans modeled to ASHRAE 90.1 2013 Section G3.1.2.9 requirements. Compare
 **Required:** true,
 **Model Dependent:** false
 
+### Use Upstream Argument Values
+When true this will look for arguments or registerValues in upstream measures that match arguments from this measure, and will use the value from the upstream measure in place of what is entered for this measure.
+**Name:** use_upstream_args,
+**Type:** Boolean,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
 
 
 
+
+
+
+## Screenshot of Sample Summary Table
+![Summary Table](./docs/generic_qaqc_summary.jpg?raw=true)
+
+## Screenshot of Sample Detailed Table  
+![Detailed Table](./docs/generic_qaqc_detailed.jpg?raw=true)

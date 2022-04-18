@@ -233,9 +233,6 @@ class GenericQAQC_Test < Minitest::Test
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    # create hash of argument values
-    args_hash = {}
-
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
     assert(!idf_output_requests.empty?)
@@ -298,9 +295,6 @@ class GenericQAQC_Test < Minitest::Test
     # get arguments
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
-
-    # create hash of argument values
-    args_hash = {}
 
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
@@ -367,9 +361,6 @@ class GenericQAQC_Test < Minitest::Test
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    # create hash of argument values
-    args_hash = {}
-
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
     # assert(idf_output_requests.size > 0) # todo - see if this is issue
@@ -432,9 +423,6 @@ class GenericQAQC_Test < Minitest::Test
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    # create hash of argument values
-    args_hash = {}
-
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
     assert(idf_output_requests.empty?) # no airTerminalSingleDuctVAVReheats
@@ -496,9 +484,6 @@ class GenericQAQC_Test < Minitest::Test
     # get arguments
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
-
-    # create hash of argument values
-    args_hash = {}
 
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
@@ -565,9 +550,6 @@ class GenericQAQC_Test < Minitest::Test
       arguments = measure.arguments
       argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-      # create hash of argument values
-      args_hash = {}
-
       # get the energyplus output requests, this will be done automatically by OS App and PAT
       idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
       assert(!idf_output_requests.empty?)
@@ -630,9 +612,6 @@ class GenericQAQC_Test < Minitest::Test
     # get arguments
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
-
-    # create hash of argument values
-    args_hash = {}
 
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
@@ -700,6 +679,15 @@ class GenericQAQC_Test < Minitest::Test
     args_hash = {}
     args_hash['template'] = '90.1-2019'
 
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
+
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
     # assert(idf_output_requests.size > 0)
@@ -745,9 +733,9 @@ class GenericQAQC_Test < Minitest::Test
   end
 
     # test 0422_sm_off
-  def test_GenericQAQC_0422_sm_off_comstock2016
+  def test_GenericQAQC_0422_sm_off_comstock2013
     # setup test name, model, and epw
-    test_name = '0422_sm_off_comstock2016'
+    test_name = '0422_sm_off_comstock2013'
     model_in_path = "#{File.dirname(__FILE__)}/0422_test_b_sm_off.osm"
     epw = OpenStudio::Path.new(File.dirname(__FILE__)) / OpenStudio::Path.new('USA_TX_Austin-Mueller.Muni.AP.722540_TMY3.epw')
 
@@ -765,6 +753,15 @@ class GenericQAQC_Test < Minitest::Test
     # create hash of argument values
     args_hash = {}
     args_hash['template'] = 'ComStock 90.1-2013'
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
 
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)

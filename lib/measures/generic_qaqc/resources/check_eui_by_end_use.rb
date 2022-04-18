@@ -136,13 +136,17 @@ module OsLib_QAQC
           if (end_use == 'Pumps') && (value < 0.05) && (target_value < 0.05) then skip = true end
 
           if (value < target_value * (1.0 - min_pass)) && !skip
-            check_elems << OpenStudio::Attribute.new('flag', "#{end_use} EUI of #{eui_ip_neat} (#{target_units}) is less than #{min_pass * 100} % below the expected #{end_use} EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{end_use} EUI of #{eui_ip_neat} (#{target_units}) is more than #{min_pass * 100} % below the expected #{end_use} EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
           elsif (value > target_value * (1.0 + max_pass)) && !skip
             check_elems << OpenStudio::Attribute.new('flag', "#{end_use} EUI of #{eui_ip_neat} (#{target_units}) is more than #{max_pass * 100} % above the expected #{end_use} EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
           end
         end
       else
-        check_elems << OpenStudio::Attribute.new('flag', "Can't calculate target end use EUIs. Make sure model has expected climate zone and building type.")
+        if ['90.1-2016','90.1-2019'].include?(target_standard) || target_standard.include?("ComStock")
+          check_elems << OpenStudio::Attribute.new('flag', "target EUI end use comparison is not supported yet for #{target_standard}.")
+        else
+          check_elems << OpenStudio::Attribute.new('flag', "Can't calculate target end use EUIs. Make sure model has expected climate zone and building type.")
+        end
       end
     rescue StandardError => e
       # brief description of ruby error

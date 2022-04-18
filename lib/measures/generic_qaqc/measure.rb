@@ -271,10 +271,6 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     # used for edapt programs to populate xml file with extra data
     # report_elems << create_results
 
-    # utility name to to used by some qaqc checks
-    @utility_name = nil # for utility QAQC string is passed in
-    default_target_standard = args['template'] # for utility QAQC this is hard coded, for generic it is user argument
-
     # lookup and replace argument values from upstream measures
     if args['use_upstream_args'] == true
       args.each do |arg, value|
@@ -296,6 +292,10 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
         end
       end
     end
+
+    # utility name to to used by some qaqc checks
+    @utility_name = nil # for utility QAQC string is passed in
+    default_target_standard = args['template'] # for utility QAQC this is hard coded, for generic it is user argument
 
     # get building type, different standards path if multifamily
     building_type = ''
