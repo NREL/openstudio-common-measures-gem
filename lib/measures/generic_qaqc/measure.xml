@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>5d8d8aa8-4b70-4b2c-9ec9-34eddb23097d</version_id>
-  <version_modified>20220418T181211Z</version_modified>
+  <version_id>f3f30cc3-53c2-416f-a0fd-383964808359</version_id>
+  <version_modified>20220418T210035Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -615,12 +615,6 @@
       <checksum>F698CF14</checksum>
     </file>
     <file>
-      <filename>check_domestic_hot_water.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E4F0F677</checksum>
-    </file>
-    <file>
       <filename>check_air_sys_temps.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -699,27 +693,10 @@
       <checksum>60898F73</checksum>
     </file>
     <file>
-      <filename>measure_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>024EC7DB</checksum>
-    </file>
-    <file>
       <filename>check_eui_by_end_use.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>CCCE6FD6</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>B78C11BD</checksum>
     </file>
     <file>
       <filename>generic_qaqc_summary.jpg</filename>
@@ -738,6 +715,35 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>AE338EAC</checksum>
+    </file>
+    <file>
+      <filename>check_domestic_hot_water.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9D3353FB</checksum>
+    </file>
+    <file>
+      <filename>measure_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B9C488D7</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>3.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>9482E15C</checksum>
+    </file>
+    <file>
+      <filename>fsr.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D2A4E538</checksum>
     </file>
   </files>
 </measure>

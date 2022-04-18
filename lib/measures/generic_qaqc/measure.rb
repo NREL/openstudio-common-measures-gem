@@ -93,6 +93,7 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
 
     # gather inputs for check_mech_sys_capacity. Each option has a target value, min and max fractional tolerance, and units
     # in the future climate zone specific targets may be in standards
+    # todo - expose these tollerances as user arguments
     options_check_mech_sys_capacity = {}
     options_check_mech_sys_capacity['chiller_max_flow_rate'] = { 'target' => 2.4, 'min' => 0.1, 'max' => 0.1, 'units' => 'gal/ton*min' }
     options_check_mech_sys_capacity['air_loop_max_flow_rate'] = { 'target' => 1.0, 'min' => 0.1, 'max' => 0.1, 'units' => 'cfm/ft^2' }

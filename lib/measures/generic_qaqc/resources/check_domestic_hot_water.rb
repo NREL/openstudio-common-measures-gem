@@ -158,7 +158,7 @@ module OsLib_QAQC
 
               space_type_num_people_hours = 0.0
               # loop through peole instances
-              space_type.peoples.each do |inst|
+              space_type.people.each do |inst|
                 inst_num_people = inst.getNumberOfPeople(space_type_floor_area)
                 inst_schedule = inst.numberofPeopleSchedule.get # sim will fail prior to this if doesn't have it
 
