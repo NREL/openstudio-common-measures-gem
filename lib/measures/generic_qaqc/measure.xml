@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>f3f30cc3-53c2-416f-a0fd-383964808359</version_id>
-  <version_modified>20220418T210035Z</version_modified>
+  <version_id>b97f63c6-2d50-4d62-85f5-9dcac8ae3671</version_id>
+  <version_modified>20220418T231223Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -657,12 +657,6 @@
       <checksum>8D1854A4</checksum>
     </file>
     <file>
-      <filename>check_mech_sys_efficiency.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>F897A40B</checksum>
-    </file>
-    <file>
       <filename>CreateResults.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -744,6 +738,12 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>D2A4E538</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_efficiency.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>1538960E</checksum>
     </file>
   </files>
 </measure>
