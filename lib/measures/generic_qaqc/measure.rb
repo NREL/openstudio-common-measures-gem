@@ -41,6 +41,7 @@ require 'openstudio-standards'
 require 'openstudio-extension'
 require 'openstudio/extension/core/os_lib_schedules'
 require 'openstudio/extension/core/os_lib_helper_methods'
+require 'openstudio/extension/core/os_lib_model_generation.rb'
 
 # require all .rb files in resources folder
 Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
@@ -49,6 +50,9 @@ Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 class GenericQAQC < OpenStudio::Measure::ReportingMeasure
   # all QAQC checks should be in OsLib_QAQC module
   include OsLib_QAQC
+  include OsLib_HelperMethods
+  include OsLib_ModelGeneration
+
   # OsLib_CreateResults is needed for utility EDA programs but not the generic QAQC measure
   # include OsLib_CreateResults
 
@@ -117,14 +121,7 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make an argument for the template
-    template_chs = OpenStudio::StringVector.new
-    template_chs << 'DOE Ref Pre-1980'
-    template_chs << 'DOE Ref 1980-2004'
-    template_chs << '90.1-2004'
-    template_chs << '90.1-2007'
-    template_chs << '90.1-2010'
-    template_chs << '90.1-2013'
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', template_chs, true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates(false), true)
     template.setDisplayName('Target ASHRAE Standard')
     template.setDescription('This used to set the target standard for most checks.')
     template.setDefaultValue('90.1-2013') # there is override variable in run method for this
@@ -183,6 +180,13 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
         args << arg_max_tol
       end
     end
+
+    # make an argument for use_upstream_args
+    use_upstream_args = OpenStudio::Measure::OSArgument.makeBoolArgument('use_upstream_args', true)
+    use_upstream_args.setDisplayName('Use Upstream Argument Values')
+    use_upstream_args.setDescription('When true this will look for arguments or registerValues in upstream measures that match arguments from this measure, and will use the value from the upstream measure in place of what is entered for this measure.')
+    use_upstream_args.setDefaultValue(true)
+    args << use_upstream_args
 
     return args
   end # end the arguments method
@@ -271,24 +275,24 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     @utility_name = nil # for utility QAQC string is passed in
     default_target_standard = args['template'] # for utility QAQC this is hard coded, for generic it is user argument
 
-    # for large scale analysis may want to infer this from building name so it will be in sync with template variables from earlier measures
-    override_template_arg = false
-    if override_template_arg
-      template_chs = []
-      template_chs << 'DOE Ref Pre-1980'
-      template_chs << 'DOE Ref 1980-2004'
-      template_chs << '90.1-2004'
-      template_chs << '90.1-2007'
-      template_chs << '90.1-2010'
-      template_chs << '90.1-2013'
-      # map standard
-      template_chs.each do |template_ch|
-        if @model.getBuilding.name.to_s.include?(template_ch)
-          default_target_standard = template_ch
-          if template_ch != args['template']
-            runner.registerInfo("override_template_arg is true. Ignoring user argument of #{args['template']} and instead using #{template_ch}.")
+    # lookup and replace argument values from upstream measures
+    if args['use_upstream_args'] == true
+      args.each do |arg, value|
+        next if arg == 'use_upstream_args' # this argument should not be changed
+        value_from_osw = OsLib_HelperMethods.check_upstream_measure_for_arg(runner, arg)
+        if !value_from_osw.empty?
+          runner.registerInfo("Replacing argument named #{arg} from current measure with a value of #{value_from_osw[:value]} from #{value_from_osw[:measure_name]}.")
+          new_val = value_from_osw[:value]
+          # TODO: - make code to handle non strings more robust. check_upstream_measure_for_arg coudl pass bakc the argument type
+          if arg == 'total_bldg_floor_area'
+            args[arg] = new_val.to_f
+          elsif arg == 'num_stories_above_grade'
+            args[arg] = new_val.to_f
+          elsif arg == 'zipcode'
+            args[arg] = new_val.to_i
+          else
+            args[arg] = new_val
           end
-          break
         end
       end
     end
