@@ -102,6 +102,12 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
     ev_percent.setDescription('Denotes percentage of vehicles between 0 to 100 that are electric on site.')
     args << ev_percent
 
+    # Make an argument for using occupancy from OpenStudio Model.
+    use_model_occupancy = OpenStudio::Measure::OSArgument.makeBoolArgument('use_model_occupancy', true)
+    use_model_occupancy.setDisplayName('Use occupancy from OpenStudio Model')
+    use_model_occupancy.setDefaultValue(true)
+    args << use_model_occupancy
+
     return args
   end
 
@@ -114,6 +120,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
     charge_behavior = runner.getStringArgumentValue('charge_behavior', user_arguments)
     chg_station_type = runner.getStringArgumentValue('chg_station_type', user_arguments)
     ev_percent = runner.getDoubleArgumentValue('ev_percent', user_arguments)
+    use_model_occupancy = runner.getBoolArgumentValue('use_model_occupancy', user_arguments)
 
     # use the built-in error checking
     if !runner.validateUserArguments(arguments(model), user_arguments)
@@ -156,12 +163,18 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
     if chg_station_type == 'Typical Home'
       chg_station_key = 1
       runner.registerInfo("charge station key = #{chg_station_key}")
+      #assumed_occupancy = 
+      #runner.registerInfo("assumed occupancy = #{assumed_occupancy}")
     elsif chg_station_type == 'Typical Work'
       chg_station_key = 2
       runner.registerInfo("charge station key = #{chg_station_key}")
+      #assumed_occupancy = 
+      #runner.registerInfo("assumed occupancy = #{assumed_occupancy}")
     elsif chg_station_type == 'Typical Public'
       chg_station_key = 3
       runner.registerInfo("charge station key = #{chg_station_key}")
+      #assumed_occupancy = 
+      #runner.registerInfo("assumed occupancy = #{assumed_occupancy}")
     end
 
     # Creating a schedule:ruleset
@@ -210,13 +223,22 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       indices = public_indices
     end
 
-    # Popualte the average weekday load for non PSN case. The load profiles used in this case are averaged based on the selected charging station type,(given the selected charging flexibility option and charging behavior option), and scaled for the percent of vehicles that are EVs.
+    space_type = model.getSpaceTypes[0]
+    model_occupancy = space_type.people
+
+    # Populate the average weekday load for non PSN case. The load profiles used in this case are averaged based on the selected charging station type,(given the selected charging flexibility option and charging behavior option), and scaled for the percent of vehicles that are EVs.
     if chg_station_type != 'Pena Station Next Analysis' && chg_station_type != 'Pena Station Next Analysis--DC Fast Charger'
       wkday_load_sel = wkday_load.values_at(*indices)
       avg_load_wkday = []
       wkday_load_sel = wkday_load_sel.transpose
-      for i in 0..wkday_load[0].length - 1
-        avg_load_wkday[i] = (wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) * ev_percent / assumed_percent # Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
+      if use_model_occupancy
+        for i in 0..wkday_load[0].length - 1
+          # avg_load_wkday[i] = ((wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) *
+        # ev_percent / assumed_percent) / assumed_occupancy * model_occupancy
+      else
+        for i in 0..wkday_load[0].length - 1
+          avg_load_wkday[i] = (wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) * ev_percent / assumed_percent # Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
+        end
       end
 
       wkday_max_load = avg_load_wkday.max
@@ -225,8 +247,14 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       sat_load_sel = sat_load.values_at(*indices)
       avg_load_sat = []
       sat_load_sel = sat_load_sel.transpose
-      for i in 0..sat_load[0].length - 1
-        avg_load_sat[i] = (sat_load_sel[i].reduce(0, :+) / sat_load_sel[i].length) * ev_percent / assumed_percent # Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
+      if use_model_occupancy
+        for i in 0..sat_load[0].length - 1
+          # avg_load_wkday[i] = ((wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) *
+        # ev_percent / assumed_percent) / assumed_occupancy * model_occupancy
+      else
+        for i in 0..sat_load[0].length - 1
+          avg_load_sat[i] = (sat_load_sel[i].reduce(0, :+) / sat_load_sel[i].length) * ev_percent / assumed_percent # Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
+        end
       end
 
       sat_max_load = avg_load_sat.max
@@ -235,8 +263,14 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       sun_load_sel = sun_load.values_at(*indices)
       avg_load_sun = []
       sun_load_sel = sun_load_sel.transpose
-      for i in 0..sun_load[0].length - 1
-        avg_load_sun[i] = (sun_load_sel[i].reduce(0, :+) / sun_load_sel[i].length) * ev_percent / assumed_percent # Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
+      if use_model_occupancy
+        for i in 0..sun_load[0].length - 1
+          # avg_load_wkday[i] = ((wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) *
+        # ev_percent / assumed_percent) / assumed_occupancy * model_occupancy
+      else
+        for i in 0..sun_load[0].length - 1
+          avg_load_sun[i] = (sun_load_sel[i].reduce(0, :+) / sun_load_sel[i].length) * ev_percent / assumed_percent # Scale profiles generated from 50% EV scenario by % of vehicles that are EVs.
+        end
       end
 
       sun_max_load = avg_load_sun.max
