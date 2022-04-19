@@ -185,7 +185,7 @@ module OsLib_QAQC
 
               num_people_hours += space_type_num_people_hours
             end
-            num_meals = num_people_hours / 365.0 * 1.5 # 90 minute meal
+            num_meals = num_people_hours / (365.0 * 1.5) # 90 minute meal
             target_consumption = num_meals * ashrae_hot_water_demand.first[:avg_day_unit]
 
           elsif ['LargeHotel', 'SmallHotel'].include? building_type
@@ -287,7 +287,7 @@ module OsLib_QAQC
 
               num_people_hours += space_type_num_people_hours
             end
-            num_meals = num_people_hours / 365.0 * 0.5 # 30 minute leal
+            num_meals = num_people_hours / (365.0 * 0.5) # 30 minute leal
             # todo - add logic to address drive through traffic
             target_consumption = num_meals * ashrae_hot_water_demand.first[:avg_day_unit]
 

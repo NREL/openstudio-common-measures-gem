@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>b97f63c6-2d50-4d62-85f5-9dcac8ae3671</version_id>
-  <version_modified>20220418T231223Z</version_modified>
+  <version_id>0365652d-7131-4ad9-b43f-b55949503d17</version_id>
+  <version_modified>20220419T070010Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -711,12 +711,6 @@
       <checksum>AE338EAC</checksum>
     </file>
     <file>
-      <filename>check_domestic_hot_water.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>9D3353FB</checksum>
-    </file>
-    <file>
       <filename>measure_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -744,6 +738,12 @@
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>1538960E</checksum>
+    </file>
+    <file>
+      <filename>check_domestic_hot_water.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>730F3AA5</checksum>
     </file>
   </files>
 </measure>
