@@ -158,7 +158,7 @@ module OsLib_QAQC
 
               space_type_num_people_hours = 0.0
               # loop through peole instances
-              space_type.peoples.each do |inst|
+              space_type.people.each do |inst|
                 inst_num_people = inst.getNumberOfPeople(space_type_floor_area)
                 inst_schedule = inst.numberofPeopleSchedule.get # sim will fail prior to this if doesn't have it
 
@@ -185,7 +185,7 @@ module OsLib_QAQC
 
               num_people_hours += space_type_num_people_hours
             end
-            num_meals = num_people_hours / 365.0 * 1.5 # 90 minute meal
+            num_meals = num_people_hours / (365.0 * 1.5) # 90 minute meal
             target_consumption = num_meals * ashrae_hot_water_demand.first[:avg_day_unit]
 
           elsif ['LargeHotel', 'SmallHotel'].include? building_type
@@ -287,7 +287,7 @@ module OsLib_QAQC
 
               num_people_hours += space_type_num_people_hours
             end
-            num_meals = num_people_hours / 365.0 * 0.5 # 30 minute leal
+            num_meals = num_people_hours / (365.0 * 0.5) # 30 minute leal
             # todo - add logic to address drive through traffic
             target_consumption = num_meals * ashrae_hot_water_demand.first[:avg_day_unit]
 

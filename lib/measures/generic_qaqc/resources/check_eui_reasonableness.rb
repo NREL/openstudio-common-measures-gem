@@ -111,12 +111,16 @@ module OsLib_QAQC
         eui_ip_neat = OpenStudio.toNeatString(OpenStudio.convert(eui, source_units, target_units).get, 1, true)
         target_eui_ip_neat = OpenStudio.toNeatString(OpenStudio.convert(target_eui, source_units, target_units).get, 1, true)
         if eui < target_eui * (1.0 - min_pass)
-          check_elems << OpenStudio::Attribute.new('flag', "Model EUI of #{eui_ip_neat} (#{target_units}) is less than #{min_pass * 100} % below the expected EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
+          check_elems << OpenStudio::Attribute.new('flag', "Model EUI of #{eui_ip_neat} (#{target_units}) is more than #{min_pass * 100} % below the expected EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
         elsif eui > target_eui * (1.0 + max_pass)
           check_elems << OpenStudio::Attribute.new('flag', "Model EUI of #{eui_ip_neat} (#{target_units}) is more than #{max_pass * 100} % above the expected EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
         end
       else
-        check_elems << OpenStudio::Attribute.new('flag', "Can't calculate target EUI. Make sure model has expected climate zone and building type.")
+        if ['90.1-2016','90.1-2019'].include?(target_standard) || target_standard.include?("ComStock")
+          check_elems << OpenStudio::Attribute.new('flag', "target EUI comparison is not supported yet for #{target_standard}.")
+        else
+          check_elems << OpenStudio::Attribute.new('flag', "Can't calculate target EUI. Make sure model has expected climate zone and building type.")
+        end
       end
     rescue StandardError => e
       # brief description of ruby error
