@@ -312,10 +312,12 @@ module OsLib_QAQC
       end
 
       # check actual against target
-      if service_water_consumption_daily_avg_gal < target_consumption * (1.0 - min_pass)
-        check_elems <<  OpenStudio::Attribute.new('flag', "Annual average of #{service_water_consumption_daily_avg_gal.round} gallons per day of hot water is more than #{min_pass * 100} % below the expected value of #{target_consumption.round} gallons per day.")
-      elsif service_water_consumption_daily_avg_gal > target_consumption * (1.0 + max_pass)
-        check_elems <<  OpenStudio::Attribute.new('flag', "Annual average of #{service_water_consumption_daily_avg_gal.round} gallons per day of hot water is more than #{max_pass * 100} % above the expected value of #{target_consumption.round} gallons per day.")
+      if !target_consumption.nil?
+        if service_water_consumption_daily_avg_gal < target_consumption * (1.0 - min_pass)
+          check_elems <<  OpenStudio::Attribute.new('flag', "Annual average of #{service_water_consumption_daily_avg_gal.round} gallons per day of hot water is more than #{min_pass * 100} % below the expected value of #{target_consumption.round} gallons per day.")
+        elsif service_water_consumption_daily_avg_gal > target_consumption * (1.0 + max_pass)
+          check_elems <<  OpenStudio::Attribute.new('flag', "Annual average of #{service_water_consumption_daily_avg_gal.round} gallons per day of hot water is more than #{max_pass * 100} % above the expected value of #{target_consumption.round} gallons per day.")
+        end
       end
     rescue StandardError => e
       # brief description of ruby error

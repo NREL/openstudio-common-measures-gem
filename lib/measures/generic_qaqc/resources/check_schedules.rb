@@ -119,7 +119,7 @@ module OsLib_QAQC
             if use_old_gem_code
               target_hrs = schedule_target.annual_equivalent_full_load_hrs
             else
-              target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target)
+              target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target.to_ScheduleRuleset.get)
             end
             space_type.lights.each do |load_inst|
               inst_sch_check = generate_load_insc_sch_check_attribute(target_hrs, load_inst, space_type, check_elems, min_pass, max_pass)
@@ -144,7 +144,7 @@ module OsLib_QAQC
             if use_old_gem_code
               target_hrs = schedule_target.annual_equivalent_full_load_hrs
             else
-              target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target)
+              target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target.to_ScheduleRuleset.get)
             end
 
             space_type.electricEquipment.each do |load_inst|
@@ -170,7 +170,7 @@ module OsLib_QAQC
             if use_old_gem_code
               target_hrs = schedule_target.annual_equivalent_full_load_hrs
             else
-              target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target)
+              target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target.to_ScheduleRuleset.get)
             end
             space_type.gasEquipment.each do |load_inst|
               inst_sch_check = generate_load_insc_sch_check_attribute(target_hrs, load_inst, space_type, check_elems, min_pass, max_pass)
@@ -194,7 +194,7 @@ module OsLib_QAQC
             if use_old_gem_code
               target_hrs = schedule_target.annual_equivalent_full_load_hrs
             else
-              target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target)
+              target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target.to_ScheduleRuleset.get)
             end
             space_type.people.each do |load_inst|
               inst_sch_check = generate_load_insc_sch_check_attribute(target_hrs, load_inst, space_type, check_elems, min_pass, max_pass)
