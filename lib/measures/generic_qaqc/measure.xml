@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>c351959e-88fa-4854-b1d9-b823a3b08df9</version_id>
-  <version_modified>20220420T033230Z</version_modified>
+  <version_id>8053b508-568d-4afd-a763-f008863dfcdd</version_id>
+  <version_modified>20220420T070502Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -81,7 +81,7 @@
     <argument>
       <name>check_eui_reasonableness</name>
       <display_name>EUI Reasonableness (General)</display_name>
-      <description>Check EUI for model against selected ASHRAE standard DOE prototype buildings.</description>
+      <description>Check model EUI against selected ASHRAE standard DOE prototype building.</description>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -109,7 +109,7 @@
     <argument>
       <name>check_eui_by_end_use</name>
       <display_name>End Use by Category (General)</display_name>
-      <description>Check end use by category against selected ASHRAE standard DOE prototype buildings.</description>
+      <description>Check model consumption by end use against selected ASHRAE standard DOE prototype building.</description>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -669,18 +669,6 @@
       <checksum>3AFCE991</checksum>
     </file>
     <file>
-      <filename>check_eui_reasonableness.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>60898F73</checksum>
-    </file>
-    <file>
-      <filename>check_eui_by_end_use.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>CCCE6FD6</checksum>
-    </file>
-    <file>
       <filename>generic_qaqc_summary.jpg</filename>
       <filetype>jpg</filetype>
       <usage_type>doc</usage_type>
@@ -691,12 +679,6 @@
       <filetype>jpg</filetype>
       <usage_type>doc</usage_type>
       <checksum>92EA3F5C</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>AE338EAC</checksum>
     </file>
     <file>
       <version>
@@ -764,10 +746,34 @@
       <checksum>6B50E0FF</checksum>
     </file>
     <file>
+      <filename>check_eui_reasonableness.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>4A7A167F</checksum>
+    </file>
+    <file>
+      <filename>check_eui_by_end_use.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>2D5B33D4</checksum>
+    </file>
+    <file>
       <filename>measure_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>1D51EC03</checksum>
+      <checksum>24F03E2D</checksum>
+    </file>
+    <file>
+      <filename>uo_mixed.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1874C555</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>317CE651</checksum>
     </file>
   </files>
 </measure>

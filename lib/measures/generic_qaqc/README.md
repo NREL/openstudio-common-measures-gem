@@ -28,7 +28,7 @@ This used to set the target standard for most checks.
 **Model Dependent:** false
 
 ### EUI Reasonableness (General)
-Check EUI for model against selected ASHRAE standard DOE prototype buildings.
+Check model EUI against selected ASHRAE standard DOE prototype building.
 **Name:** check_eui_reasonableness,
 **Type:** Boolean,
 **Units:** ,
@@ -44,7 +44,7 @@ Check EUI for model against selected ASHRAE standard DOE prototype buildings.
 **Model Dependent:** false
 
 ### End Use by Category (General)
-Check end use by category against selected ASHRAE standard DOE prototype buildings.
+Check model consumption by end use against selected ASHRAE standard DOE prototype building.
 **Name:** check_eui_by_end_use,
 **Type:** Boolean,
 **Units:** ,

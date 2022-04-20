@@ -38,11 +38,12 @@ module OsLib_QAQC
 
   # checks the number of unmet hours in the model
   def check_eui_reasonableness(category, target_standard, min_pass, max_pass, name_only = false)
+
     # summary of the check
     check_elems = OpenStudio::AttributeVector.new
     check_elems << OpenStudio::Attribute.new('name', 'EUI Reasonableness')
     check_elems << OpenStudio::Attribute.new('category', category)
-    check_elems << OpenStudio::Attribute.new('description', "Check EUI for model against #{target_standard} DOE prototype buildings.")
+    check_elems << OpenStudio::Attribute.new('description', "Check model EUI against #{target_standard} DOE prototype building.")
 
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
@@ -53,18 +54,18 @@ module OsLib_QAQC
       return results
     end
 
-    # Versions of OpenStudio greater than 2.4.0 use a modified version of
-    # openstudio-standards with different method calls.  These methods
-    # require a "Standard" object instead of the standard being passed into method calls.
-    # This Standard object is used throughout the QAQC check.
-    if OpenStudio::VersionString.new(OpenStudio.openStudioVersion) < OpenStudio::VersionString.new('2.4.3')
-      use_old_gem_code = true
-    else
-      use_old_gem_code = false
-      std = Standard.build(target_standard)
-    end
-
     begin
+
+      # test using new method
+      std = Standard.build(target_standard)
+      target_eui = std.model_find_target_eui(@model)
+
+      # gather building type for summary
+      bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      building_type = bt_cz['building_type']
+      climate_zone = bt_cz['climate_zone']
+      prototype_prefix = "#{target_standard} #{building_type} #{climate_zone}"
+
       # total building area
       query = 'SELECT Value FROM tabulardatawithstrings WHERE '
       query << "ReportName='AnnualBuildingUtilityPerformanceSummary' and "
@@ -98,12 +99,20 @@ module OsLib_QAQC
         return OpenStudio::Attribute.new('check', check_elems)
       end
 
-      # test using new method
-      if use_old_gem_code
-        target_eui = @model.find_target_eui(target_standard)
-      else
-        std = Standard.build(target_standard)
-        target_eui = std.model_find_target_eui(@model)
+      # check if all spaces use the building type defined in the model
+      if building_type.to_s != ''
+        floor_area = @model.getBuilding.flooorArea
+        primary_type_floor_area = 0.0
+        @model.getSpaceTypes.each do |space_type|
+          st_bt = space_type.standardsBuildingType
+          next if !building_type.is_initialized
+          st_bt = st_bt.get
+          next if !st_bt == building_type
+          primary_type_floor_area += space_type.floorArea
+        end
+        if primary_type_floor_area < floor_area
+          check_elems << OpenStudio::Attribute.new('flag', "The primary building type, #{building_type}, only represents #{(100 * primary_type_floor_area / floor_area).round}% of the total building area; as a result while a comparison to the #{building_type} prototype EUI is provided, it would not be unexpected for the building EUI to be significantly different than the prototype.")
+        end
       end
 
       # check model vs. target for user specified tolerance.
@@ -111,9 +120,9 @@ module OsLib_QAQC
         eui_ip_neat = OpenStudio.toNeatString(OpenStudio.convert(eui, source_units, target_units).get, 1, true)
         target_eui_ip_neat = OpenStudio.toNeatString(OpenStudio.convert(target_eui, source_units, target_units).get, 1, true)
         if eui < target_eui * (1.0 - min_pass)
-          check_elems << OpenStudio::Attribute.new('flag', "Model EUI of #{eui_ip_neat} (#{target_units}) is more than #{min_pass * 100} % below the expected EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
+          check_elems << OpenStudio::Attribute.new('flag', "Model EUI of #{eui_ip_neat} (#{target_units}) is more than #{min_pass * 100} % below the #{prototype_prefix} prototype EUI of #{target_eui_ip_neat} (#{target_units}).")
         elsif eui > target_eui * (1.0 + max_pass)
-          check_elems << OpenStudio::Attribute.new('flag', "Model EUI of #{eui_ip_neat} (#{target_units}) is more than #{max_pass * 100} % above the expected EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
+          check_elems << OpenStudio::Attribute.new('flag', "Model EUI of #{eui_ip_neat} (#{target_units}) is more than #{max_pass * 100} % above the #{prototype_prefix} prototype EUI of #{target_eui_ip_neat} (#{target_units}).")
         end
       else
         if ['90.1-2016','90.1-2019'].include?(target_standard) || target_standard.include?("ComStock")
