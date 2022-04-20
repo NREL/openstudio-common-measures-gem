@@ -172,6 +172,9 @@ module OsLib_QAQC
 
       else
 
+        # gather all non statandard space types so can be listed in single flag
+        non_tagged_space_types = []
+
         # loop through all space types used in the model
         @model.getSpaceTypes.each do |space_type|
           next if space_type.floorArea <= 0
@@ -206,7 +209,7 @@ module OsLib_QAQC
             end
 
             if !all_spaces_plenums
-              check_elems << OpenStudio::Attribute.new('flag', "Unexpected standards type for #{space_type.name}, can't validate internal loads.")
+              non_tagged_space_types << space_type.floorArea
             end
 
             next
@@ -357,6 +360,13 @@ module OsLib_QAQC
             check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
           end
         end
+
+        # report about non standard space types
+        if non_tagged_space_types.size > 0
+          impacted_floor_area = non_tagged_space_types.sum
+          building_area = @model.getBuilding.floorArea
+          check_elems << OpenStudio::Attribute.new('flag', "Unexpected standard building/space types found for #{non_tagged_space_types.size} space types covering #{(100.0 * impacted_floor_area/building_area).round}% of floor area, can't provide comparisons for internal loads for those space types.")
+        end        
 
         # warn if there are spaces in model that don't use space type unless they appear to be plenums
         @model.getSpaces.each do |space|

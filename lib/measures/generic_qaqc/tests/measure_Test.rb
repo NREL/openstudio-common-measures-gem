@@ -214,7 +214,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test pass
-  def test_GenericQAQC_pass
+  def no_test_GenericQAQC_pass
     # skip "Broken in 2.5.1, address immediately"
 
     # setup test name, model, and epw
@@ -277,7 +277,7 @@ class GenericQAQC_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_GenericQAQC_alt_hvac_a
+  def no_test_GenericQAQC_alt_hvac_a
     # skip "Broken in 2.5.1, address immediately"
 
     # setup test name, model, and epw
@@ -342,7 +342,7 @@ class GenericQAQC_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_GenericQAQC_alt_hvac_b
+  def no_test_GenericQAQC_alt_hvac_b
     # skip "Broken in 2.5.1, address immediately"
 
     # setup test name, model, and epw
@@ -406,7 +406,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test fail_a
-  def test_GenericQAQC_fail_a
+  def no_test_GenericQAQC_fail_a
     # setup test name, model, and epw
     test_name = 'fail_a'
     model_in_path = "#{File.dirname(__FILE__)}/BasicOfficeTest_Mabry.osm"
@@ -468,7 +468,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test fail_b
-  def test_GenericQAQC_fail_b
+  def no_test_GenericQAQC_fail_b
     # setup test name, model, and epw
     test_name = 'fail_b'
     model_in_path = "#{File.dirname(__FILE__)}/BasicOfficeTest.osm"
@@ -530,7 +530,7 @@ class GenericQAQC_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def test_GenericQAQC_res_a
+  def no_test_GenericQAQC_res_a
     # test file is 2.6.0
     if OpenStudio::VersionString.new(OpenStudio.openStudioVersion) >= OpenStudio::VersionString.new('2.6.0')
 
@@ -596,7 +596,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test 0422_sm_off
-  def test_GenericQAQC_0422_sm_off
+  def no_test_GenericQAQC_0422_sm_off
     # setup test name, model, and epw
     test_name = '0422_sm_off'
     model_in_path = "#{File.dirname(__FILE__)}/0422_test_b_sm_off.osm"
@@ -658,7 +658,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
     # test 0422_sm_off
-  def test_GenericQAQC_0422_sm_off_2019
+  def no_test_GenericQAQC_0422_sm_off_2019
     # setup test name, model, and epw
     test_name = '0422_sm_off_2019'
     model_in_path = "#{File.dirname(__FILE__)}/0422_test_b_sm_off.osm"
@@ -733,7 +733,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test 0422_sm_off
-  def test_GenericQAQC_0422_sm_off_comstock2013
+  def no_test_GenericQAQC_0422_sm_off_comstock2013
     # setup test name, model, and epw
     test_name = '0422_sm_off_comstock2013'
     model_in_path = "#{File.dirname(__FILE__)}/0422_test_b_sm_off.osm"
@@ -808,7 +808,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test_fsr
-  def test_fsr
+  def no_test_fsr
     # setup test name, model, and epw
     test_name = 'fsr'
     model_in_path = "#{File.dirname(__FILE__)}/fsr.osm"
@@ -883,7 +883,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test uo_lg_hotel
-  def test_uo_lg_hotel
+  def no_test_uo_lg_hotel
     # setup test name, model, and epw
     test_name = 'uo_lg_hotel'
     model_in_path = "#{File.dirname(__FILE__)}/uo_lg_hotel.osm"
@@ -978,6 +978,81 @@ class GenericQAQC_Test < Minitest::Test
     # create hash of argument values
     args_hash = {}
     args_hash['template'] = '90.1-2004'
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
+
+    # get the energyplus output requests, this will be done automatically by OS App and PAT
+    idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
+    # assert(idf_output_requests.size > 0)
+
+    # mimic the process of running this measure in OS App or PAT
+    setup_test(test_name, idf_output_requests, model_in_path, epw.to_s)
+
+    assert(File.exist?(model_out_path(test_name)))
+    assert(File.exist?(sql_path(test_name)))
+    assert(File.exist?(epw.to_s))
+
+    # set up runner, this will happen automatically when measure is run in PAT or OpenStudio
+    runner.setLastOpenStudioModelPath(OpenStudio::Path.new(model_out_path(test_name)))
+    runner.setLastEnergyPlusWorkspacePath(OpenStudio::Path.new(workspace_path(test_name)))
+    runner.setLastEpwFilePath(epw.to_s)
+    runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
+
+    # delete the output if it exists
+    if File.exist?(report_path(test_name))
+      FileUtils.rm(report_path(test_name))
+    end
+    assert(!File.exist?(report_path(test_name)))
+
+    # temporarily change directory to the run directory and run the measure
+    start_dir = Dir.pwd
+    begin
+      Dir.chdir(run_dir(test_name))
+
+      # run the measure
+      measure.run(runner, argument_map)
+      result = runner.result
+      show_output(result)
+      assert_equal('Success', result.value.valueName)
+
+      # look for section_errors
+      #assert(section_errors(runner).empty?) # todo enable when building type lookup for StripMall is fixed
+    ensure
+      Dir.chdir(start_dir)
+    end
+
+    # make sure the report file exists
+    assert(File.exist?(report_path(test_name)))
+  end
+
+  # test uo_blend
+  def no_test_uo_blend
+    # setup test name, model, and epw
+    test_name = 'uo_blend'
+    model_in_path = "#{File.dirname(__FILE__)}/uo_blend.osm"
+    epw = OpenStudio::Path.new(File.dirname(__FILE__)) / OpenStudio::Path.new('USA_NY_Buffalo-Greater.Buffalo.Intl.AP.725280_TMY3.epw')
+
+    # create an instance of the measure
+    measure = GenericQAQC.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    runner.setLastOpenStudioModel(model_vers_trans(model_in_path))
+
+    # get arguments
+    arguments = measure.arguments
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    # create hash of argument values
+    args_hash = {}
+    args_hash['template'] = '90.1-2007'
 
     # populate argument with specified hash value if specified
     arguments.each do |arg|

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>0365652d-7131-4ad9-b43f-b55949503d17</version_id>
-  <version_modified>20220419T070010Z</version_modified>
+  <version_id>c351959e-88fa-4854-b1d9-b823a3b08df9</version_id>
+  <version_modified>20220420T033230Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -591,12 +591,6 @@
       <checksum>14402DF5</checksum>
     </file>
     <file>
-      <filename>check_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>97D9A3D1</checksum>
-    </file>
-    <file>
       <filename>check_simultaneous_heating_and_cooling.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -607,12 +601,6 @@
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>B17FFC25</checksum>
-    </file>
-    <file>
-      <filename>check_internal_loads.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>F698CF14</checksum>
     </file>
     <file>
       <filename>check_air_sys_temps.rb</filename>
@@ -711,12 +699,6 @@
       <checksum>AE338EAC</checksum>
     </file>
     <file>
-      <filename>measure_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B9C488D7</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -740,10 +722,52 @@
       <checksum>1538960E</checksum>
     </file>
     <file>
+      <filename>check_schedules.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>886C1C6A</checksum>
+    </file>
+    <file>
+      <filename>check_internal_loads.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>692C40E6</checksum>
+    </file>
+    <file>
       <filename>check_domestic_hot_water.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>730F3AA5</checksum>
+      <checksum>C590E7B7</checksum>
+    </file>
+    <file>
+      <filename>uo_blend.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>605CDF17</checksum>
+    </file>
+    <file>
+      <filename>uo_strip_mall.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>95EBB09E</checksum>
+    </file>
+    <file>
+      <filename>uo_lg_hotel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B8033381</checksum>
+    </file>
+    <file>
+      <filename>USA_NY_Buffalo-Greater.Buffalo.Intl.AP.725280_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>6B50E0FF</checksum>
+    </file>
+    <file>
+      <filename>measure_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1D51EC03</checksum>
     </file>
   </files>
 </measure>
