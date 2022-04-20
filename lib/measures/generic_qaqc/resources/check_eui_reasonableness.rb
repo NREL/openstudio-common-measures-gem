@@ -66,6 +66,9 @@ module OsLib_QAQC
       climate_zone = bt_cz['climate_zone']
       prototype_prefix = "#{target_standard} #{building_type} #{climate_zone}"
 
+      # mapping to obuilding type to match space types
+      if building_type.include?("Office") then building_type = "Office" end
+
       # total building area
       query = 'SELECT Value FROM tabulardatawithstrings WHERE '
       query << "ReportName='AnnualBuildingUtilityPerformanceSummary' and "
@@ -99,19 +102,21 @@ module OsLib_QAQC
         return OpenStudio::Attribute.new('check', check_elems)
       end
 
-      # check if all spaces use the building type defined in the model
-      if building_type.to_s != ''
-        floor_area = @model.getBuilding.flooorArea
+      # check if all spaces types used the building type defined in the model (percentage calculation doesn't check if all area is inclued in building floor area)
+      if building_type != ''
         primary_type_floor_area = 0.0
+        non_pri_area = 0.0
+        asdf = []
         @model.getSpaceTypes.each do |space_type|
           st_bt = space_type.standardsBuildingType
-          next if !building_type.is_initialized
-          st_bt = st_bt.get
-          next if !st_bt == building_type
-          primary_type_floor_area += space_type.floorArea
+          if st_bt.is_initialized && st_bt.get.to_s == building_type.to_s
+            primary_type_floor_area += space_type.floorArea
+          else
+            non_pri_area += space_type.floorArea
+          end
         end
-        if primary_type_floor_area < floor_area
-          check_elems << OpenStudio::Attribute.new('flag', "The primary building type, #{building_type}, only represents #{(100 * primary_type_floor_area / floor_area).round}% of the total building area; as a result while a comparison to the #{building_type} prototype EUI is provided, it would not be unexpected for the building EUI to be significantly different than the prototype.")
+        if non_pri_area > 0.0
+          check_elems << OpenStudio::Attribute.new('flag', "The primary building type, #{building_type}, only represents #{(100 * primary_type_floor_area / (primary_type_floor_area + non_pri_area)).round}% of the total building area; as a result while a comparison to the #{building_type} prototype EUI is provided, it would not be unexpected for the building EUI to be significantly different than the prototype.")
         end
       end
 

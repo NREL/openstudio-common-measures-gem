@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>8053b508-568d-4afd-a763-f008863dfcdd</version_id>
-  <version_modified>20220420T070502Z</version_modified>
+  <version_id>bb21766f-9d27-4065-ad7f-0a8f2c24d8ca</version_id>
+  <version_modified>20220420T184848Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -746,18 +746,6 @@
       <checksum>6B50E0FF</checksum>
     </file>
     <file>
-      <filename>check_eui_reasonableness.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>4A7A167F</checksum>
-    </file>
-    <file>
-      <filename>check_eui_by_end_use.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>2D5B33D4</checksum>
-    </file>
-    <file>
       <filename>measure_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -774,6 +762,18 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>317CE651</checksum>
+    </file>
+    <file>
+      <filename>check_eui_reasonableness.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>AA11C077</checksum>
+    </file>
+    <file>
+      <filename>check_eui_by_end_use.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>84E0198C</checksum>
     </file>
   </files>
 </measure>
