@@ -49,11 +49,14 @@ module OsLib_QAQC
     else
       check_elems << OpenStudio::Attribute.new('description', 'Check against the 2011 ASHRAE Handbook - HVAC Applications, Table 7 section 50.14.')
     end
-
+    check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
+    check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
+    
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
       check_elems.each do |elem|
+        next if ['Double','Integer'].include? (elem.valueType.valueDescription)
         results << elem.valueAsString
       end
       return results

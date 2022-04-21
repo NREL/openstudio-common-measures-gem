@@ -44,7 +44,9 @@ module OsLib_QAQC
     check_elems = OpenStudio::AttributeVector.new
     check_elems << OpenStudio::Attribute.new('name', 'Mechanical System Efficiency')
     check_elems << OpenStudio::Attribute.new('category', category)
-
+    check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
+    check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
+    
     if target_standard.include?('90.1-2013')
       display_standard = "ASHRAE #{target_standard}"
       check_elems << OpenStudio::Attribute.new('description', "Check against #{display_standard} Tables 6.8.1 A-K for the following component types: #{component_type_array.join(', ')}.")
@@ -62,6 +64,7 @@ module OsLib_QAQC
     if name_only == true
       results = []
       check_elems.each do |elem|
+        next if ['Double','Integer'].include? (elem.valueType.valueDescription)
         results << elem.valueAsString
       end
       return results

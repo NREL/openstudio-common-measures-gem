@@ -42,11 +42,18 @@ module OsLib_QAQC
     check_elems = OpenStudio::AttributeVector.new
     check_elems << OpenStudio::Attribute.new('name', 'Schedules')
     check_elems << OpenStudio::Attribute.new('category', category)
-    check_elems << OpenStudio::Attribute.new('description', 'Check schedules for lighting, ventilation, occupant density, plug loads, and equipment based on DOE reference building schedules in terms of full load hours per year.')
+
+    # update display sttandard
+    if target_standard.include?('90.1')
+      display_standard = "ASHRAE #{target_standard}"
+    else
+      display_standard = target_standard
+    end
 
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
+      check_elems << OpenStudio::Attribute.new('description', 'Check schedules for lighting, ventilation, occupant density, plug loads, and equipment based on DOE reference building schedules in terms of full load hours per year.')
       check_elems.each do |elem|
         results << elem.valueAsString
       end
@@ -61,12 +68,14 @@ module OsLib_QAQC
       # gather building type for summary
       bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
       building_type = bt_cz['building_type']
-      climate_zone = bt_cz['climate_zone']
-      prototype_prefix = "#{target_standard} #{building_type} #{climate_zone}"
-
       # mapping to obuilding type to match space types
       if building_type.include?("Office") then building_type = "Office" end
-
+      climate_zone = bt_cz['climate_zone']
+      prototype_prefix = "#{display_standard} #{building_type} #{climate_zone}"
+      check_elems << OpenStudio::Attribute.new('description', "Check schedules for lighting, ventilation, occupant density, plug loads, and equipment based on #{prototype_prefix} DOE reference building schedules in terms of full load hours per year.")
+      check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
+      check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
+      
       # gather all non statandard space types so can be listed in single flag
       non_tagged_space_types = []
 

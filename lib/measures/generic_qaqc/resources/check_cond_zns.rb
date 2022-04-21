@@ -41,7 +41,9 @@ module OsLib_QAQC
     check_elems << OpenStudio::Attribute.new('name', 'Conditioned Zones')
     check_elems << OpenStudio::Attribute.new('category', category)
     check_elems << OpenStudio::Attribute.new('description', 'Check that all zones with people have thermostats.')
-
+    check_elems << OpenStudio::Attribute.new('min_pass', "#{(min_pass * 100).round(0)}")
+    check_elems << OpenStudio::Attribute.new('max_pass', "#{(max_pass * 100).round(0)}")
+    
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []

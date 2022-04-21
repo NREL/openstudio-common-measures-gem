@@ -42,20 +42,22 @@ module OsLib_QAQC
     check_elems = OpenStudio::AttributeVector.new
     check_elems << OpenStudio::Attribute.new('name', 'Internal Loads')
     check_elems << OpenStudio::Attribute.new('category', category)
-    if target_standard == 'ICC IECC 2015'
-      check_elems << OpenStudio::Attribute.new('description', 'Check internal loads against Table R405.5.2(1) in ICC IECC 2015 Residential Provisions.')
+
+    # update display sttandard
+    if target_standard.include?('90.1')
+      display_standard = "ASHRAE #{target_standard}"
     else
-      if target_standard.include?('90.1')
-        display_standard = "ASHRAE #{target_standard}"
-      else
-        display_standard = target_standard
-      end
-      check_elems << OpenStudio::Attribute.new('description', "Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against #{display_standard} and DOE Prototype buildings.")
+      display_standard = target_standard
     end
 
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
+      if target_standard == 'ICC IECC 2015'
+        check_elems << OpenStudio::Attribute.new('description', 'Check internal loads against Table R405.5.2(1) in ICC IECC 2015 Residential Provisions.')
+      else
+        check_elems << OpenStudio::Attribute.new('description', "Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against #{display_standard} DOE Prototype buildings.")
+      end      
       check_elems.each do |elem|
         results << elem.valueAsString
       end
@@ -70,12 +72,18 @@ module OsLib_QAQC
       # gather building type for summary
       bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
       building_type = bt_cz['building_type']
-      climate_zone = bt_cz['climate_zone']
-      prototype_prefix = "#{target_standard} #{building_type} #{climate_zone}"
-
       # mapping to obuilding type to match space types
-      if building_type.include?("Office") then building_type = "Office" end
-
+      if building_type.include?("Office") then building_type = "Office" end      
+      climate_zone = bt_cz['climate_zone']
+      prototype_prefix = "#{display_standard} #{building_type} #{climate_zone}"
+      if target_standard == 'ICC IECC 2015'
+        check_elems << OpenStudio::Attribute.new('description', 'Check internal loads against Table R405.5.2(1) in ICC IECC 2015 Residential Provisions.')
+      else
+        check_elems << OpenStudio::Attribute.new('description', "Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against #{prototype_prefix} DOE Prototype building.")
+      end
+      check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
+      check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
+      
       if target_standard == 'ICC IECC 2015'
 
         num_people = 0.0

@@ -126,7 +126,7 @@ module OsLib_Reporting
     # gather data for section
     qaqc_check_summary = {}
     qaqc_check_summary[:title] = 'List of Checks in Measure'
-    qaqc_check_summary[:header] = ['Name', 'Category', 'Flags', 'Description']
+    qaqc_check_summary[:header] = ['Name', 'Category', 'Flags', 'Tolerance','Description']
     qaqc_check_summary[:data] = []
     qaqc_check_summary[:data_color] = []
     @qaqc_check_section = {}
@@ -152,28 +152,60 @@ module OsLib_Reporting
       check_name = nil
       check_cat = nil
       check_desc = nil
+      check_min_pass = nil
+      check_max_pass = nil
       flags = []
-      # loop through attributes (name,category,description,then optionally one or more flag attributes)
-      check.valueAsAttributeVector.each_with_index do |value, index|
-        if index == 0
-          check_name = value.valueAsString
-        elsif index == 1
-          check_cat = value.valueAsString
-        elsif index == 2
-          check_desc = value.valueAsString
+
+
+      # loop through attributes (name,category,description, min tol, max tol ,then optionally one or more flag attributes)
+      check.valueAsAttributeVector.each do |attribute|
+        if attribute.name == "name"
+          check_name = attribute.valueAsString
+        elsif attribute.name == 'category'
+          check_cat = attribute.valueAsString
+        elsif attribute.name == 'description'
+          check_desc = attribute.valueAsString
+        elsif attribute.name == 'min_pass'
+          if ['Double','Integer'].include? (attribute.valueType.valueDescription)
+            check_min_pass = attribute.valueAsDouble
+          else
+            check_min_pass = attribute.valueAsString
+          end
+        elsif attribute.name == 'max_pass'
+          if ['Double','Integer'].include? (attribute.valueType.valueDescription)
+            check_max_pass = attribute.valueAsDouble
+          else
+            check_max_pass = attribute.valueAsString
+          end
         else # should be flag
-          flags << value.valueAsString
-          qaqc_flag_details[:data] << [value.valueAsString]
-          runner.registerWarning("#{check_name} - #{value.valueAsString}")
+          flags << attribute.valueAsString
+          qaqc_flag_details[:data] << [attribute.valueAsString]
+          runner.registerWarning("#{check_name} - #{attribute.valueAsString}")
           num_flags += 1
-        end
+        end          
       end
 
       # add row to table for this check
-      qaqc_check_summary[:data] << [check_name, check_cat, flags.size, check_desc]
+      # check_supply_air_and_thermostat_temp_difference should have unit for F instead of default %, can add that here or do I need to pass in from that method
+      if !check_min_pass.nil? && !check_min_pass.instance_of?(String) && check_min_pass.abs > 0
+        tol_val = check_min_pass
+      elsif !check_min_pass.nil? && !check_min_pass.instance_of?(String) && check_max_pass.abs > 0
+        tol_val = check_max_pass
+      else
+        #tol_val = "NA"
+      end
+
+      # change units for some checks #todo - this can be changed later to use "unit" attribute
+      if check_name == 'Supply and Zone Air Temperature'
+        tol_val = "#{tol_val}F"        
+      elsif tol_val != ''
+        tol_val = "#{tol_val}%"
+      end
+
+      qaqc_check_summary[:data] << [check_name, check_cat, flags.size, tol_val ,check_desc]
 
       # add info message for check if no flags found (this way user still knows what ran)
-      if check.valueAsAttributeVector.size < 4
+      if num_flags == 0
         runner.registerInfo("#{check_name} - no flags.")
       end
 

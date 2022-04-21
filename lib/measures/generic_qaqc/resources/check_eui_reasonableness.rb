@@ -43,10 +43,17 @@ module OsLib_QAQC
     check_elems = OpenStudio::AttributeVector.new
     check_elems << OpenStudio::Attribute.new('name', 'EUI Reasonableness')
     check_elems << OpenStudio::Attribute.new('category', category)
-    check_elems << OpenStudio::Attribute.new('description', "Check model EUI against #{target_standard} DOE prototype building.")
+
+    # update display sttandard
+    if target_standard.include?('90.1')
+      display_standard = "ASHRAE #{target_standard}"
+    else
+      display_standard = target_standard
+    end
 
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
+      check_elems << OpenStudio::Attribute.new('description', "Check model EUI against #{display_standard} DOE prototype building.")
       results = []
       check_elems.each do |elem|
         results << elem.valueAsString
@@ -64,10 +71,15 @@ module OsLib_QAQC
       bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
       building_type = bt_cz['building_type']
       climate_zone = bt_cz['climate_zone']
-      prototype_prefix = "#{target_standard} #{building_type} #{climate_zone}"
+      prototype_prefix = "#{display_standard} #{building_type} #{climate_zone}"
 
       # mapping to obuilding type to match space types
       if building_type.include?("Office") then building_type = "Office" end
+
+      # last part of summary table
+      check_elems << OpenStudio::Attribute.new('description', "Check model EUI against #{prototype_prefix} DOE prototype building.")
+      check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
+      check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
 
       # total building area
       query = 'SELECT Value FROM tabulardatawithstrings WHERE '

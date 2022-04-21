@@ -53,12 +53,15 @@ module OsLib_QAQC
     check_elems << OpenStudio::Attribute.new('name', 'Mechanical System Part Load Efficiency')
     check_elems << OpenStudio::Attribute.new('category', category)
     check_elems << OpenStudio::Attribute.new('description', "Check 40% and 80% part load efficency against #{display_standard} for the following compenent types: #{component_type_array.join(', ')}. Checking EIR Function of Part Load Ratio curve for chiller and EIR Function of Flow Fraction for DX coils.")
+    check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
+    check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
     # TODO: - add in check for VAV fan
 
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
       check_elems.each do |elem|
+        next if ['Double','Integer'].include? (elem.valueType.valueDescription)
         results << elem.valueAsString
       end
       return results
