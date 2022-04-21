@@ -91,42 +91,6 @@ class GenericQAQC_Test < Minitest::Test
     "#{run_dir(test_name)}/report.html"
   end
 
-  # method for running the test simulation using OpenStudio 1.x API
-  def setup_test_1(test_name, epw_path)
-    co = OpenStudio::Runmanager::ConfigOptions.new(true)
-    co.findTools(false, true, false, true)
-
-    if !File.exist?(sql_path(test_name))
-      puts 'Running EnergyPlus'
-
-      wf = OpenStudio::Runmanager::Workflow.new('modeltoidf->energypluspreprocess->energyplus')
-      wf.add(co.getTools)
-      job = wf.create(OpenStudio::Path.new(run_dir(test_name)), OpenStudio::Path.new(model_out_path(test_name)), OpenStudio::Path.new(epw_path))
-
-      rm = OpenStudio::Runmanager::RunManager.new
-      rm.enqueue(job, true)
-      rm.waitForFinished
-    end
-  end
-
-  # method for running the test simulation using OpenStudio 2.x API
-  def setup_test_2(test_name, epw_path)
-    if !File.exist?(sql_path(test_name))
-      osw_path = File.join(run_dir(test_name), 'in.osw')
-      osw_path = File.absolute_path(osw_path)
-
-      workflow = OpenStudio::WorkflowJSON.new
-      workflow.setSeedFile(File.absolute_path(model_out_path(test_name)))
-      workflow.setWeatherFile(File.absolute_path(epw_path))
-      workflow.saveAs(osw_path)
-
-      cli_path = OpenStudio.getOpenStudioCLI
-      cmd = "\"#{cli_path}\" run -w \"#{osw_path}\""
-      puts cmd
-      system(cmd)
-    end
-  end
-
   # create test files if they do not exist when the test first runs
   def setup_test(test_name, idf_output_requests, model_in_path = model_in_path_default, epw_path = epw_path_default)
     if !File.exist?(run_dir(test_name))
@@ -163,10 +127,19 @@ class GenericQAQC_Test < Minitest::Test
       end
     end
 
-    if is_openstudio_2?
-      setup_test_2(test_name, epw_path)
-    else
-      setup_test_1(test_name, epw_path)
+    if !File.exist?(sql_path(test_name))
+      osw_path = File.join(run_dir(test_name), 'in.osw')
+      osw_path = File.absolute_path(osw_path)
+
+      workflow = OpenStudio::WorkflowJSON.new
+      workflow.setSeedFile(File.absolute_path(model_out_path(test_name)))
+      workflow.setWeatherFile(File.absolute_path(epw_path))
+      workflow.saveAs(osw_path)
+
+      cli_path = OpenStudio.getOpenStudioCLI
+      cmd = "\"#{cli_path}\" run -w \"#{osw_path}\""
+      puts cmd
+      system(cmd)
     end
   end
 

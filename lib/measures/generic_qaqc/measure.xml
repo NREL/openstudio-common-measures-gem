@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>6bd478f2-185d-442f-82c4-b37d5de30adb</version_id>
-  <version_modified>20220421T063847Z</version_modified>
+  <version_id>cd6426b0-4453-4964-9c39-4c587586b5d7</version_id>
+  <version_modified>20220421T064230Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -716,12 +716,6 @@
       <checksum>6B50E0FF</checksum>
     </file>
     <file>
-      <filename>measure_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>24F03E2D</checksum>
-    </file>
-    <file>
       <filename>uo_mixed.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -774,6 +768,12 @@
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>59F8A626</checksum>
+    </file>
+    <file>
+      <filename>measure_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EA00F910</checksum>
     </file>
   </files>
 </measure>
