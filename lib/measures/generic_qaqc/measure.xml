@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>bb21766f-9d27-4065-ad7f-0a8f2c24d8ca</version_id>
-  <version_modified>20220420T184848Z</version_modified>
+  <version_id>6bd478f2-185d-442f-82c4-b37d5de30adb</version_id>
+  <version_modified>20220421T063847Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -651,12 +651,6 @@
       <checksum>D38441F3</checksum>
     </file>
     <file>
-      <filename>check_envelope_conductance.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>243DDE18</checksum>
-    </file>
-    <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
@@ -696,30 +690,6 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>D2A4E538</checksum>
-    </file>
-    <file>
-      <filename>check_mech_sys_efficiency.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>1538960E</checksum>
-    </file>
-    <file>
-      <filename>check_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>886C1C6A</checksum>
-    </file>
-    <file>
-      <filename>check_internal_loads.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>692C40E6</checksum>
-    </file>
-    <file>
-      <filename>check_domestic_hot_water.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>C590E7B7</checksum>
     </file>
     <file>
       <filename>uo_blend.osm</filename>
@@ -764,16 +734,46 @@
       <checksum>317CE651</checksum>
     </file>
     <file>
+      <filename>check_envelope_conductance.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>5F110028</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_efficiency.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>6A27A092</checksum>
+    </file>
+    <file>
+      <filename>check_schedules.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>FEFFFD08</checksum>
+    </file>
+    <file>
+      <filename>check_internal_loads.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>CE79CEAB</checksum>
+    </file>
+    <file>
+      <filename>check_domestic_hot_water.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>DF69B911</checksum>
+    </file>
+    <file>
       <filename>check_eui_reasonableness.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>AA11C077</checksum>
+      <checksum>7D0ED51E</checksum>
     </file>
     <file>
       <filename>check_eui_by_end_use.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>84E0198C</checksum>
+      <checksum>59F8A626</checksum>
     </file>
   </files>
 </measure>

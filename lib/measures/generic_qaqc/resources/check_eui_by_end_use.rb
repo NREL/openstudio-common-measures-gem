@@ -56,7 +56,7 @@ module OsLib_QAQC
 
     begin
 
-      # test using new method
+      # setup standard
       std = Standard.build(target_standard)
       target_eui = std.model_find_target_eui(@model)
 

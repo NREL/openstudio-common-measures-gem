@@ -62,18 +62,20 @@ module OsLib_QAQC
       return results
     end
 
-    # Versions of OpenStudio greater than 2.4.0 use a modified version of
-    # openstudio-standards with different method calls.  These methods
-    # require a "Standard" object instead of the standard being passed into method calls.
-    # This Standard object is used throughout the QAQC check.
-    if OpenStudio::VersionString.new(OpenStudio.openStudioVersion) < OpenStudio::VersionString.new('2.4.3')
-      use_old_gem_code = true
-    else
-      use_old_gem_code = false
-      std = Standard.build(target_standard)
-    end
-
     begin
+
+      # setup standard
+      std = Standard.build(target_standard)
+
+      # gather building type for summary
+      bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      building_type = bt_cz['building_type']
+      climate_zone = bt_cz['climate_zone']
+      prototype_prefix = "#{target_standard} #{building_type} #{climate_zone}"
+
+      # mapping to obuilding type to match space types
+      if building_type.include?("Office") then building_type = "Office" end
+
       if target_standard == 'ICC IECC 2015'
 
         num_people = 0.0
@@ -88,11 +90,7 @@ module OsLib_QAQC
         # lookup iecc internal loads for the building
         bedrooms_per_unit = 2.0 # assumption
         num_units = num_people / 2.5 # Avg 2.5 units per person.
-        if use_old_gem_code
-          target_loads_hash = @model.find_icc_iecc_2015_internal_loads(num_units, bedrooms_per_unit)
-        else
-          target_loads_hash = std.model_find_icc_iecc_2015_internal_loads(@model, num_units, bedrooms_per_unit)
-        end
+        target_loads_hash = std.model_find_icc_iecc_2015_internal_loads(@model, num_units, bedrooms_per_unit)
 
         # get model internal gains for lights, elec equipment, and gas equipment
         model_internal_gains_si = 0.0
@@ -184,27 +182,16 @@ module OsLib_QAQC
           num_people = space_type.getNumberOfPeople(floor_area)
 
           # load in standard info for this space type
-          if use_old_gem_code
-            data = space_type.get_standards_data(target_standard)
-          else
-            data = std.space_type_get_standards_data(space_type)
-          end
+          data = std.space_type_get_standards_data(space_type)
 
           if data.nil? || data.empty?
 
             # skip if all spaces using this space type are plenums
             all_spaces_plenums = true
             space_type.spaces.each do |space|
-              if use_old_gem_code
-                if !space.plenum?
-                  all_spaces_plenums = false
-                  next
-                end
-              else
-                if !std.space_plenum?(space)
-                  all_spaces_plenums = false
-                  next
-                end
+               if !std.space_plenum?(space)
+                all_spaces_plenums = false
+                next
               end
             end
 
@@ -226,9 +213,9 @@ module OsLib_QAQC
           model_ip_neat = OpenStudio.toNeatString(model_ip, 2, true)
           target_ip_neat = OpenStudio.toNeatString(target_ip, 2, true)
           if model_ip < target_ip * (1.0 - min_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           elsif model_ip > target_ip * (1.0 + max_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           end
 
           # check electric equipment
@@ -242,9 +229,9 @@ module OsLib_QAQC
           model_ip_neat = OpenStudio.toNeatString(model_ip, 2, true)
           target_ip_neat = OpenStudio.toNeatString(target_ip, 2, true)
           if model_ip < target_ip * (1.0 - min_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           elsif model_ip > target_ip * (1.0 + max_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           end
 
           # check gas equipment
@@ -258,9 +245,9 @@ module OsLib_QAQC
           model_ip_neat = OpenStudio.toNeatString(model_ip, 2, true)
           target_ip_neat = OpenStudio.toNeatString(target_ip, 2, true)
           if model_ip < target_ip * (1.0 - min_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           elsif model_ip > target_ip * (1.0 + max_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           end
 
           # check people
@@ -276,9 +263,9 @@ module OsLib_QAQC
           # for people need to update target units just for display. Can't be used for converstion.
           target_units = 'People/1000 ft^2'
           if model_ip < target_ip * (1.0 - min_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           elsif model_ip > target_ip * (1.0 + max_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           end
 
           # get volume for space type for use with ventilation and infiltration
@@ -343,9 +330,9 @@ module OsLib_QAQC
           model_ip_neat = OpenStudio.toNeatString(OpenStudio.convert(oa_per_person, source_units, target_units).get, 2, true)
           target_ip_neat = OpenStudio.toNeatString(target_oa_per_person_ip, 2, true)
           if oa_per_person < target_oa_per_person_si * (1.0 - min_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           elsif oa_per_person > target_oa_per_person_si * (1.0 + max_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           end
 
           # check other oa
@@ -355,9 +342,9 @@ module OsLib_QAQC
           model_ip_neat = OpenStudio.toNeatString(OpenStudio.convert(oa_total, source_units, target_units).get, 2, true)
           target_ip_neat = OpenStudio.toNeatString(OpenStudio.convert(target_oa_total, source_units, target_units).get, 2, true)
           if oa_total < target_oa_total * (1.0 - min_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           elsif oa_total > target_oa_total * (1.0 + max_pass)
-            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the expected value of #{target_ip_neat} (#{target_units}) for #{display_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{load_type} of #{model_ip_neat} (#{target_units}) for #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_ip_neat} (#{target_units}) for #{prototype_prefix} Prototype model.")
           end
         end
 
@@ -370,11 +357,7 @@ module OsLib_QAQC
 
         # warn if there are spaces in model that don't use space type unless they appear to be plenums
         @model.getSpaces.each do |space|
-          if use_old_gem_code
-            next if space.plenum?
-          else
-            next if std.space_plenum?(space)
-          end
+          next if std.space_plenum?(space)
 
           if !space.spaceType.is_initialized
             check_elems << OpenStudio::Attribute.new('flag', "#{space.name} doesn't have a space type assigned, can't validate internal loads.")
