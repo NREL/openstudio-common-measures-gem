@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>22dc946c-3583-4e00-949a-8550a994b4d3</version_id>
-  <version_modified>20220422T063635Z</version_modified>
+  <version_id>b2350930-7bdf-4233-b7ab-d95563fb408e</version_id>
+  <version_modified>20220422T165746Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -767,13 +767,13 @@
       <filename>check_eui_reasonableness.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>4E031A38</checksum>
+      <checksum>E6A6A3EB</checksum>
     </file>
     <file>
       <filename>check_eui_by_end_use.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>D1FEFBD7</checksum>
+      <checksum>3CB3F8D4</checksum>
     </file>
   </files>
 </measure>

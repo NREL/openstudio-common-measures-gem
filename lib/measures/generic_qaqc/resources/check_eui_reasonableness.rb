@@ -128,15 +128,15 @@ module OsLib_QAQC
                 primary_type_floor_area += space_type.floorArea
               else
                 non_pri_area += space_type.floorArea
-                non_pri_types << st_bt
+                if !non_pri_types.include?(st_bt) then non_pri_types << st_bt end
               end
           else
             non_pri_area += space_type.floorArea
-            non_pri_types << st_bt
+            if !non_pri_types.include?(st_bt) then non_pri_types << st_bt end
           end
         end
         if non_pri_area > 0.0
-          check_elems << OpenStudio::Attribute.new('flag', "The primary building type, #{building_type}, only represents #{(100 * primary_type_floor_area / (primary_type_floor_area + non_pri_area)).round}% of the total building area. Other standads building types included are #{non_pri_types.unique.sot.join(",")}. While a comparison to the #{building_type} prototype EUI is provided, it would not be unexpected for the building EUI to be significantly different than the prototype.")
+          check_elems << OpenStudio::Attribute.new('flag', "The primary building type, #{building_type}, only represents #{(100 * primary_type_floor_area / (primary_type_floor_area + non_pri_area)).round}% of the total building area. Other standads building types included are #{non_pri_types.sort.join(",")}. While a comparison to the #{building_type} prototype EUI is provided, it would not be unexpected for the building EUI to be significantly different than the prototype.")
         end
       end
 
