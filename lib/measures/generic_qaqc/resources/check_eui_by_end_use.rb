@@ -124,17 +124,25 @@ module OsLib_QAQC
       if building_type != ''
         primary_type_floor_area = 0.0
         non_pri_area = 0.0
-        asdf = []
+        non_pri_types = []
         @model.getSpaceTypes.each do |space_type|
           st_bt = space_type.standardsBuildingType
-          if st_bt.is_initialized && st_bt.get.to_s == building_type.to_s
-            primary_type_floor_area += space_type.floorArea
+          if st_bt.is_initialized
+              st_bt = st_bt.get.to_s
+              if st_bt.include?("Office") then st_bt = "Office" end
+              if st_bt.to_s == building_type.to_s
+                primary_type_floor_area += space_type.floorArea
+              else
+                non_pri_area += space_type.floorArea
+                non_pri_types << st_bt
+              end
           else
             non_pri_area += space_type.floorArea
+            non_pri_types << st_bt
           end
         end
         if non_pri_area > 0.0
-          check_elems << OpenStudio::Attribute.new('flag', "The primary building type, #{building_type}, only represents #{(100 * primary_type_floor_area / (primary_type_floor_area + non_pri_area)).round}% of the total building area; as a result while a comparison to the #{building_type} prototype consumption by end use is provided, it would not be unexpected for the building consumption by end use to be significantly different than the prototype.")
+          check_elems << OpenStudio::Attribute.new('flag', "The primary building type, #{building_type}, only represents #{(100 * primary_type_floor_area / (primary_type_floor_area + non_pri_area)).round}% of the total building area. Other standads building types included are #{non_pri_types.unique.sort.join(",")}. While a comparison to the #{building_type} prototype consumption by end use is provided, it would not be unexpected for the building consumption by end use to be significantly different than the prototype.")
         end
       end
 

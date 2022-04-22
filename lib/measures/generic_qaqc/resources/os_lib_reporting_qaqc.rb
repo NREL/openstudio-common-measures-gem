@@ -189,16 +189,18 @@ module OsLib_Reporting
       # check_supply_air_and_thermostat_temp_difference should have unit for F instead of default %, can add that here or do I need to pass in from that method
       if !check_min_pass.nil? && !check_min_pass.instance_of?(String) && check_min_pass.abs > 0
         tol_val = check_min_pass
-      elsif !check_min_pass.nil? && !check_min_pass.instance_of?(String) && check_max_pass.abs > 0
+      elsif !check_max_pass.nil? && !check_min_pass.instance_of?(String) && check_max_pass.abs > 0
         tol_val = check_max_pass
-      else
-        #tol_val = "NA"
+      elsif
+        tol_val = check_min_pass # should empty string or Var
       end
 
       # change units for some checks #todo - this can be changed later to use "unit" attribute
       if check_name == 'Supply and Zone Air Temperature'
-        tol_val = "#{tol_val}F"        
-      elsif tol_val != ''
+        tol_val = "#{tol_val} F"        
+      elsif check_name == 'Baseline Mechanical System Type'
+        tol_val = "#{tol_val}"        
+      else
         tol_val = "#{tol_val}%"
       end
 

@@ -146,7 +146,7 @@ module OsLib_QAQC
 
         if use_old_gem_code
           chlr_props = component.model.find_object($os_standards['chillers'], search_criteria, capacity_tons, Date.today)
-          chlr_props
+        else
           chlr_props = std.model_find_object(std.standards_data['chillers'], search_criteria, capacity_tons, Date.today)
         end
         if chlr_props.nil?
