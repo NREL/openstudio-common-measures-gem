@@ -236,6 +236,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       avg_load_wkday = []
       wkday_load_sel = wkday_load_sel.transpose
       if ev_use_model_occupancy
+        runner.registerInfo("model occupancy density = #{model_occupancy_density}")
         for i in 0..wkday_load[0].length - 1
           avg_load_wkday[i] = ((wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) * ev_percent/(assumed_percent*2)) * (model_occupancy_density/assumed_occupancy_density) # Scale profiles generated from 50% EV scenario by occupancy of OpenStudio model (number of vehicles is assumed to be the same as occupancy of the building).
         end
