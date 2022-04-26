@@ -162,6 +162,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
     # Sets key based on charging station type, for general charging load profiles. Will use this to average columns appropriately.
     if chg_station_type == 'Typical Home'
       chg_station_key = 1
+      runner.registerInfo("charge station type = #{chg_station_type}")
       runner.registerInfo("charge station key = #{chg_station_key}")
       # Assumed occupancy density is the typical occupancy density for charging station type determined by using a weighted
       # average of building type and associated occupancy density 
@@ -169,11 +170,13 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       runner.registerInfo("assumed occupancy = #{assumed_occupancy_density}")
     elsif chg_station_type == 'Typical Work'
       chg_station_key = 2
+      runner.registerInfo("charge station type = #{chg_station_type}")
       runner.registerInfo("charge station key = #{chg_station_key}")
       assumed_occupancy_density = 0.005
       runner.registerInfo("assumed occupancy = #{assumed_occupancy_density}")
     elsif chg_station_type == 'Typical Public'
       chg_station_key = 3
+      runner.registerInfo("charge station type = #{chg_station_type}")
       runner.registerInfo("charge station key = #{chg_station_key}")
       assumed_occupancy_density = 0.0226
       runner.registerInfo("assumed occupancy = #{assumed_occupancy_density}")
@@ -229,6 +232,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
     model_occupancy = space_type.people.size
     floor_area = space_type.floorArea
     model_occupancy_density = space_type.getPeoplePerFloorArea(floor_area)
+    model_occupancy_density = model_occupancy_density/10.76 # Convert to people per ft2
 
     # Populate the average weekday load for non PSN case. The load profiles used in this case are averaged based on the selected charging station type,(given the selected charging flexibility option and charging behavior option), and scaled for the percent of vehicles that are EVs.
     if chg_station_type != 'Pena Station Next Analysis' && chg_station_type != 'Pena Station Next Analysis--DC Fast Charger'

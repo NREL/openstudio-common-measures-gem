@@ -206,7 +206,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
 
     # add future hourly EMS output variable
     ems_var1 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'fut_hr')
-    ems_var1.setName("#{future_subregion}_#{future_year}_Hourly_Emissions_Var")
+    ems_var1.setName('Future_Hourly_Emissions_Var')
     ems_var1.setEMSVariableName('fut_hr')
     ems_var1.setTypeOfDataInVariable('Summed')
     ems_var1.setUpdateFrequency('SystemTimestep')
@@ -215,7 +215,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
 
     # add historical hourly EMS output variable
     ems_var2 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'his_hr')
-    ems_var2.setName("#{hourly_historical_subregion.gsub(' ','_')}_#{hourly_historical_year}_Hourly_Emissions_Var")
+    ems_var2.setName('Historical_Hourly_Emissions_Var')
     ems_var2.setEMSVariableName('his_hr')
     ems_var2.setTypeOfDataInVariable('Summed')
     ems_var2.setUpdateFrequency('SystemTimestep')
@@ -224,7 +224,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
 
     # add future annual EMS output variable
     ems_var3 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'fut_yr')
-    ems_var3.setName("#{future_subregion}_#{future_year}_Annual_Emissions_Var")
+    ems_var3.setName('Future_Annual_Emissions_Var')
     ems_var3.setEMSVariableName('fut_yr')
     ems_var3.setTypeOfDataInVariable('Summed')
     ems_var3.setUpdateFrequency('SystemTimestep')
@@ -233,7 +233,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
 
     # add historical annual EMS output variable
     ems_var4 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'his_yr')
-    ems_var4.setName("#{annual_historical_subregion}_#{annual_historical_year}_Annual_Emissions_Var")
+    ems_var4.setName('Historical_Annual_Emissions_Var')
     ems_var4.setEMSVariableName('his_yr')
     ems_var4.setTypeOfDataInVariable('Summed')
     ems_var4.setUpdateFrequency('SystemTimestep')
@@ -241,22 +241,22 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     ems_var4.setUnits('kg')
 
     # add future hourly reporting output variable
-    out_var1 = OpenStudio::Model::OutputVariable.new("#{future_subregion}_#{future_year}_Hourly_Emissions_Var", model)
+    out_var1 = OpenStudio::Model::OutputVariable.new('Future_Hourly_Emissions_Var', model)
     out_var1.setKeyValue('EMS')
     out_var1.setReportingFrequency('hourly')
 
     # add historical hourly reporting output variable
-    out_var2 = OpenStudio::Model::OutputVariable.new("#{hourly_historical_subregion.gsub(' ','_')}_#{hourly_historical_year}_Hourly_Emissions_Var", model)
+    out_var2 = OpenStudio::Model::OutputVariable.new('Historical_Hourly_Emissions_Var', model)
     out_var2.setKeyValue('EMS')
     out_var2.setReportingFrequency('hourly')
 
     # add future annual reporting output variable
-    out_var3 = OpenStudio::Model::OutputVariable.new("#{future_subregion}_#{future_year}_Annual_Emissions_Var", model)
+    out_var3 = OpenStudio::Model::OutputVariable.new('Future_Annual_Emissions_Var', model)
     out_var3.setKeyValue('EMS')
     out_var3.setReportingFrequency('hourly')
 
     # add historical annual reporting output variable
-    out_var4 = OpenStudio::Model::OutputVariable.new("#{annual_historical_subregion}_#{annual_historical_year}_Annual_Emissions_Var", model)
+    out_var4 = OpenStudio::Model::OutputVariable.new('Historical_Annual_Emissions_Var', model)
     out_var4.setKeyValue('EMS')
     out_var4.setReportingFrequency('hourly')
 

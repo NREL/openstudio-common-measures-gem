@@ -190,7 +190,9 @@ module OsLib_QAQC
         end
 
         # check actual against target
-        if standard_minimum_thermal_efficiency.nil?
+        if component.autosizedNominalCapacity.get == 0
+          check_elems <<  OpenStudio::Attribute.new('flag', "Boiler named #{component.name} has a capacity of 0.")
+        elsif standard_minimum_thermal_efficiency.nil?
           check_elems <<  OpenStudio::Attribute.new('flag', "Can't find target thermal efficiency for #{component.name}.")
         elsif nominal_thermal_efficiency < standard_minimum_thermal_efficiency * (1.0 - min_pass)
           check_elems <<  OpenStudio::Attribute.new('flag', "Nominal thermal efficiency of #{nominal_thermal_efficiency.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_thermal_efficiency.round(2)} for #{display_standard}.")
