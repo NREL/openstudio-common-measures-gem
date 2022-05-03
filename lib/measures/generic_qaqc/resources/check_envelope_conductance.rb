@@ -36,6 +36,8 @@
 module OsLib_QAQC
   # include any general notes about QAQC method here
 
+  # todo - add methods here used mulitple times in this check
+
   # checks the number of unmet hours in the model
   # todo - do I need unique tolerance ranges for conductance, reflectance, and shgc
   def check_envelope_conductance(category, target_standard, min_pass, max_pass, name_only = false)
@@ -128,10 +130,18 @@ module OsLib_QAQC
                 end
                 check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{const_type} for #{ext_surf_type}.")                    
               end
-              surface_details << { boundary_condition: surface.outsideBoundaryCondition, surface_type: surface.surfaceType, construction: construction, construction_type: const_type }
-              if surface.surfaceType == "RoofCeiling" then ext_surf_type = "ExteriorRoof" else ext_surf_type = "Exterior#{surface.surfaceType}" end
-              if !construction_type_array.include? [ext_surf_type,const_type]
-                construction_type_array << [ext_surf_type,const_type]
+
+              # todo - need to get and add the building_category for this space/space type and add to surface_details. If can't identify then issue warning and assume it is nonresidential
+              data = std.space_type_get_construction_properties(space_type, ext_surf_type, const_type)
+              if !data.nil?
+                const_bldg_cat = data['building_category']
+                surface_details << { boundary_condition: surface.outsideBoundaryCondition, surface_type: surface.surfaceType, construction: construction, construction_type: const_type, const_bldg_cat: const_bldg_cat }
+                if surface.surfaceType == "RoofCeiling" then ext_surf_type = "ExteriorRoof" else ext_surf_type = "Exterior#{surface.surfaceType}" end
+                if !construction_type_array.include? [ext_surf_type,const_type,const_bldg_cat]
+                  construction_type_array << [ext_surf_type,const_type,const_bldg_cat]
+                end
+              else
+                check_elems << OpenStudio::Attribute.new('flag', "Data not returned for #{space_type.name} on #{const_type} for #{intended_surface_type}.")                    
               end
             else
               missing_constructions << surface.name.get
@@ -175,9 +185,16 @@ module OsLib_QAQC
                   end
                   check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{sub_const_type} for #{ext_sub_surf_type}.")
                 end
-                sub_surface_details << { boundary_condition: sub_surface.outsideBoundaryCondition, surface_type: sub_surface.subSurfaceType, construction: sub_surface.construction.get, construction_type: sub_const_type }
-                if !construction_type_array.include? [ext_sub_surf_type,sub_const_type]
-                  construction_type_array << [ext_sub_surf_type,sub_const_type]
+
+                data = std.space_type_get_construction_properties(space_type, ext_sub_surf_type, sub_const_type)
+                if !data.nil?
+                  const_bldg_cat = data['building_category']
+                  sub_surface_details << { boundary_condition: sub_surface.outsideBoundaryCondition, surface_type: sub_surface.subSurfaceType, construction: sub_surface.construction.get, construction_type: sub_const_type, const_bldg_cat: const_bldg_cat }
+                  if !construction_type_array.include? [ext_sub_surf_type,sub_const_type,const_bldg_cat]
+                    construction_type_array << [ext_sub_surf_type,sub_const_type,const_bldg_cat]
+                  end
+                else
+                  check_elems << OpenStudio::Attribute.new('flag', "Data not returned for #{space_type.name} on #{const_type} for #{intended_surface_type}.")                    
                 end
               else
                 missing_constructions << sub_surface.name.get
@@ -207,14 +224,29 @@ module OsLib_QAQC
             puts "lookup for #{target_standard},#{intended_surface_type},#{standards_construction_type}"
             check_elems << OpenStudio::Attribute.new('flag', "Didn't find target construction values for #{target_standard} #{standards_construction_type} #{intended_surface_type} for #{space_type.name}.")
           elsif intended_surface_type.include? 'ExteriorWall' || 'ExteriorFloor' || 'ExteriorDoor'
-            space_type_const_properties[intended_surface_type][standards_construction_type]['u_value'] = data['assembly_maximum_u_value']
-            space_type_const_properties[intended_surface_type][standards_construction_type]['reflectance'] = 0.30 # hard coded value
+            puts "hello6---"
+            puts  data
+            puts "-------"
+            const_bldg_cat = data['building_category']
+            if !space_type_const_properties[intended_surface_type][standards_construction_type].key?(const_bldg_cat)
+              space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat] = {}
+            end
+            space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat]['u_value'] = data['assembly_maximum_u_value']
+            space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat]['reflectance'] = 0.30 # hard coded value
           elsif intended_surface_type.include? 'ExteriorRoof'
-            space_type_const_properties[intended_surface_type][standards_construction_type]['u_value'] = data['assembly_maximum_u_value']
-            space_type_const_properties[intended_surface_type][standards_construction_type]['reflectance'] = 0.55 # hard coded value
+            const_bldg_cat = data['building_category']
+            if !space_type_const_properties[intended_surface_type][standards_construction_type].key?(const_bldg_cat)
+              space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat] = {}
+            end
+            space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat]['u_value'] = data['assembly_maximum_u_value']
+            space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat]['reflectance'] = 0.55 # hard coded value
           else # glazing
-            space_type_const_properties[intended_surface_type][standards_construction_type]['u_value'] = data['assembly_maximum_u_value']
-            space_type_const_properties[intended_surface_type][standards_construction_type]['shgc'] = data['assembly_maximum_solar_heat_gain_coefficient']
+            const_bldg_cat = data['building_category']
+            if !space_type_const_properties[intended_surface_type][standards_construction_type].key?(const_bldg_cat)
+              space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat] = {}
+            end            
+            space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat]['u_value'] = data['assembly_maximum_u_value']
+            space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat]['shgc'] = data['assembly_maximum_solar_heat_gain_coefficient']
           end
         end
 
@@ -249,10 +281,11 @@ module OsLib_QAQC
             target_units = 'ft^2*h*R/Btu'
             r_value_ip = OpenStudio.convert(r_value_with_film, source_units, target_units).get
             solar_reflectance = surface_detail[:construction].to_LayeredConstruction.get.layers[0].to_OpaqueMaterial.get.solarReflectance .get # TODO: - check optional first does what happens with ext. air wall
+            const_bldg_cat = surface_detail[:const_bldg_cat]
 
             # lookup target_r_value_ip
             puts "hello4 #{intended_surface_type},#{construction_type}"
-            target_r_value_ip = 1.0 / space_type_const_properties[intended_surface_type][construction_type]['u_value'].to_f
+            target_r_value_ip = 1.0 / space_type_const_properties[intended_surface_type][construction_type][const_bldg_cat]['u_value'].to_f
 
             # stop if didn't find values (0 or infinity)
             next if construction_type == 0.0
@@ -260,19 +293,19 @@ module OsLib_QAQC
 
             # check r avlues
             if r_value_ip < target_r_value_ip * (1.0 - min_pass)
-              check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{surface_detail[:construction].name} in #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix}.")
+              check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{surface_detail[:construction].name} in #{const_bldg_cat} space types is more than #{min_pass * 100} % below the value of #{target_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix} #{surface_detail[:construction_type]}.")
             elsif r_value_ip > target_r_value_ip * (1.0 + max_pass)
-              check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{surface_detail[:construction].name} in #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix}.")
+              check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{surface_detail[:construction].name} in #{const_bldg_cat} space types is more than #{max_pass * 100} % above the value of #{target_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix} #{surface_detail[:construction_type]}.")
             end
 
             # lookup target_reflectance
-            target_reflectance = space_type_const_properties[intended_surface_type][construction_type]['reflectance'].to_f
+            target_reflectance = space_type_const_properties[intended_surface_type][construction_type][const_bldg_cat]['reflectance'].to_f
 
             # check solar reflectance
             if (solar_reflectance < target_reflectance * (1.0 - min_pass)) && (target_standard != 'ICC IECC 2015')
-              check_elems << OpenStudio::Attribute.new('flag', "Solar Reflectance of #{(solar_reflectance * 100).round} % for #{surface_detail[:construction].name} in #{space_type.name} is more than #{min_pass * 100} % below the value of #{(target_reflectance * 100).round} %.")
+              check_elems << OpenStudio::Attribute.new('flag', "Solar Reflectance of #{(solar_reflectance * 100).round} % for #{surface_detail[:construction].name} in #{const_bldg_cat} space types is more than #{min_pass * 100} % below the value of #{(target_reflectance * 100).round} %.")
             elsif (solar_reflectance > target_reflectance * (1.0 + max_pass)) && (target_standard != 'ICC IECC 2015')
-              check_elems << OpenStudio::Attribute.new('flag', "Solar Reflectance of #{(solar_reflectance * 100).round} % for #{surface_detail[:construction].name} in #{space_type.name} is more than #{max_pass * 100} % above the value of #{(target_reflectance * 100).round} %.")
+              check_elems << OpenStudio::Attribute.new('flag', "Solar Reflectance of #{(solar_reflectance * 100).round} % for #{surface_detail[:construction].name} in #{const_bldg_cat} space types is more than #{max_pass * 100} % above the value of #{(target_reflectance * 100).round} %.")
             end
 
           else
@@ -291,6 +324,7 @@ module OsLib_QAQC
             shgc = std.construction_calculated_solar_heat_gain_coefficient(sub_surface_detail[:construction].to_LayeredConstruction.get.to_Construction.get)
             surface_type = sub_surface_detail[:surface_type]
             construction_type = sub_surface_detail[:construction_type]
+            const_bldg_cat = nil
 
             # don't use intened surface type of construction, look map based on surface type and boundary condition
             # todo - add support overhead door
@@ -303,10 +337,11 @@ module OsLib_QAQC
             else
               # currently only used for surfaces with outdoor boundary condition
             end
+            const_bldg_cat = sub_surface_detail[:const_bldg_cat]
 
             # lookup target_u_value_ip
             puts "hello5 intended_surface_type:#{intended_surface_type},#{construction_type}"
-            target_u_value_ip = space_type_const_properties[intended_surface_type][construction_type]['u_value'].to_f
+            target_u_value_ip = space_type_const_properties[intended_surface_type][construction_type][const_bldg_cat]['u_value'].to_f
 
             # stop if didn't find values (0 or infinity)
             next if target_u_value_ip == 0.0
@@ -314,19 +349,19 @@ module OsLib_QAQC
 
             # check u avlues
             if u_factor_ip < target_u_value_ip * (1.0 - min_pass)
-              check_elems << OpenStudio::Attribute.new('flag', "U value of #{u_factor_ip.round(2)} (#{target_units}) for #{sub_surface_detail[:construction].name} in #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_u_value_ip.round(2)} (#{target_units}) for #{prototype_prefix}.")
+              check_elems << OpenStudio::Attribute.new('flag', "U value of #{u_factor_ip.round(2)} (#{target_units}) for #{sub_surface_detail[:construction].name} in #{const_bldg_cat} space types is more than #{min_pass * 100} % below the value of #{target_u_value_ip.round(2)} (#{target_units}) for #{prototype_prefix} #{sub_surface_detail[:construction_type]}.")
             elsif u_factor_ip > target_u_value_ip * (1.0 + max_pass)
-              check_elems << OpenStudio::Attribute.new('flag', "U value of #{u_factor_ip.round(2)} (#{target_units}) for #{sub_surface_detail[:construction].name} in #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_u_value_ip.round(2)} (#{target_units}) for #{prototype_prefix}.")
+              check_elems << OpenStudio::Attribute.new('flag', "U value of #{u_factor_ip.round(2)} (#{target_units}) for #{sub_surface_detail[:construction].name} in #{const_bldg_cat} space types is more than #{max_pass * 100} % above the value of #{target_u_value_ip.round(2)} (#{target_units}) for #{prototype_prefix} #{sub_surface_detail[:construction_type]}.")
             end
 
             # lookup target_shgc
-            target_shgc = space_type_const_properties[intended_surface_type][construction_type]['shgc'].to_f
+            target_shgc = space_type_const_properties[intended_surface_type][construction_type][const_bldg_cat]['shgc'].to_f
 
             # check shgc
             if shgc < target_shgc * (1.0 - min_pass)
-              check_elems << OpenStudio::Attribute.new('flag', "SHGC of #{shgc.round(2)} % for #{sub_surface_detail[:construction].name} in #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_shgc.round(2)} %.")
+              check_elems << OpenStudio::Attribute.new('flag', "SHGC of #{shgc.round(2)} % for #{sub_surface_detail[:construction].name} in #{const_bldg_cat} space types is more than #{min_pass * 100} % below the value of #{target_shgc.round(2)} %.")
             elsif shgc > target_shgc * (1.0 + max_pass)
-              check_elems << OpenStudio::Attribute.new('flag', "SHGC of #{shgc.round(2)} % for #{sub_surface_detail[:construction].name} in #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_shgc.round(2)} %.")
+              check_elems << OpenStudio::Attribute.new('flag', "SHGC of #{shgc.round(2)} % for #{sub_surface_detail[:construction].name} in #{const_bldg_cat} space types is more than #{max_pass * 100} % above the value of #{target_shgc.round(2)} %.")
             end
 
           else
@@ -353,9 +388,10 @@ module OsLib_QAQC
               target_units = 'ft^2*h*R/Btu'
               r_value_ip = OpenStudio.convert(r_value_with_film, source_units, target_units).get
               solar_reflectance = sub_surface_detail[:construction].to_LayeredConstruction.get.layers[0].to_OpaqueMaterial.get.solarReflectance .get # TODO: - check optional first does what happens with ext. air wall
+              const_bldg_cat = sub_surface_detail[:const_bldg_cat]
 
               # lookup target_r_value_ip
-              target_r_value_ip = 1.0 / space_type_const_properties[intended_surface_type][construction_type]['u_value'].to_f
+              target_r_value_ip = 1.0 / space_type_const_properties[intended_surface_type][construction_type][const_bldg_cat]['u_value'].to_f
 
               # stop if didn't find values (0 or infinity)
               next if target_r_value_ip == 0.0
@@ -363,19 +399,19 @@ module OsLib_QAQC
 
               # check r avlues
               if r_value_ip < target_r_value_ip * (1.0 - min_pass)
-                check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{sub_surface_detail[:construction].name} in #{space_type.name} is more than #{min_pass * 100} % below the value of #{target_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix}.")
+                check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{sub_surface_detail[:construction].name} in  #{const_bldg_cat} space types is more than #{min_pass * 100} % below the value of #{target_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix} #{sub_surface_detail[:construction_type]} #{sub_surface_detail[:const_bldg_cat]}.")
               elsif r_value_ip > target_r_value_ip * (1.0 + max_pass)
-                check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{sub_surface_detail[:construction].name} in #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix}.")
+                check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{sub_surface_detail[:construction].name} in  #{const_bldg_cat} space types is more than #{max_pass * 100} % above the value of #{target_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix} #{sub_surface_detail[:construction_type]} #{sub_surface_detail[:const_bldg_cat]}.")
               end
 
               # lookup target_reflectance
-              target_reflectance = space_type_const_properties[surface_type][construction_type]['reflectance'].to_f
+              target_reflectance = space_type_const_properties[surface_type][construction_type][const_bldg_cat]['reflectance'].to_f
 
               # check solar reflectance
               if (solar_reflectance < target_reflectance* (1.0 - min_pass)) && (target_standard != 'ICC IECC 2015')
-                check_elems << OpenStudio::Attribute.new('flag', "Solar Reflectance of #{(solar_reflectance * 100).round} % for #{sub_surface_detail[:construction].name} in #{space_type.name} is more than #{min_pass * 100} % below #{(target_reflectance * 100).round} %.")
+                check_elems << OpenStudio::Attribute.new('flag', "Solar Reflectance of #{(solar_reflectance * 100).round} % for #{sub_surface_detail[:construction].name} in  #{const_bldg_cat} space types is more than #{min_pass * 100} % below #{(target_reflectance * 100).round} %.")
               elsif (solar_reflectance > target_reflectance * (1.0 + max_pass)) && (target_standard != 'ICC IECC 2015')
-                check_elems << OpenStudio::Attribute.new('flag', "Solar Reflectance of #{(solar_reflectance * 100).round} % for #{sub_surface_detail[:construction].name} in #{space_type.name} is more than #{max_pass * 100} % above #{(target_reflectance * 100).round} %.")
+                check_elems << OpenStudio::Attribute.new('flag', "Solar Reflectance of #{(solar_reflectance * 100).round} % for #{sub_surface_detail[:construction].name} in  #{const_bldg_cat} space typesis more than #{max_pass * 100} % above #{(target_reflectance * 100).round} %.")
               end
 
             else
@@ -395,11 +431,41 @@ module OsLib_QAQC
           missing_surface_constructions = []
           sub_surface_details = []
           missing_sub_surface_constructions = []
+          const_bldg_cat = 'Nonresidential'
+          check_elems << OpenStudio::Attribute.new('flag', "#Treating surfaces and sub-surfaces in space #{space.name} as Nonresidential since no space type is assigned.")
 
           space.surfaces.each do |surface|
             next if surface.outsideBoundaryCondition != 'Outdoors'
             if surface.construction.is_initialized
-              surface_details << { boundary_condition: surface.outsideBoundaryCondition, surface_type: surface.surfaceType, construction: surface.construction.get }
+              
+              # todo - used in multiple places put in method
+              const_standards = construction.standardsInformation
+              if const_standards.standardsConstructionType.is_initialized
+                const_type = const_standards.standardsConstructionType.get
+                if surface.surfaceType == "Wall"
+                  ext_surf_type = "ExteriorWall"
+                elsif  surface.surfaceType == "RoofCeiling"
+                  ext_surf_type = "ExteriorRoof"
+                elsif  surface.surfaceType == "Floor"
+                  ext_surf_type = "ExteriorFloor"
+                else
+                  ext_surf_type = nil # should not hit this
+                end
+              else
+                if surface.surfaceType == "Wall"
+                  ext_surf_type = 'ExteriorWall'
+                  const_type = 'SteelFramed'
+                elsif surface.surfaceType == "RoofCeiling"
+                  ext_surf_type = 'ExteriorRoof'
+                  const_type = 'IEAD'
+                elsif surface.surfaceType == "Floor"
+                  ext_surf_type = 'ExteriorFloor'
+                  const_type = 'Mass'
+                end
+                check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{const_type} for #{ext_surf_type}.")                    
+              end
+
+              surface_details << { boundary_condition: surface.outsideBoundaryCondition, surface_type: surface.surfaceType, construction: surface.construction.get,construction_type: const_type, const_bldg_cat: const_bldg_cat}
             else
               missing_constructions << surface.name.get
             end
@@ -407,7 +473,44 @@ module OsLib_QAQC
             # make array of construction details for sub_surfaces
             surface.subSurfaces.each do |sub_surface|
               if sub_surface.construction.is_initialized
-                sub_surface_details << { boundary_condition: sub_surface.outsideBoundaryCondition, surface_type: sub_surface.subSurfaceType, construction: sub_surface.construction.get }
+
+                # see of standards info to get standard construction type if set
+                # todo - used in multiple places put in method
+                construction = sub_surface.construction.get
+                const_standards = construction.standardsInformation
+                if const_standards.standardsConstructionType.is_initialized
+                  sub_const_type = const_standards.standardsConstructionType.get
+
+                  if sub_surface.subSurfaceType == "Door" || sub_surface.subSurfaceType == "OverheadDoor"
+                    ext_sub_surf_type = "ExteriorDoor"
+                  elsif  sub_surface.subSurfaceType == "FixedWindow" || sub_surface.subSurfaceType == "OperableWindow"
+                    ext_sub_surf_type = "ExteriorWindow"
+                  elsif  sub_surface.subSurfaceType == "Skylight"
+                    ext_sub_surf_type = "Skylight"
+                  else
+                    # todo - add message about constructions not being checked
+                    ext_sub_surf_type = sub_surface.surfaceType # address and test GlassDoor
+                  end
+                else
+                  if sub_surface.subSurfaceType == "Door"
+                    ext_sub_surf_type = 'ExteriorDoor'
+                    sub_const_type = 'Swinging'
+                  elsif sub_surface.subSurfaceType == "OverheadDoor"
+                    ext_sub_surf_type = 'ExteriorDoor'
+                    sub_const_type = 'NonSwinging'                
+                  elsif sub_surface.subSurfaceType == "FixedWindow" || sub_surface.subSurfaceType == "OperableWindow"
+                    ext_sub_surf_type = 'ExteriorWindow'
+                    sub_const_type = 'Metal framing (all other)'
+                  elsif sub_surface.subSurfaceType == "Skylight"
+                    ext_sub_surf_type = 'Skylight'
+                    sub_const_type = 'Glass with Curb'
+                  else
+                    check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, this measure does not have default target mapping for #{sub_surface.surfaceType} sub-surface types.")
+                  end
+                  check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{sub_const_type} for #{ext_sub_surf_type}.")
+                end
+
+                sub_surface_details << { boundary_condition: sub_surface.outsideBoundaryCondition, surface_type: sub_surface.subSurfaceType, construction: sub_surface.construction.get, construction_type: sub_const_type, const_bldg_cat: const_bldg_cat}
               else
                 missing_constructions << sub_surface.name.get
               end
@@ -436,8 +539,8 @@ module OsLib_QAQC
                   intended_surface_type = 'ExteriorRoof'
                   standards_construction_type = 'IEAD'
                 else surface_type == 'Floor'
-                     intended_surface_type = 'ExteriorFloor'
-                     standards_construction_type = 'Mass'
+                  intended_surface_type = 'ExteriorFloor'
+                  standards_construction_type = 'Mass'
                 end
               else
                 # currently only used for surfaces with outdoor boundary condition
@@ -455,12 +558,7 @@ module OsLib_QAQC
               # calculate target_r_value_ip
               target_reflectance = nil
 
-              # model_get_construction_properties takes additional arguments now, maybe standard should update to add default
-              building_type = std.model_get_standards_building_type(@model)
-              construction_set_data = std.model_get_construction_set(building_type)
-              building_type_category = construction_set_data['exterior_wall_building_category']
-
-              data = std.model_get_construction_properties(@model, intended_surface_type, standards_construction_type, building_type_category)
+              data = std.model_get_construction_properties(@model, intended_surface_type, standards_construction_type, const_bldg_cat)
 
               if data.nil?
                 check_elems << OpenStudio::Attribute.new('flag', "Didn't find construction for #{standards_construction_type} #{intended_surface_type} for #{space.name}.")
@@ -483,9 +581,11 @@ module OsLib_QAQC
 
               # check r avlues
               if r_value_ip < assembly_maximum_r_value_ip * (1.0 - min_pass)
-                check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{surface_detail[:construction].name} in #{space.name} is more than #{min_pass * 100} % below the value of #{assembly_maximum_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix}.")
+                check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{surface_detail[:construction].name} in #{space.name} is more than #{min_pass * 100} % below the value of #{assembly_maximum_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix} #{surface_detail[:construction_type]} #{surface_detail[:const_bldg_cat]}.")
+              elsif r_value_ip > target_r_value_ip * (1.0 + max_pass)
+                check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{sub_surface_detail[:construction].name} in #{space_type.name} is more than #{max_pass * 100} % above the value of #{target_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix}  #{surface_detail[:construction_type]} #{surface_detail[:const_bldg_cat]}")
               elsif r_value_ip > assembly_maximum_r_value_ip * (1.0 + max_pass)
-                check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{surface_detail[:construction].name} in #{space.name} is more than #{max_pass * 100} % above the value of #{assembly_maximum_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix}.")
+                check_elems << OpenStudio::Attribute.new('flag', "R value of #{r_value_ip.round(2)} (#{target_units}) for #{surface_detail[:construction].name} in #{space.name} is more than #{max_pass * 100} % above the value of #{assembly_maximum_r_value_ip.round(2)} (#{target_units}) for #{prototype_prefix} #{surface_detail[:construction_type]} #{surface_detail[:building_type_category]}.")
               end
 
               # check solar reflectance
