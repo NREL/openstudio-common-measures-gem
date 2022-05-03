@@ -187,7 +187,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test pass
-  def no_test_GenericQAQC_pass
+  def test_GenericQAQC_pass
     # skip "Broken in 2.5.1, address immediately"
 
     # setup test name, model, and epw
@@ -250,7 +250,7 @@ class GenericQAQC_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def no_test_GenericQAQC_alt_hvac_a
+  def test_GenericQAQC_alt_hvac_a
     # skip "Broken in 2.5.1, address immediately"
 
     # setup test name, model, and epw
@@ -315,7 +315,7 @@ class GenericQAQC_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def no_test_GenericQAQC_alt_hvac_b
+  def test_GenericQAQC_alt_hvac_b
     # skip "Broken in 2.5.1, address immediately"
 
     # setup test name, model, and epw
@@ -379,7 +379,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test fail_a
-  def no_test_GenericQAQC_fail_a
+  def test_GenericQAQC_fail_a
     # setup test name, model, and epw
     test_name = 'fail_a'
     model_in_path = "#{File.dirname(__FILE__)}/BasicOfficeTest_Mabry.osm"
@@ -441,7 +441,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test fail_b
-  def no_test_GenericQAQC_fail_b
+  def test_GenericQAQC_fail_b
     # setup test name, model, and epw
     test_name = 'fail_b'
     model_in_path = "#{File.dirname(__FILE__)}/BasicOfficeTest.osm"
@@ -503,7 +503,7 @@ class GenericQAQC_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-  def no_test_GenericQAQC_res_a
+  def test_GenericQAQC_res_a
     # test file is 2.6.0
     if OpenStudio::VersionString.new(OpenStudio.openStudioVersion) >= OpenStudio::VersionString.new('2.6.0')
 
@@ -569,7 +569,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test 0422_sm_off
-  def no_test_GenericQAQC_0422_sm_off
+  def test_GenericQAQC_0422_sm_off
     # setup test name, model, and epw
     test_name = '0422_sm_off'
     model_in_path = "#{File.dirname(__FILE__)}/0422_test_b_sm_off.osm"
@@ -631,7 +631,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
     # test 0422_sm_off
-  def no_test_GenericQAQC_0422_sm_off_2019
+  def test_GenericQAQC_0422_sm_off_2019
     # setup test name, model, and epw
     test_name = '0422_sm_off_2019'
     model_in_path = "#{File.dirname(__FILE__)}/0422_test_b_sm_off.osm"
@@ -706,7 +706,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test 0422_sm_off
-  def no_test_GenericQAQC_0422_sm_off_comstock2013
+  def test_GenericQAQC_0422_sm_off_comstock2013
     # setup test name, model, and epw
     test_name = '0422_sm_off_comstock2013'
     model_in_path = "#{File.dirname(__FILE__)}/0422_test_b_sm_off.osm"
@@ -781,7 +781,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test_fsr
-  def no_test_fsr
+  def test_fsr
     # setup test name, model, and epw
     test_name = 'fsr'
     model_in_path = "#{File.dirname(__FILE__)}/fsr.osm"
@@ -931,7 +931,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test uo_strip_mall
-  def no_test_uo_strip_mall
+  def test_uo_strip_mall
     # setup test name, model, and epw
     test_name = 'uo_strip_mall'
     model_in_path = "#{File.dirname(__FILE__)}/uo_strip_mall.osm"
@@ -1006,7 +1006,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
   # test uo_blend
-  def no_test_uo_blend
+  def test_uo_blend
     # setup test name, model, and epw
     test_name = 'uo_blend'
     model_in_path = "#{File.dirname(__FILE__)}/uo_blend.osm"
@@ -1081,7 +1081,7 @@ class GenericQAQC_Test < Minitest::Test
   end
 
     # test uo_mixed
-  def no_test_uo_mixed
+  def test_uo_mixed
     # setup test name, model, and epw
     test_name = 'uo_mixed'
     model_in_path = "#{File.dirname(__FILE__)}/uo_mixed.osm"

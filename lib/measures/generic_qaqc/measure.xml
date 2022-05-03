@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>b2350930-7bdf-4233-b7ab-d95563fb408e</version_id>
-  <version_modified>20220422T165746Z</version_modified>
+  <version_id>5e79c294-dd7d-4557-a6f6-8be66bb14f53</version_id>
+  <version_modified>20220503T172954Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -495,12 +495,6 @@
       <checksum>75942985</checksum>
     </file>
     <file>
-      <filename>MidRiseApt.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>146619F3</checksum>
-    </file>
-    <file>
       <filename>BasicOfficeTest_Mueller_altHVAC_a.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -680,12 +674,6 @@
       <checksum>1874C555</checksum>
     </file>
     <file>
-      <filename>measure_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>EA00F910</checksum>
-    </file>
-    <file>
       <filename>check_mech_sys_type.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -716,12 +704,6 @@
       <checksum>D4C11C12</checksum>
     </file>
     <file>
-      <filename>check_envelope_conductance.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>51405A5E</checksum>
-    </file>
-    <file>
       <filename>check_mech_sys_efficiency.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -746,12 +728,6 @@
       <checksum>43606255</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>11DDEADA</checksum>
-    </file>
-    <file>
       <filename>check_mech_sys_part_load_eff.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -774,6 +750,30 @@
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>3CB3F8D4</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>11DDEADA</checksum>
+    </file>
+    <file>
+      <filename>measure_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EA00F910</checksum>
+    </file>
+    <file>
+      <filename>MidRiseApt.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8316418F</checksum>
+    </file>
+    <file>
+      <filename>check_envelope_conductance.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>057099A4</checksum>
     </file>
   </files>
 </measure>
