@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>1c117570-3f7c-4f03-956b-ce8ed8efd6be</version_id>
-  <version_modified>20220503T210014Z</version_modified>
+  <version_id>2fdb86c1-af50-440a-b950-1313a455bccf</version_id>
+  <version_modified>20220503T234022Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -773,7 +773,7 @@
       <filename>check_envelope_conductance.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>F7AFDAA2</checksum>
+      <checksum>3346FDCD</checksum>
     </file>
   </files>
 </measure>
