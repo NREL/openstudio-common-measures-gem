@@ -36,7 +36,85 @@
 module OsLib_QAQC
   # include any general notes about QAQC method here
 
-  # todo - add methods here used mulitple times in this check
+  # common methods
+  def map_surface_props(surface, check_elems, defaulted_const_type)
+
+    # see of standards info to get standard construction type if set
+    construction = surface.construction.get
+    const_standards = construction.standardsInformation
+    if const_standards.standardsConstructionType.is_initialized
+      const_type = const_standards.standardsConstructionType.get
+      if surface.surfaceType == "Wall"
+        ext_surf_type = "ExteriorWall"
+      elsif  surface.surfaceType == "RoofCeiling"
+        ext_surf_type = "ExteriorRoof"
+      elsif  surface.surfaceType == "Floor"
+        ext_surf_type = "ExteriorFloor"
+      else
+        ext_surf_type = nil # should not hit this
+      end
+    else
+      if surface.surfaceType == "Wall"
+        ext_surf_type = 'ExteriorWall'
+        const_type = 'SteelFramed'
+      elsif surface.surfaceType == "RoofCeiling"
+        ext_surf_type = 'ExteriorRoof'
+        const_type = 'IEAD'
+      elsif surface.surfaceType == "Floor"
+        ext_surf_type = 'ExteriorFloor'
+        const_type = 'Mass'
+      end
+      if !defaulted_const_type.include?(construction)
+        check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{const_type} for #{ext_surf_type}.")  
+        defaulted_const_type << construction
+      end                  
+    end
+
+    return {ext_surf_type: ext_surf_type, const_type: const_type, construction: construction}
+
+  end
+
+  def map_sub_surfaces_props(sub_surface, check_elems, defaulted_const_type)
+
+    construction = sub_surface.construction.get
+    const_standards = construction.standardsInformation
+    if const_standards.standardsConstructionType.is_initialized
+      sub_const_type = const_standards.standardsConstructionType.get
+
+      if sub_surface.subSurfaceType == "Door" || sub_surface.subSurfaceType == "OverheadDoor"
+        ext_sub_surf_type = "ExteriorDoor"
+      elsif  sub_surface.subSurfaceType == "FixedWindow" || sub_surface.subSurfaceType == "OperableWindow"
+        ext_sub_surf_type = "ExteriorWindow"
+      elsif  sub_surface.subSurfaceType == "Skylight"
+        ext_sub_surf_type = "Skylight"
+      else
+        # todo - add message about constructions not being checked
+        ext_sub_surf_type = sub_surface.surfaceType # address and test GlassDoor
+      end
+    else
+      if sub_surface.subSurfaceType == "Door"
+        ext_sub_surf_type = 'ExteriorDoor'
+        sub_const_type = 'Swinging'
+      elsif sub_surface.subSurfaceType == "OverheadDoor"
+        ext_sub_surf_type = 'ExteriorDoor'
+        sub_const_type = 'NonSwinging'                
+      elsif sub_surface.subSurfaceType == "FixedWindow" || sub_surface.subSurfaceType == "OperableWindow"
+        ext_sub_surf_type = 'ExteriorWindow'
+        sub_const_type = 'Metal framing (all other)'
+      elsif sub_surface.subSurfaceType == "Skylight"
+        ext_sub_surf_type = 'Skylight'
+        sub_const_type = 'Glass with Curb'
+      else
+        check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, this measure does not have default target mapping for #{sub_surface.surfaceType} sub-surface types.")
+      end
+      if !defaulted_const_type.include?(construction)
+        check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{sub_const_type} for #{ext_sub_surf_type}.")
+        defaulted_const_type << construction
+      end
+    end
+
+    return {ext_sub_surf_type: ext_sub_surf_type, sub_const_type: sub_const_type, construction: construction}
+  end
 
   # checks the number of unmet hours in the model
   # todo - do I need unique tolerance ranges for conductance, reflectance, and shgc
@@ -91,7 +169,8 @@ module OsLib_QAQC
       missing_sub_surface_constructions = []
       construction_type_array = []
       space_type_const_properties = {}
-      defaulted_const_type =[]
+      defaulted_const_type = []
+      data_not_returned_for = []
 
       # loop through all space types used in the model
       @model.getSpaceTypes.each do |space_type|
@@ -102,49 +181,24 @@ module OsLib_QAQC
           space.surfaces.each do |surface|
             next if surface.outsideBoundaryCondition != 'Outdoors'
             if surface.construction.is_initialized
-
-              # see of standards info to get standard construction type if set
-              construction = surface.construction.get
-              const_standards = construction.standardsInformation
-              if const_standards.standardsConstructionType.is_initialized
-                const_type = const_standards.standardsConstructionType.get
-                if surface.surfaceType == "Wall"
-                  ext_surf_type = "ExteriorWall"
-                elsif  surface.surfaceType == "RoofCeiling"
-                  ext_surf_type = "ExteriorRoof"
-                elsif  surface.surfaceType == "Floor"
-                  ext_surf_type = "ExteriorFloor"
-                else
-                  ext_surf_type = nil # should not hit this
-                end
-              else
-                if surface.surfaceType == "Wall"
-                  ext_surf_type = 'ExteriorWall'
-                  const_type = 'SteelFramed'
-                elsif surface.surfaceType == "RoofCeiling"
-                  ext_surf_type = 'ExteriorRoof'
-                  const_type = 'IEAD'
-                elsif surface.surfaceType == "Floor"
-                  ext_surf_type = 'ExteriorFloor'
-                  const_type = 'Mass'
-                end
-                if !defaulted_const_type.include?(construction)
-                  check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{const_type} for #{ext_surf_type}.")  
-                  defaulted_const_type << construction
-                end                  
-              end
+              surf_props = self.map_surface_props(surface,check_elems,defaulted_const_type)
+              ext_surf_type = surf_props[:ext_surf_type]
+              const_type = surf_props[:const_type]
+              construction = surf_props[:construction]
 
               # todo - need to get and add the building_category for this space/space type and add to surface_details. If can't identify then issue warning and assume it is nonresidential
               data = std.space_type_get_construction_properties(space_type, ext_surf_type, const_type)
               if !data.nil?
                 const_bldg_cat = data['building_category']
-                surface_details << { boundary_condition: surface.outsideBoundaryCondition, surface_type: surface.surfaceType, construction: construction, construction_type: const_type, const_bldg_cat: const_bldg_cat }
-                if surface.surfaceType == "RoofCeiling" then ext_surf_type = "ExteriorRoof" else ext_surf_type = "Exterior#{surface.surfaceType}" end
+                surface_details << { boundary_condition: surface.outsideBoundaryCondition, surface_type: ext_surf_type, construction: construction, construction_type: const_type, const_bldg_cat: const_bldg_cat }
                 if !construction_type_array.include? [ext_surf_type,const_type,const_bldg_cat]
                   construction_type_array << [ext_surf_type,const_type,const_bldg_cat]
                 end
               else
-                check_elems << OpenStudio::Attribute.new('flag', "Data not returned for #{space_type.name} on #{const_type} for #{ext_surf_type}.")                    
+                if !data_not_returned_for.include?([space_type,ext_surf_type,const_type])
+                  check_elems << OpenStudio::Attribute.new('flag', "Data not returned for #{space_type.name} on #{const_type} for #{ext_surf_type}.")  
+                  data_not_returned_for << [space_type,ext_surf_type,const_type]   
+                end             
               end
             else
               missing_constructions << surface.name.get
@@ -153,54 +207,23 @@ module OsLib_QAQC
             # make array of construction details for sub_surfaces
             surface.subSurfaces.each do |sub_surface|
               if sub_surface.construction.is_initialized
-
-                # see of standards info to get standard construction type if set
-                construction = sub_surface.construction.get
-                const_standards = construction.standardsInformation
-                if const_standards.standardsConstructionType.is_initialized
-                  sub_const_type = const_standards.standardsConstructionType.get
-
-                  if sub_surface.subSurfaceType == "Door" || sub_surface.subSurfaceType == "OverheadDoor"
-                    ext_sub_surf_type = "ExteriorDoor"
-                  elsif  sub_surface.subSurfaceType == "FixedWindow" || sub_surface.subSurfaceType == "OperableWindow"
-                    ext_sub_surf_type = "ExteriorWindow"
-                  elsif  sub_surface.subSurfaceType == "Skylight"
-                    ext_sub_surf_type = "Skylight"
-                  else
-                    # todo - add message about constructions not being checked
-                    ext_sub_surf_type = sub_surface.surfaceType # address and test GlassDoor
-                  end
-                else
-                  if sub_surface.subSurfaceType == "Door"
-                    ext_sub_surf_type = 'ExteriorDoor'
-                    sub_const_type = 'Swinging'
-                  elsif sub_surface.subSurfaceType == "OverheadDoor"
-                    ext_sub_surf_type = 'ExteriorDoor'
-                    sub_const_type = 'NonSwinging'                
-                  elsif sub_surface.subSurfaceType == "FixedWindow" || sub_surface.subSurfaceType == "OperableWindow"
-                    ext_sub_surf_type = 'ExteriorWindow'
-                    sub_const_type = 'Metal framing (all other)'
-                  elsif sub_surface.subSurfaceType == "Skylight"
-                    ext_sub_surf_type = 'Skylight'
-                    sub_const_type = 'Glass with Curb'
-                  else
-                    check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, this measure does not have default target mapping for #{sub_surface.surfaceType} sub-surface types.")
-                  end
-                  if !defaulted_const_type.include?(construction)
-                    check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{sub_const_type} for #{ext_sub_surf_type}.")
-                    defaulted_const_type << construction
-                  end
-                end
+                sub_surf_props = self.map_sub_surfaces_props(sub_surface,check_elems,defaulted_const_type)
+                ext_sub_surf_type = sub_surf_props[:ext_sub_surf_type]
+                sub_const_type = sub_surf_props[:sub_const_type]
+                construction = sub_surf_props[:construction]
 
                 data = std.space_type_get_construction_properties(space_type, ext_sub_surf_type, sub_const_type)
                 if !data.nil?
                   const_bldg_cat = data['building_category']
-                  sub_surface_details << {boundary_condition: sub_surface.outsideBoundaryCondition, surface_type: sub_surface.subSurfaceType, construction: sub_surface.construction.get, construction_type: sub_const_type, const_bldg_cat: const_bldg_cat}
+                  sub_surface_details << {boundary_condition: sub_surface.outsideBoundaryCondition, surface_type: ext_sub_surf_type, construction: sub_surface.construction.get, construction_type: sub_const_type, const_bldg_cat: const_bldg_cat}
                   if !construction_type_array.include? [ext_sub_surf_type,sub_const_type,const_bldg_cat]
                     construction_type_array << [ext_sub_surf_type,sub_const_type,const_bldg_cat]
                   end
                 else
-                  check_elems << OpenStudio::Attribute.new('flag', "Data not returned for #{space_type.name} on #{const_type} for #{intended_surface_type}.")                    
+                  if !data_not_returned_for.include?([space_type,ext_sub_surf_type,sub_const_type])
+                    check_elems << OpenStudio::Attribute.new('flag', "Data not returned for #{space_type.name} on #{sub_const_type} for #{ext_sub_surf_type}.")
+                    data_not_returned_for << [space_type,ext_sub_surf_type,sub_const_type] 
+                  end                    
                 end
               else
                 missing_constructions << sub_surface.name.get
@@ -262,13 +285,9 @@ module OsLib_QAQC
 
           # don't use intened surface type of construction, look map based on surface type and boundary condition
           boundary_condition = surface_detail[:boundary_condition]
-          surface_type = surface_detail[:surface_type]
-          intended_surface_type = ''
+          intended_surface_type = surface_detail[:surface_type]
           construction_type = surface_detail[:construction_type]
           next if boundary_condition.to_s != 'Outdoors'
-          if surface_type.to_s == 'Wall' then intended_surface_type = 'ExteriorWall' end
-          if surface_type == 'RoofCeiling' then intended_surface_type = 'ExteriorRoof' end
-          if surface_type == 'Floor' then intended_surface_type = 'ExteriorFloor' end
 
           film_coefficients_r_value = std.film_coefficients_r_value(intended_surface_type, includes_int_film = true, includes_ext_film = true)
           thermal_conductance = surface_detail[:construction].thermalConductance.get
@@ -310,29 +329,18 @@ module OsLib_QAQC
 
       # loop through unique construction arary combinations
       sub_surface_details.uniq.each do |sub_surface_detail|
-        if sub_surface_detail[:surface_type] == 'FixedWindow' || sub_surface_detail[:surface_type] == 'OperableWindow' || sub_surface_detail[:surface_type] == 'Skylight'
+        if sub_surface_detail[:surface_type] == 'ExteriorWindow' || sub_surface_detail[:surface_type] == 'Skylight'
           # check for non opaque sub surfaces
           source_units = 'W/m^2*K'
           target_units = 'Btu/ft^2*h*R'
           u_factor_si = std.construction_calculated_u_factor(sub_surface_detail[:construction].to_LayeredConstruction.get.to_Construction.get)
           u_factor_ip = OpenStudio.convert(u_factor_si, source_units, target_units).get
           shgc = std.construction_calculated_solar_heat_gain_coefficient(sub_surface_detail[:construction].to_LayeredConstruction.get.to_Construction.get)
-          surface_type = sub_surface_detail[:surface_type]
+          intended_surface_type = sub_surface_detail[:surface_type]
           construction_type = sub_surface_detail[:construction_type]
-          const_bldg_cat = nil
-
-          # don't use intened surface type of construction, look map based on surface type and boundary condition
-          # todo - add support overhead door
-          intended_surface_type = surface_type.to_s 
-          boundary_condition = sub_surface_detail[:boundary_condition]
-          if boundary_condition.to_s == 'Outdoors'
-            # TODO: add additional intended surface types
-            if surface_type.to_s == 'FixedWindow' then intended_surface_type = 'ExteriorWindow' end
-            if surface_type.to_s == 'OperableWindow' then intended_surface_type = 'ExteriorWindow' end
-          else
-            # currently only used for surfaces with outdoor boundary condition
-          end
           const_bldg_cat = sub_surface_detail[:const_bldg_cat]
+          boundary_condition = sub_surface_detail[:boundary_condition]
+          next if boundary_condition.to_s != 'Outdoors'
 
           # lookup target_u_value_ip
           target_u_value_ip = space_type_const_properties[intended_surface_type][construction_type][const_bldg_cat]['u_value'].to_f
@@ -363,26 +371,11 @@ module OsLib_QAQC
           if sub_surface_detail[:construction].thermalConductance.is_initialized
 
             # don't use intened surface type of construction, look map based on surface type and boundary condition
-            # todo - add support overhead door
             boundary_condition = sub_surface_detail[:boundary_condition]
-            surface_type = sub_surface_detail[:surface_type]
-            intended_surface_type = nil
-            construction_type = nil
-            if boundary_condition.to_s == 'Outdoors'
-              # TODO: add additional intended surface types
-              if surface_type.to_s == 'Door'
-               intended_surface_type = 'ExteriorDoor' 
-               construction_type = 'Swinging' 
-             end
-              if surface_type.to_s == 'OverheadDoor'
-                intended_surface_type = 'ExteriorDoor' 
-                construction_type = 'NonSwinging' 
-              end
-            else
-              # currently only used for surfaces with outdoor boundary condition
-            end
+            intended_surface_type = sub_surface_detail[:surface_type]
+            construction_type = sub_surface_detail[:construction_type]
+            next if boundary_condition.to_s != 'Outdoors'
             film_coefficients_r_value = std.film_coefficients_r_value(intended_surface_type, includes_int_film = true, includes_ext_film = true)
-
 
             thermal_conductance = sub_surface_detail[:construction].thermalConductance.get
             r_value_with_film = 1 / thermal_conductance + film_coefficients_r_value
@@ -438,39 +431,12 @@ module OsLib_QAQC
           space.surfaces.each do |surface|
             next if surface.outsideBoundaryCondition != 'Outdoors'
             if surface.construction.is_initialized
-              
-              # todo - used in multiple places put in method
-              construction = surface.construction.get
-              const_standards = construction.standardsInformation
-              if const_standards.standardsConstructionType.is_initialized
-                const_type = const_standards.standardsConstructionType.get
-                if surface.surfaceType == "Wall"
-                  ext_surf_type = "ExteriorWall"
-                elsif  surface.surfaceType == "RoofCeiling"
-                  ext_surf_type = "ExteriorRoof"
-                elsif  surface.surfaceType == "Floor"
-                  ext_surf_type = "ExteriorFloor"
-                else
-                  ext_surf_type = nil # should not hit this
-                end
-              else
-                if surface.surfaceType == "Wall"
-                  ext_surf_type = 'ExteriorWall'
-                  const_type = 'SteelFramed'
-                elsif surface.surfaceType == "RoofCeiling"
-                  ext_surf_type = 'ExteriorRoof'
-                  const_type = 'IEAD'
-                elsif surface.surfaceType == "Floor"
-                  ext_surf_type = 'ExteriorFloor'
-                  const_type = 'Mass'
-                end
-                if !defaulted_const_type.include?(construction)
-                  check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{const_type} for #{ext_surf_type}.")     
-                  defaulted_const_type << construction
-                end               
-              end
+              surf_props = self.map_surface_props(surface,check_elems,defaulted_const_type)
+              ext_surf_type = surf_props[:ext_surf_type]
+              const_type = surf_props[:const_type]
+              construction = surf_props[:construction]
 
-              surface_details << { boundary_condition: surface.outsideBoundaryCondition, surface_type: surface.surfaceType, construction: surface.construction.get,construction_type: const_type, const_bldg_cat: const_bldg_cat}
+              surface_details << { boundary_condition: surface.outsideBoundaryCondition, surface_type: ext_surf_type, construction: surface.construction.get,construction_type: const_type, const_bldg_cat: const_bldg_cat}
             else
               missing_constructions << surface.name.get
             end
@@ -478,47 +444,12 @@ module OsLib_QAQC
             # make array of construction details for sub_surfaces
             surface.subSurfaces.each do |sub_surface|
               if sub_surface.construction.is_initialized
+                sub_surf_props = self.map_sub_surfaces_props(sub_surface,check_elems,defaulted_const_type)
+                ext_sub_surf_type = sub_surf_props[:ext_sub_surf_type]
+                sub_const_type = sub_surf_props[:sub_const_type]
+                construction = sub_surf_props[:construction]
 
-                # see of standards info to get standard construction type if set
-                # todo - used in multiple places put in method
-                construction = sub_surface.construction.get
-                const_standards = construction.standardsInformation
-                if const_standards.standardsConstructionType.is_initialized
-                  sub_const_type = const_standards.standardsConstructionType.get
-
-                  if sub_surface.subSurfaceType == "Door" || sub_surface.subSurfaceType == "OverheadDoor"
-                    ext_sub_surf_type = "ExteriorDoor"
-                  elsif  sub_surface.subSurfaceType == "FixedWindow" || sub_surface.subSurfaceType == "OperableWindow"
-                    ext_sub_surf_type = "ExteriorWindow"
-                  elsif  sub_surface.subSurfaceType == "Skylight"
-                    ext_sub_surf_type = "Skylight"
-                  else
-                    # todo - add message about constructions not being checked
-                    ext_sub_surf_type = sub_surface.surfaceType # address and test GlassDoor
-                  end
-                else
-                  if sub_surface.subSurfaceType == "Door"
-                    ext_sub_surf_type = 'ExteriorDoor'
-                    sub_const_type = 'Swinging'
-                  elsif sub_surface.subSurfaceType == "OverheadDoor"
-                    ext_sub_surf_type = 'ExteriorDoor'
-                    sub_const_type = 'NonSwinging'                
-                  elsif sub_surface.subSurfaceType == "FixedWindow" || sub_surface.subSurfaceType == "OperableWindow"
-                    ext_sub_surf_type = 'ExteriorWindow'
-                    sub_const_type = 'Metal framing (all other)'
-                  elsif sub_surface.subSurfaceType == "Skylight"
-                    ext_sub_surf_type = 'Skylight'
-                    sub_const_type = 'Glass with Curb'
-                  else
-                    check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, this measure does not have default target mapping for #{sub_surface.surfaceType} sub-surface types.")
-                  end
-                  if !defaulted_const_type.include?(construction)
-                    check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{sub_const_type} for #{ext_sub_surf_type}.")
-                    defaulted_const_type << construction
-                  end
-                end
-
-                sub_surface_details << {boundary_condition: sub_surface.outsideBoundaryCondition, surface_type: sub_surface.subSurfaceType, construction: sub_surface.construction.get, construction_type: sub_const_type, const_bldg_cat: const_bldg_cat}
+                sub_surface_details << {boundary_condition: sub_surface.outsideBoundaryCondition, surface_type: ext_sub_surf_type, construction: sub_surface.construction.get, construction_type: sub_const_type, const_bldg_cat: const_bldg_cat}
               else
                 missing_constructions << sub_surface.name.get
               end
@@ -537,24 +468,9 @@ module OsLib_QAQC
             if surface_detail[:construction].thermalConductance.is_initialized
               # don't use intened surface type of construction, look map based on surface type and boundary condition
               boundary_condition = surface_detail[:boundary_condition]
-              surface_type = surface_detail[:surface_type]
-              intended_surface_type = ''
-              if boundary_condition.to_s == 'Outdoors'
-                if surface_type.to_s == 'Wall'
-                  intended_surface_type = 'ExteriorWall'
-                  standards_construction_type = 'SteelFramed'
-                elsif surface_type == 'RoofCeiling'
-                  intended_surface_type = 'ExteriorRoof'
-                  standards_construction_type = 'IEAD'
-                else surface_type == 'Floor'
-                  intended_surface_type = 'ExteriorFloor'
-                  standards_construction_type = 'Mass'
-                end
-              else
-                # currently only used for surfaces with outdoor boundary condition
-              end
+              intended_surface_type = surface_detail[:surface_type]
+              construction_type = surface_detail[:construction_type]
               film_coefficients_r_value = std.film_coefficients_r_value(intended_surface_type, includes_int_film = true, includes_ext_film = true)
-
 
               thermal_conductance = surface_detail[:construction].thermalConductance.get
               r_value_with_film = 1 / thermal_conductance + film_coefficients_r_value
@@ -566,10 +482,10 @@ module OsLib_QAQC
               # calculate target_r_value_ip
               target_reflectance = nil
 
-              data = std.model_get_construction_properties(@model, intended_surface_type, standards_construction_type, const_bldg_cat)
+              data = std.model_get_construction_properties(@model, intended_surface_type, construction_type, const_bldg_cat)
 
               if data.nil?
-                check_elems << OpenStudio::Attribute.new('flag', "Didn't find construction for #{standards_construction_type} #{intended_surface_type} for #{space.name}.")
+                check_elems << OpenStudio::Attribute.new('flag', "Didn't find construction for #{construction_type} #{intended_surface_type} for #{space.name}.")
                 next
               elsif intended_surface_type.include? 'ExteriorWall' || 'ExteriorFloor' || 'ExteriorDoor'
                 assembly_maximum_u_value = data['assembly_maximum_u_value']
