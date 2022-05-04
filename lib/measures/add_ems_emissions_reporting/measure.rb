@@ -36,9 +36,6 @@
 require 'csv'
 require 'openstudio-extension'
 require 'openstudio/extension/core/os_lib_helper_methods'
-#require 'logger'
-
-#@@logger = Logger.new($stdout)
 
 # start the measure
 class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
@@ -342,7 +339,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     #### add emissions intensity metric
     # get building from model 
     building = model.getBuilding
-    floor_area = building.floorArea * 3.28084 #change from m2 to ft2
+    floor_area = building.floorArea * 10.764 #change from m2 to ft2
     #add metric
     ems_prgm.addLine("SET fut_hr_intensity = fut_hr * 1000 / #{floor_area}") # unit: kg/ft2 - changed mt to kg
     ems_prgm.addLine("SET his_hr_intensity = his_hr * 1000 / #{floor_area}") # unit: kg/ft2 - changed mt to kg

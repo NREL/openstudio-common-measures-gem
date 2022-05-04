@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_ems_emissions_reporting</name>
   <uid>e8fe9153-5e70-4769-afa0-6da0045aa529</uid>
-  <version_id>050d3357-a9cf-4511-a0d7-3aae5cf17e8c</version_id>
-  <version_modified>20220421T215451Z</version_modified>
+  <version_id>ebb131d4-44c3-4c0c-8b5b-1d50fe282cda</version_id>
+  <version_modified>20220504T174701Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSEmissionsReporting</class_name>
   <display_name>Add EMS to Report Emissions</display_name>
@@ -15,55 +15,407 @@
       <name>future_subregion</name>
       <display_name>Future subregion</display_name>
       <description>Future subregion. Options are: AZNMc, CAMXc, ERCTc, FRCCc, MROEc, MROWc, NEWEc, NWPPc, NYSTc, RFCEc, RFCMc, RFCWc, RMPAc, SPNOc, SPSOc, SRMVc, SRMWc, SRSOc, SRTVc, and SRVCc</description>
-      <type>String</type>
+      <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>RMPAc</default_value>
+      <choices>
+        <choice>
+          <value>AZNMc</value>
+          <display_name>AZNMc</display_name>
+        </choice>
+        <choice>
+          <value>CAMXc</value>
+          <display_name>CAMXc</display_name>
+        </choice>
+        <choice>
+          <value>ERCTc</value>
+          <display_name>ERCTc</display_name>
+        </choice>
+        <choice>
+          <value>FRCCc</value>
+          <display_name>FRCCc</display_name>
+        </choice>
+        <choice>
+          <value>MROEc</value>
+          <display_name>MROEc</display_name>
+        </choice>
+        <choice>
+          <value>MROWc</value>
+          <display_name>MROWc</display_name>
+        </choice>
+        <choice>
+          <value>NEWEc</value>
+          <display_name>NEWEc</display_name>
+        </choice>
+        <choice>
+          <value>NWPPc</value>
+          <display_name>NWPPc</display_name>
+        </choice>
+        <choice>
+          <value>NYSTc</value>
+          <display_name>NYSTc</display_name>
+        </choice>
+        <choice>
+          <value>RFCEc</value>
+          <display_name>RFCEc</display_name>
+        </choice>
+        <choice>
+          <value>RFCMc</value>
+          <display_name>RFCMc</display_name>
+        </choice>
+        <choice>
+          <value>RFCWc</value>
+          <display_name>RFCWc</display_name>
+        </choice>
+        <choice>
+          <value>RMPAc</value>
+          <display_name>RMPAc</display_name>
+        </choice>
+        <choice>
+          <value>SPNOc</value>
+          <display_name>SPNOc</display_name>
+        </choice>
+        <choice>
+          <value>SPSOc</value>
+          <display_name>SPSOc</display_name>
+        </choice>
+        <choice>
+          <value>SRMVc</value>
+          <display_name>SRMVc</display_name>
+        </choice>
+        <choice>
+          <value>SRMWc</value>
+          <display_name>SRMWc</display_name>
+        </choice>
+        <choice>
+          <value>SRSOc</value>
+          <display_name>SRSOc</display_name>
+        </choice>
+        <choice>
+          <value>SRTVc</value>
+          <display_name>SRTVc</display_name>
+        </choice>
+        <choice>
+          <value>SRVCc</value>
+          <display_name>SRVCc</display_name>
+        </choice>
+      </choices>
     </argument>
     <argument>
       <name>hourly_historical_subregion</name>
       <display_name>Historical hourly subregion</display_name>
       <description>Historical hourly subregion. Options are: California, Carolinas, Central, Florida, Mid-Atlantic, Midwest, New England, New York, Northwest, Rocky Mountains, Southeast, Southwest, Tennessee, and Texas</description>
-      <type>String</type>
+      <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>Rocky Mountains</default_value>
+      <choices>
+        <choice>
+          <value>California</value>
+          <display_name>California</display_name>
+        </choice>
+        <choice>
+          <value>Carolinas</value>
+          <display_name>Carolinas</display_name>
+        </choice>
+        <choice>
+          <value>Central</value>
+          <display_name>Central</display_name>
+        </choice>
+        <choice>
+          <value>Florida</value>
+          <display_name>Florida</display_name>
+        </choice>
+        <choice>
+          <value>Mid-Atlantic</value>
+          <display_name>Mid-Atlantic</display_name>
+        </choice>
+        <choice>
+          <value>Midwest</value>
+          <display_name>Midwest</display_name>
+        </choice>
+        <choice>
+          <value>New England</value>
+          <display_name>New England</display_name>
+        </choice>
+        <choice>
+          <value>New York</value>
+          <display_name>New York</display_name>
+        </choice>
+        <choice>
+          <value>Northwest</value>
+          <display_name>Northwest</display_name>
+        </choice>
+        <choice>
+          <value>Rocky Mountains</value>
+          <display_name>Rocky Mountains</display_name>
+        </choice>
+        <choice>
+          <value>Southeast</value>
+          <display_name>Southeast</display_name>
+        </choice>
+        <choice>
+          <value>Southwest</value>
+          <display_name>Southwest</display_name>
+        </choice>
+        <choice>
+          <value>Tennessee</value>
+          <display_name>Tennessee</display_name>
+        </choice>
+        <choice>
+          <value>Texas</value>
+          <display_name>Texas</display_name>
+        </choice>
+      </choices>
     </argument>
     <argument>
       <name>annual_historical_subregion</name>
       <display_name>Historical annual subregion</display_name>
       <description>Historical annual subregion. Options are: AKGD, AKMS, AZNM, CAMX, ERCT, FRCC, HIMS, HIOA, MROE, MROW, NEWE, NWPP, NYCW, NYLI, NYUP, RFCE, RFCM, RFCW, RMPA, SPNO, SPSO, SRMV, SRMW, SRSO, SRTV, and SRVC</description>
-      <type>String</type>
+      <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>RMPA</default_value>
+      <choices>
+        <choice>
+          <value>AKGD</value>
+          <display_name>AKGD</display_name>
+        </choice>
+        <choice>
+          <value>AKMS</value>
+          <display_name>AKMS</display_name>
+        </choice>
+        <choice>
+          <value>AZNM</value>
+          <display_name>AZNM</display_name>
+        </choice>
+        <choice>
+          <value>CAMX</value>
+          <display_name>CAMX</display_name>
+        </choice>
+        <choice>
+          <value>ERCT</value>
+          <display_name>ERCT</display_name>
+        </choice>
+        <choice>
+          <value>FRCC</value>
+          <display_name>FRCC</display_name>
+        </choice>
+        <choice>
+          <value>HIMS</value>
+          <display_name>HIMS</display_name>
+        </choice>
+        <choice>
+          <value>HIOA</value>
+          <display_name>HIOA</display_name>
+        </choice>
+        <choice>
+          <value>MROE</value>
+          <display_name>MROE</display_name>
+        </choice>
+        <choice>
+          <value>MROW</value>
+          <display_name>MROW</display_name>
+        </choice>
+        <choice>
+          <value>NEWE</value>
+          <display_name>NEWE</display_name>
+        </choice>
+        <choice>
+          <value>NWPP</value>
+          <display_name>NWPP</display_name>
+        </choice>
+        <choice>
+          <value>NYCW</value>
+          <display_name>NYCW</display_name>
+        </choice>
+        <choice>
+          <value>NYLI</value>
+          <display_name>NYLI</display_name>
+        </choice>
+        <choice>
+          <value>NYUP</value>
+          <display_name>NYUP</display_name>
+        </choice>
+        <choice>
+          <value>RFCE</value>
+          <display_name>RFCE</display_name>
+        </choice>
+        <choice>
+          <value>RFCM</value>
+          <display_name>RFCM</display_name>
+        </choice>
+        <choice>
+          <value>RFCW</value>
+          <display_name>RFCW</display_name>
+        </choice>
+        <choice>
+          <value>RMPA</value>
+          <display_name>RMPA</display_name>
+        </choice>
+        <choice>
+          <value>SPNO</value>
+          <display_name>SPNO</display_name>
+        </choice>
+        <choice>
+          <value>SPSO</value>
+          <display_name>SPSO</display_name>
+        </choice>
+        <choice>
+          <value>SRMV</value>
+          <display_name>SRMV</display_name>
+        </choice>
+        <choice>
+          <value>SRMW</value>
+          <display_name>SRMW</display_name>
+        </choice>
+        <choice>
+          <value>SRSO</value>
+          <display_name>SRSO</display_name>
+        </choice>
+        <choice>
+          <value>SRTV</value>
+          <display_name>SRTV</display_name>
+        </choice>
+        <choice>
+          <value>SRVC</value>
+          <display_name>SRVC</display_name>
+        </choice>
+      </choices>
     </argument>
     <argument>
       <name>future_year</name>
       <display_name>Future Year</display_name>
       <description>Future Year. Options are: 2020 to 2050 in two year increments</description>
-      <type>Integer</type>
+      <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>2020</default_value>
+      <choices>
+        <choice>
+          <value>2020</value>
+          <display_name>2020</display_name>
+        </choice>
+        <choice>
+          <value>2022</value>
+          <display_name>2022</display_name>
+        </choice>
+        <choice>
+          <value>2024</value>
+          <display_name>2024</display_name>
+        </choice>
+        <choice>
+          <value>2026</value>
+          <display_name>2026</display_name>
+        </choice>
+        <choice>
+          <value>2028</value>
+          <display_name>2028</display_name>
+        </choice>
+        <choice>
+          <value>2030</value>
+          <display_name>2030</display_name>
+        </choice>
+        <choice>
+          <value>2032</value>
+          <display_name>2032</display_name>
+        </choice>
+        <choice>
+          <value>2034</value>
+          <display_name>2034</display_name>
+        </choice>
+        <choice>
+          <value>2036</value>
+          <display_name>2036</display_name>
+        </choice>
+        <choice>
+          <value>2038</value>
+          <display_name>2038</display_name>
+        </choice>
+        <choice>
+          <value>2040</value>
+          <display_name>2040</display_name>
+        </choice>
+        <choice>
+          <value>2042</value>
+          <display_name>2042</display_name>
+        </choice>
+        <choice>
+          <value>2044</value>
+          <display_name>2044</display_name>
+        </choice>
+        <choice>
+          <value>2046</value>
+          <display_name>2046</display_name>
+        </choice>
+        <choice>
+          <value>2048</value>
+          <display_name>2048</display_name>
+        </choice>
+        <choice>
+          <value>2050</value>
+          <display_name>2050</display_name>
+        </choice>
+      </choices>
     </argument>
     <argument>
       <name>hourly_historical_year</name>
       <display_name>Hourly Historical Year</display_name>
       <description>Hourly Historical Year. Options are: 2019.</description>
-      <type>Integer</type>
+      <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>2019</default_value>
+      <choices>
+        <choice>
+          <value>2019</value>
+          <display_name>2019</display_name>
+        </choice>
+      </choices>
     </argument>
     <argument>
       <name>annual_historical_year</name>
       <display_name>Annual Historical Year</display_name>
       <description>Annual Historical Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.</description>
-      <type>Integer</type>
+      <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>2019</default_value>
+      <choices>
+        <choice>
+          <value>2007</value>
+          <display_name>2007</display_name>
+        </choice>
+        <choice>
+          <value>2009</value>
+          <display_name>2009</display_name>
+        </choice>
+        <choice>
+          <value>2010</value>
+          <display_name>2010</display_name>
+        </choice>
+        <choice>
+          <value>2012</value>
+          <display_name>2012</display_name>
+        </choice>
+        <choice>
+          <value>2014</value>
+          <display_name>2014</display_name>
+        </choice>
+        <choice>
+          <value>2016</value>
+          <display_name>2016</display_name>
+        </choice>
+        <choice>
+          <value>2018</value>
+          <display_name>2018</display_name>
+        </choice>
+        <choice>
+          <value>2019</value>
+          <display_name>2019</display_name>
+        </choice>
+      </choices>
     </argument>
   </arguments>
   <outputs />
@@ -230,7 +582,7 @@
       <filename>add_ems_emissions_reporting_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>2124C39D</checksum>
+      <checksum>E9CE2D1A</checksum>
     </file>
     <file>
       <version>
@@ -241,7 +593,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>1F2258FA</checksum>
+      <checksum>AD699109</checksum>
     </file>
   </files>
 </measure>
