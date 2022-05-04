@@ -49,7 +49,7 @@ class AddEVLoad_Test < MiniTest::Unit::TestCase
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(4, arguments.size)
+    assert_equal(5, arguments.size)
     assert_equal('delay_type', arguments[0].name)
   end
 
@@ -114,7 +114,7 @@ class AddEVLoad_Test < MiniTest::Unit::TestCase
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash['ev_percent'] = 1
+    args_hash['ev_percent'] = 100
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified
