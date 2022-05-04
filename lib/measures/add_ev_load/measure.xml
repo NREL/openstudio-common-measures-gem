@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_ev_load</name>
   <uid>a23e0493-7357-48ca-b089-4d902efd6b50</uid>
-  <version_id>90476d7d-d880-4ce4-ada0-5dad10a82954</version_id>
-  <version_modified>20210406T224047Z</version_modified>
+  <version_id>4dcfed8b-57fc-4698-9a31-d058a4e92ec6</version_id>
+  <version_modified>20220504T053502Z</version_modified>
   <xml_checksum>9A202986</xml_checksum>
   <class_name>AddEVLoad</class_name>
   <display_name>Add_EV_Load</display_name>
@@ -86,7 +86,25 @@
       <type>Double</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>1</default_value>
+      <default_value>100</default_value>
+    </argument>
+    <argument>
+      <name>ev_use_model_occupancy</name>
+      <display_name>Use occupancy from OpenStudio Model to determine number of electric vehicles</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
     </argument>
   </arguments>
   <outputs />
@@ -331,7 +349,7 @@
       <filename>add_ev_load_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>5E255354</checksum>
+      <checksum>54550A66</checksum>
     </file>
     <file>
       <version>
@@ -342,7 +360,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>93A1C055</checksum>
+      <checksum>E2BB9494</checksum>
     </file>
   </files>
 </measure>

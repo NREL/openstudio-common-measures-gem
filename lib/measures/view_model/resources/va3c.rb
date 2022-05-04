@@ -228,6 +228,7 @@ class VA3C
     materials << make_material('Boundary_Outdoors_Wind', format_color(9, 159, 162), 1, THREE::DoubleSide)
     materials << make_material('Boundary_Outdoors_SunWind', format_color(68, 119, 161), 1, THREE::DoubleSide)
     materials << make_material('Boundary_Ground', format_color(204, 183, 122), 1, THREE::DoubleSide)
+    materials << make_material('Boundary_Foundation', format_color(117, 30, 122), 1, THREE::DoubleSide)
     materials << make_material('Boundary_Groundfcfactormethod', format_color(153, 122, 30), 1, THREE::DoubleSide)
     materials << make_material('Boundary_Groundslabpreprocessoraverage', format_color(255, 191, 0), 1, THREE::DoubleSide)
     materials << make_material('Boundary_Groundslabpreprocessorcore', format_color(255, 182, 50), 1, THREE::DoubleSide)
