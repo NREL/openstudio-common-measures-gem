@@ -40,7 +40,7 @@ module OsLib_QAQC
   def check_mech_sys_type(category, target_standard, name_only = false)
     # summary of the check
     check_elems = OpenStudio::AttributeVector.new
-    check_elems << OpenStudio::Attribute.new('name', 'Mechanical System Type')
+    check_elems << OpenStudio::Attribute.new('name', 'Baseline Mechanical System Type')
     check_elems << OpenStudio::Attribute.new('category', category)
 
     # add ASHRAE to display of target standard if includes with 90.1
@@ -49,7 +49,7 @@ module OsLib_QAQC
     else
       check_elems << OpenStudio::Attribute.new('description', 'Check against ASHRAE 90.1. Infers the baseline system type based on the equipment serving the zone and their heating/cooling fuels. Only does a high-level inference; does not look for the presence/absence of required controls, etc.')
     end
-
+    
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
@@ -119,7 +119,7 @@ module OsLib_QAQC
         else
           if req_sys_type == '' then req_sys_type = 'Unknown' end
           puts "#{zone.name} baseline system type is incorrect. Supposed to be #{req_sys_type}, but was #{act_sys_type} instead."
-          check_elems << OpenStudio::Attribute.new('flag', "#{zone.name} baseline system type is incorrect. Supposed to be #{req_sys_type}, but was #{act_sys_type} instead.")
+          check_elems << OpenStudio::Attribute.new('flag', "For #{zone.name}, the baseline system type would be #{req_sys_type}; the current system type is #{act_sys_type}.")
         end
       end
     rescue StandardError => e
