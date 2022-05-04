@@ -38,33 +38,46 @@ module OsLib_QAQC
 
   # checks the number of unmet hours in the model
   def check_eui_by_end_use(category, target_standard, min_pass, max_pass, name_only = false)
+
     # summary of the check
     check_elems = OpenStudio::AttributeVector.new
     check_elems << OpenStudio::Attribute.new('name', 'End Use by Category')
     check_elems << OpenStudio::Attribute.new('category', category)
-    check_elems << OpenStudio::Attribute.new('description', "Check end use by category against #{target_standard} DOE prototype buildings.")
+
+    # update display sttandard
+    if target_standard.include?('90.1')
+      display_standard = "ASHRAE #{target_standard}"
+    else
+      display_standard = target_standard
+    end
 
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
+      check_elems << OpenStudio::Attribute.new('description', "Check model consumption by end use against #{target_standard} DOE prototype building.")
       check_elems.each do |elem|
         results << elem.valueAsString
       end
       return results
     end
 
-    # Versions of OpenStudio greater than 2.4.0 use a modified version of
-    # openstudio-standards with different method calls.  These methods
-    # require a "Standard" object instead of the standard being passed into method calls.
-    # This Standard object is used throughout the QAQC check.
-    if OpenStudio::VersionString.new(OpenStudio.openStudioVersion) < OpenStudio::VersionString.new('2.4.3')
-      use_old_gem_code = true
-    else
-      use_old_gem_code = false
-      std = Standard.build(target_standard)
-    end
-
     begin
+
+      # setup standard
+      std = Standard.build(target_standard)
+      target_eui = std.model_find_target_eui(@model)
+
+      # gather building type for summary
+      bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      building_type = bt_cz['building_type']
+      # mapping to obuilding type to match space types
+      if building_type.include?("Office") then building_type = "Office" end
+      climate_zone = bt_cz['climate_zone']
+      prototype_prefix = "#{display_standard} #{building_type} #{climate_zone}"
+      check_elems << OpenStudio::Attribute.new('description', "Check model consumption by end use against #{prototype_prefix} DOE prototype building.")
+      check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
+      check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
+
       # total building area
       query = 'SELECT Value FROM tabulardatawithstrings WHERE '
       query << "ReportName='AnnualBuildingUtilityPerformanceSummary' and "
@@ -107,13 +120,35 @@ module OsLib_QAQC
         actual_eui_by_end_use[end_use] = total_end_use / energy_plus_area
       end
 
-      # gather target end uses for given standard as hash
-      if use_old_gem_code
-        target_eui_by_end_use = @model.find_target_eui_by_end_use(target_standard)
-      else
-        std = Standard.build(target_standard)
-        target_eui_by_end_use = std.model_find_target_eui_by_end_use(@model)
+      # check if all spaces types used the building type defined in the model (percentage calculation doesn't check if all area is inclued in building floor area)
+      if building_type != ''
+        primary_type_floor_area = 0.0
+        non_pri_area = 0.0
+        non_pri_types = []
+        @model.getSpaceTypes.each do |space_type|
+          st_bt = space_type.standardsBuildingType
+          if st_bt.is_initialized
+              st_bt = st_bt.get.to_s
+              if st_bt.include?("Office") then st_bt = "Office" end
+              if st_bt.to_s == building_type.to_s
+                primary_type_floor_area += space_type.floorArea
+              else
+                non_pri_area += space_type.floorArea
+                if !non_pri_types.include?(st_bt) then non_pri_types << st_bt end
+              end
+          else
+            non_pri_area += space_type.floorArea
+            if !non_pri_types.include?(st_bt) then non_pri_types << st_bt end
+          end
+        end
+        if non_pri_area > 0.0
+          check_elems << OpenStudio::Attribute.new('flag', "The primary building type, #{building_type}, only represents #{(100 * primary_type_floor_area / (primary_type_floor_area + non_pri_area)).round}% of the total building area. Other standads building types included are #{non_pri_types.sort.join(",")}. While a comparison to the #{building_type} prototype consumption by end use is provided, it would not be unexpected for the building consumption by end use to be significantly different than the prototype.")
+        end
       end
+
+      # gather target end uses for given standard as hash
+      std = Standard.build(target_standard)
+      target_eui_by_end_use = std.model_find_target_eui_by_end_use(@model)
 
       # units for flag display text and unit conversion
       source_units = 'GJ/m^2'
@@ -136,9 +171,9 @@ module OsLib_QAQC
           if (end_use == 'Pumps') && (value < 0.05) && (target_value < 0.05) then skip = true end
 
           if (value < target_value * (1.0 - min_pass)) && !skip
-            check_elems << OpenStudio::Attribute.new('flag', "#{end_use} EUI of #{eui_ip_neat} (#{target_units}) is more than #{min_pass * 100} % below the expected #{end_use} EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{end_use} EUI of #{eui_ip_neat} (#{target_units}) is more than #{min_pass * 100} % below the #{prototype_prefix} prototype #{end_use} EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
           elsif (value > target_value * (1.0 + max_pass)) && !skip
-            check_elems << OpenStudio::Attribute.new('flag', "#{end_use} EUI of #{eui_ip_neat} (#{target_units}) is more than #{max_pass * 100} % above the expected #{end_use} EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
+            check_elems << OpenStudio::Attribute.new('flag', "#{end_use} EUI of #{eui_ip_neat} (#{target_units}) is more than #{max_pass * 100} % above the #{prototype_prefix} prototype #{end_use} EUI of #{target_eui_ip_neat} (#{target_units}) for #{target_standard}.")
           end
         end
       else

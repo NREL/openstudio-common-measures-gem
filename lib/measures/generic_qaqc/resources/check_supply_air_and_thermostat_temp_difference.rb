@@ -50,11 +50,13 @@ module OsLib_QAQC
     else
       check_elems << OpenStudio::Attribute.new('description', "Check if fans modeled to ASHRAE 90.1 2013 Section G3.1.2.9 requirements. Compare the supply air temperature for each thermal zone against the thermostat setpoints. Throw flag if temperature difference excedes threshold set by #{@utility_name}.")
     end
-
+    check_elems << OpenStudio::Attribute.new('min_pass', max_delta)
+    
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
       check_elems.each do |elem|
+        next if ['Double','Integer'].include? (elem.valueType.valueDescription)
         results << elem.valueAsString
       end
       return results

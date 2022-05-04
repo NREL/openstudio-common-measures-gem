@@ -28,7 +28,7 @@ This used to set the target standard for most checks.
 **Model Dependent:** false
 
 ### EUI Reasonableness (General)
-Check EUI for model against selected ASHRAE standard DOE prototype buildings.
+Check model EUI against selected ASHRAE standard DOE prototype building.
 **Name:** check_eui_reasonableness,
 **Type:** Boolean,
 **Units:** ,
@@ -44,7 +44,7 @@ Check EUI for model against selected ASHRAE standard DOE prototype buildings.
 **Model Dependent:** false
 
 ### End Use by Category (General)
-Check end use by category against selected ASHRAE standard DOE prototype buildings.
+Check model consumption by end use against selected ASHRAE standard DOE prototype building.
 **Name:** check_eui_by_end_use,
 **Type:** Boolean,
 **Units:** ,
@@ -100,7 +100,7 @@ Check for simultaneous heating and cooling by looping through all Single Duct VA
 **Model Dependent:** false
 
 ### Internal Loads (Baseline)
-Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against selected ASHRAE standard and DOE Prototype buildings.
+Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against selected ASHRAE standard DOE Prototype buildings.
 **Name:** check_internal_loads,
 **Type:** Boolean,
 **Units:** ,
@@ -179,7 +179,7 @@ Check against selected ASHRAE standard for the following component types: Chille
 **Required:** true,
 **Model Dependent:** false
 
-### Mechanical System Type (Baseline)
+### Baseline Mechanical System Type (Baseline)
 Check against ASHRAE 90.1. Infers the baseline system type based on the equipment serving the zone and their heating/cooling fuels. Only does a high-level inference; does not look for the presence/absence of required controls, etc.
 **Name:** check_mech_sys_type,
 **Type:** Boolean,

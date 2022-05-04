@@ -43,11 +43,13 @@ module OsLib_QAQC
     check_elems << OpenStudio::Attribute.new('name', 'Simultaneous Heating and Cooling')
     check_elems << OpenStudio::Attribute.new('category', category)
     check_elems << OpenStudio::Attribute.new('description', 'Check for simultaneous heating and cooling by looping through all Single Duct VAV Reheat Air Terminals and analyzing hourly data when there is a cooling load. ')
-
+    check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
+      
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
       check_elems.each do |elem|
+        next if ['Double','Integer'].include? (elem.valueType.valueDescription)
         results << elem.valueAsString
       end
       return results
