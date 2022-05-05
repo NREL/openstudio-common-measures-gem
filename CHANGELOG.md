@@ -1,5 +1,16 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.6.0
+
+* Support for OpenStudio 3.4 (upgrade to standards gem 0.2.16, no extension gem upgrade)
+* Fixed [#53]( https://github.com/NREL/openstudio-common-measures-gem/issues/53 ), View Model and View Data measures are missing rendering color for Foundation
+* Fixed [#90]( https://github.com/NREL/openstudio-common-measures-gem/pull/90 ), Adjacency Checker
+* Fixed [#93]( https://github.com/NREL/openstudio-common-measures-gem/pull/93 ), Qaqc issue 79
+* Fixed [#94]( https://github.com/NREL/openstudio-common-measures-gem/pull/94 ), remove unique output variable names
+* Fixed [#95]( https://github.com/NREL/openstudio-common-measures-gem/pull/95 ), Qaqc issue 79
+* Fixed [#96]( https://github.com/NREL/openstudio-common-measures-gem/pull/96 ), Add additional argument to add_ev_load measure
+* Fixed [#97]( https://github.com/NREL/openstudio-common-measures-gem/pull/97 ), Add color for Foundation boundary condition
+
 ## Version 0.5.0
 
 * Support for OpenStudio 3.3 (upgrade to extension gem 0.5.1 and standards gem 0.2.15)
