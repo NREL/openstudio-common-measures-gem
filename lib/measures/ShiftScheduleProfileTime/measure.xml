@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>shift_schedule_profile_time</name>
   <uid>1c642348-f074-4ad1-98ee-2208ddc89ac7</uid>
-  <version_id>7482b65c-0478-49b3-9b54-eb3a627bc2ab</version_id>
-  <version_modified>20210406T220259Z</version_modified>
+  <version_id>abb31056-8002-46ec-a155-13a387974b93</version_id>
+  <version_modified>20220505T194725Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>ShiftScheduleProfileTime</class_name>
   <display_name>ShiftScheduleProfileTime</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{15966d58-132a-443f-9dcd-2a3886efe059}</default_value>
+      <default_value>{847c379f-d069-4305-9d0b-3ee2421bf95d}</default_value>
       <choices>
         <choice>
-          <value>{15966d58-132a-443f-9dcd-2a3886efe059}</value>
+          <value>{847c379f-d069-4305-9d0b-3ee2421bf95d}</value>
           <display_name>*All Ruleset Schedules*</display_name>
         </choice>
       </choices>
@@ -102,6 +102,12 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>3Story2Space/run.db</filename>
+      <filetype>db</filetype>
+      <usage_type>test</usage_type>
+      <checksum>761DC6F7</checksum>
     </file>
   </files>
 </measure>

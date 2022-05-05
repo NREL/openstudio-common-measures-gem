@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_gas_burner_efficiency</name>
   <uid>afabec3d-cd02-4908-a367-84e21657421f</uid>
-  <version_id>2d14190a-716e-4edb-8bc1-6988a29c7c79</version_id>
-  <version_modified>20210406T220259Z</version_modified>
+  <version_id>0047e285-efe8-484c-8e94-26e95b77fced</version_id>
+  <version_modified>20220505T194724Z</version_modified>
   <xml_checksum>0DA5C9E6</xml_checksum>
   <class_name>SetGasBurnerEfficiency</class_name>
   <display_name>Set Gas Burner Efficiency</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{20c7f001-49b4-456f-8d68-befab57e24b5}</default_value>
+      <default_value>{59d678a4-a5be-4010-ab28-eb740209b12f}</default_value>
       <choices>
         <choice>
-          <value>{20c7f001-49b4-456f-8d68-befab57e24b5}</value>
+          <value>{59d678a4-a5be-4010-ab28-eb740209b12f}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>
@@ -176,6 +176,18 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>0320_ModelWithHVAC_01/run.db</filename>
+      <filetype>db</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1B15A7A5</checksum>
+    </file>
+    <file>
+      <filename>0320_ModelWithHVAC_01/files/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3B177CE0</checksum>
     </file>
   </files>
 </measure>

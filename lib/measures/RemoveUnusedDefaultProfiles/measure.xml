@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>remove_unused_default_profiles</name>
   <uid>8abcdf38-c391-465a-8fb8-b243aa4f0b06</uid>
-  <version_id>45d7a5b4-2b4d-4540-8493-6c2bd61dda47</version_id>
-  <version_modified>20210406T220257Z</version_modified>
+  <version_id>8ad4f241-0f5d-48c0-976e-0d6f300ff9e5</version_id>
+  <version_modified>20220505T194722Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>RemoveUnusedDefaultProfiles</class_name>
   <display_name>RemoveUnusedDefaultProfiles</display_name>
@@ -79,6 +79,30 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>ScheduleCleanup_TestModel/project.log</filename>
+      <filetype>log</filetype>
+      <usage_type>test</usage_type>
+      <checksum>00000000</checksum>
+    </file>
+    <file>
+      <filename>ScheduleCleanup_TestModel/project.osp-journal</filename>
+      <filetype>osp-journal</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C4DA5AFA</checksum>
+    </file>
+    <file>
+      <filename>ScheduleCleanup_TestModel/run.db</filename>
+      <filetype>db</filetype>
+      <usage_type>test</usage_type>
+      <checksum>55C2472A</checksum>
+    </file>
+    <file>
+      <filename>ScheduleCleanup_TestModel/project.osp</filename>
+      <filetype>osp</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9074D4C3</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_ev_load</name>
   <uid>a23e0493-7357-48ca-b089-4d902efd6b50</uid>
-  <version_id>4dcfed8b-57fc-4698-9a31-d058a4e92ec6</version_id>
-  <version_modified>20220504T053502Z</version_modified>
+  <version_id>5ef19868-80da-424d-9907-00e8bbd9919a</version_id>
+  <version_modified>20220505T194724Z</version_modified>
   <xml_checksum>9A202986</xml_checksum>
   <class_name>AddEVLoad</class_name>
   <display_name>Add_EV_Load</display_name>
@@ -360,7 +360,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E2BB9494</checksum>
+      <checksum>0F479CB4</checksum>
     </file>
   </files>
 </measure>

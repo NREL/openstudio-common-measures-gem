@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>2fdb86c1-af50-440a-b950-1313a455bccf</version_id>
-  <version_modified>20220503T234022Z</version_modified>
+  <version_id>afd8c89b-622b-4a31-84da-77befddb58bd</version_id>
+  <version_modified>20220505T194725Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -603,12 +603,6 @@
       <checksum>D38441F3</checksum>
     </file>
     <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>612E9631</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -774,6 +768,12 @@
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>3346FDCD</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>C1248C6A</checksum>
     </file>
   </files>
 </measure>

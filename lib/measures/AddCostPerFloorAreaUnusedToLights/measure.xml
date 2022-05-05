@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_cost_per_floor_area_to_unused_lights</name>
   <uid>a5f5ddcf-48bb-413a-a712-0ee22f0b40a4</uid>
-  <version_id>4f3727ae-8c82-4a9a-9cba-56971f84f772</version_id>
-  <version_modified>20210406T220253Z</version_modified>
+  <version_id>452bdc56-fa9a-428a-a515-d5d46fb7e38e</version_id>
+  <version_modified>20220505T194726Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerFloorAreaToUnusedLights</class_name>
   <display_name>Add Cost per Floor Area to Unused Lights</display_name>
@@ -183,6 +183,30 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>0416_NetArea_b/project.log</filename>
+      <filetype>log</filetype>
+      <usage_type>test</usage_type>
+      <checksum>00000000</checksum>
+    </file>
+    <file>
+      <filename>0416_NetArea_b/project.osp-journal</filename>
+      <filetype>osp-journal</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9F804CC1</checksum>
+    </file>
+    <file>
+      <filename>0416_NetArea_b/run.db</filename>
+      <filetype>db</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3BDDB20E</checksum>
+    </file>
+    <file>
+      <filename>0416_NetArea_b/project.osp</filename>
+      <filetype>osp</filetype>
+      <usage_type>test</usage_type>
+      <checksum>CE0BBF75</checksum>
     </file>
   </files>
 </measure>

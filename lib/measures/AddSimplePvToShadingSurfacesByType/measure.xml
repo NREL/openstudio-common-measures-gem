@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_simple_pv_to_shading_surfaces_by_type</name>
   <uid>27627c16-75d4-4fc3-add9-2d7d538c0130</uid>
-  <version_id>263a8572-cfd3-43ed-8cba-fa7b28398034</version_id>
-  <version_modified>20210406T220254Z</version_modified>
+  <version_id>15474049-b4bd-4788-ba65-ea1fd0dc7519</version_id>
+  <version_modified>20220505T194724Z</version_modified>
   <xml_checksum>92C8C204</xml_checksum>
   <class_name>AddSimplePvToShadingSurfacesByType</class_name>
   <display_name>Add Simple PV to Specified Shading Surfaces</display_name>
@@ -154,6 +154,18 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>7F195550</checksum>
+    </file>
+    <file>
+      <filename>PV_test_model/run.db</filename>
+      <filetype>db</filetype>
+      <usage_type>test</usage_type>
+      <checksum>64280EEA</checksum>
+    </file>
+    <file>
+      <filename>PV_test_model/files/USA_CO_Golden-NREL.724666_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9D6AAD98</checksum>
     </file>
   </files>
 </measure>
