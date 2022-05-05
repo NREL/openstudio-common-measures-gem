@@ -242,7 +242,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       if ev_use_model_occupancy
         runner.registerInfo("model occupancy density = #{model_occupancy_density}")
         for i in 0..wkday_load[0].length - 1
-          avg_load_wkday[i] = ((wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) * ev_percent/(assumed_percent*2)) * (model_occupancy_density/assumed_occupancy_density) # Scale profiles generated from 50% EV scenario by occupancy of OpenStudio model (number of vehicles is assumed to be the same as occupancy of the building).
+          avg_load_wkday[i] = ((wkday_load_sel[i].reduce(0, :+) / wkday_load_sel[i].length) * ev_percent/assumed_percent) * (model_occupancy_density/assumed_occupancy_density) # Scale profiles generated from 50% EV scenario by occupancy of OpenStudio model (number of vehicles is assumed to be the same as occupancy of the building).
         end
       else
         for i in 0..wkday_load[0].length - 1
@@ -258,7 +258,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       sat_load_sel = sat_load_sel.transpose
       if ev_use_model_occupancy
         for i in 0..sat_load[0].length - 1
-          avg_load_sat[i] = ((sat_load_sel[i].reduce(0, :+) / sat_load_sel[i].length) * ev_percent / (assumed_percent*2)) * (model_occupancy_density/assumed_occupancy_density) # Scale profiles generated from 50% EV scenario by occupancy of OpenStudio model and apply ev_percent (number of vehicles is assumed to be the same as occupancy of the building).
+          avg_load_sat[i] = ((sat_load_sel[i].reduce(0, :+) / sat_load_sel[i].length) * ev_percent / assumed_percent) * (model_occupancy_density/assumed_occupancy_density) # Scale profiles generated from 50% EV scenario by occupancy of OpenStudio model and apply ev_percent (number of vehicles is assumed to be the same as occupancy of the building).
         end
       else
         for i in 0..sat_load[0].length - 1
@@ -274,7 +274,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       sun_load_sel = sun_load_sel.transpose
       if ev_use_model_occupancy
         for i in 0..sun_load[0].length - 1
-          avg_load_sun[i] = ((sun_load_sel[i].reduce(0, :+) / sun_load_sel[i].length) * ev_percent / (assumed_percent*2)) * (model_occupancy_density/assumed_occupancy_density) # Scale profiles generated from 50% EV scenario by occupancy of OpenStudio model and apply ev_percent (number of vehicles is assumed to be the same as occupancy of the building).
+          avg_load_sun[i] = ((sun_load_sel[i].reduce(0, :+) / sun_load_sel[i].length) * ev_percent / assumed_percent) * (model_occupancy_density/assumed_occupancy_density) # Scale profiles generated from 50% EV scenario by occupancy of OpenStudio model and apply ev_percent (number of vehicles is assumed to be the same as occupancy of the building).
         end
       else
         for i in 0..sun_load[0].length - 1
