@@ -138,12 +138,6 @@
   </attributes>
   <files>
     <file>
-      <filename>resultsviewer.log</filename>
-      <filetype>log</filetype>
-      <usage_type>test</usage_type>
-      <checksum>00000000</checksum>
-    </file>
-    <file>
       <filename>0416_NetArea_b.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
