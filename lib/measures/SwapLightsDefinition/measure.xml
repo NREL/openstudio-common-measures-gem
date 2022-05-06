@@ -9,19 +9,7 @@
   <class_name>SwapLightsDefinition</class_name>
   <display_name>SwapLightsDefinition</display_name>
   <description>This measure will swap out one lights definition for another. All objects that had referred to the original definition will now refer to the new one.</description>
-  <modeler_description>This measure will not delete or change either definition, rather it just swaps out the references of one for the other. It is possible that the new definition is already used in the model elsewhere.
-
-
-
-
-
-    Each of these objects can be independently costed, however the measure can address demolition costs of the object being removed.
-
-
-
-
-
-  </modeler_description>
+  <modeler_description>This measure will not delete or change either definition, rather it just swaps out the references of one for the other. It is possible that the new definition is already used in the model elsewhere. Each of these objects can be independently costed, however the measure can address demolition costs of the object being removed.</modeler_description>
   <arguments>
     <argument>
       <name>old_lights_def</name>
