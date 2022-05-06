@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_co_pfor_two_speed_dx_cooling_units</name>
   <uid>f5a8d60a-e60f-4097-99c3-28bfda3f29a3</uid>
-  <version_id>7d69465e-5d63-4f8a-923a-57871da57371</version_id>
-  <version_modified>20220505T194718Z</version_modified>
+  <version_id>1a6fc4b5-4c28-4ce7-8228-b8924c9312ed</version_id>
+  <version_modified>20220506T153442Z</version_modified>
   <xml_checksum>9E2537CD</xml_checksum>
   <class_name>SetCOPforTwoSpeedDXCoolingUnits</class_name>
   <display_name>Set COP for Two Speed DX Cooling Units</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{84ff1735-1ce6-4a1d-8db0-36e0781e997d}</default_value>
+      <default_value>{fca41611-7e8e-483f-b9fd-e411fe241a81}</default_value>
       <choices>
         <choice>
-          <value>{84ff1735-1ce6-4a1d-8db0-36e0781e997d}</value>
+          <value>{fca41611-7e8e-483f-b9fd-e411fe241a81}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>
@@ -184,18 +184,6 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
-      <filename>0320_ModelWithHVAC_01/run.db</filename>
-      <filetype>db</filetype>
-      <usage_type>test</usage_type>
-      <checksum>1B15A7A5</checksum>
-    </file>
-    <file>
-      <filename>0320_ModelWithHVAC_01/files/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>
-      <filetype>epw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>3B177CE0</checksum>
     </file>
   </files>
 </measure>
