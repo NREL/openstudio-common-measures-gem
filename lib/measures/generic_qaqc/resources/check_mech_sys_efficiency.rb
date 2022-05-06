@@ -44,7 +44,9 @@ module OsLib_QAQC
     check_elems = OpenStudio::AttributeVector.new
     check_elems << OpenStudio::Attribute.new('name', 'Mechanical System Efficiency')
     check_elems << OpenStudio::Attribute.new('category', category)
-
+    check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
+    check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
+    
     if target_standard.include?('90.1-2013')
       display_standard = "ASHRAE #{target_standard}"
       check_elems << OpenStudio::Attribute.new('description', "Check against #{display_standard} Tables 6.8.1 A-K for the following component types: #{component_type_array.join(', ')}.")
@@ -62,6 +64,7 @@ module OsLib_QAQC
     if name_only == true
       results = []
       check_elems.each do |elem|
+        next if ['Double','Integer'].include? (elem.valueType.valueDescription)
         results << elem.valueAsString
       end
       return results
@@ -96,9 +99,9 @@ module OsLib_QAQC
         if standard_minimum_full_load_efficiency.nil?
           check_elems <<  OpenStudio::Attribute.new('flag', "Can't find target full load efficiency for #{component.name}.")
         elsif reference_COP < standard_minimum_full_load_efficiency * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "COP of #{reference_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_full_load_efficiency.round(2)}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "COP of #{reference_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_full_load_efficiency.round(2)}.")
         elsif reference_COP > standard_minimum_full_load_efficiency * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "COP  of #{reference_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_full_load_efficiency.round(2)}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "COP  of #{reference_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_full_load_efficiency.round(2)}.")
         end
       end
 
@@ -118,9 +121,9 @@ module OsLib_QAQC
         if standard_minimum_cop.nil?
           check_elems <<  OpenStudio::Attribute.new('flag', "Can't find target COP for #{component.name}.")
         elsif rated_COP < standard_minimum_cop * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "The COP of #{rated_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "The COP of #{rated_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
         elsif rated_COP > standard_minimum_cop * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "The COP of  #{rated_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "The COP of  #{rated_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
         end
       end
 
@@ -141,16 +144,16 @@ module OsLib_QAQC
         if standard_minimum_cop.nil?
           check_elems <<  OpenStudio::Attribute.new('flag', "Can't find target COP for #{component.name}.")
         elsif rated_high_speed_COP < standard_minimum_cop * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "The high speed COP of #{rated_high_speed_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "The high speed COP of #{rated_high_speed_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
         elsif rated_high_speed_COP > standard_minimum_cop * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "The high speed COP of  #{rated_high_speed_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "The high speed COP of  #{rated_high_speed_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
         end
         if standard_minimum_cop.nil?
           check_elems <<  OpenStudio::Attribute.new('flag', "Can't find target COP for #{component.name}.")
         elsif rated_low_speed_COP < standard_minimum_cop * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "The low speed COP of #{rated_low_speed_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "The low speed COP of #{rated_low_speed_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
         elsif rated_low_speed_COP > standard_minimum_cop * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "The low speed COP of  #{rated_low_speed_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "The low speed COP of  #{rated_low_speed_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
         end
       end
 
@@ -171,9 +174,9 @@ module OsLib_QAQC
         if standard_minimum_cop.nil?
           check_elems <<  OpenStudio::Attribute.new('flag', "Can't find target COP for #{component.name}.")
         elsif rated_COP < standard_minimum_cop * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "The COP of #{rated_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "The COP of #{rated_COP.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_cop.round(2)} for #{display_standard}.")
         elsif rated_COP > standard_minimum_cop * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "The COP of  #{rated_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_cop.round(2)}. for #{display_standard}")
+          check_elems <<  OpenStudio::Attribute.new('flag', "The COP of  #{rated_COP.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_cop.round(2)}. for #{display_standard}")
         end
       end
 
@@ -190,12 +193,14 @@ module OsLib_QAQC
         end
 
         # check actual against target
-        if standard_minimum_thermal_efficiency.nil?
+        if component.autosizedNominalCapacity.get == 0
+          check_elems <<  OpenStudio::Attribute.new('flag', "Boiler named #{component.name} has a capacity of 0.")
+        elsif standard_minimum_thermal_efficiency.nil?
           check_elems <<  OpenStudio::Attribute.new('flag', "Can't find target thermal efficiency for #{component.name}.")
         elsif nominal_thermal_efficiency < standard_minimum_thermal_efficiency * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Nominal thermal efficiency of #{nominal_thermal_efficiency.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_thermal_efficiency.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Nominal thermal efficiency of #{nominal_thermal_efficiency.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_thermal_efficiency.round(2)} for #{display_standard}.")
         elsif nominal_thermal_efficiency > standard_minimum_thermal_efficiency * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Nominal thermal efficiency of  #{nominal_thermal_efficiency.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_thermal_efficiency.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Nominal thermal efficiency of  #{nominal_thermal_efficiency.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_thermal_efficiency.round(2)} for #{display_standard}.")
         end
       end
 
@@ -219,9 +224,9 @@ module OsLib_QAQC
 
         # check actual against target
         if motor_eff < standard_minimum_motor_efficiency_and_size * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
         elsif motor_eff > standard_minimum_motor_efficiency_and_size * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
         end
       end
 
@@ -244,9 +249,9 @@ module OsLib_QAQC
 
         # check actual against target
         if motor_eff < standard_minimum_motor_efficiency_and_size * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
         elsif motor_eff > standard_minimum_motor_efficiency_and_size * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
         end
       end
 
@@ -270,9 +275,9 @@ module OsLib_QAQC
 
         # check actual against target
         if motor_eff < standard_minimum_motor_efficiency_and_size * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
         elsif motor_eff > standard_minimum_motor_efficiency_and_size * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
         end
       end
 
@@ -296,9 +301,9 @@ module OsLib_QAQC
 
         # check actual against target
         if motor_eff < standard_minimum_motor_efficiency_and_size * (1.0 - min_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{min_pass * 100} % below the expected value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{min_pass * 100} % below the value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
         elsif motor_eff > standard_minimum_motor_efficiency_and_size * (1.0 + max_pass)
-          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{max_pass * 100} % above the expected value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
+          check_elems <<  OpenStudio::Attribute.new('flag', "Motor efficiency of #{motor_eff.round(2)} for #{component.name} is more than #{max_pass * 100} % above the value of #{standard_minimum_motor_efficiency_and_size.round(2)} for #{display_standard}.")
         end
       end
 

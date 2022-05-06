@@ -43,11 +43,14 @@ module OsLib_QAQC
     check_elems << OpenStudio::Attribute.new('name', 'Mechanical System Capacity')
     check_elems << OpenStudio::Attribute.new('category', category)
     check_elems << OpenStudio::Attribute.new('description', 'Check HVAC capacity against ASHRAE rules of thumb for chiller max flow rate, air loop max flow rate, air loop cooling capciaty, and zone heating capcaity. Zone heating check will skip thermal zones without any exterior exposure, and thermal zones that are not conditioned.')
-
+    check_elems << OpenStudio::Attribute.new('min_pass', "Var")
+    check_elems << OpenStudio::Attribute.new('max_pass', "Var")
+    
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
       check_elems.each do |elem|
+        next if ['Double','Integer'].include? (elem.valueType.valueDescription)
         results << elem.valueAsString
       end
       return results

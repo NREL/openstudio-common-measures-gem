@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_gas_burner_efficiency</name>
   <uid>afabec3d-cd02-4908-a367-84e21657421f</uid>
-  <version_id>2d14190a-716e-4edb-8bc1-6988a29c7c79</version_id>
-  <version_modified>20210406T220259Z</version_modified>
+  <version_id>41439c27-7428-4a3c-8745-efc89d618830</version_id>
+  <version_modified>20220506T153447Z</version_modified>
   <xml_checksum>0DA5C9E6</xml_checksum>
   <class_name>SetGasBurnerEfficiency</class_name>
   <display_name>Set Gas Burner Efficiency</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{20c7f001-49b4-456f-8d68-befab57e24b5}</default_value>
+      <default_value>{40bd171f-77cb-4e7e-bcb4-2cbce6c09d43}</default_value>
       <choices>
         <choice>
-          <value>{20c7f001-49b4-456f-8d68-befab57e24b5}</value>
+          <value>{40bd171f-77cb-4e7e-bcb4-2cbce6c09d43}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>

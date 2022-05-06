@@ -91,42 +91,6 @@ class GenericQAQC_Test < Minitest::Test
     "#{run_dir(test_name)}/report.html"
   end
 
-  # method for running the test simulation using OpenStudio 1.x API
-  def setup_test_1(test_name, epw_path)
-    co = OpenStudio::Runmanager::ConfigOptions.new(true)
-    co.findTools(false, true, false, true)
-
-    if !File.exist?(sql_path(test_name))
-      puts 'Running EnergyPlus'
-
-      wf = OpenStudio::Runmanager::Workflow.new('modeltoidf->energypluspreprocess->energyplus')
-      wf.add(co.getTools)
-      job = wf.create(OpenStudio::Path.new(run_dir(test_name)), OpenStudio::Path.new(model_out_path(test_name)), OpenStudio::Path.new(epw_path))
-
-      rm = OpenStudio::Runmanager::RunManager.new
-      rm.enqueue(job, true)
-      rm.waitForFinished
-    end
-  end
-
-  # method for running the test simulation using OpenStudio 2.x API
-  def setup_test_2(test_name, epw_path)
-    if !File.exist?(sql_path(test_name))
-      osw_path = File.join(run_dir(test_name), 'in.osw')
-      osw_path = File.absolute_path(osw_path)
-
-      workflow = OpenStudio::WorkflowJSON.new
-      workflow.setSeedFile(File.absolute_path(model_out_path(test_name)))
-      workflow.setWeatherFile(File.absolute_path(epw_path))
-      workflow.saveAs(osw_path)
-
-      cli_path = OpenStudio.getOpenStudioCLI
-      cmd = "\"#{cli_path}\" run -w \"#{osw_path}\""
-      puts cmd
-      system(cmd)
-    end
-  end
-
   # create test files if they do not exist when the test first runs
   def setup_test(test_name, idf_output_requests, model_in_path = model_in_path_default, epw_path = epw_path_default)
     if !File.exist?(run_dir(test_name))
@@ -163,10 +127,19 @@ class GenericQAQC_Test < Minitest::Test
       end
     end
 
-    if is_openstudio_2?
-      setup_test_2(test_name, epw_path)
-    else
-      setup_test_1(test_name, epw_path)
+    if !File.exist?(sql_path(test_name))
+      osw_path = File.join(run_dir(test_name), 'in.osw')
+      osw_path = File.absolute_path(osw_path)
+
+      workflow = OpenStudio::WorkflowJSON.new
+      workflow.setSeedFile(File.absolute_path(model_out_path(test_name)))
+      workflow.setWeatherFile(File.absolute_path(epw_path))
+      workflow.saveAs(osw_path)
+
+      cli_path = OpenStudio.getOpenStudioCLI
+      cmd = "\"#{cli_path}\" run -w \"#{osw_path}\""
+      puts cmd
+      system(cmd)
     end
   end
 
@@ -233,9 +206,6 @@ class GenericQAQC_Test < Minitest::Test
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    # create hash of argument values
-    args_hash = {}
-
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
     assert(!idf_output_requests.empty?)
@@ -298,9 +268,6 @@ class GenericQAQC_Test < Minitest::Test
     # get arguments
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
-
-    # create hash of argument values
-    args_hash = {}
 
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
@@ -367,9 +334,6 @@ class GenericQAQC_Test < Minitest::Test
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    # create hash of argument values
-    args_hash = {}
-
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
     # assert(idf_output_requests.size > 0) # todo - see if this is issue
@@ -432,9 +396,6 @@ class GenericQAQC_Test < Minitest::Test
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    # create hash of argument values
-    args_hash = {}
-
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
     assert(idf_output_requests.empty?) # no airTerminalSingleDuctVAVReheats
@@ -496,9 +457,6 @@ class GenericQAQC_Test < Minitest::Test
     # get arguments
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
-
-    # create hash of argument values
-    args_hash = {}
 
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
@@ -565,9 +523,6 @@ class GenericQAQC_Test < Minitest::Test
       arguments = measure.arguments
       argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-      # create hash of argument values
-      args_hash = {}
-
       # get the energyplus output requests, this will be done automatically by OS App and PAT
       idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
       assert(!idf_output_requests.empty?)
@@ -631,8 +586,80 @@ class GenericQAQC_Test < Minitest::Test
     arguments = measure.arguments
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
+    # get the energyplus output requests, this will be done automatically by OS App and PAT
+    idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
+    # assert(idf_output_requests.size > 0)
+
+    # mimic the process of running this measure in OS App or PAT
+    setup_test(test_name, idf_output_requests, model_in_path, epw.to_s)
+
+    assert(File.exist?(model_out_path(test_name)))
+    assert(File.exist?(sql_path(test_name)))
+    assert(File.exist?(epw.to_s))
+
+    # set up runner, this will happen automatically when measure is run in PAT or OpenStudio
+    runner.setLastOpenStudioModelPath(OpenStudio::Path.new(model_out_path(test_name)))
+    runner.setLastEnergyPlusWorkspacePath(OpenStudio::Path.new(workspace_path(test_name)))
+    runner.setLastEpwFilePath(epw.to_s)
+    runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
+
+    # delete the output if it exists
+    if File.exist?(report_path(test_name))
+      FileUtils.rm(report_path(test_name))
+    end
+    assert(!File.exist?(report_path(test_name)))
+
+    # temporarily change directory to the run directory and run the measure
+    start_dir = Dir.pwd
+    begin
+      Dir.chdir(run_dir(test_name))
+
+      # run the measure
+      measure.run(runner, argument_map)
+      result = runner.result
+      show_output(result)
+      assert_equal('Success', result.value.valueName)
+
+      # look for section_errors
+      assert(section_errors(runner).empty?)
+    ensure
+      Dir.chdir(start_dir)
+    end
+
+    # make sure the report file exists
+    assert(File.exist?(report_path(test_name)))
+  end
+
+    # test 0422_sm_off
+  def test_GenericQAQC_0422_sm_off_2019
+    # setup test name, model, and epw
+    test_name = '0422_sm_off_2019'
+    model_in_path = "#{File.dirname(__FILE__)}/0422_test_b_sm_off.osm"
+    epw = OpenStudio::Path.new(File.dirname(__FILE__)) / OpenStudio::Path.new('USA_TX_Austin-Mueller.Muni.AP.722540_TMY3.epw')
+
+    # create an instance of the measure
+    measure = GenericQAQC.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    runner.setLastOpenStudioModel(model_vers_trans(model_in_path))
+
+    # get arguments
+    arguments = measure.arguments
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
     # create hash of argument values
     args_hash = {}
+    args_hash['template'] = '90.1-2019'
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
 
     # get the energyplus output requests, this will be done automatically by OS App and PAT
     idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
@@ -677,4 +704,455 @@ class GenericQAQC_Test < Minitest::Test
     # make sure the report file exists
     assert(File.exist?(report_path(test_name)))
   end
+
+  # test 0422_sm_off
+  def test_GenericQAQC_0422_sm_off_comstock2013
+    # setup test name, model, and epw
+    test_name = '0422_sm_off_comstock2013'
+    model_in_path = "#{File.dirname(__FILE__)}/0422_test_b_sm_off.osm"
+    epw = OpenStudio::Path.new(File.dirname(__FILE__)) / OpenStudio::Path.new('USA_TX_Austin-Mueller.Muni.AP.722540_TMY3.epw')
+
+    # create an instance of the measure
+    measure = GenericQAQC.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    runner.setLastOpenStudioModel(model_vers_trans(model_in_path))
+
+    # get arguments
+    arguments = measure.arguments
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    # create hash of argument values
+    args_hash = {}
+    args_hash['template'] = 'ComStock 90.1-2013'
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
+
+    # get the energyplus output requests, this will be done automatically by OS App and PAT
+    idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
+    # assert(idf_output_requests.size > 0)
+
+    # mimic the process of running this measure in OS App or PAT
+    setup_test(test_name, idf_output_requests, model_in_path, epw.to_s)
+
+    assert(File.exist?(model_out_path(test_name)))
+    assert(File.exist?(sql_path(test_name)))
+    assert(File.exist?(epw.to_s))
+
+    # set up runner, this will happen automatically when measure is run in PAT or OpenStudio
+    runner.setLastOpenStudioModelPath(OpenStudio::Path.new(model_out_path(test_name)))
+    runner.setLastEnergyPlusWorkspacePath(OpenStudio::Path.new(workspace_path(test_name)))
+    runner.setLastEpwFilePath(epw.to_s)
+    runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
+
+    # delete the output if it exists
+    if File.exist?(report_path(test_name))
+      FileUtils.rm(report_path(test_name))
+    end
+    assert(!File.exist?(report_path(test_name)))
+
+    # temporarily change directory to the run directory and run the measure
+    start_dir = Dir.pwd
+    begin
+      Dir.chdir(run_dir(test_name))
+
+      # run the measure
+      measure.run(runner, argument_map)
+      result = runner.result
+      show_output(result)
+      assert_equal('Success', result.value.valueName)
+
+      # look for section_errors
+      assert(section_errors(runner).empty?)
+    ensure
+      Dir.chdir(start_dir)
+    end
+
+    # make sure the report file exists
+    assert(File.exist?(report_path(test_name)))
+  end
+
+  # test_fsr
+  def test_fsr
+    # setup test name, model, and epw
+    test_name = 'fsr'
+    model_in_path = "#{File.dirname(__FILE__)}/fsr.osm"
+    epw = OpenStudio::Path.new(File.dirname(__FILE__)) / OpenStudio::Path.new('USA_CO_Golden-NREL.724666_TMY3.epw')
+
+    # create an instance of the measure
+    measure = GenericQAQC.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    runner.setLastOpenStudioModel(model_vers_trans(model_in_path))
+
+    # get arguments
+    arguments = measure.arguments
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    # create hash of argument values
+    args_hash = {}
+    args_hash['template'] = '90.1-2010'
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
+
+    # get the energyplus output requests, this will be done automatically by OS App and PAT
+    idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
+    # assert(idf_output_requests.size > 0)
+
+    # mimic the process of running this measure in OS App or PAT
+    setup_test(test_name, idf_output_requests, model_in_path, epw.to_s)
+
+    assert(File.exist?(model_out_path(test_name)))
+    assert(File.exist?(sql_path(test_name)))
+    assert(File.exist?(epw.to_s))
+
+    # set up runner, this will happen automatically when measure is run in PAT or OpenStudio
+    runner.setLastOpenStudioModelPath(OpenStudio::Path.new(model_out_path(test_name)))
+    runner.setLastEnergyPlusWorkspacePath(OpenStudio::Path.new(workspace_path(test_name)))
+    runner.setLastEpwFilePath(epw.to_s)
+    runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
+
+    # delete the output if it exists
+    if File.exist?(report_path(test_name))
+      FileUtils.rm(report_path(test_name))
+    end
+    assert(!File.exist?(report_path(test_name)))
+
+    # temporarily change directory to the run directory and run the measure
+    start_dir = Dir.pwd
+    begin
+      Dir.chdir(run_dir(test_name))
+
+      # run the measure
+      measure.run(runner, argument_map)
+      result = runner.result
+      show_output(result)
+      assert_equal('Success', result.value.valueName)
+
+      # look for section_errors
+      assert(section_errors(runner).empty?)
+    ensure
+      Dir.chdir(start_dir)
+    end
+
+    # make sure the report file exists
+    assert(File.exist?(report_path(test_name)))
+  end
+
+  # test uo_lg_hotel
+  def test_uo_lg_hotel
+    # setup test name, model, and epw
+    test_name = 'uo_lg_hotel'
+    model_in_path = "#{File.dirname(__FILE__)}/uo_lg_hotel.osm"
+    epw = OpenStudio::Path.new(File.dirname(__FILE__)) / OpenStudio::Path.new('USA_NY_Buffalo-Greater.Buffalo.Intl.AP.725280_TMY3.epw')
+
+    # create an instance of the measure
+    measure = GenericQAQC.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    runner.setLastOpenStudioModel(model_vers_trans(model_in_path))
+
+    # get arguments
+    arguments = measure.arguments
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    # create hash of argument values
+    args_hash = {}
+    args_hash['template'] = '90.1-2013'
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
+
+    # get the energyplus output requests, this will be done automatically by OS App and PAT
+    idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
+    # assert(idf_output_requests.size > 0)
+
+    # mimic the process of running this measure in OS App or PAT
+    setup_test(test_name, idf_output_requests, model_in_path, epw.to_s)
+
+    assert(File.exist?(model_out_path(test_name)))
+    assert(File.exist?(sql_path(test_name)))
+    assert(File.exist?(epw.to_s))
+
+    # set up runner, this will happen automatically when measure is run in PAT or OpenStudio
+    runner.setLastOpenStudioModelPath(OpenStudio::Path.new(model_out_path(test_name)))
+    runner.setLastEnergyPlusWorkspacePath(OpenStudio::Path.new(workspace_path(test_name)))
+    runner.setLastEpwFilePath(epw.to_s)
+    runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
+
+    # delete the output if it exists
+    if File.exist?(report_path(test_name))
+      FileUtils.rm(report_path(test_name))
+    end
+    assert(!File.exist?(report_path(test_name)))
+
+    # temporarily change directory to the run directory and run the measure
+    start_dir = Dir.pwd
+    begin
+      Dir.chdir(run_dir(test_name))
+
+      # run the measure
+      measure.run(runner, argument_map)
+      result = runner.result
+      show_output(result)
+      assert_equal('Success', result.value.valueName)
+
+      # look for section_errors
+      assert(section_errors(runner).empty?)
+    ensure
+      Dir.chdir(start_dir)
+    end
+
+    # make sure the report file exists
+    assert(File.exist?(report_path(test_name)))
+  end
+
+  # test uo_strip_mall
+  def test_uo_strip_mall
+    # setup test name, model, and epw
+    test_name = 'uo_strip_mall'
+    model_in_path = "#{File.dirname(__FILE__)}/uo_strip_mall.osm"
+    epw = OpenStudio::Path.new(File.dirname(__FILE__)) / OpenStudio::Path.new('USA_NY_Buffalo-Greater.Buffalo.Intl.AP.725280_TMY3.epw')
+
+    # create an instance of the measure
+    measure = GenericQAQC.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    runner.setLastOpenStudioModel(model_vers_trans(model_in_path))
+
+    # get arguments
+    arguments = measure.arguments
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    # create hash of argument values
+    args_hash = {}
+    args_hash['template'] = '90.1-2004'
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
+
+    # get the energyplus output requests, this will be done automatically by OS App and PAT
+    idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
+    # assert(idf_output_requests.size > 0)
+
+    # mimic the process of running this measure in OS App or PAT
+    setup_test(test_name, idf_output_requests, model_in_path, epw.to_s)
+
+    assert(File.exist?(model_out_path(test_name)))
+    assert(File.exist?(sql_path(test_name)))
+    assert(File.exist?(epw.to_s))
+
+    # set up runner, this will happen automatically when measure is run in PAT or OpenStudio
+    runner.setLastOpenStudioModelPath(OpenStudio::Path.new(model_out_path(test_name)))
+    runner.setLastEnergyPlusWorkspacePath(OpenStudio::Path.new(workspace_path(test_name)))
+    runner.setLastEpwFilePath(epw.to_s)
+    runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
+
+    # delete the output if it exists
+    if File.exist?(report_path(test_name))
+      FileUtils.rm(report_path(test_name))
+    end
+    assert(!File.exist?(report_path(test_name)))
+
+    # temporarily change directory to the run directory and run the measure
+    start_dir = Dir.pwd
+    begin
+      Dir.chdir(run_dir(test_name))
+
+      # run the measure
+      measure.run(runner, argument_map)
+      result = runner.result
+      show_output(result)
+      assert_equal('Success', result.value.valueName)
+
+      # look for section_errors
+      #assert(section_errors(runner).empty?) # todo enable when building type lookup for StripMall is fixed
+    ensure
+      Dir.chdir(start_dir)
+    end
+
+    # make sure the report file exists
+    assert(File.exist?(report_path(test_name)))
+  end
+
+  # test uo_blend
+  def test_uo_blend
+    # setup test name, model, and epw
+    test_name = 'uo_blend'
+    model_in_path = "#{File.dirname(__FILE__)}/uo_blend.osm"
+    epw = OpenStudio::Path.new(File.dirname(__FILE__)) / OpenStudio::Path.new('USA_NY_Buffalo-Greater.Buffalo.Intl.AP.725280_TMY3.epw')
+
+    # create an instance of the measure
+    measure = GenericQAQC.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    runner.setLastOpenStudioModel(model_vers_trans(model_in_path))
+
+    # get arguments
+    arguments = measure.arguments
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    # create hash of argument values
+    args_hash = {}
+    args_hash['template'] = '90.1-2007'
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
+
+    # get the energyplus output requests, this will be done automatically by OS App and PAT
+    idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
+    # assert(idf_output_requests.size > 0)
+
+    # mimic the process of running this measure in OS App or PAT
+    setup_test(test_name, idf_output_requests, model_in_path, epw.to_s)
+
+    assert(File.exist?(model_out_path(test_name)))
+    assert(File.exist?(sql_path(test_name)))
+    assert(File.exist?(epw.to_s))
+
+    # set up runner, this will happen automatically when measure is run in PAT or OpenStudio
+    runner.setLastOpenStudioModelPath(OpenStudio::Path.new(model_out_path(test_name)))
+    runner.setLastEnergyPlusWorkspacePath(OpenStudio::Path.new(workspace_path(test_name)))
+    runner.setLastEpwFilePath(epw.to_s)
+    runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
+
+    # delete the output if it exists
+    if File.exist?(report_path(test_name))
+      FileUtils.rm(report_path(test_name))
+    end
+    assert(!File.exist?(report_path(test_name)))
+
+    # temporarily change directory to the run directory and run the measure
+    start_dir = Dir.pwd
+    begin
+      Dir.chdir(run_dir(test_name))
+
+      # run the measure
+      measure.run(runner, argument_map)
+      result = runner.result
+      show_output(result)
+      assert_equal('Success', result.value.valueName)
+
+      # look for section_errors
+      assert(section_errors(runner).empty?)
+    ensure
+      Dir.chdir(start_dir)
+    end
+
+    # make sure the report file exists
+    assert(File.exist?(report_path(test_name)))
+  end
+
+    # test uo_mixed
+  def test_uo_mixed
+    # setup test name, model, and epw
+    test_name = 'uo_mixed'
+    model_in_path = "#{File.dirname(__FILE__)}/uo_mixed.osm"
+    epw = OpenStudio::Path.new(File.dirname(__FILE__)) / OpenStudio::Path.new('USA_NY_Buffalo-Greater.Buffalo.Intl.AP.725280_TMY3.epw')
+
+    # create an instance of the measure
+    measure = GenericQAQC.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    runner.setLastOpenStudioModel(model_vers_trans(model_in_path))
+
+    # get arguments
+    arguments = measure.arguments
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    # create hash of argument values
+    args_hash = {}
+    args_hash['template'] = '90.1-2013'
+
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash[arg.name]
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
+
+    # get the energyplus output requests, this will be done automatically by OS App and PAT
+    idf_output_requests = measure.energyPlusOutputRequests(runner, argument_map)
+    # assert(idf_output_requests.size > 0)
+
+    # mimic the process of running this measure in OS App or PAT
+    setup_test(test_name, idf_output_requests, model_in_path, epw.to_s)
+
+    assert(File.exist?(model_out_path(test_name)))
+    assert(File.exist?(sql_path(test_name)))
+    assert(File.exist?(epw.to_s))
+
+    # set up runner, this will happen automatically when measure is run in PAT or OpenStudio
+    runner.setLastOpenStudioModelPath(OpenStudio::Path.new(model_out_path(test_name)))
+    runner.setLastEnergyPlusWorkspacePath(OpenStudio::Path.new(workspace_path(test_name)))
+    runner.setLastEpwFilePath(epw.to_s)
+    runner.setLastEnergyPlusSqlFilePath(OpenStudio::Path.new(sql_path(test_name)))
+
+    # delete the output if it exists
+    if File.exist?(report_path(test_name))
+      FileUtils.rm(report_path(test_name))
+    end
+    assert(!File.exist?(report_path(test_name)))
+
+    # temporarily change directory to the run directory and run the measure
+    start_dir = Dir.pwd
+    begin
+      Dir.chdir(run_dir(test_name))
+
+      # run the measure
+      measure.run(runner, argument_map)
+      result = runner.result
+      show_output(result)
+      assert_equal('Success', result.value.valueName)
+
+      # look for section_errors
+      assert(section_errors(runner).empty?)
+    ensure
+      Dir.chdir(start_dir)
+    end
+
+    # make sure the report file exists
+    assert(File.exist?(report_path(test_name)))
+  end
+
 end

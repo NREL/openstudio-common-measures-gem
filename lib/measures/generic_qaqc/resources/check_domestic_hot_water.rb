@@ -49,11 +49,14 @@ module OsLib_QAQC
     else
       check_elems << OpenStudio::Attribute.new('description', 'Check against the 2011 ASHRAE Handbook - HVAC Applications, Table 7 section 50.14.')
     end
-
+    check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
+    check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
+    
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
       check_elems.each do |elem|
+        next if ['Double','Integer'].include? (elem.valueType.valueDescription)
         results << elem.valueAsString
       end
       return results
@@ -158,7 +161,7 @@ module OsLib_QAQC
 
               space_type_num_people_hours = 0.0
               # loop through peole instances
-              space_type.peoples.each do |inst|
+              space_type.people.each do |inst|
                 inst_num_people = inst.getNumberOfPeople(space_type_floor_area)
                 inst_schedule = inst.numberofPeopleSchedule.get # sim will fail prior to this if doesn't have it
 
@@ -185,7 +188,7 @@ module OsLib_QAQC
 
               num_people_hours += space_type_num_people_hours
             end
-            num_meals = num_people_hours / 365.0 * 1.5 # 90 minute meal
+            num_meals = num_people_hours / (365.0 * 1.5) # 90 minute meal
             target_consumption = num_meals * ashrae_hot_water_demand.first[:avg_day_unit]
 
           elsif ['LargeHotel', 'SmallHotel'].include? building_type
@@ -287,7 +290,7 @@ module OsLib_QAQC
 
               num_people_hours += space_type_num_people_hours
             end
-            num_meals = num_people_hours / 365.0 * 0.5 # 30 minute leal
+            num_meals = num_people_hours / (365.0 * 0.5) # 30 minute leal
             # todo - add logic to address drive through traffic
             target_consumption = num_meals * ashrae_hot_water_demand.first[:avg_day_unit]
 
@@ -312,10 +315,12 @@ module OsLib_QAQC
       end
 
       # check actual against target
-      if service_water_consumption_daily_avg_gal < target_consumption * (1.0 - min_pass)
-        check_elems <<  OpenStudio::Attribute.new('flag', "Annual average of #{service_water_consumption_daily_avg_gal.round} gallons per day of hot water is more than #{min_pass * 100} % below the expected value of #{target_consumption.round} gallons per day.")
-      elsif service_water_consumption_daily_avg_gal > target_consumption * (1.0 + max_pass)
-        check_elems <<  OpenStudio::Attribute.new('flag', "Annual average of #{service_water_consumption_daily_avg_gal.round} gallons per day of hot water is more than #{max_pass * 100} % above the expected value of #{target_consumption.round} gallons per day.")
+      if !target_consumption.nil?
+        if service_water_consumption_daily_avg_gal < target_consumption * (1.0 - min_pass)
+          check_elems <<  OpenStudio::Attribute.new('flag', "Annual average of #{service_water_consumption_daily_avg_gal.round} gallons per day of hot water is more than #{min_pass * 100} % below the value of #{target_consumption.round} gallons per day.")
+        elsif service_water_consumption_daily_avg_gal > target_consumption * (1.0 + max_pass)
+          check_elems <<  OpenStudio::Attribute.new('flag', "Annual average of #{service_water_consumption_daily_avg_gal.round} gallons per day of hot water is more than #{max_pass * 100} % above the value of #{target_consumption.round} gallons per day.")
+        end
       end
     rescue StandardError => e
       # brief description of ruby error

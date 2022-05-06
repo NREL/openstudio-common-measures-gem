@@ -3,15 +3,13 @@
   <schema_version>3.0</schema_version>
   <name>swap_lights_definition</name>
   <uid>63845525-5b86-448f-9a34-6be8481496ea</uid>
-  <version_id>5afb4e53-9cd5-4bf7-ba9b-3481c2fa92ee</version_id>
-  <version_modified>20210406T220259Z</version_modified>
+  <version_id>8ab266db-3cb8-493c-8b16-47474a30bddb</version_id>
+  <version_modified>20220506T153448Z</version_modified>
   <xml_checksum>293730A7</xml_checksum>
   <class_name>SwapLightsDefinition</class_name>
   <display_name>SwapLightsDefinition</display_name>
   <description>This measure will swap out one lights definition for another. All objects that had referred to the original definition will now refer to the new one.</description>
-  <modeler_description>This measure will not delete or change either definition, rather it just swaps out the references of one for the other. It is possible that the new definition is already used in the model elsewhere.
-    Each of these objects can be independently costed, however the measure can address demolition costs of the object being removed.
-  </modeler_description>
+  <modeler_description>This measure will not delete or change either definition, rather it just swaps out the references of one for the other. It is possible that the new definition is already used in the model elsewhere. Each of these objects can be independently costed, however the measure can address demolition costs of the object being removed.</modeler_description>
   <arguments>
     <argument>
       <name>old_lights_def</name>

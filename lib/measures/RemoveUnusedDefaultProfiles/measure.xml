@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>remove_unused_default_profiles</name>
   <uid>8abcdf38-c391-465a-8fb8-b243aa4f0b06</uid>
-  <version_id>45d7a5b4-2b4d-4540-8493-6c2bd61dda47</version_id>
-  <version_modified>20210406T220257Z</version_modified>
+  <version_id>8492641b-96f2-4bc3-ba82-637794e6b015</version_id>
+  <version_modified>20220506T153446Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>RemoveUnusedDefaultProfiles</class_name>
   <display_name>RemoveUnusedDefaultProfiles</display_name>

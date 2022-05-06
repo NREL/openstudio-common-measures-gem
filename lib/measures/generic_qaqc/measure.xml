@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>20e401a2-9dd1-4a18-83aa-99fc46a4cea2</version_id>
-  <version_modified>20210423T144537Z</version_modified>
+  <version_id>8f162fe1-b120-4d78-861a-1089ee150751</version_id>
+  <version_modified>20220506T153448Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -44,12 +44,44 @@
           <value>90.1-2013</value>
           <display_name>90.1-2013</display_name>
         </choice>
+        <choice>
+          <value>90.1-2016</value>
+          <display_name>90.1-2016</display_name>
+        </choice>
+        <choice>
+          <value>90.1-2019</value>
+          <display_name>90.1-2019</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref Pre-1980</value>
+          <display_name>ComStock DOE Ref Pre-1980</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref 1980-2004</value>
+          <display_name>ComStock DOE Ref 1980-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2004</value>
+          <display_name>ComStock 90.1-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2007</value>
+          <display_name>ComStock 90.1-2007</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2010</value>
+          <display_name>ComStock 90.1-2010</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2013</value>
+          <display_name>ComStock 90.1-2013</display_name>
+        </choice>
       </choices>
     </argument>
     <argument>
       <name>check_eui_reasonableness</name>
       <display_name>EUI Reasonableness (General)</display_name>
-      <description>Check EUI for model against selected ASHRAE standard DOE prototype buildings.</description>
+      <description>Check model EUI against selected ASHRAE standard DOE prototype building.</description>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -77,7 +109,7 @@
     <argument>
       <name>check_eui_by_end_use</name>
       <display_name>End Use by Category (General)</display_name>
-      <description>Check end use by category against selected ASHRAE standard DOE prototype buildings.</description>
+      <description>Check model consumption by end use against selected ASHRAE standard DOE prototype building.</description>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -180,7 +212,7 @@
     <argument>
       <name>check_internal_loads</name>
       <display_name>Internal Loads (Baseline)</display_name>
-      <description>Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against selected ASHRAE standard and DOE Prototype buildings.</description>
+      <description>Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against selected ASHRAE standard DOE Prototype buildings.</description>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -319,7 +351,7 @@
     </argument>
     <argument>
       <name>check_mech_sys_type</name>
-      <display_name>Mechanical System Type (Baseline)</display_name>
+      <display_name>Baseline Mechanical System Type (Baseline)</display_name>
       <description>Check against ASHRAE 90.1. Infers the baseline system type based on the equipment serving the zone and their heating/cooling fuels. Only does a high-level inference; does not look for the presence/absence of required controls, etc.</description>
       <type>Boolean</type>
       <required>true</required>
@@ -363,6 +395,25 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0.5</default_value>
+    </argument>
+    <argument>
+      <name>use_upstream_args</name>
+      <display_name>Use Upstream Argument Values</display_name>
+      <description>When true this will look for arguments or registerValues in upstream measures that match arguments from this measure, and will use the value from the upstream measure in place of what is entered for this measure.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
     </argument>
   </arguments>
   <outputs />
@@ -438,22 +489,10 @@
       <checksum>779C47A4</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
       <filename>BasicOfficeTest.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>75942985</checksum>
-    </file>
-    <file>
-      <filename>MidRiseApt.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>146619F3</checksum>
     </file>
     <file>
       <filename>BasicOfficeTest_Mueller_altHVAC_a.osm</filename>
@@ -492,12 +531,6 @@
       <checksum>A21A3ED2</checksum>
     </file>
     <file>
-      <filename>check_mech_sys_type.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>887B8C81</checksum>
-    </file>
-    <file>
       <filename>check_plant_cap.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -516,22 +549,10 @@
       <checksum>F32BF92B</checksum>
     </file>
     <file>
-      <filename>check_supply_air_and_thermostat_temp_difference.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>A6C5D312</checksum>
-    </file>
-    <file>
       <filename>check_placeholder.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>C9561EBD</checksum>
-    </file>
-    <file>
-      <filename>check_mech_sys_part_load_eff.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>511ECDBF</checksum>
     </file>
     <file>
       <filename>check_plenum_loads.rb</filename>
@@ -540,64 +561,16 @@
       <checksum>46981891</checksum>
     </file>
     <file>
-      <filename>os_lib_reporting_qaqc.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>14402DF5</checksum>
-    </file>
-    <file>
-      <filename>check_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>97D9A3D1</checksum>
-    </file>
-    <file>
-      <filename>check_simultaneous_heating_and_cooling.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>D8E9263B</checksum>
-    </file>
-    <file>
       <filename>check_sch_coord.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>B17FFC25</checksum>
     </file>
     <file>
-      <filename>check_eui_reasonableness.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>83D17D6A</checksum>
-    </file>
-    <file>
-      <filename>check_internal_loads.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>F698CF14</checksum>
-    </file>
-    <file>
-      <filename>check_domestic_hot_water.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E4F0F677</checksum>
-    </file>
-    <file>
       <filename>check_air_sys_temps.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>C76C4A0C</checksum>
-    </file>
-    <file>
-      <filename>check_cond_zns.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>7BCF4D51</checksum>
-    </file>
-    <file>
-      <filename>check_mech_sys_capacity.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>776376DA</checksum>
     </file>
     <file>
       <filename>check_plant_temps.rb</filename>
@@ -624,40 +597,28 @@
       <checksum>8D1854A4</checksum>
     </file>
     <file>
-      <filename>check_mech_sys_efficiency.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>F897A40B</checksum>
-    </file>
-    <file>
       <filename>CreateResults.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>D38441F3</checksum>
     </file>
     <file>
-      <filename>measure_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>F46F0EA0</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>3AFCE991</checksum>
     </file>
     <file>
-      <filename>check_eui_by_end_use.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>F188B64A</checksum>
+      <filename>generic_qaqc_summary.jpg</filename>
+      <filetype>jpg</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>45ABEE68</checksum>
     </file>
     <file>
-      <filename>check_envelope_conductance.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>243DDE18</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>BBC2D3D5</checksum>
+      <filename>generic_qaqc_detailed.jpg</filename>
+      <filetype>jpg</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>92EA3F5C</checksum>
     </file>
     <file>
       <version>
@@ -668,13 +629,151 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>6DD4E3C2</checksum>
+      <checksum>9482E15C</checksum>
+    </file>
+    <file>
+      <filename>fsr.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D2A4E538</checksum>
+    </file>
+    <file>
+      <filename>uo_blend.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>605CDF17</checksum>
+    </file>
+    <file>
+      <filename>uo_strip_mall.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>95EBB09E</checksum>
+    </file>
+    <file>
+      <filename>uo_lg_hotel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B8033381</checksum>
+    </file>
+    <file>
+      <filename>USA_NY_Buffalo-Greater.Buffalo.Intl.AP.725280_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>6B50E0FF</checksum>
+    </file>
+    <file>
+      <filename>uo_mixed.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1874C555</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_type.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>2B4C8CB1</checksum>
+    </file>
+    <file>
+      <filename>check_supply_air_and_thermostat_temp_difference.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>245963C6</checksum>
+    </file>
+    <file>
+      <filename>check_simultaneous_heating_and_cooling.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>FAEFC26D</checksum>
+    </file>
+    <file>
+      <filename>check_cond_zns.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>35AF3348</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_capacity.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D4C11C12</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_efficiency.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>5239DDEA</checksum>
+    </file>
+    <file>
+      <filename>check_schedules.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>4381DA3F</checksum>
+    </file>
+    <file>
+      <filename>check_internal_loads.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>8770A7D0</checksum>
+    </file>
+    <file>
+      <filename>check_domestic_hot_water.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>43606255</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_part_load_eff.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>87A54A27</checksum>
+    </file>
+    <file>
+      <filename>os_lib_reporting_qaqc.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>579D7C6B</checksum>
+    </file>
+    <file>
+      <filename>check_eui_reasonableness.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E6A6A3EB</checksum>
+    </file>
+    <file>
+      <filename>check_eui_by_end_use.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3CB3F8D4</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>11DDEADA</checksum>
+    </file>
+    <file>
+      <filename>measure_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EA00F910</checksum>
+    </file>
+    <file>
+      <filename>MidRiseApt.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8316418F</checksum>
+    </file>
+    <file>
+      <filename>check_envelope_conductance.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3346FDCD</checksum>
     </file>
     <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>612E9631</checksum>
+      <checksum>6F54D1FE</checksum>
     </file>
   </files>
 </measure>
