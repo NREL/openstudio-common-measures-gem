@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_cost_per_floor_area_to_unused_lights</name>
   <uid>a5f5ddcf-48bb-413a-a712-0ee22f0b40a4</uid>
-  <version_id>4f3727ae-8c82-4a9a-9cba-56971f84f772</version_id>
-  <version_modified>20210406T220253Z</version_modified>
+  <version_id>b381ec85-c37d-45b4-87bf-083af1209520</version_id>
+  <version_modified>20220506T153448Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerFloorAreaToUnusedLights</class_name>
   <display_name>Add Cost per Floor Area to Unused Lights</display_name>
@@ -137,12 +137,6 @@
     </attribute>
   </attributes>
   <files>
-    <file>
-      <filename>resultsviewer.log</filename>
-      <filetype>log</filetype>
-      <usage_type>test</usage_type>
-      <checksum>00000000</checksum>
-    </file>
     <file>
       <filename>0416_NetArea_b.osm</filename>
       <filetype>osm</filetype>

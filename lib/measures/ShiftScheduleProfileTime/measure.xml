@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>shift_schedule_profile_time</name>
   <uid>1c642348-f074-4ad1-98ee-2208ddc89ac7</uid>
-  <version_id>7482b65c-0478-49b3-9b54-eb3a627bc2ab</version_id>
-  <version_modified>20210406T220259Z</version_modified>
+  <version_id>c464c0a3-8db6-4c4f-a77d-1da1c003fcec</version_id>
+  <version_modified>20220506T153448Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>ShiftScheduleProfileTime</class_name>
   <display_name>ShiftScheduleProfileTime</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{15966d58-132a-443f-9dcd-2a3886efe059}</default_value>
+      <default_value>{d79c0411-789b-4733-868c-2765350a45e1}</default_value>
       <choices>
         <choice>
-          <value>{15966d58-132a-443f-9dcd-2a3886efe059}</value>
+          <value>{d79c0411-789b-4733-868c-2765350a45e1}</value>
           <display_name>*All Ruleset Schedules*</display_name>
         </choice>
       </choices>

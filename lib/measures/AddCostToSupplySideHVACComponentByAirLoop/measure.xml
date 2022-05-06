@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_cost_to_supply_side_hvac_component_by_air_loop</name>
   <uid>a667a52f-aa04-4997-9292-c81671d75f84</uid>
-  <version_id>e8fc3a6a-73c6-4983-8334-e5cd7c12aaca</version_id>
-  <version_modified>20210406T220254Z</version_modified>
+  <version_id>edf06a2f-c8ae-4f6e-9f1e-a436e5e50863</version_id>
+  <version_modified>20220506T153447Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostToSupplySideHVACComponentByAirLoop</class_name>
   <display_name>Add Cost to Supply Side HVAC Component by Air Loop</display_name>
@@ -80,7 +80,7 @@
       <model_dependent>false</model_dependent>
       <choices>
         <choice>
-          <value>{94135bb3-2998-4090-aa46-6962159cd56c}</value>
+          <value>{e4edb35e-c955-4578-8731-128019ff33b6}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>
@@ -244,6 +244,12 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>HVACComponentBasic/files/USA_CO_Golden-NREL.724666_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BDF687C1</checksum>
     </file>
   </files>
 </measure>

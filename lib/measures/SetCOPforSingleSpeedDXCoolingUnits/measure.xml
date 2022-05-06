@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_co_pfor_single_speed_dx_cooling_units</name>
   <uid>a4a7297e-8314-4df7-86b5-bec18cdd0a3a</uid>
-  <version_id>1ef19b19-ad89-42c5-95f6-39b22179503e</version_id>
-  <version_modified>20210406T220258Z</version_modified>
+  <version_id>a7f68115-1f19-4b95-9a8b-f315a6649eac</version_id>
+  <version_modified>20220506T153448Z</version_modified>
   <xml_checksum>9E2537CD</xml_checksum>
   <class_name>SetCOPforSingleSpeedDXCoolingUnits</class_name>
   <display_name>Set COP for Single Speed DX Cooling Units</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{149f5154-6732-4c0e-a537-575e5461ee08}</default_value>
+      <default_value>{f382de5b-d797-4b8b-addc-35eeb4d28375}</default_value>
       <choices>
         <choice>
-          <value>{149f5154-6732-4c0e-a537-575e5461ee08}</value>
+          <value>{f382de5b-d797-4b8b-addc-35eeb4d28375}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>
