@@ -194,12 +194,25 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
 
     annual_historical_year = OpenStudio::Measure::OSArgument.makeChoiceArgument('annual_historical_year', annual_historical_year_chs, true)
 
-    #puts "annual_historical_year  = #{annual_historical_year}"
-
     annual_historical_year.setDisplayName('Annual Historical Year')
     annual_historical_year.setDescription('Annual Historical Year. Options are: 2007, 2009, 2010, 2012, 2014, 2016, 2018, and 2019.')
     annual_historical_year.setDefaultValue('2019')
     args << annual_historical_year
+
+
+
+    # natural gas annual historical year 
+    natural_gas_annual_historical_year_chs = OpenStudio::StringVector.new
+    natural_gas_annual_historical_year_chs << '2018'
+    natural_gas_annual_historical_year_chs << '2019'
+    natural_gas_annual_historical_year_chs << '2020'
+
+    natural_gas_annual_historical_year = OpenStudio::Measure::OSArgument.makeChoiceArgument('natural_gas_annual_historical_year', natural_gas_annual_historical_year_chs, true)
+
+    natural_gas_annual_historical_year.setDisplayName('Natural Gas Annual Historical Year')
+    natural_gas_annual_historical_year.setDescription('Natural Gas Annual Historical Year. Options are: 2018, 2019 and 2020.')
+    natural_gas_annual_historical_year.setDefaultValue('2019')
+    args << natural_gas_annual_historical_year
 
     return args
   end
@@ -219,6 +232,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     future_year = runner.getStringArgumentValue('future_year', usr_args).to_i
     hourly_historical_year = runner.getStringArgumentValue('hourly_historical_year', usr_args).to_i
     annual_historical_year = runner.getStringArgumentValue('annual_historical_year', usr_args).to_i
+    natural_gas_annual_historical_year = runner.getStringArgumentValue('natural_gas_annual_historical_year', usr_args).to_i
 
     # log errors if users select arguments not supported by the measure
     arguments(model).each do |argument|
@@ -250,6 +264,10 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
           runner.registerError("#{annual_historical_year} is not a valid option. Please select from of the following annual_historical_year options #{argument.choiceValues}")
         end
 
+      when 'natural_gas_annual_historical_year'
+        if !argument.choiceValues.include? natural_gas_annual_historical_year.to_s
+          runner.registerError("#{natural_gas_annual_historical_year} is not a valid option. Please select from of the following natural_gas_annual_historical_year options #{argument.choiceValues}")
+        end
       end
 
     end
@@ -258,25 +276,30 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     his_hr_path = "#{__dir__}/resources/historical_hourly_co2e_#{hourly_historical_year}.csv"
     fut_yr_path = "#{__dir__}/resources/future_annual_co2e.csv"
     his_yr_path = "#{__dir__}/resources/historical_annual_co2e.csv"
+    nat_gas_his_yr_path = "#{__dir__}/resources/historical_annual_co2e_natural_gas.csv"
 
     # find external files
-    if ((File.exist?(fut_hr_path)) and (File.exist?(fut_yr_path)) and (File.exist?(his_hr_path)) and (File.exist?(his_yr_path)))
+    if ((File.exist?(fut_hr_path)) and (File.exist?(fut_yr_path)) and (File.exist?(his_hr_path)) and (File.exist?(his_yr_path)) and (File.exist?(nat_gas_his_yr_path)))
       fut_hr_file = OpenStudio::Model::ExternalFile.getExternalFile(model, fut_hr_path)
       his_hr_file = OpenStudio::Model::ExternalFile.getExternalFile(model, his_hr_path)
       fut_yr_file = OpenStudio::Model::ExternalFile.getExternalFile(model, fut_yr_path)
       his_yr_file = OpenStudio::Model::ExternalFile.getExternalFile(model, his_yr_path)
-      if ((fut_hr_file.is_initialized) and (his_hr_file.is_initialized) and (fut_yr_file.is_initialized) and (his_yr_file.is_initialized))
+      nat_gas_his_yr_file = OpenStudio::Model::ExternalFile.getExternalFile(model, nat_gas_his_yr_path)
+
+      if ((fut_hr_file.is_initialized) and (his_hr_file.is_initialized) and (fut_yr_file.is_initialized) and (his_yr_file.is_initialized) and (nat_gas_his_yr_file.is_initialized))
         fut_hr_file = fut_hr_file.get
         his_hr_file = his_hr_file.get
         fut_yr_file = fut_yr_file.get
         his_yr_file = his_yr_file.get
+        nat_gas_his_yr_file = nat_gas_his_yr_file.get
         fut_hr_data = CSV.read(fut_hr_path, headers: true)
         his_hr_data = CSV.read(his_hr_path, headers: true)
         fut_yr_data = CSV.read(fut_yr_path, headers: true)
         his_yr_data = CSV.read(his_yr_path, headers: true)
+        nat_gas_his_yr_data = CSV.read(nat_gas_his_yr_path, headers: true)
       end
     else
-      runner.registerError("Could not find CSV file at one of more of the following paths: #{fut_hr_path}, #{his_hr_path}, #{fut_yr_path}, or #{his_yr_path}")
+      runner.registerError("Could not find CSV file at one of more of the following paths: #{fut_hr_path}, #{his_hr_path}, #{fut_yr_path}, #{his_yr_path}, or #{nat_gas_his_yr_path}")
       return false
     end
 
@@ -307,19 +330,25 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     sch_file.setMinutesperItem(60)
 
     # add EMS sensor for future schedule file
-    sch_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Schedule Value')
-    sch_sens.setKeyName("#{future_subregion} #{future_year} Future Hourly Emissions Sch")
-    sch_sens.setName('Fut_Sen')
+    fut_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Schedule Value')
+    fut_sens.setKeyName("#{future_subregion} #{future_year} Future Hourly Emissions Sch")
+    fut_sens.setName('Fut_Sen')
 
     # add EMS sensor for historical schedule file
-    sch_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Schedule Value')
-    sch_sens.setKeyName("#{hourly_historical_subregion} #{hourly_historical_year} Historical Hourly Emissions Sch")
-    sch_sens.setName('His_Sen')
+    his_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Schedule Value')
+    his_sens.setKeyName("#{hourly_historical_subregion} #{hourly_historical_year} Historical Hourly Emissions Sch")
+    his_sens.setName('His_Sen')
 
     # add whole-building electricity sensor
-    sch_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Facility Total Purchased Electricity Energy')
-    sch_sens.setKeyName('Whole Building')
-    sch_sens.setName('Ele_Sen')
+    ele_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Facility Total Purchased Electricity Energy')
+    ele_sens.setKeyName('Whole Building')
+    ele_sens.setName('Ele_Sen')
+
+    # add whole-building Natural gas sensor
+    gas_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'NaturalGas:Facility')
+    gas_sens.setKeyName('')
+    gas_sens.setName('Gas_Sen')
+ 
 
     ems_prgm = OpenStudio::Model::EnergyManagementSystemProgram.new(model)
     ems_prgm.setName('Emissions_Calc_Prgm')
@@ -327,17 +356,26 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     ems_prgm.addLine('SET his_hr_val = His_Sen')
     fut_yr_data.each {|r| ems_prgm.addLine("SET fut_yr_val = #{r[future_subregion]}") if r[0].to_i == future_year}
     his_yr_data.each {|r| ems_prgm.addLine("SET his_yr_val = #{r[annual_historical_subregion]}") if r[0].to_i == annual_historical_year}
+
+    ##nat_gas
+    nat_gas_his_yr_data.each {|r| ems_prgm.addLine("SET nat_gas_his_yr_val = #{r[annual_historical_subregion]}") if r[0].to_i == natural_gas_annual_historical_year}
+    ems_prgm.addLine('SET gas = Gas_Sen')
+
     ems_prgm.addLine('SET elec = Ele_Sen')
+
     ems_prgm.addLine('SET conv = 1000000 * 60 * 60') # J to MWh (1000000J/MJ * 60hr/min * 60 min/sec)
     ems_prgm.addLine('SET conv_kg_mt = 0.001') # kg to metric ton
+
     ems_prgm.addLine('SET fut_hr = (fut_hr_val * elec / conv) * conv_kg_mt')
     ems_prgm.addLine('SET his_hr = (his_hr_val * elec / conv) * conv_kg_mt')
     ems_prgm.addLine('SET fut_yr = (fut_yr_val * elec / conv) * conv_kg_mt')
     ems_prgm.addLine('SET his_yr = (his_yr_val * elec / conv) * conv_kg_mt')
 
+    ems_prgm.addLine('SET nat_gas_his_yr = (nat_gas_his_yr_val * gas / conv) * conv_kg_mt') #nat_gas_his_yr calculation
+
 
     #### add emissions intensity metric
-    # get building from model 
+    # get building from model
     building = model.getBuilding
     floor_area = building.floorArea * 10.764 #change from m2 to ft2
     #add metric
@@ -345,6 +383,8 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     ems_prgm.addLine("SET his_hr_intensity = his_hr * 1000 / #{floor_area}") # unit: kg/ft2 - changed mt to kg
     ems_prgm.addLine("SET fut_yr_intensity = fut_yr * 1000 / #{floor_area}") # unit: kg/ft2 - changed mt to kg
     ems_prgm.addLine("SET his_yr_intensity = his_yr * 1000 / #{floor_area}") # unit: kg/ft2 - changed mt to kg
+
+    ems_prgm.addLine("SET nat_gas_his_yr_intensity = nat_gas_his_yr * 1000 / #{floor_area}") # unit: kg/ft2 - changed mt to kg
     
     # add EMS program calling manager
     mgr_prgm = OpenStudio::Model::EnergyManagementSystemProgramCallingManager.new(model)
@@ -388,6 +428,15 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     ems_var4.setEMSProgramOrSubroutineName(ems_prgm)
     ems_var4.setUnits('mt')
 
+    # add natural gas historical annual EMS output variable
+    ems_var4 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'nat_gas_his_yr')
+    ems_var4.setName('Natural_gas_Historical_Annual_Emissions_Var')
+    ems_var4.setEMSVariableName('nat_gas_his_yr')
+    ems_var4.setTypeOfDataInVariable('Summed')
+    ems_var4.setUpdateFrequency('SystemTimestep')
+    ems_var4.setEMSProgramOrSubroutineName(ems_prgm)
+    ems_var4.setUnits('mt')
+
 
     ##### add emissions intensity 
     # add future hourly EMS output variable
@@ -426,6 +475,15 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     ems_var8.setEMSProgramOrSubroutineName(ems_prgm)
     ems_var8.setUnits('kg/ft2')
 
+    # add natural gas historical annual EMS output variable
+    ems_var8 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'nat_gas_his_yr_intensity')
+    ems_var8.setName('Natural_Gas_Historical_Annual_Emissions_Intensity_Var')
+    ems_var8.setEMSVariableName('nat_gas_his_yr_intensity')
+    ems_var8.setTypeOfDataInVariable('Summed')
+    ems_var8.setUpdateFrequency('SystemTimestep')
+    ems_var8.setEMSProgramOrSubroutineName(ems_prgm)
+    ems_var8.setUnits('kg/ft2')
+
     # add future hourly reporting output variable
     out_var1 = OpenStudio::Model::OutputVariable.new('Future_Hourly_Emissions_Var', model)
     out_var1.setKeyValue('EMS')
@@ -446,6 +504,11 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     out_var4.setKeyValue('EMS')
     out_var4.setReportingFrequency('hourly')
 
+    # add natural gas historical annual reporting output variable
+    out_var4 = OpenStudio::Model::OutputVariable.new('Natural_Gas_Historical_Annual_Emissions_Var', model)
+    out_var4.setKeyValue('EMS')
+    out_var4.setReportingFrequency('hourly')
+
     # add future hourly intensity reporting output variable
     out_var5 = OpenStudio::Model::OutputVariable.new('Future_Hourly_Emissions_Intensity_Var', model)
     out_var5.setKeyValue('EMS')
@@ -463,6 +526,11 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
 
     # add historical annual intensity reporting output variable
     out_var8 = OpenStudio::Model::OutputVariable.new('Historical_Annual_Emissions_Intensity_Var', model)
+    out_var8.setKeyValue('EMS')
+    out_var8.setReportingFrequency('hourly')
+
+    # add natural gas historical annual intensity reporting output variable
+    out_var8 = OpenStudio::Model::OutputVariable.new('Natural_Gas_Historical_Annual_Emissions_Intensity_Var', model)
     out_var8.setKeyValue('EMS')
     out_var8.setReportingFrequency('hourly')
     
