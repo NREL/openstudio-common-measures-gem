@@ -429,60 +429,60 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     ems_var4.setUnits('mt')
 
     # add natural gas historical annual EMS output variable
-    ems_var4 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'nat_gas_his_yr')
-    ems_var4.setName('Natural_gas_Historical_Annual_Emissions_Var')
-    ems_var4.setEMSVariableName('nat_gas_his_yr')
-    ems_var4.setTypeOfDataInVariable('Summed')
-    ems_var4.setUpdateFrequency('SystemTimestep')
-    ems_var4.setEMSProgramOrSubroutineName(ems_prgm)
-    ems_var4.setUnits('mt')
+    ems_var5 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'nat_gas_his_yr')
+    ems_var5.setName('Natural_gas_Historical_Annual_Emissions_Var')
+    ems_var5.setEMSVariableName('nat_gas_his_yr')
+    ems_var5.setTypeOfDataInVariable('Summed')
+    ems_var5.setUpdateFrequency('SystemTimestep')
+    ems_var5.setEMSProgramOrSubroutineName(ems_prgm)
+    ems_var5.setUnits('mt')
 
 
     ##### add emissions intensity 
     # add future hourly EMS output variable
-    ems_var5 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'fut_hr_intensity')
-    ems_var5.setName('Future_Hourly_Emissions_Intensity_Var')
-    ems_var5.setEMSVariableName('fut_hr_intensity')
-    ems_var5.setTypeOfDataInVariable('Summed')
-    ems_var5.setUpdateFrequency('SystemTimestep')
-    ems_var5.setEMSProgramOrSubroutineName(ems_prgm)
-    ems_var5.setUnits('kg/ft2')
-
-    # add historical hourly EMS output variable
-    ems_var6 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'his_hr_intensity')
-    ems_var6.setName('Historical_Hourly_Emissions_Intensity_Var')
-    ems_var6.setEMSVariableName('his_hr_intensity')
+    ems_var6 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'fut_hr_intensity')
+    ems_var6.setName('Future_Hourly_Emissions_Intensity_Var')
+    ems_var6.setEMSVariableName('fut_hr_intensity')
     ems_var6.setTypeOfDataInVariable('Summed')
     ems_var6.setUpdateFrequency('SystemTimestep')
     ems_var6.setEMSProgramOrSubroutineName(ems_prgm)
     ems_var6.setUnits('kg/ft2')
 
-    # add future annual EMS output variable
-    ems_var7 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'fut_yr_intensity')
-    ems_var7.setName('Future_Annual_Emissions_Intensity_Var')
-    ems_var7.setEMSVariableName('fut_yr_intensity')
+    # add historical hourly EMS output variable
+    ems_var7 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'his_hr_intensity')
+    ems_var7.setName('Historical_Hourly_Emissions_Intensity_Var')
+    ems_var7.setEMSVariableName('his_hr_intensity')
     ems_var7.setTypeOfDataInVariable('Summed')
     ems_var7.setUpdateFrequency('SystemTimestep')
     ems_var7.setEMSProgramOrSubroutineName(ems_prgm)
     ems_var7.setUnits('kg/ft2')
 
-    # add historical annual EMS output variable
-    ems_var8 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'his_yr_intensity')
-    ems_var8.setName('Historical_Annual_Emissions_Intensity_Var')
-    ems_var8.setEMSVariableName('his_yr_intensity')
+    # add future annual EMS output variable
+    ems_var8 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'fut_yr_intensity')
+    ems_var8.setName('Future_Annual_Emissions_Intensity_Var')
+    ems_var8.setEMSVariableName('fut_yr_intensity')
     ems_var8.setTypeOfDataInVariable('Summed')
     ems_var8.setUpdateFrequency('SystemTimestep')
     ems_var8.setEMSProgramOrSubroutineName(ems_prgm)
     ems_var8.setUnits('kg/ft2')
 
+    # add historical annual EMS output variable
+    ems_var9 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'his_yr_intensity')
+    ems_var9.setName('Historical_Annual_Emissions_Intensity_Var')
+    ems_var9.setEMSVariableName('his_yr_intensity')
+    ems_var9.setTypeOfDataInVariable('Summed')
+    ems_var9.setUpdateFrequency('SystemTimestep')
+    ems_var9.setEMSProgramOrSubroutineName(ems_prgm)
+    ems_var9.setUnits('kg/ft2')
+
     # add natural gas historical annual EMS output variable
-    ems_var8 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'nat_gas_his_yr_intensity')
-    ems_var8.setName('Natural_Gas_Historical_Annual_Emissions_Intensity_Var')
-    ems_var8.setEMSVariableName('nat_gas_his_yr_intensity')
-    ems_var8.setTypeOfDataInVariable('Summed')
-    ems_var8.setUpdateFrequency('SystemTimestep')
-    ems_var8.setEMSProgramOrSubroutineName(ems_prgm)
-    ems_var8.setUnits('kg/ft2')
+    ems_var10 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'nat_gas_his_yr_intensity')
+    ems_var10.setName('Natural_Gas_Historical_Annual_Emissions_Intensity_Var')
+    ems_var10.setEMSVariableName('nat_gas_his_yr_intensity')
+    ems_var10.setTypeOfDataInVariable('Summed')
+    ems_var10.setUpdateFrequency('SystemTimestep')
+    ems_var10.setEMSProgramOrSubroutineName(ems_prgm)
+    ems_var10.setUnits('kg/ft2')
 
     # add future hourly reporting output variable
     out_var1 = OpenStudio::Model::OutputVariable.new('Future_Hourly_Emissions_Var', model)
@@ -505,34 +505,34 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     out_var4.setReportingFrequency('hourly')
 
     # add natural gas historical annual reporting output variable
-    out_var4 = OpenStudio::Model::OutputVariable.new('Natural_Gas_Historical_Annual_Emissions_Var', model)
-    out_var4.setKeyValue('EMS')
-    out_var4.setReportingFrequency('hourly')
-
-    # add future hourly intensity reporting output variable
-    out_var5 = OpenStudio::Model::OutputVariable.new('Future_Hourly_Emissions_Intensity_Var', model)
+    out_var5 = OpenStudio::Model::OutputVariable.new('Natural_Gas_Historical_Annual_Emissions_Var', model)
     out_var5.setKeyValue('EMS')
     out_var5.setReportingFrequency('hourly')
 
-    # add historical hourly intensity reporting output variable
-    out_var6 = OpenStudio::Model::OutputVariable.new('Historical_Hourly_Emissions_Intensity_Var', model)
+    # add future hourly intensity reporting output variable
+    out_var6 = OpenStudio::Model::OutputVariable.new('Future_Hourly_Emissions_Intensity_Var', model)
     out_var6.setKeyValue('EMS')
     out_var6.setReportingFrequency('hourly')
 
-    # add future annual intensity reporting output variable
-    out_var7 = OpenStudio::Model::OutputVariable.new('Future_Annual_Emissions_Intensity_Var', model)
+    # add historical hourly intensity reporting output variable
+    out_var7 = OpenStudio::Model::OutputVariable.new('Historical_Hourly_Emissions_Intensity_Var', model)
     out_var7.setKeyValue('EMS')
     out_var7.setReportingFrequency('hourly')
 
-    # add historical annual intensity reporting output variable
-    out_var8 = OpenStudio::Model::OutputVariable.new('Historical_Annual_Emissions_Intensity_Var', model)
+    # add future annual intensity reporting output variable
+    out_var8 = OpenStudio::Model::OutputVariable.new('Future_Annual_Emissions_Intensity_Var', model)
     out_var8.setKeyValue('EMS')
     out_var8.setReportingFrequency('hourly')
 
+    # add historical annual intensity reporting output variable
+    out_var9 = OpenStudio::Model::OutputVariable.new('Historical_Annual_Emissions_Intensity_Var', model)
+    out_var9.setKeyValue('EMS')
+    out_var9.setReportingFrequency('hourly')
+
     # add natural gas historical annual intensity reporting output variable
-    out_var8 = OpenStudio::Model::OutputVariable.new('Natural_Gas_Historical_Annual_Emissions_Intensity_Var', model)
-    out_var8.setKeyValue('EMS')
-    out_var8.setReportingFrequency('hourly')
+    out_var10 = OpenStudio::Model::OutputVariable.new('Natural_Gas_Historical_Annual_Emissions_Intensity_Var', model)
+    out_var10.setKeyValue('EMS')
+    out_var10.setReportingFrequency('hourly')
     
 
     return true
