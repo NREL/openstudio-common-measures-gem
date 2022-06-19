@@ -285,7 +285,6 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     lim_type.setName('Emissions Sch File Type Limits')
 
     # add future schedule file
-    puts "fut_hr_file = #{fut_hr_file}"
     sch_file = OpenStudio::Model::ScheduleFile.new(fut_hr_file)
     sch_file.setName("#{future_subregion} #{future_year} Future Hourly Emissions Sch")
     sch_file.setScheduleTypeLimits(lim_type)
@@ -297,7 +296,6 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     sch_file.setMinutesperItem(60)
 
     # add historical schedule file
-    puts "his_hr_file = #{his_hr_file}"
     sch_file = OpenStudio::Model::ScheduleFile.new(his_hr_file)
     sch_file.setName("#{hourly_historical_subregion} #{hourly_historical_year} Historical Hourly Emissions Sch")
     sch_file.setScheduleTypeLimits(lim_type)
@@ -312,7 +310,6 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     fut_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Schedule Value')
     fut_sens.setKeyName("#{future_subregion} #{future_year} Future Hourly Emissions Sch")
     fut_sens.setName('Fut_Sen')
-
 
     # add EMS sensor for historical schedule file
     his_sens = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Schedule Value')
@@ -349,13 +346,15 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     ems_prgm.setName('Emissions_Calc_Prgm')
     ems_prgm.addLine('SET fut_hr_val = Fut_Sen')
     ems_prgm.addLine('SET his_hr_val = His_Sen')
-    fut_yr_data.each{|r| ems_prgm.addLine("SET fut_yr_val = #{r[future_subregion]}") if r[0].to_i == future_year}
+    fut_yr_data.each {|r| ems_prgm.addLine("SET fut_yr_val = #{r[future_subregion]}") if r[0].to_i == future_year}
     his_yr_data.each {|r| ems_prgm.addLine("SET his_yr_val = #{r[annual_historical_subregion]}") if r[0].to_i == annual_historical_year}
+
+    # set conversion variables
+    ems_prgm.addLine('SET conv = 1000000 * 60 * 60') # J to MWh (1000000J/MJ * 60hr/min * 60 min/sec)
+    ems_prgm.addLine('SET conv_kg_mt = 0.001') # kg to metric ton
 
     # elec emissions calculations 
     ems_prgm.addLine('SET elec = Ele_Sen')
-    ems_prgm.addLine('SET conv = 1000000 * 60 * 60') # J to MWh (1000000J/MJ * 60hr/min * 60 min/sec)
-    ems_prgm.addLine('SET conv_kg_mt = 0.001') # kg to metric ton
     ems_prgm.addLine('SET fut_hr = (fut_hr_val * elec / conv) * conv_kg_mt')
     ems_prgm.addLine('SET his_hr = (his_hr_val * elec / conv) * conv_kg_mt')
     ems_prgm.addLine('SET fut_yr = (fut_yr_val * elec / conv) * conv_kg_mt')
@@ -368,41 +367,33 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     # nat gas
     ems_prgm.addLine('SET nat_gas_val = 277.358126') 
     ems_prgm.addLine('SET nat_gas = Gas_Sen')
-    ems_prgm.addLine('SET conv = 1000000 * 60 * 60') # J to MWh (1000000J/MJ * 60hr/min * 60 min/sec)
-    ems_prgm.addLine('SET conv_kg_mt = 0.001') # kg to metric ton
     ems_prgm.addLine('SET nat_gas_em = (nat_gas_val * nat_gas / conv) * conv_kg_mt')
     # lpg
     ems_prgm.addLine('SET lpg_val = 323.896704')
     ems_prgm.addLine('SET lpg = Lpg_Sen')
-    ems_prgm.addLine('SET conv = 1000000 * 60 * 60') # J to MWh (1000000J/MJ * 60hr/min * 60 min/sec)
-    ems_prgm.addLine('SET conv_kg_mt = 0.001') # kg to metric ton
     ems_prgm.addLine('SET lpg_em = (lpg_val * lpg / conv) * conv_kg_mt')
     # fo1
     ems_prgm.addLine('SET fo1_val = 294.962046')
     ems_prgm.addLine('SET fo1 = Fo1_Sen')
-    ems_prgm.addLine('SET conv = 1000000 * 60 * 60') # J to MWh (1000000J/MJ * 60hr/min * 60 min/sec)
-    ems_prgm.addLine('SET conv_kg_mt = 0.001') # kg to metric ton
     ems_prgm.addLine('SET fo1_em = (fo1_val * fo1 / conv) * conv_kg_mt')
     # fo2
     ems_prgm.addLine('SET fo2_val = 294.962046')
     ems_prgm.addLine('SET fo2 = Fo2_Sen')
-    ems_prgm.addLine('SET conv = 1000000 * 60 * 60') # J to MWh (1000000J/MJ * 60hr/min * 60 min/sec)
-    ems_prgm.addLine('SET conv_kg_mt = 0.001') # kg to metric ton
     ems_prgm.addLine('SET fo2_em = (fo2_val * fo2 / conv) * conv_kg_mt')
 
     #### add emissions intensity metric
     # get building from model 
     building = model.getBuilding
     floor_area = building.floorArea * 10.764 #change from m2 to ft2
-    #add metric
-    ems_prgm.addLine("SET fut_hr_intensity = fut_hr / #{floor_area}")
-    ems_prgm.addLine("SET his_hr_intensity = his_hr / #{floor_area}")
-    ems_prgm.addLine("SET fut_yr_intensity = fut_yr / #{floor_area}")
-    ems_prgm.addLine("SET his_yr_intensity = his_yr / #{floor_area}")
-    ems_prgm.addLine("SET nat_gas_em_intensity = nat_gas_em / #{floor_area}")
-    ems_prgm.addLine("SET lpg_em_intensity = lpg_em / #{floor_area}")
-    ems_prgm.addLine("SET lpg_em_intensity = fo1_em / #{floor_area}")
-    ems_prgm.addLine("SET lpg_em_intensity = fo2_em / #{floor_area}")
+    #add emissions intensity metric
+    ems_prgm.addLine("SET fut_hr_intensity = fut_hr / #{floor_area}") # unit  mt/ft2
+    ems_prgm.addLine("SET his_hr_intensity = his_hr / #{floor_area}") # unit: mt/ft2
+    ems_prgm.addLine("SET fut_yr_intensity = fut_yr / #{floor_area}") # unit: mt/ft2
+    ems_prgm.addLine("SET his_yr_intensity = his_yr / #{floor_area}") # unit: mt/ft2
+    ems_prgm.addLine("SET nat_gas_em_intensity = nat_gas_em / #{floor_area}") # unit: mt/ft2
+    ems_prgm.addLine("SET lpg_em_intensity = lpg_em / #{floor_area}") # unit: mt/ft2
+    ems_prgm.addLine("SET lpg_em_intensity = fo1_em / #{floor_area}") # unit: mt/ft2
+    ems_prgm.addLine("SET lpg_em_intensity = fo2_em / #{floor_area}") # unit: mt/ft2
     
     # add EMS program calling manager
     mgr_prgm = OpenStudio::Model::EnergyManagementSystemProgramCallingManager.new(model)
@@ -635,7 +626,6 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     out_var16 = OpenStudio::Model::OutputVariable.new('FuelOil2_Emissions_Intensity_Var', model)
     out_var16.setKeyValue('EMS')
     out_var16.setReportingFrequency('hourly')
-
 
     return true
   end
