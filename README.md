@@ -38,7 +38,7 @@ bundle exec rake openstudio:test_with_openstudio
 
 |OpenStudio Common Measures Gem|OpenStudio|Ruby|
 |:--------------:|:----------:|:--------:|
-| 0.6.0  | 3.4      | 2.7    |
+| 0.6.0 - 0.6.1 | 3.4      | 2.7    |
 | 0.5.0  | 3.3      | 2.7    |
 | 0.4.0 - 0,4.2 | 3.2      | 2.7    |
 | 0.3.0 - 0.3.2  | 3.1      | 2.5    |
@@ -51,7 +51,7 @@ Please review the [OpenStudio Contribution Policy](https://openstudio.net/openst
 
 # Releasing
 
-* Update `CHANGELOG.md`
+* Update `CHANGELOG.md` with the `rake openstudio:change_log` command
 * Run `rake openstudio:rubocop:auto_correct`
 * Run `rake openstudio:update_copyright`
 * Run `rake openstudio:update_measures` (this has to be done last since prior tasks alter measure files)
