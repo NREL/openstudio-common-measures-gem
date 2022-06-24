@@ -52,7 +52,7 @@ class EnvelopeAndInternalLoadBreakdown < OpenStudio::Ruleset::ReportingUserScrip
 
   # human readable description
   def description
-    return 'Report provides annual and monthly views into heat gains and losses for envelope and internal loads.'
+    return 'Report provides annual and monthly views into heat gains and losses for envelope and internal loads. '
   end
 
   # human readable description of modeling approach
