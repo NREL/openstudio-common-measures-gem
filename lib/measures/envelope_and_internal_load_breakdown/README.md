@@ -49,7 +49,7 @@ This measure does not have any user arguments
 
 ![Heat Gains By Month Detailed - a](./docs/htg_gain_detailed_a.png?raw=true)
 
-*Each sub-surface and surface with an outdoor or ground boundary boundary condition is listed. At the end of the surface type a row subtotals the heat gains by outdoor walls, outdoor roofs, and ground boundary surfaces.*
+*Each sub-surface and surface with an outdoor or ground boundary condition is listed. At the end of the surface type a row subtotals the heat gains by outdoor walls, outdoor roofs, and ground boundary surfaces.*
 ![Heat Gains By Month Detailed - b](./docs/htg_gain_detailed_b.png?raw=true)
 
 #### Heat Losses By Month Detailed
