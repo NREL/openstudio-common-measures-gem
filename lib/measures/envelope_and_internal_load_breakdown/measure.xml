@@ -3,12 +3,12 @@
   <schema_version>3.0</schema_version>
   <name>envelope_and_internal_load_breakdown</name>
   <uid>8f0e1fbb-8bc6-46e5-b6e4-db59177e2c02</uid>
-  <version_id>2ff096f8-c72d-444a-a56e-f0633fba2013</version_id>
-  <version_modified>20220622T165903Z</version_modified>
+  <version_id>79ca6280-7eed-41fe-b065-57df98ea935d</version_id>
+  <version_modified>20220624T153331Z</version_modified>
   <xml_checksum>69BA4D91</xml_checksum>
   <class_name>EnvelopeAndInternalLoadBreakdown</class_name>
   <display_name>Envelope and Internal Load Breakdown</display_name>
-  <description>Report provides annual and monthly views into heat gains and losses for envelope and internal loads.</description>
+  <description>Report provides annual and monthly views into heat gains and losses for envelope and internal loads. </description>
   <modeler_description>It uses the following variables: Electric Equipment Total Heating Energy, Zone Lights Total Heating Energy, Zone, People Sensible Heating Energy, Surface Average Face Conduction Heat Transfer Energy, Surface Window Heat Gain Energy, Surface Window Heat Loss Energy, Zone Infiltration Sensible Heat Gain Energy, Zone Infiltration Sensible Heat Loss Energy. For Surface Average Face Conduction Heat Transfer Energy bin positive values as heat gain and negative values as heat loss.
 </modeler_description>
   <arguments />
@@ -95,12 +95,6 @@
       <checksum>CA6A593D</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
       <filename>os_lib_reporting_envelope_and_internal_loads_breakdown.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -119,6 +113,42 @@
       <checksum>092C8D11</checksum>
     </file>
     <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B6B35B79</checksum>
+    </file>
+    <file>
+      <filename>htg_gain_detailed_a.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>68441A05</checksum>
+    </file>
+    <file>
+      <filename>htg_gain_detailed_b.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>3D630E8A</checksum>
+    </file>
+    <file>
+      <filename>htg_gain_summary.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>E8E7FBC8</checksum>
+    </file>
+    <file>
+      <filename>htg_loss_summary.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>69DDA02E</checksum>
+    </file>
+    <file>
+      <filename>htg_loss_detailed.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>6E4E8FE2</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -127,19 +157,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>01602504</checksum>
+      <checksum>7C57700E</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>1223C55C</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>F66552F1</checksum>
-    </file>
-    <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>6F54D1FE</checksum>
+      <checksum>988570C3</checksum>
     </file>
   </files>
 </measure>
