@@ -311,7 +311,7 @@ module OsLib_CreateResults
       OpenStudio::EndUseFuelType.new('FuelOil_1').value => 'fuel_oil_1',
       OpenStudio::EndUseFuelType.new('FuelOil_2').value => 'fuel_oil_2',
       OpenStudio::EndUseFuelType.new('Propane').value => 'propane',
-      OpenStudio::EndUseFuelType.new('OtherFuel_1').value => 'other_fuel_1',
+      OpenStudio::EndUseFuelType.new('OtherFuel_1').value => 'other_energy',
       OpenStudio::EndUseFuelType.new('OtherFuel_2').value => 'other_fuel_2',
       OpenStudio::EndUseFuelType.new('DistrictCooling').value => 'district_cooling',
       OpenStudio::EndUseFuelType.new('DistrictHeating').value => 'district_heating',
@@ -999,7 +999,7 @@ module OsLib_CreateResults
         fuel_type_elems = OpenStudio::AttributeVector.new
         fuel_type_name = fuel_type_alias_map[end_use_fuel_type.value]
         ann_energy_cons = 0.0
-        # in each end use, loop through months and get monthly enedy consumption
+        # in each end use, loop through months and get monthly energy consumption
         months.each_with_index do |month, i|
           mon_energy_cons = 0.0
           val = @sql.energyConsumptionByMonth(end_use_fuel_type, end_use_cat, month)
