@@ -70,7 +70,8 @@ class AdjustSystemEfficiencies < OpenStudio::Ruleset::ModelUserScript
   end
 
   def modify_coil_cooling_dx_single_speed(component, cooling_cop_multiplier)
-    rated_cop = component.ratedCOP
+    # Prior to 3.5.0 it's Optional, after it's a double
+    rated_cop = OpenStudio::OptionalDouble.new(component.ratedCOP)
     if rated_cop.empty?
       return false
     end
@@ -81,8 +82,9 @@ class AdjustSystemEfficiencies < OpenStudio::Ruleset::ModelUserScript
   end
 
   def modify_coil_cooling_dx_two_speed(component, cooling_cop_multiplier)
-    rated_low_speed_cop = component.ratedLowSpeedCOP
-    rated_high_speed_cop = component.ratedHighSpeedCOP
+    # Prior to 3.5.0 it's Optional, after it's a double
+    rated_low_speed_cop = OpenStudio::OptionalDouble.new(component.ratedLowSpeedCOP)
+    rated_high_speed_cop = OpenStudio::OptionalDouble.new(component.ratedHighSpeedCOP)
     if rated_low_speed_cop.empty? || rated_high_speed_cop.empty?
       return false
     end

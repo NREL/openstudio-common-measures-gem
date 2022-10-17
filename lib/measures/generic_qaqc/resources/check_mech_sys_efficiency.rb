@@ -46,7 +46,7 @@ module OsLib_QAQC
     check_elems << OpenStudio::Attribute.new('category', category)
     check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
     check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
-    
+
     if target_standard.include?('90.1-2013')
       display_standard = "ASHRAE #{target_standard}"
       check_elems << OpenStudio::Attribute.new('description', "Check against #{display_standard} Tables 6.8.1 A-K for the following component types: #{component_type_array.join(', ')}.")
@@ -108,7 +108,7 @@ module OsLib_QAQC
       # check CoilCoolingDXSingleSpeed objects (will also have curve check in different script)
       @model.getCoilCoolingDXSingleSpeeds.each do |component|
         # eff values from model
-        rated_COP = component.ratedCOP.get
+        rated_COP = component.ratedCOP.to_f
 
         # get eff values from standards
         if use_old_gem_code
@@ -130,8 +130,8 @@ module OsLib_QAQC
       # check CoilCoolingDXTwoSpeed objects (will also have curve check in different script)
       @model.getCoilCoolingDXTwoSpeeds.each do |component|
         # eff values from model
-        rated_high_speed_COP = component.ratedHighSpeedCOP.get
-        rated_low_speed_COP = component.ratedLowSpeedCOP.get
+        rated_high_speed_COP = component.ratedHighSpeedCOP.to_f
+        rated_low_speed_COP = component.ratedLowSpeedCOP.to_f
 
         # get eff values from standards
         if use_old_gem_code
