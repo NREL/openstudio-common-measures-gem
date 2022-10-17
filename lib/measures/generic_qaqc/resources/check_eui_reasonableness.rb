@@ -68,7 +68,11 @@ module OsLib_QAQC
       target_eui = std.model_find_target_eui(@model)
 
       # gather building type for summary
-      bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      if Gem::Version.new(OpenstudioStandards::VERSION) > Gem::Version.new('0.2.16')
+        bt_cz = std.model_get_building_properties(@model)
+      else
+        bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      end
       building_type = bt_cz['building_type']
       climate_zone = bt_cz['climate_zone']
       prototype_prefix = "#{display_standard} #{building_type} #{climate_zone}"

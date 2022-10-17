@@ -49,7 +49,7 @@ module OsLib_QAQC
     else
       check_elems << OpenStudio::Attribute.new('description', 'Check against ASHRAE 90.1. Infers the baseline system type based on the equipment serving the zone and their heating/cooling fuels. Only does a high-level inference; does not look for the presence/absence of required controls, etc.')
     end
-    
+
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
@@ -85,7 +85,11 @@ module OsLib_QAQC
       if use_old_gem_code
         climate_zone = @model.get_building_climate_zone_and_building_type['climate_zone']
       else
-        climate_zone = std.model_get_building_climate_zone_and_building_type(@model)['climate_zone']
+        if Gem::Version.new(OpenstudioStandards::VERSION) > Gem::Version.new('0.2.16')
+          climate_zone = std.model_get_building_properties(@model)['climate_zone']
+        else
+          climate_zone = std.model_get_building_climate_zone_and_building_type(@model)['climate_zone']
+        end
       end
 
       if use_old_gem_code
