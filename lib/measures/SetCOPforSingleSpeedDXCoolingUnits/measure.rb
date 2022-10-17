@@ -268,8 +268,8 @@ class SetCOPforSingleSpeedDXCoolingUnits < OpenStudio::Measure::ModelMeasure
         if !hVACComponent.empty?
           hVACComponent = hVACComponent.get
 
-          # change and report high speed cop
-          initial_cop = hVACComponent.ratedCOP
+          # change and report high speed cop. Prior to 3.5.0 it was an OptionalDouble
+          initial_cop = OpenStudio::OptionalDouble.new(hVACComponent.ratedCOP)
           if !initial_cop.empty?
             runner.registerInfo("Changing the Rated COP from #{initial_cop.get} to #{cop} for single speed dx unit '#{hVACComponent.name}' on air loop '#{air_loop.name}'")
             initial_cop_values << initial_cop.get

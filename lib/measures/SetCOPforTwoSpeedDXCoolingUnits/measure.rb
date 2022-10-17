@@ -285,7 +285,8 @@ class SetCOPforTwoSpeedDXCoolingUnits < OpenStudio::Measure::ModelMeasure
           hVACComponent = hVACComponent.get
 
           # change and report high speed cop
-          initial_high_cop = hVACComponent.ratedHighSpeedCOP
+          # Prior to 3.5.0, the COPs were OptionalDouble
+          initial_high_cop = OpenStudio::OptionalDouble.new(hVACComponent.ratedHighSpeedCOP)
           if !initial_high_cop.empty?
             runner.registerInfo("Changing the Rated High Speed COP from #{initial_high_cop.get} to #{cop_high} for two speed dx unit '#{hVACComponent.name}' on air loop '#{air_loop.name}'")
             initial_high_cop_values << initial_high_cop.get
@@ -297,7 +298,7 @@ class SetCOPforTwoSpeedDXCoolingUnits < OpenStudio::Measure::ModelMeasure
           end
 
           # change and report low speed cop
-          initial_low_cop = hVACComponent.ratedLowSpeedCOP
+          initial_low_cop = OpenStudio::OptionalDouble.new(hVACComponent.ratedLowSpeedCOP)
           if !initial_low_cop.empty?
             runner.registerInfo("Changing the Rated Low Speed COP from #{initial_low_cop.get} to #{cop_low} for two speed dx unit '#{hVACComponent.name}' on air loop '#{air_loop.name}'")
             initial_low_cop_values << initial_low_cop.get

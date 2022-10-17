@@ -187,8 +187,11 @@ class AddZoneVentilationDesignFlowRateObject < OpenStudio::Measure::ModelMeasure
     zone_ventilation = OpenStudio::Model::ZoneVentilationDesignFlowRate.new(model)
     zone_ventilation.addToThermalZone(zone)
     zone_ventilation.setVentilationType(vent_type)
-    zone_ventilation.setDesignFlowRateCalculationMethod('Flow/Zone')
     zone_ventilation.setDesignFlowRate(design_flow_rate_si)
+    if OpenStudio::VersionString.new(OpenStudio.openStudioVersion) < OpenStudio::VersionString.new('3.5.0')
+      # Design Flow Rate Calculation Method is automatically set in 3.5.0+
+      zone_ventilation.setDesignFlowRateCalculationMethod('Flow/Zone')
+    end
     zone_ventilation.setSchedule(vent_sch)
     runner.registerInfo('Creating zone ventilation design flow rate object with ventilation type of ')
 
