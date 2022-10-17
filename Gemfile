@@ -15,3 +15,6 @@ if allow_local && File.exist?('../OpenStudio-extension-gem')
 elsif allow_local
   gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'develop'
 end
+
+# TODO: temp
+gem 'openstudio-standards', github: 'NREL/openstudio-standards', branch: '3.5.0_changes'
