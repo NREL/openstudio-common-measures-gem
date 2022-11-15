@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>example_report</name>
   <uid>174a6f71-3e8c-4f99-9e7a-b64f2e7535d4</uid>
-  <version_id>69180469-2020-4295-b159-80a548ad4c5c</version_id>
-  <version_modified>20220622T165857Z</version_modified>
+  <version_id>7a62653c-c1e8-4550-a21f-3655bded5074</version_id>
+  <version_modified>20221115T224157Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>ExampleReport</class_name>
   <display_name>Example Report</display_name>
@@ -138,19 +138,19 @@
       <filename>os_lib_reporting_example.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>BA1A3712</checksum>
+      <checksum>79453AA9</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <filename>ExampleReport_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>9236651D</checksum>
+      <checksum>45DFAE69</checksum>
     </file>
     <file>
       <version>
@@ -161,13 +161,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>F11E0560</checksum>
+      <checksum>04DFD4D1</checksum>
     </file>
     <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>1C5120F7</checksum>
+      <checksum>71EF0A45</checksum>
     </file>
   </files>
 </measure>

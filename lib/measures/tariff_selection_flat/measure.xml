@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>tariff_selection_flat</name>
   <uid>539c3e8e-6c41-4f50-ac61-6cbbf1ee1b55</uid>
-  <version_id>09f94537-42c0-419a-9e0c-f6ab47679d12</version_id>
-  <version_modified>20210415T213544Z</version_modified>
+  <version_id>1fb9337b-b3e4-4ac8-a75d-57682714b063</version_id>
+  <version_modified>20221115T223610Z</version_modified>
   <xml_checksum>FBDC6D11</xml_checksum>
   <class_name>TariffSelectionFlat</class_name>
   <display_name>Tariff Selection-Flat</display_name>
@@ -231,13 +231,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <filename>tariff_selection_flat_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>1F3F703C</checksum>
+      <checksum>9104949F</checksum>
     </file>
     <file>
       <version>
@@ -248,7 +248,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>033ADCF7</checksum>
+      <checksum>0B3FD5BD</checksum>
     </file>
   </files>
 </measure>
