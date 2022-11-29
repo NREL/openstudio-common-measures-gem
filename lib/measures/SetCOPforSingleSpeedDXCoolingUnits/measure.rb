@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2022, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -268,8 +268,8 @@ class SetCOPforSingleSpeedDXCoolingUnits < OpenStudio::Measure::ModelMeasure
         if !hVACComponent.empty?
           hVACComponent = hVACComponent.get
 
-          # change and report high speed cop
-          initial_cop = hVACComponent.ratedCOP
+          # change and report high speed cop. Prior to 3.5.0 it was an OptionalDouble
+          initial_cop = OpenStudio::OptionalDouble.new(hVACComponent.ratedCOP)
           if !initial_cop.empty?
             runner.registerInfo("Changing the Rated COP from #{initial_cop.get} to #{cop} for single speed dx unit '#{hVACComponent.name}' on air loop '#{air_loop.name}'")
             initial_cop_values << initial_cop.get
