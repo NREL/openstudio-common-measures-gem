@@ -2630,7 +2630,7 @@ function displaySelectedObjectDetails() {
       document.body.style.cursor = 'pointer';
 }
 
-let renderRequested = false;
+var renderRequested = false;
 
 function animate() {
   renderRequested = undefined;

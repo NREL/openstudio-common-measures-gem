@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2022, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -65,9 +65,9 @@ module OsLib_QAQC
         const_type = 'Mass'
       end
       if !defaulted_const_type.include?(construction)
-        check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{const_type} for #{ext_surf_type}.")  
+        check_elems << OpenStudio::Attribute.new('flag', "#{construction.name} is not associated with a standards construction type, checking based on #{const_type} for #{ext_surf_type}.")
         defaulted_const_type << construction
-      end                  
+      end
     end
 
     return {ext_surf_type: ext_surf_type, const_type: const_type, construction: construction}
@@ -97,7 +97,7 @@ module OsLib_QAQC
         sub_const_type = 'Swinging'
       elsif sub_surface.subSurfaceType == "OverheadDoor"
         ext_sub_surf_type = 'ExteriorDoor'
-        sub_const_type = 'NonSwinging'                
+        sub_const_type = 'NonSwinging'
       elsif sub_surface.subSurfaceType == "FixedWindow" || sub_surface.subSurfaceType == "OperableWindow"
         ext_sub_surf_type = 'ExteriorWindow'
         sub_const_type = 'Metal framing (all other)'
@@ -140,7 +140,7 @@ module OsLib_QAQC
     end
     check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
     check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
-    
+
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []
@@ -155,9 +155,13 @@ module OsLib_QAQC
 
       # setup standard
       std = Standard.build(target_standard)
-        
+
       # gather building type for summary
-      bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      if Gem::Version.new(OpenstudioStandards::VERSION) > Gem::Version.new('0.2.16')
+        bt_cz = std.model_get_building_properties(@model)
+      else
+        bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      end
       building_type = bt_cz['building_type']
       climate_zone = bt_cz['climate_zone']
       prototype_prefix = "#{target_standard} #{building_type} #{climate_zone}"
@@ -196,9 +200,9 @@ module OsLib_QAQC
                 end
               else
                 if !data_not_returned_for.include?([space_type,ext_surf_type,const_type])
-                  check_elems << OpenStudio::Attribute.new('flag', "Data not returned for #{space_type.name} on #{const_type} for #{ext_surf_type}.")  
-                  data_not_returned_for << [space_type,ext_surf_type,const_type]   
-                end             
+                  check_elems << OpenStudio::Attribute.new('flag', "Data not returned for #{space_type.name} on #{const_type} for #{ext_surf_type}.")
+                  data_not_returned_for << [space_type,ext_surf_type,const_type]
+                end
               end
             else
               missing_constructions << surface.name.get
@@ -222,8 +226,8 @@ module OsLib_QAQC
                 else
                   if !data_not_returned_for.include?([space_type,ext_sub_surf_type,sub_const_type])
                     check_elems << OpenStudio::Attribute.new('flag', "Data not returned for #{space_type.name} on #{sub_const_type} for #{ext_sub_surf_type}.")
-                    data_not_returned_for << [space_type,ext_sub_surf_type,sub_const_type] 
-                  end                    
+                    data_not_returned_for << [space_type,ext_sub_surf_type,sub_const_type]
+                  end
                 end
               else
                 missing_constructions << sub_surface.name.get
@@ -278,7 +282,7 @@ module OsLib_QAQC
             const_bldg_cat = data['building_category']
             if !space_type_const_properties[intended_surface_type][standards_construction_type].key?(const_bldg_cat)
               space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat] = {}
-            end            
+            end
             space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat]['u_value'] = data['assembly_maximum_u_value']
             space_type_const_properties[intended_surface_type][standards_construction_type][const_bldg_cat]['shgc'] = data['assembly_maximum_solar_heat_gain_coefficient']
           end

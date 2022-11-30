@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_electric_equipment_loads_by_epd</name>
   <uid>b1d87b95-a6d1-4999-bd0d-16da879f4340</uid>
-  <version_id>be45836d-f09d-4a03-986f-0aa886657f16</version_id>
-  <version_modified>20210406T220307Z</version_modified>
+  <version_id>82ce2fa6-e066-4dd0-adba-9b7338ed0757</version_id>
+  <version_modified>20221115T223601Z</version_modified>
   <xml_checksum>5C8B3381</xml_checksum>
   <class_name>SetElectricEquipmentLoadsByEPD</class_name>
   <display_name>Set Electric Equipment loads by EPD</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{6bfbbaf1-85ba-4864-b699-52843ee11458}</default_value>
+      <default_value>{5d06cf57-89f9-4476-9475-68e081eb0d61}</default_value>
       <choices>
         <choice>
-          <value>{6bfbbaf1-85ba-4864-b699-52843ee11458}</value>
+          <value>{5d06cf57-89f9-4476-9475-68e081eb0d61}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -180,7 +180,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <version>
@@ -191,13 +191,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>42152E9B</checksum>
+      <checksum>EDD3B2FC</checksum>
     </file>
     <file>
       <filename>ReplaceElectricEquipmentWithEPD_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>E4E7683A</checksum>
+      <checksum>FF9A3A76</checksum>
     </file>
   </files>
 </measure>
