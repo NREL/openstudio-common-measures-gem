@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>remove_orphan_objects_and_unused_resources</name>
   <uid>c618f299-a245-49ce-a119-82eb54007ede</uid>
-  <version_id>7b7c4b46-ee6c-42b1-bcd6-4388e47da7e9</version_id>
-  <version_modified>20210406T220307Z</version_modified>
+  <version_id>7fc38cac-4dc6-4649-a392-d8485bb91735</version_id>
+  <version_modified>20221115T223603Z</version_modified>
   <xml_checksum>28AD5222</xml_checksum>
   <class_name>RemoveOrphanObjectsAndUnusedResources</class_name>
   <display_name>Remove Orphan Objects and Unused Resources</display_name>
@@ -164,7 +164,7 @@ A second functionality is to remove unused resources. This will include things l
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <version>
@@ -175,13 +175,13 @@ A second functionality is to remove unused resources. This will include things l
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>8E7E59AD</checksum>
+      <checksum>76C7A186</checksum>
     </file>
     <file>
       <filename>remove_orphan_objects_and_unused_resources_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>315D6481</checksum>
+      <checksum>A54B8567</checksum>
     </file>
   </files>
 </measure>

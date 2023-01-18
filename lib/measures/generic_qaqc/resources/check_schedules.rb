@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2022, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -66,7 +66,12 @@ module OsLib_QAQC
       std = Standard.build(target_standard)
 
       # gather building type for summary
-      bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      if Gem::Version.new(OpenstudioStandards::VERSION) > Gem::Version.new('0.2.16')
+        bt_cz = std.model_get_building_properties(@model)
+      else
+        bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      end
+
       building_type = bt_cz['building_type']
       # mapping to obuilding type to match space types
       if building_type.include?("Office") then building_type = "Office" end
@@ -75,7 +80,7 @@ module OsLib_QAQC
       check_elems << OpenStudio::Attribute.new('description', "Check schedules for lighting, ventilation, occupant density, plug loads, and equipment based on #{prototype_prefix} DOE reference building schedules in terms of full load hours per year.")
       check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
       check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
-      
+
       # gather all non statandard space types so can be listed in single flag
       non_tagged_space_types = []
 
@@ -235,9 +240,13 @@ module OsLib_QAQC
 
     # setup standard
     std = Standard.build(target_standard)
-      
+
     # gather building type for summary
-    bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+    if Gem::Version.new(OpenstudioStandards::VERSION) > Gem::Version.new('0.2.16')
+      bt_cz = std.model_get_building_properties(@model)
+    else
+      bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+    end
     building_type = bt_cz['building_type']
     climate_zone = bt_cz['climate_zone']
     prototype_prefix = "#{target_standard} #{building_type} #{climate_zone}"

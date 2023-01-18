@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2022, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -57,7 +57,7 @@ module OsLib_QAQC
         check_elems << OpenStudio::Attribute.new('description', 'Check internal loads against Table R405.5.2(1) in ICC IECC 2015 Residential Provisions.')
       else
         check_elems << OpenStudio::Attribute.new('description', "Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against #{display_standard} DOE Prototype buildings.")
-      end      
+      end
       check_elems.each do |elem|
         results << elem.valueAsString
       end
@@ -70,10 +70,14 @@ module OsLib_QAQC
       std = Standard.build(target_standard)
 
       # gather building type for summary
-      bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      if Gem::Version.new(OpenstudioStandards::VERSION) > Gem::Version.new('0.2.16')
+        bt_cz = std.model_get_building_properties(@model)
+      else
+        bt_cz = std.model_get_building_climate_zone_and_building_type(@model)
+      end
       building_type = bt_cz['building_type']
       # mapping to obuilding type to match space types
-      if building_type.include?("Office") then building_type = "Office" end      
+      if building_type.include?("Office") then building_type = "Office" end
       climate_zone = bt_cz['climate_zone']
       prototype_prefix = "#{display_standard} #{building_type} #{climate_zone}"
       if target_standard == 'ICC IECC 2015'
@@ -83,7 +87,7 @@ module OsLib_QAQC
       end
       check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
       check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
-      
+
       if target_standard == 'ICC IECC 2015'
 
         num_people = 0.0
@@ -361,7 +365,7 @@ module OsLib_QAQC
           impacted_floor_area = non_tagged_space_types.sum
           building_area = @model.getBuilding.floorArea
           check_elems << OpenStudio::Attribute.new('flag', "Unexpected standard building/space types found for #{non_tagged_space_types.size} space types covering #{(100.0 * impacted_floor_area/building_area).round}% of floor area, can't provide comparisons for internal loads for those space types.")
-        end        
+        end
 
         # warn if there are spaces in model that don't use space type unless they appear to be plenums
         @model.getSpaces.each do |space|

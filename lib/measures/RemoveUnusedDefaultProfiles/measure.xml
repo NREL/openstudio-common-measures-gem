@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>remove_unused_default_profiles</name>
   <uid>8abcdf38-c391-465a-8fb8-b243aa4f0b06</uid>
-  <version_id>8492641b-96f2-4bc3-ba82-637794e6b015</version_id>
-  <version_modified>20220506T153446Z</version_modified>
+  <version_id>f5b7e661-a4da-4ab5-bcf1-d092c7aade8d</version_id>
+  <version_modified>20221115T223556Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>RemoveUnusedDefaultProfiles</class_name>
   <display_name>RemoveUnusedDefaultProfiles</display_name>
@@ -66,19 +66,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>102AADC2</checksum>
+      <checksum>36CBB8CE</checksum>
     </file>
     <file>
       <filename>RemoveUnusedDefaultProfiles_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>20A73B18</checksum>
+      <checksum>9A301172</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
   </files>
 </measure>

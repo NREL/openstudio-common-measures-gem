@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>gem_environment_report</name>
   <uid>3f9f1a2f-0e8a-4c88-b817-10494fc3e73a</uid>
-  <version_id>ca2d6693-7e30-47d8-a8c7-0f142b651fbb</version_id>
-  <version_modified>20210406T220301Z</version_modified>
+  <version_id>c37f64ba-bdf4-4c67-a5e6-4cd01086ac36</version_id>
+  <version_modified>20221115T223606Z</version_modified>
   <xml_checksum>D1F10311</xml_checksum>
   <class_name>GemEnvironmentReport</class_name>
   <display_name>gem environment report</display_name>
@@ -55,37 +55,37 @@
       <filename>run_gem_env_info.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>7456CFC2</checksum>
+      <checksum>EB1D95F2</checksum>
     </file>
     <file>
       <filename>run_openstudio_info.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>D282E915</checksum>
+      <checksum>926943DC</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <filename>openstudio_info.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>571B82E1</checksum>
+      <checksum>BA1249C5</checksum>
     </file>
     <file>
       <filename>gem_env_info.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>FA9CB397</checksum>
+      <checksum>5C631590</checksum>
     </file>
     <file>
       <filename>gem_env_report_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>DA84BDC3</checksum>
+      <checksum>96AADEF6</checksum>
     </file>
     <file>
       <version>
@@ -96,7 +96,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7FC76C54</checksum>
+      <checksum>3D133192</checksum>
     </file>
   </files>
 </measure>

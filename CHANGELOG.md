@@ -1,10 +1,13 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.7.0
+
+- Support for OpenStudio 3.5 (upgrade to standards gem 0.3.0, extension gem 0.6.0)
+
 ## Version 0.6.1
 
 - Fixed [#107]( https://github.com/NREL/openstudio-common-measures-gem/pull/107 ), Added natural gas emissions calculations
 - Fixed [#109]( https://github.com/NREL/openstudio-common-measures-gem/pull/109 ), changed variable names to include Electricity and removed "_Var"
-
 
 ## Version 0.6.0
 
