@@ -40,5 +40,19 @@ jobs:
           bundle exec rake openstudio:list_measures
           bundle exec rake openstudio:update_measures
           bundle exec rake openstudio:test_with_openstudio
+      - name: collect stats, display and check for failures
+        shell: bash
+        run: |
+          test_dir=$(find -type d -name "test_results")
+          echo $test_dir
+          mv $test_dir . 
+      - uses: actions/upload-artifact@v3
+        name: save artifacts
+        with:
+          name: test_results
+          path: test_results
 
+          
+        
+        
 
