@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_cost_per_area_to_unused_construction</name>
   <uid>ad632782-125f-45c8-a9cf-516e184b418a</uid>
-  <version_id>f652acad-dcef-45bc-96a6-b199f0b1d063</version_id>
-  <version_modified>20210406T220254Z</version_modified>
+  <version_id>77e28ae4-1653-4fe6-bb97-b605ba0a0b92</version_id>
+  <version_modified>20221115T223602Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerAreaToUnusedConstruction</class_name>
   <display_name>Add Cost per Area to Unused Construction</display_name>
@@ -164,19 +164,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>6CF29274</checksum>
+      <checksum>9FB1CA14</checksum>
     </file>
     <file>
       <filename>AddCostperAreatoUnusedConstruction_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>C58A91E0</checksum>
+      <checksum>AFB58E20</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
   </files>
 </measure>

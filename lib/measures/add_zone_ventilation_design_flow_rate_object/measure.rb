@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2022, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -187,8 +187,11 @@ class AddZoneVentilationDesignFlowRateObject < OpenStudio::Measure::ModelMeasure
     zone_ventilation = OpenStudio::Model::ZoneVentilationDesignFlowRate.new(model)
     zone_ventilation.addToThermalZone(zone)
     zone_ventilation.setVentilationType(vent_type)
-    zone_ventilation.setDesignFlowRateCalculationMethod('Flow/Zone')
     zone_ventilation.setDesignFlowRate(design_flow_rate_si)
+    if OpenStudio::VersionString.new(OpenStudio.openStudioVersion) < OpenStudio::VersionString.new('3.5.0')
+      # Design Flow Rate Calculation Method is automatically set in 3.5.0+
+      zone_ventilation.setDesignFlowRateCalculationMethod('Flow/Zone')
+    end
     zone_ventilation.setSchedule(vent_sch)
     runner.registerInfo('Creating zone ventilation design flow rate object with ventilation type of ')
 

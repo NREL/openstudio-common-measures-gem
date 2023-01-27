@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>shift_schedule_profile_time</name>
   <uid>1c642348-f074-4ad1-98ee-2208ddc89ac7</uid>
-  <version_id>c464c0a3-8db6-4c4f-a77d-1da1c003fcec</version_id>
-  <version_modified>20220506T153448Z</version_modified>
+  <version_id>4f449856-9a3b-4ad0-a5a1-efea0b95396a</version_id>
+  <version_modified>20221115T223607Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>ShiftScheduleProfileTime</class_name>
   <display_name>ShiftScheduleProfileTime</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{d79c0411-789b-4733-868c-2765350a45e1}</default_value>
+      <default_value>{4998e0bc-9175-4c72-9384-15b3c9c1f4f7}</default_value>
       <choices>
         <choice>
-          <value>{d79c0411-789b-4733-868c-2765350a45e1}</value>
+          <value>{4998e0bc-9175-4c72-9384-15b3c9c1f4f7}</value>
           <display_name>*All Ruleset Schedules*</display_name>
         </choice>
       </choices>
@@ -89,19 +89,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C1D066F5</checksum>
+      <checksum>589E2347</checksum>
     </file>
     <file>
       <filename>ShiftScheduleProfileTime_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>92F095AD</checksum>
+      <checksum>0C5DE85F</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>change_building_location</name>
   <uid>d4db4971-f5ba-11e3-a3ac-0800200c9a66</uid>
-  <version_id>4cd8fa68-fd45-4975-b664-05a3c3425ff6</version_id>
-  <version_modified>20210406T220256Z</version_modified>
+  <version_id>946ae086-8c8e-4aa7-9d53-f482ba39d7a5</version_id>
+  <version_modified>20221115T223606Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>ChangeBuildingLocation</class_name>
   <display_name>ChangeBuildingLocation</display_name>
@@ -377,25 +377,25 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <filename>stat_file.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>B9DF0380</checksum>
+      <checksum>22D1FE2F</checksum>
     </file>
     <file>
       <filename>epw.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>083481B6</checksum>
+      <checksum>95B8F1F7</checksum>
     </file>
     <file>
       <filename>change_building_location_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>CA5A04D3</checksum>
+      <checksum>B7124724</checksum>
     </file>
     <file>
       <version>
@@ -406,7 +406,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>AD583862</checksum>
+      <checksum>2753B0E4</checksum>
     </file>
   </files>
 </measure>

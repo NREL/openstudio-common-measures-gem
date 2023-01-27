@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>modify_energyplus_coil_cooling_dx_single_speed_objects</name>
   <uid>b224bd36-213e-4b0e-b3fe-70371e04533d</uid>
-  <version_id>3562b631-2d23-47bb-a384-da9687b52044</version_id>
-  <version_modified>20210406T220257Z</version_modified>
+  <version_id>77b55466-153a-49ad-829b-a39dee6d018b</version_id>
+  <version_modified>20221115T223556Z</version_modified>
   <xml_checksum>C7ED76C0</xml_checksum>
   <class_name>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects</class_name>
   <display_name>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects</display_name>
@@ -94,13 +94,13 @@
       <filename>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>C0A6B294</checksum>
+      <checksum>B106105F</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>64FFEBDE</checksum>
     </file>
     <file>
       <version>
@@ -111,7 +111,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>EFFF913D</checksum>
+      <checksum>9CF6D8FF</checksum>
     </file>
   </files>
 </measure>

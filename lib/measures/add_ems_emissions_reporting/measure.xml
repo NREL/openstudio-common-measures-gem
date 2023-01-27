@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_ems_emissions_reporting</name>
   <uid>e8fe9153-5e70-4769-afa0-6da0045aa529</uid>
-  <version_id>bc9ea375-7d2a-4a45-bf7a-d63518c651f8</version_id>
-  <version_modified>20220622T165904Z</version_modified>
+  <version_id>5503bbcc-4de8-4493-8ed7-e7129da38e82</version_id>
+  <version_modified>20221115T223601Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSEmissionsReporting</class_name>
   <display_name>Add EMS to Report Emissions</display_name>
@@ -447,12 +447,6 @@
   </attributes>
   <files>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
       <filename>example_model.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -579,10 +573,16 @@
       <checksum>6C952ECC</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>64FFEBDE</checksum>
+    </file>
+    <file>
       <filename>add_ems_emissions_reporting_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>E9CE2D1A</checksum>
+      <checksum>17B2F148</checksum>
     </file>
     <file>
       <version>
@@ -593,7 +593,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>149C1DD7</checksum>
+      <checksum>471C0F9A</checksum>
     </file>
   </files>
 </measure>
