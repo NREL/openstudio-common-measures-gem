@@ -1,0 +1,44 @@
+# Test with OpenStudio container
+name: test_with_openstudio
+
+# trigger action on all branches, pull requests and tags
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - '*'
+    tags:
+      - '*'
+
+jobs:
+  test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container:
+      image: nrel/openstudio:3.5.1
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: show enviroment
+        shell: bash
+        run: |
+          ruby -v
+          openstudio openstudio_version
+          openstudio gem_list
+      - name: install dependencies
+        shell: bash
+        run: |
+          gem install bundler -v '2.1.4'
+          bundle -v
+          bundle install
+      - name: run tests
+        shell: bash
+        run: |
+          bundle exec rake
+          bundle exec rake openstudio:list_measures
+          bundle exec rake openstudio:update_measures
+          bundle exec rake openstudio:test_with_openstudio
+
+
