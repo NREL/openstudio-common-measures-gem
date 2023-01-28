@@ -1080,7 +1080,7 @@ class GenericQAQC_Test < Minitest::Test
     assert(File.exist?(report_path(test_name)))
   end
 
-    # test uo_mixed
+  # test uo_mixed
   def test_uo_mixed
     # setup test name, model, and epw
     test_name = 'uo_mixed'
