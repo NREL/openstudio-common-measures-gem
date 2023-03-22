@@ -151,7 +151,7 @@ class AddThermalComfortModelTypes < OpenStudio::Measure::ModelMeasure
       people.setWorkEfficiencySchedule(work_efficiency_schedule)
       people.setClothingInsulationSchedule(clothing_insulation_schedule)
       people.setAirVelocitySchedule(air_velocity_schedule)
-      # TODO: allow reset of ActivityLevelSchedule
+      # TODO: allow reset of ActivityLevelSchedule with activity_per_person = 100?
     end
 
     return true
