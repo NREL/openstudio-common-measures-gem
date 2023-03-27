@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_thermal_comfort_model_types</name>
   <uid>5ae7b6b3-58d0-40b4-9899-a7cf0e0d36d2</uid>
-  <version_id>f39441e8-3ff6-45aa-b093-e85f39033288</version_id>
-  <version_modified>20230322T173346Z</version_modified>
+  <version_id>ac2bc7d5-836d-4434-939e-d7d44e4af861</version_id>
+  <version_modified>20230327T203455Z</version_modified>
   <xml_checksum>F0C3F749</xml_checksum>
   <class_name>AddThermalComfortModelTypes</class_name>
   <display_name>AddThermalComfortModelTypes</display_name>
@@ -194,12 +194,6 @@
   </attributes>
   <files>
     <file>
-      <filename>add_thermal_comfort_model_types_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>39103696</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -212,16 +206,10 @@
       <checksum>CD7F5672</checksum>
     </file>
     <file>
-      <filename>.gitkeep</filename>
-      <filetype>gitkeep</filetype>
-      <usage_type>doc</usage_type>
-      <checksum>00000000</checksum>
-    </file>
-    <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>53D14E69</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>324E5CA4</checksum>
     </file>
     <file>
       <version>
@@ -232,13 +220,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DED4B71F</checksum>
+      <checksum>D7204FA9</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>324E5CA4</checksum>
+      <filename>AddThermalComfortModelTypes_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>ACED4BCB</checksum>
+    </file>
+    <file>
+      <filename>base-schedules-simple-power-outage.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>86C09826</checksum>
+    </file>
+    <file>
+      <filename>test_AddThermalComfortModelTypes.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>0D096A05</checksum>
     </file>
   </files>
 </measure>

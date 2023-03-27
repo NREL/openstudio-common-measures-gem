@@ -134,19 +134,19 @@ class AddThermalComfortModelTypes < OpenStudio::Measure::ModelMeasure
       people_def.pushThermalComfortModelType('CoolingEffectASH55') if thermal_comfort_model_type_coolingeffectash55
       people_def.pushThermalComfortModelType('AnkleDraftASH55') if thermal_comfort_model_type_ankledraftash55
     end
-    
+
     work_efficiency_schedule = OpenStudio::Model::ScheduleConstant.new(model)
     work_efficiency_schedule.setValue(work_efficiency_schedule_value)
     work_efficiency_schedule.setName('Work Efficiency Schedule')
-    
+
     clothing_insulation_schedule = OpenStudio::Model::ScheduleConstant.new(model)
     clothing_insulation_schedule.setValue(clothing_insulation_schedule_value)
     clothing_insulation_schedule.setName('Clothing Insulation Schedule')
-    
+
     air_velocity_schedule = OpenStudio::Model::ScheduleConstant.new(model)
     air_velocity_schedule.setValue(air_velocity_schedule_value)
     air_velocity_schedule.setName('Air Velocity Schedule')
-    
+
     peoples.each do |people|
       people.setWorkEfficiencySchedule(work_efficiency_schedule)
       people.setClothingInsulationSchedule(clothing_insulation_schedule)
