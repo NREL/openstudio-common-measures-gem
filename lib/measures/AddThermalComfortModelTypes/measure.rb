@@ -1,4 +1,4 @@
-# insert your copyright here
+# frozen_string_literal: true
 
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
@@ -22,7 +22,7 @@ class AddThermalComfortModelTypes < OpenStudio::Measure::ModelMeasure
   end
 
   # define the arguments that the user will input
-  def arguments(model)
+  def arguments(_model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     arg = OpenStudio::Measure::OSArgument::makeBoolArgument('thermal_comfort_model_type_fanger', true)
@@ -119,7 +119,7 @@ class AddThermalComfortModelTypes < OpenStudio::Measure::ModelMeasure
 
     people_definitions = model.getPeopleDefinitions
     peoples = model.getPeoples
-    
+
     if people_definitions.size == 0 || peoples.size == 0
       runner.registerAsNotApplicable('No PeopleDefinition or People objects found in the model.')
       return true

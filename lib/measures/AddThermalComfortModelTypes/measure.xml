@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_thermal_comfort_model_types</name>
   <uid>5ae7b6b3-58d0-40b4-9899-a7cf0e0d36d2</uid>
-  <version_id>ac2bc7d5-836d-4434-939e-d7d44e4af861</version_id>
-  <version_modified>20230327T203455Z</version_modified>
+  <version_id>168aa861-74e9-4d16-9b24-2e1c573bf20b</version_id>
+  <version_modified>20230330T201634Z</version_modified>
   <xml_checksum>F0C3F749</xml_checksum>
   <class_name>AddThermalComfortModelTypes</class_name>
   <display_name>AddThermalComfortModelTypes</display_name>
@@ -212,23 +212,6 @@
       <checksum>324E5CA4</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>3.5.1</identifier>
-        <min_compatible>3.5.1</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>D7204FA9</checksum>
-    </file>
-    <file>
-      <filename>AddThermalComfortModelTypes_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>ACED4BCB</checksum>
-    </file>
-    <file>
       <filename>base-schedules-simple-power-outage.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -239,6 +222,23 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>0D096A05</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.5.1</identifier>
+        <min_compatible>3.5.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>470470AF</checksum>
+    </file>
+    <file>
+      <filename>AddThermalComfortModelTypes_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1E5529C7</checksum>
     </file>
   </files>
 </measure>
