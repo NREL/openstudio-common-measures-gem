@@ -2632,9 +2632,9 @@ OS:People,
   {fe6d13ab-5e09-43f0-87d6-c94127de246c}, !- Number of People Schedule Name
   {4d544aaf-b6cb-46cf-beac-a747ae78b1fa}, !- Activity Level Schedule Name
   ,                                       !- Surface Name/Angle Factor List Name
-  {00b91263-5c6a-4dde-98f3-b1abee236c3d}, !- Work Efficiency Schedule Name
-  {2799acc7-4236-4b98-8fc8-cc590a9a93e8}, !- Clothing Insulation Schedule Name
-  {87f7416e-53a0-454a-a819-02e45c7c74df}, !- Air Velocity Schedule Name
+  {95cd08fa-41ff-4782-8e6a-48ac94ffb9d0}, !- Work Efficiency Schedule Name
+  {21e105c5-9e9f-4b4c-a55a-623124a87354}, !- Clothing Insulation Schedule Name
+  {e9546a6f-18f7-45b0-84f8-59c62b99a68a}, !- Air Velocity Schedule Name
   1;                                      !- Multiplier
 
 OS:ScheduleTypeLimits,
@@ -17956,19 +17956,19 @@ OS:OutputControl:Files,
   Yes;                                    !- Output Tarcog
 
 OS:Schedule:Constant,
-  {00b91263-5c6a-4dde-98f3-b1abee236c3d}, !- Handle
+  {95cd08fa-41ff-4782-8e6a-48ac94ffb9d0}, !- Handle
   Work Efficiency Schedule,               !- Name
   {830801ce-faf9-42b2-b96a-536e6d58ba5e}, !- Schedule Type Limits Name
   0;                                      !- Value
 
 OS:Schedule:Constant,
-  {2799acc7-4236-4b98-8fc8-cc590a9a93e8}, !- Handle
+  {21e105c5-9e9f-4b4c-a55a-623124a87354}, !- Handle
   Clothing Insulation Schedule,           !- Name
-  {5636e616-3e17-490c-a7b5-00586fcef903}, !- Schedule Type Limits Name
+  {0dfb0a49-e6a1-4857-a605-6caec539135f}, !- Schedule Type Limits Name
   0.6;                                    !- Value
 
 OS:ScheduleTypeLimits,
-  {5636e616-3e17-490c-a7b5-00586fcef903}, !- Handle
+  {0dfb0a49-e6a1-4857-a605-6caec539135f}, !- Handle
   ClothingInsulation,                     !- Name
   0,                                      !- Lower Limit Value
   ,                                       !- Upper Limit Value
@@ -17976,13 +17976,13 @@ OS:ScheduleTypeLimits,
   ClothingInsulation;                     !- Unit Type
 
 OS:Schedule:Constant,
-  {87f7416e-53a0-454a-a819-02e45c7c74df}, !- Handle
+  {e9546a6f-18f7-45b0-84f8-59c62b99a68a}, !- Handle
   Air Velocity Schedule,                  !- Name
-  {16dea358-72b8-4b49-a33b-2b26921d0cb9}, !- Schedule Type Limits Name
+  {6599fbae-d6ba-4560-9760-af1af9ad83ce}, !- Schedule Type Limits Name
   0.1;                                    !- Value
 
 OS:ScheduleTypeLimits,
-  {16dea358-72b8-4b49-a33b-2b26921d0cb9}, !- Handle
+  {6599fbae-d6ba-4560-9760-af1af9ad83ce}, !- Handle
   Velocity,                               !- Name
   0,                                      !- Lower Limit Value
   ,                                       !- Upper Limit Value
