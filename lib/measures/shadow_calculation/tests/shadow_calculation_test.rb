@@ -1,11 +1,10 @@
 # insert your copyright here
 
+require 'fileutils'
+require 'minitest/autorun'
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
-require 'minitest/autorun'
-require_relative '../measure.rb'
-require_relative '../resources/openstudio_functions'
-require 'fileutils'
+require_relative '../measure'
 
 # constants
 DEFAULT_SHADING_CALCULATION_METHOD = 'PolygonClipping'
