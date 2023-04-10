@@ -1,5 +1,3 @@
-# insert your copyright here
-
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
@@ -18,11 +16,7 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
 
   # human readable description of modeling approach
   def modeler_description
-    return "The ShadowCalculation class does not have a public constructor because it is a unique ModelObject. This measure does *not* currently support the following fields:
-    - Shading Calculation Method = `Scheduled` or `Imported`
-    - Output External Shading Calculation Results
-    - Disable Self-Shading Within Shading Zone Groups
-    - Disable Self-Shading From Shading Zone Groups to Other Zones"
+    return "The ShadowCalculation class does not have a public constructor because it is a unique ModelObject."
   end
 
   # define the arguments that the user will input
@@ -102,8 +96,6 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     # disable_self_shading_from_shading_zone_groupsto_other_zones.setDisplayName('Disable Self-Shading From Shading Zone Groups to Other Zones')
     # disable_self_shading_from_shading_zone_groupsto_other_zones.setDefaultValue(false)
     # args << disable_self_shading_from_shading_zone_groupsto_other_zones
-
-    # cad_object_id
 
     return args
   end
