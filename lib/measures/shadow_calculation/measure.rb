@@ -45,19 +45,19 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     shading_calculation_update_frequency_methods << 'Timestep'
     shading_calculation_update_frequency_method = OpenStudio::Measure::OSArgument.makeChoiceArgument('shading_calculation_update_frequency_method', shading_calculation_update_frequency_methods, false)
     shading_calculation_update_frequency_method.setDisplayName('Shading Calculation Update Frequency Method')
-    # shading_calculation_update_frequency_method.setDefaultValue('Periodic')
+    shading_calculation_update_frequency_method.setDefaultValue('Periodic')
     args << shading_calculation_update_frequency_method
 
     shading_calculation_update_frequency = OpenStudio::Measure::OSArgument::makeIntegerArgument('shading_calculation_update_frequency', false)
     shading_calculation_update_frequency.setDisplayName('Shading Calculation Update Frequency (days)')
     shading_calculation_update_frequency.setDescription('Shading Calculation Update Frequency Method = Periodic')
-    # shading_calculation_update_frequency.setDefaultValue(20)
+    shading_calculation_update_frequency.setDefaultValue(20)
     args << shading_calculation_update_frequency
 
     maximum_figures_in_shadow_overlap_calculations = OpenStudio::Measure::OSArgument::makeIntegerArgument('maximum_figures_in_shadow_overlap_calculations', false)
     maximum_figures_in_shadow_overlap_calculations.setDisplayName('Maximum Figures in Shadow Overlap Calculations')
     maximum_figures_in_shadow_overlap_calculations.setDescription('Shading Calculation Method = PolygonClipping')
-    # maximum_figures_in_shadow_overlap_calculations.setDefaultValue(15000)
+    maximum_figures_in_shadow_overlap_calculations.setDefaultValue(15000)
     args << maximum_figures_in_shadow_overlap_calculations
 
     polygon_clipping_algorithms = OpenStudio::StringVector.new
@@ -67,13 +67,13 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     polygon_clipping_algorithm = OpenStudio::Measure::OSArgument::makeChoiceArgument('polygon_clipping_algorithm', polygon_clipping_algorithms, false)
     polygon_clipping_algorithm.setDisplayName('Polygon Clipping Algorithm')
     polygon_clipping_algorithm.setDescription('Shading Calculation Method = PolygonClipping')
-    # polygon_clipping_algorithm.setDefaultValue('SutherlandHodgman')
+    polygon_clipping_algorithm.setDefaultValue('SutherlandHodgman')
     args << polygon_clipping_algorithm
 
     pixel_counting_resolution = OpenStudio::Measure::OSArgument::makeIntegerArgument('pixel_counting_resolution', false)
     pixel_counting_resolution.setDisplayName('Pixel Counting Resolution')
     pixel_counting_resolution.setDescription('Shading Calculation Method = PixelCounting')
-    # pixel_counting_resolution.setDefaultValue(512)
+    pixel_counting_resolution.setDefaultValue(512)
     args << pixel_counting_resolution
 
     # This field applies to the shading calculation update frequency method called “Periodic.” When the method called “Timestep” is used the diffuse sky modeling always uses DetailedSkyDiffuseModeling.
@@ -82,7 +82,7 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     sky_diffuse_modeling_algorithms << 'DetailedSkyDiffuseModeling'
     sky_diffuse_modeling_algorithm = OpenStudio::Measure::OSArgument::makeChoiceArgument('sky_diffuse_modeling_algorithm', sky_diffuse_modeling_algorithms, false)
     sky_diffuse_modeling_algorithm.setDisplayName('Sky Diffuse Modeling Algorithm')
-    # sky_diffuse_modeling_algorithm.setDefaultValue('SimpleSkyDiffuseModeling')
+    sky_diffuse_modeling_algorithm.setDefaultValue('SimpleSkyDiffuseModeling')
     args << sky_diffuse_modeling_algorithm
 
     # # TODO require Shading Calculation Method = Imported
@@ -91,7 +91,7 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     # output_external_shading_calculation_results.setDefaultValue(false)
     # args << output_external_shading_calculation_results
 
-    # # TODO requires Shading Zone Group
+    # # TODO requires Shading Zone Group (OpenStudio vector of ThermalZones)
     # disable_self_shading_within_shading_zone_groups = OpenStudio::Measure::OSArgument::makeBoolArgument('disable_self_shading_within_shading_zone_groups', true)
     # disable_self_shading_within_shading_zone_groups.setDisplayName('Disable Self-Shading Within Shading Zone Groups')
     # disable_self_shading_within_shading_zone_groups.setDefaultValue(false)
@@ -156,38 +156,31 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     # get object, assuming that it exists because it's a UniqueModelObject without a public constructor
     shadow_calculation = model.getShadowCalculation
 
-    # report initial condition of model
+    # report initial condition
     runner.registerInitialCondition("#{shadow_calculation}")
 
     # set object
     shadow_calculation.setShadingCalculationMethod(shading_calculation_method)
+    shadow_calculation.setMaximumFiguresInShadowOverlapCalculations(
+      maximum_figures_in_shadow_overlap_calculations
+    ) if maximum_figures_in_shadow_overlap_calculations
+    shadow_calculation.setPolygonClippingAlgorithm(
+      polygon_clipping_algorithm
+    ) if polygon_clipping_algorithm
+    shadow_calculation.setPixelCountingResolution(
+      pixel_counting_resolution
+    ) if pixel_counting_resolution
+    shadow_calculation.setShadingCalculationUpdateFrequencyMethod(
+      shading_calculation_update_frequency_method
+    ) if shading_calculation_update_frequency_method
+    shadow_calculation.setShadingCalculationUpdateFrequency(
+      shading_calculation_update_frequency
+    ) if shading_calculation_update_frequency
+    shadow_calculation.setSkyDiffuseModelingAlgorithm(
+      sky_diffuse_modeling_algorithm
+    ) if sky_diffuse_modeling_algorithm
 
-    case shading_calculation_method
-    when 'PolygonClipping'
-      # hardcoded default = 15000, so no need to check
-      shadow_calculation.setMaximumFiguresInShadowOverlapCalculations(maximum_figures_in_shadow_overlap_calculations) if maximum_figures_in_shadow_overlap_calculations
-      # harcoded default seems to be SutherlandHodgman using the API but not in source code
-      shadow_calculation.setPolygonClippingAlgorithm(polygon_clipping_algorithm) if polygon_clipping_algorithm
-    when 'PixelCounting'
-      if pixel_counting_resolution
-        shadow_calculation.setPixelCountingResolution(pixel_counting_resolution)
-      else
-        runner.registerWarning("Pixel Counting Resolution = #{pixel_counting_resolution}")
-      end
-    end
-
-    if shading_calculation_update_frequency_method
-      shadow_calculation.setShadingCalculationUpdateFrequencyMethod(shading_calculation_update_frequency_method)
-      case shading_calculation_update_frequency_method
-      when 'Periodic'
-        # hardcoded default = 20, so no need to check
-        shadow_calculation.setShadingCalculationUpdateFrequency(shading_calculation_update_frequency) if shading_calculation_update_frequency
-        # hardcoded default seems to be SimpleSkyDiffuseModeling using the API but not in source code
-        shadow_calculation.setSkyDiffuseModelingAlgorithm(sky_diffuse_modeling_algorithm) if sky_diffuse_modeling_algorithm
-      end
-    end
-
-    # report final condition of model
+    # report final condition
     runner.registerFinalCondition("#{shadow_calculation}")
 
     return true
