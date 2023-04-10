@@ -18,11 +18,11 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
 
   # human readable description of modeling approach
   def modeler_description
-    return 'The ShadowCalculation class is a singleton without a public constructor. This measure does *not* currently support the following fields:
+    return "The ShadowCalculation class does not have a public constructor because it is a unique ModelObject. This measure does *not* currently support the following fields:
     - Shading Calculation Method = `Scheduled` or `Imported`
     - Output External Shading Calculation Results
     - Disable Self-Shading Within Shading Zone Groups
-    - Disable Self-Shading From Shading Zone Groups to Other Zones'
+    - Disable Self-Shading From Shading Zone Groups to Other Zones"
   end
 
   # define the arguments that the user will input
@@ -85,19 +85,19 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     # sky_diffuse_modeling_algorithm.setDefaultValue('SimpleSkyDiffuseModeling')
     args << sky_diffuse_modeling_algorithm
 
-    # # TODO require Shading Calculation Method = Imported
+    # # TODO requires Shading Calculation Method = Imported
     # output_external_shading_calculation_results = OpenStudio::Measure::OSArgument::makeBoolArgument('output_external_shading_calculation_results', true)
     # output_external_shading_calculation_results.setDisplayName('Output External Shading Calculation Results')
     # output_external_shading_calculation_results.setDefaultValue(false)
     # args << output_external_shading_calculation_results
 
-    # # TODO requires Shading Zone Group (OpenStudio vector of ThermalZones)
+    # # TODO requires Shading Zone Group, a vector of ThermalZones
     # disable_self_shading_within_shading_zone_groups = OpenStudio::Measure::OSArgument::makeBoolArgument('disable_self_shading_within_shading_zone_groups', true)
     # disable_self_shading_within_shading_zone_groups.setDisplayName('Disable Self-Shading Within Shading Zone Groups')
     # disable_self_shading_within_shading_zone_groups.setDefaultValue(false)
     # args << disable_self_shading_within_shading_zone_groups
 
-    # # TODO requires Shading Zone Group (OpenStudio vector of ThermalZones)
+    # # TODO requires Shading Zone Group, a vector of ThermalZones
     # disable_self_shading_from_shading_zone_groupsto_other_zones = OpenStudio::Measure::OSArgument::makeBoolArgument('disable_self_shading_from_shading_zone_groupsto_other_zones', true)
     # disable_self_shading_from_shading_zone_groupsto_other_zones.setDisplayName('Disable Self-Shading From Shading Zone Groups to Other Zones')
     # disable_self_shading_from_shading_zone_groupsto_other_zones.setDefaultValue(false)
@@ -153,7 +153,7 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     # disable_self_shading_within_shading_zone_groups = runner.getBoolArgumentValue('disable_self_shading_within_shading_zone_groups', user_arguments)
     # disable_self_shading_from_shading_zone_groups_to_other_zones = runner.getBoolArgumentValue('disable_self_shading_from_shading_zone_groups_to_other_zones', user_arguments)
 
-    # get object, assuming that it exists because it's a UniqueModelObject without a public constructor
+    # get object or create one if it does not yet exist
     shadow_calculation = model.getShadowCalculation
 
     # report initial condition
