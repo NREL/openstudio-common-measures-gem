@@ -13,12 +13,12 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
 
   # human readable description
   def description
-    return 'This measure sets the ShadowCalculation object fields.'
+    return "This measure sets the fields of the ShadowCalculation object, which is used to control some details of EnergyPlus’s solar, shadowing, and daylighting models."
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This measure does *not* currently support the following fields:
+    return 'The ShadowCalculation class is a singleton without a public constructor. This measure does *not* currently support the following fields:
     - Shading Calculation Method = `Scheduled` or `Imported`
     - Output External Shading Calculation Results
     - Disable Self-Shading Within Shading Zone Groups
@@ -45,7 +45,7 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     shading_calculation_update_frequency_methods << 'Timestep'
     shading_calculation_update_frequency_method = OpenStudio::Measure::OSArgument.makeChoiceArgument('shading_calculation_update_frequency_method', shading_calculation_update_frequency_methods, false)
     shading_calculation_update_frequency_method.setDisplayName('Shading Calculation Update Frequency Method')
-    shading_calculation_update_frequency_method.setDefaultValue('Periodic')
+    # shading_calculation_update_frequency_method.setDefaultValue('Periodic')
     args << shading_calculation_update_frequency_method
 
     shading_calculation_update_frequency = OpenStudio::Measure::OSArgument::makeIntegerArgument('shading_calculation_update_frequency', false)
@@ -67,7 +67,7 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     polygon_clipping_algorithm = OpenStudio::Measure::OSArgument::makeChoiceArgument('polygon_clipping_algorithm', polygon_clipping_algorithms, false)
     polygon_clipping_algorithm.setDisplayName('Polygon Clipping Algorithm')
     polygon_clipping_algorithm.setDescription('Shading Calculation Method = PolygonClipping')
-    polygon_clipping_algorithm.setDefaultValue('SutherlandHodgman')
+    # polygon_clipping_algorithm.setDefaultValue('SutherlandHodgman')
     args << polygon_clipping_algorithm
 
     pixel_counting_resolution = OpenStudio::Measure::OSArgument::makeIntegerArgument('pixel_counting_resolution', false)
@@ -82,7 +82,7 @@ class ShadowCalculation < OpenStudio::Measure::ModelMeasure
     sky_diffuse_modeling_algorithms << 'DetailedSkyDiffuseModeling'
     sky_diffuse_modeling_algorithm = OpenStudio::Measure::OSArgument::makeChoiceArgument('sky_diffuse_modeling_algorithm', sky_diffuse_modeling_algorithms, false)
     sky_diffuse_modeling_algorithm.setDisplayName('Sky Diffuse Modeling Algorithm')
-    sky_diffuse_modeling_algorithm.setDefaultValue('SimpleSkyDiffuseModeling')
+    # sky_diffuse_modeling_algorithm.setDefaultValue('SimpleSkyDiffuseModeling')
     args << sky_diffuse_modeling_algorithm
 
     # # TODO require Shading Calculation Method = Imported
