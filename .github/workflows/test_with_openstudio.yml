@@ -30,7 +30,7 @@ jobs:
       - name: set git config options
         shell: bash
         run: |
-          git config --global --add safe.directory
+          git config --global --add safe.directory '*'
       - name: install dependencies
         shell: bash
         run: |
