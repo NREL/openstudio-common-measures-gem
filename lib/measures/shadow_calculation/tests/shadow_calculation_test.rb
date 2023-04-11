@@ -1,5 +1,3 @@
-# insert your copyright here
-
 require 'fileutils'
 require 'minitest/autorun'
 require 'openstudio'
