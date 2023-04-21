@@ -11,11 +11,11 @@ require 'openstudio-standards'
 Dir[File.dirname(__FILE__) + '/resources/*.rb'].each {|file| require file}
 
 # start the measure
-class SetSimulationControl < OpenStudio::Measure::ModelMeasure
+class SimulationControl < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     # Measure name should be the title case of the class name.
-    return 'Set Simulation Control'
+    return 'Simulation Control'
   end
 
   # human readable description
@@ -187,4 +187,4 @@ class SetSimulationControl < OpenStudio::Measure::ModelMeasure
 end
 
 # register the measure to be used by the application
-SetSimulationControl.new.registerWithApplication
+SimulationControl.new.registerWithApplication
