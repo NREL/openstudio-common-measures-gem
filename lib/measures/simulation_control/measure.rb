@@ -25,14 +25,6 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    start_date = OpenStudio::Measure::OSArgument.makeStringArgument("start_date", false)
-    start_date.setDisplayName("Run Period Start Date")
-    args << start_date
-
-    end_date = OpenStudio::Measure::OSArgument.makeStringArgument("end_date", false)
-    end_date.setDisplayName("Run Period End Date")
-    args << end_date
-
     heating_sizing_factor = OpenStudio::Measure::OSArgument.makeDoubleArgument("heating_sizing_factor", false)
     heating_sizing_factor.setDisplayName("Heating Sizing Factor")
     args << heating_sizing_factor
@@ -113,12 +105,6 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
     end
 
     # assign the user inputs to variables
-    start_date = runner.getOptionalStringArgumentValue("start_date", user_arguments)
-    model_set_start_date(model, start_date.get) unless start_date.empty?
-
-    end_date = runner.getOptionalStringArgumentValue("end_date", user_arguments)
-    model_set_end_date(model, end_date.get) unless end_date.empty?
-
     heating_sizing_factor = runner.getOptionalDoubleArgumentValue("heating_sizing_factor", user_arguments)
     model.getSizingParameters.setHeatingSizingFactor(heating_sizing_factor.get) if heating_sizing_factor.is_initialized
 
@@ -163,18 +149,6 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
     max_hvac_iterations = runner.getOptionalIntegerArgumentValue("max_warmup_days", user_arguments)
     convergence_limits.setMaximumHVACIterations(max_hvac_iterations.get) unless max_hvac_iterations.empty?
     return true
-  end
-
-  def model_set_start_date(model, date_string)
-    date = Date.parse(date_string)
-    model.getRunPeriod.setBeginDayOfMonth(date.day)
-    model.getRunPeriod.setBeginMonth(date.month)
-  end
-
-  def model_set_end_date(model, date_string)
-    date = Date.parse(date_string)
-    model.getRunPeriod.setEndDayOfMonth(date.day)
-    model.getRunPeriod.setEndMonth(date.month)
   end
 
 end
