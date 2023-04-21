@@ -25,10 +25,6 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    timesteps = OpenStudio::Measure::OSArgument.makeIntegerArgument("timesteps_per_hour", false)
-    timesteps.setDisplayName("Timesteps Per Hour")
-    args << timesteps
-
     do_zone_sizing = OpenStudio::Measure::OSArgument.makeBoolArgument("do_zone_sizing", false)
     do_zone_sizing.setDisplayName("Do Zone Sizing?")
     do_zone_sizing.setDefaultValue(true)
@@ -97,9 +93,6 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
     end
 
     # assign the user inputs to variables
-    timesteps = runner.getOptionalIntegerArgumentValue("timesteps_per_hour", user_arguments)
-    model.getTimestep.setNumberOfTimestepsPerHour(timesteps.get) unless timesteps.empty?
-
     simulation_control = model.getSimulationControl
     do_zone_sizing = runner.getBoolArgumentValue("do_zone_sizing", user_arguments)
     simulation_control.setDoZoneSizingCalculation(do_zone_sizing)
