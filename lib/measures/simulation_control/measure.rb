@@ -25,14 +25,6 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    heating_sizing_factor = OpenStudio::Measure::OSArgument.makeDoubleArgument("heating_sizing_factor", false)
-    heating_sizing_factor.setDisplayName("Heating Sizing Factor")
-    args << heating_sizing_factor
-
-    cooling_sizing_factor = OpenStudio::Measure::OSArgument.makeDoubleArgument("cooling_sizing_factor", false)
-    cooling_sizing_factor.setDisplayName("Cooling Sizing Factor")
-    args << cooling_sizing_factor
-
     timesteps = OpenStudio::Measure::OSArgument.makeIntegerArgument("timesteps_per_hour", false)
     timesteps.setDisplayName("Timesteps Per Hour")
     args << timesteps
@@ -105,12 +97,6 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
     end
 
     # assign the user inputs to variables
-    heating_sizing_factor = runner.getOptionalDoubleArgumentValue("heating_sizing_factor", user_arguments)
-    model.getSizingParameters.setHeatingSizingFactor(heating_sizing_factor.get) if heating_sizing_factor.is_initialized
-
-    cooling_sizing_factor = runner.getOptionalDoubleArgumentValue("cooling_sizing_factor", user_arguments)
-    model.getSizingParameters.setCoolingSizingFactor(cooling_sizing_factor.get) if cooling_sizing_factor.is_initialized
-
     timesteps = runner.getOptionalIntegerArgumentValue("timesteps_per_hour", user_arguments)
     model.getTimestep.setNumberOfTimestepsPerHour(timesteps.get) unless timesteps.empty?
 
