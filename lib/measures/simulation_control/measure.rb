@@ -61,14 +61,6 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
     args << maximum_number_of_hvac_sizing_simulation_passes
 
     # the following fields belong to the Building class in EnergyPlus
-    maximum_number_of_warmup_days = OpenStudio::Measure::OSArgument.makeIntegerArgument("maximum_number_of_warmup_days", false)
-    maximum_number_of_warmup_days.setDisplayName("Maximum Number of Warmup Days")
-    args << maximum_number_of_warmup_days
-
-    minimum_number_of_warmup_days = OpenStudio::Measure::OSArgument.makeIntegerArgument("minimum_number_of_warmup_days", false)
-    minimum_number_of_warmup_days.setDisplayName("Minimum Number of Warmup Days")
-    args << minimum_number_of_warmup_days
-
     loads_convergence_tolerance_value = OpenStudio::Measure::OSArgument.makeDoubleArgument("loads_convergence_tolerance_value", false)
     loads_convergence_tolerance_value.setDisplayName("Loads Convergence Tolerance Value")
     args << loads_convergence_tolerance_value
@@ -86,6 +78,14 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
     solar_distribution = OpenStudio::Measure::OSArgument.makeChoiceArgument("solar_distribution", solar_distributions, false)
     solar_distribution.setDisplayName("Solar Distribution")
     args << solar_distribution
+
+    maximum_number_of_warmup_days = OpenStudio::Measure::OSArgument.makeIntegerArgument("maximum_number_of_warmup_days", false)
+    maximum_number_of_warmup_days.setDisplayName("Maximum Number of Warmup Days")
+    args << maximum_number_of_warmup_days
+
+    minimum_number_of_warmup_days = OpenStudio::Measure::OSArgument.makeIntegerArgument("minimum_number_of_warmup_days", false)
+    minimum_number_of_warmup_days.setDisplayName("Minimum Number of Warmup Days")
+    args << minimum_number_of_warmup_days
 
     return args
   end
