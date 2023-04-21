@@ -25,54 +25,65 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    do_zone_sizing = OpenStudio::Measure::OSArgument.makeBoolArgument("do_zone_sizing", false)
-    do_zone_sizing.setDisplayName("Do Zone Sizing?")
-    do_zone_sizing.setDefaultValue(true)
-    args << do_zone_sizing
+    do_zone_sizing_calculation = OpenStudio::Measure::OSArgument.makeBoolArgument("do_zone_sizing_calculation", false)
+    do_zone_sizing_calculation.setDisplayName("Do Zone Sizing Calculation?")
+    do_zone_sizing_calculation.setDefaultValue(false)
+    args << do_zone_sizing_calculation
 
-    do_system_sizing = OpenStudio::Measure::OSArgument.makeBoolArgument("do_system_sizing", false)
-    do_system_sizing.setDisplayName("Do System Sizing?")
-    do_system_sizing.setDefaultValue(true)
-    args << do_system_sizing
+    do_system_sizing_calculation = OpenStudio::Measure::OSArgument.makeBoolArgument("do_system_sizing_calculation", false)
+    do_system_sizing_calculation.setDisplayName("Do System Sizing Calculation?")
+    do_system_sizing_calculation.setDefaultValue(false)
+    args << do_system_sizing_calculation
 
-    do_plant_sizing = OpenStudio::Measure::OSArgument.makeBoolArgument("do_plant_sizing", false)
-    do_plant_sizing.setDisplayName("Do Plant Sizing?")
-    do_plant_sizing.setDefaultValue(true)
-    args << do_plant_sizing
+    do_plant_sizing_calculation = OpenStudio::Measure::OSArgument.makeBoolArgument("do_plant_sizing_calculation", false)
+    do_plant_sizing_calculation.setDisplayName("Do Plant Sizing Calculation?")
+    do_plant_sizing_calculation.setDefaultValue(false)
+    args << do_plant_sizing_calculation
 
-    sim_for_sizing = OpenStudio::Measure::OSArgument.makeBoolArgument("sim_for_sizing", false)
-    sim_for_sizing.setDisplayName("Run Simulation for Sizing Period?")
-    sim_for_sizing.setDefaultValue(false)
-    args << sim_for_sizing
+    run_simulation_for_sizing_periods = OpenStudio::Measure::OSArgument.makeBoolArgument("run_simulation_for_sizing_periods", false)
+    run_simulation_for_sizing_periods.setDisplayName("Run Simulation for Sizing Periods?")
+    run_simulation_for_sizing_periods.setDefaultValue(true)
+    args << run_simulation_for_sizing_periods
 
-    sim_for_run_period = OpenStudio::Measure::OSArgument.makeBoolArgument("sim_for_run_period", false)
-    sim_for_run_period.setDisplayName("Run Simulation for Weather File Run Period?")
-    sim_for_run_period.setDefaultValue(true)
-    args << sim_for_run_period
+    run_simulation_for_weather_file_run_periods = OpenStudio::Measure::OSArgument.makeBoolArgument("run_simulation_for_weather_file_run_periods", false)
+    run_simulation_for_weather_file_run_periods.setDisplayName("Run Simulation for Weather File Run Periods?")
+    run_simulation_for_weather_file_run_periods.setDefaultValue(true)
+    args << run_simulation_for_weather_file_run_periods
 
-    max_warmup_days = OpenStudio::Measure::OSArgument.makeIntegerArgument("max_warmup_days", false)
-    max_warmup_days.setDisplayName("Maximum Number of Warmup Days")
-    args << max_warmup_days
+    do_hvac_sizing_simulation_for_sizing_periods = OpenStudio::Measure::OSArgument.makeBoolArgument('do_hvac_sizing_simulation_for_sizing_periods', false)
+    do_hvac_sizing_simulation_for_sizing_periods.setDisplayName()'Do HVAC Sizing Simulation for Sizing Periods?')
+    do_hvac_sizing_simulation_for_sizing_periods.setDefaultValue(false)
+    args << do_hvac_sizing_simulation_for_sizing_periods
 
-    min_warmup_days = OpenStudio::Measure::OSArgument.makeIntegerArgument("min_warmup_days", false)
-    min_warmup_days.setDisplayName("Minimum Number of Warmup Days")
-    args << min_warmup_days
+    maximum_number_of_hvac_sizing_simulation_passes = OpenStudio::Measure::OSArgument.makeIntegerArgument('maximum_number_of_hvac_sizing_simulation_passes', false)
+    maximum_number_of_hvac_sizing_simulation_passes.setDisplayName('Maximum Number of HVAC Sizing Simulation Passes')
+    maximum_number_of_hvac_sizing_simulation_passes.setDescription('only used if the previous field is set to Yes')
+    args << maximum_number_of_hvac_sizing_simulation_passes
 
-    loads_convergence_tolerance = OpenStudio::Measure::OSArgument.makeDoubleArgument("loads_convergence_tolerance", false)
-    loads_convergence_tolerance.setDisplayName("Load Convergence Tolerance")
-    args << loads_convergence_tolerance
+    # the following fields belong to the Building class in EnergyPlus
+    maximum_number_of_warmup_days = OpenStudio::Measure::OSArgument.makeIntegerArgument("maximum_number_of_warmup_days", false)
+    maximum_number_of_warmup_days.setDisplayName("Maximum Number of Warmup Days")
+    args << maximum_number_of_warmup_days
 
-    temp_convergence_tolerance = OpenStudio::Measure::OSArgument.makeDoubleArgument("temp_convergence_tolerance", false)
-    temp_convergence_tolerance.setDisplayName("Temp Convergence Tolerance")
-    args << temp_convergence_tolerance
+    minimum_number_of_warmup_days = OpenStudio::Measure::OSArgument.makeIntegerArgument("minimum_number_of_warmup_days", false)
+    minimum_number_of_warmup_days.setDisplayName("Minimum Number of Warmup Days")
+    args << minimum_number_of_warmup_days
 
-    solar_choices = OpenStudio::StringVector.new
-    solar_choices << "MinimalShadowing"
-    solar_choices << "FullExterior"
-    solar_choices << "FullInteriorAndExterior"
-    solar_choices << "FullExteriorWithReflections"
-    solar_choices << "FullInteriorAndExteriorWithReflections"
-    solar_distribution = OpenStudio::Measure::OSArgument.makeChoiceArgument("solar_distribution", solar_choices, false)
+    loads_convergence_tolerance_value = OpenStudio::Measure::OSArgument.makeDoubleArgument("loads_convergence_tolerance_value", false)
+    loads_convergence_tolerance_value.setDisplayName("Loads Convergence Tolerance Value")
+    args << loads_convergence_tolerance_value
+
+    temperature_convergence_tolerance_value = OpenStudio::Measure::OSArgument.makeDoubleArgument("temperature_convergence_tolerance_value", false)
+    temperature_convergence_tolerance_value.setDisplayName("Temperature Convergence Tolerance Value")
+    args << temperature_convergence_tolerance_value
+
+    solar_distributions = OpenStudio::StringVector.new
+    solar_distributions << "FullExterior"
+    solar_distributions << "MinimalShadowing"
+    solar_distributions << "FullInteriorAndExterior"
+    solar_distributions << "FullExteriorWithReflections"
+    solar_distributions << "FullInteriorAndExteriorWithReflections"
+    solar_distribution = OpenStudio::Measure::OSArgument.makeChoiceArgument("solar_distribution", solar_distributions, false)
     solar_distribution.setDisplayName("Solar Distribution")
     args << solar_distribution
 
