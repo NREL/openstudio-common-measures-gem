@@ -3,13 +3,6 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-require 'rexml/document'
-require 'rexml/xpath'
-require 'openstudio-standards'
-
-# require all .rb files in resources folder
-Dir[File.dirname(__FILE__) + '/resources/*.rb'].each {|file| require file}
-
 # start the measure
 class SimulationControl < OpenStudio::Measure::ModelMeasure
   # human readable name
