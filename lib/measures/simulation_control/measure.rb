@@ -99,37 +99,66 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
       return false
     end
 
-    # assign the user inputs to variables
+    # get object
     simulation_control = model.getSimulationControl
-    do_zone_sizing = runner.getBoolArgumentValue("do_zone_sizing", user_arguments)
-    simulation_control.setDoZoneSizingCalculation(do_zone_sizing)
 
-    do_system_sizing = runner.getBoolArgumentValue("do_system_sizing", user_arguments)
-    simulation_control.setDoSystemSizingCalculation(do_system_sizing)
+    # register initial condition
+    runner.registerInitialCondition("#{simulation_control}")
 
-    do_plant_sizing = runner.getBoolArgumentValue("do_plant_sizing", user_arguments)
-    simulation_control.setDoPlantSizingCalculation(do_plant_sizing)
+    # get arguments
+    do_zone_sizing_calculation = runner.getBoolArgumentValue("do_zone_sizing_calculation", user_arguments)
+    do_system_sizing_calculation = runner.getBoolArgumentValue("do_system_sizing_calculation", user_arguments)
+    do_plant_sizing_calculation = runner.getBoolArgumentValue("do_plant_sizing_calculation", user_arguments)
+    run_simulation_for_sizing_periods = runner.getBoolArgumentValue("run_simulation_for_sizing_periods", user_arguments)
+    run_simulation_for_weather_file_run_periods = runner.getBoolArgumentValue("run_simulation_for_weather_file_run_periods", user_arguments)
+    do_hvac_sizing_simulation_for_sizing_periods = runner.getBoolArgumentValue('do_hvac_sizing_simulation_for_sizing_periods', user_arguments)
+    if runner.getOptionalIntegerArgumentValue('maximum_number_of_hvac_sizing_simulation_passes', user_arguments).is_initialized
+      maximum_number_of_hvac_sizing_simulation_passes = runner.getBoolArgumentValue('maximum_number_of_hvac_sizing_simulation_passes', user_arguments)
+    else
+      maximum_number_of_hvac_sizing_simulation_passes = false
+    end
+    if runner.getOptionalDoubleArgumentValue("loads_convergence_tolerance_value", user_arguments).is_initialized
+      loads_convergence_tolerance_value = runner.getOptionalDoubleArgumentValue("loads_convergence_tolerance_value", user_arguments)
+    else
+      loads_convergence_tolerance_value = false
+    end
+    if runner.getOptionalDoubleArgumentValue("temperature_convergence_tolerance_value", user_arguments).is_initialized
+      temperature_convergence_tolerance_value = runner.getOptionalDoubleArgumentValue("temperature_convergence_tolerance_value", user_arguments)
+    else
+      temperature_convergence_tolerance_value = false
+    end
+    if runner.getOptionalStringArgumentValue("solar_distribution", user_arguments).is_initialized
+      solar_distribution = runner.getOptionalStringArgumentValue("solar_distribution", user_arguments)
+    else
+      solar_distribution = false
+    end
+    if runner.getOptionalIntegerArgumentValue("maximum_number_of_warmup_days", user_arguments).is_initialized
+      maximum_number_of_warmup_days = runner.getOptionalIntegerArgumentValue("maximum_number_of_warmup_days", user_arguments)
+    else
+      maximum_number_of_warmup_days = false
+    end
+    if runner.getOptionalIntegerArgumentValue("minimum_number_of_warmup_days", user_arguments).is_initialized
+      minimum_number_of_warmup_days = runner.getOptionalIntegerArgumentValue("minimum_number_of_warmup_days", user_arguments)
+    else
+      minimum_number_of_warmup_days = false
+    end
 
-    sim_for_sizing = runner.getBoolArgumentValue("sim_for_sizing", user_arguments)
-    simulation_control.setRunSimulationforSizingPeriods(sim_for_sizing)
-
-    sim_for_run_period = runner.getBoolArgumentValue("sim_for_run_period", user_arguments)
-    simulation_control.setRunSimulationforWeatherFileRunPeriods(sim_for_run_period)
-
-    max_warmup_days = runner.getOptionalIntegerArgumentValue("max_warmup_days", user_arguments)
-    simulation_control.setMaximumNumberofWarmupDays(max_warmup_days.get) unless max_warmup_days.empty?
-
-    min_warmup_days = runner.getOptionalIntegerArgumentValue("min_warmup_days", user_arguments)
-    simulation_control.setMinimumNumberofWarmupDays(min_warmup_days.get) unless min_warmup_days.empty?
-
-    loads_convergence_tolerance = runner.getOptionalDoubleArgumentValue("loads_convergence_tolerance", user_arguments)
-    simulation_control.setLoadsConvergenceToleranceValue(loads_convergence_tolerance.get) unless loads_convergence_tolerance.empty?
-
-    temp_convergence_tolerance = runner.getOptionalDoubleArgumentValue("temp_convergence_tolerance", user_arguments)
-    simulation_control.setTemperatureConvergenceToleranceValue(temp_convergence_tolerance.get) unless temp_convergence_tolerance.empty?
-
-    solar_distribution = runner.getOptionalStringArgumentValue("solar_distribution", user_arguments)
+    # set object
+    simulation_control.setDoZoneSizingCalculation(do_zone_sizing_calculation)
+    simulation_control.setDoSystemSizingCalculation(do_system_sizing_calculation)
+    simulation_control.setDoPlantSizingCalculation(do_plant_sizing_calculation)
+    simulation_control.setRunSimulationforSizingPeriods(run_simulation_for_sizing_periods)
+    simulation_control.setRunSimulationforWeatherFileRunPeriods(run_simulation_for_weather_file_run_periods)
+    simulation_control.setDoHVACSizingSimulationforSizingPeriods(do_hvac_sizing_simulation_for_sizing_periods)
+    simulation_control.setMaximumNumberofHVACSizingSimulationPasses(maximum_number_of_hvac_sizing_simulation_passes) if maximum_number_of_hvac_sizing_simulation_passes
+    simulation_control.setLoadsConvergenceToleranceValue(loads_convergence_tolerance_value.get) if loads_convergence_tolerance_value
+    simulation_control.setTemperatureConvergenceToleranceValue(temperature_convergence_tolerance_value.get) if temperature_convergence_tolerance_value
     simulation_control.setSolarDistribution(solar_distribution.get) unless solar_distribution.empty?
+    simulation_control.setMaximumNumberofWarmupDays(maximum_number_of_warmup_days.get) if maximum_number_of_warmup_days
+    simulation_control.setMinimumNumberofWarmupDays(minimum_number_of_warmup_days.get) if minimum_number_of_warmup_days
+
+    # register final condition
+    runner.registerFinalCondition("#{simulation_control}")
 
     return true
   end
