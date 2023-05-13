@@ -156,6 +156,12 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     reg_monthly_details.setDefaultValue(false) # set to false so no impact on existing projects using the measure
     args << reg_monthly_details
 
+    # boolean for revit-specific code
+    revit = OpenStudio::Measure::OSArgument::makeBoolArgument('revit', true)
+    revit.setDisplayName('Customization for Revit?')
+    revit.setDefaultValue(false)
+    args << revit
+
     args
   end
 
@@ -244,10 +250,19 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
 
     # assign the user inputs to variables
     args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments)
+    revit = runner.getBoolArgumentValue('revit', user_arguments)
+
     unless args
       return false
     end
-    units = args['units']
+
+    case revit
+    when false
+      units = args['units']
+    when true
+      units = runner.unitsPreference
+    end
+
     if units == 'IP'
       is_ip_units = true
     else
@@ -351,6 +366,15 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     # configure template with variable values
     renderer = ERB.new(html_in)
     html_out = renderer.result(binding)
+
+    # insert eplustbl to html for revit
+    if revit
+      eplustbl_html_path = File.join(runner.workflow.absoluteRunDir.to_s, 'eplustbl.htm')
+      html_to_insert = File.read(eplustbl_html_path).match(/<body>(.*)<\/body>/m)[1]
+      html_to_insert = html_to_insert.gsub(/<table/, "<table class=\"table table-striped table-bordered table-condensed\"")
+      html_out = html_out.gsub(/Measure Warnings<\/a><\/li>/, "Measure Warnings</a></li>\r\n<li><a href=\"#Detailed_Report\">Detailed Report</a></li>")
+      html_out = html_out.gsub(/<\/body>/, "<div class=\"col-md-9 col-md-offset-3\" role=\"main\"><h2 id=\"Detailed_Report\">Detailed Report</h2><br>#{html_to_insert}</div>\\0")
+    end
 
     # write html file
     html_out_path = './report.html'
