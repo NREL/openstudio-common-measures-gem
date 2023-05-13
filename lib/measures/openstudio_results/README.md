@@ -211,6 +211,14 @@ This argument does not effect HTML file, instead it makes data from individal ce
 **Required:** true,
 **Model Dependent:** false
 
+### Customization for Revit?
+
+**Name:** revit,
+**Type:** Boolean,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
 
 
 
