@@ -329,6 +329,19 @@ module OsLib_CreateResults
       @runner.registerValue('annual_consumption_gas', 0.0, 'GJ')
     end
 
+    # other_energy
+    other_fuels = ['gasoline', 'diesel', 'coal', 'fuelOilNo1', 'fuelOilNo2', 'propane', 'otherFuel1', 'OtherFuel2']
+    other_energy_total = 0.0
+    other_fuels.each do |fuel|
+      other_energy = @sql.instance_eval(fuel + 'TotalEndUses')
+      if other_energy.is_initialized
+        # sum up all of the "other" fuels
+        other_energy_total += other_energy.get
+      end
+    end
+    cons_elems << OpenStudio::Attribute.new('other_energy', other_energy_total, 'GJ')
+    @runner.registerValue('annual_consumption_other_energy', other_energy_total, 'GJ')
+
     # TODO: add all fuel types when the sql queries are added to OpenStudio
     # other_energy
     # other_energy = @sql.otherFuelTotalEndUses
