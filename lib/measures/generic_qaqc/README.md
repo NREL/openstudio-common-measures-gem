@@ -100,7 +100,7 @@ Check for simultaneous heating and cooling by looping through all Single Duct VA
 **Model Dependent:** false
 
 ### Internal Loads (Baseline)
-Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against selected ASHRAE standard DOE Prototype buildings.
+Check LPD, ventilation rates, occupant density, plug loads, and equipment loads against selected ASHRAE standard and DOE Prototype buildings.
 **Name:** check_internal_loads,
 **Type:** Boolean,
 **Units:** ,
@@ -179,7 +179,7 @@ Check against selected ASHRAE standard for the following component types: Chille
 **Required:** true,
 **Model Dependent:** false
 
-### Baseline Mechanical System Type (Baseline)
+### Mechanical System Type (Baseline)
 Check against ASHRAE 90.1. Infers the baseline system type based on the equipment serving the zone and their heating/cooling fuels. Only does a high-level inference; does not look for the presence/absence of required controls, etc.
 **Name:** check_mech_sys_type,
 **Type:** Boolean,
