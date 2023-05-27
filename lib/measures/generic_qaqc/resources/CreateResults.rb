@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2022, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -171,9 +171,9 @@ module OsLib_CreateResults
 
       yr = nil
       if os_version > OpenStudio::VersionString.new('1.5.3')
-        yr = "January #{new_yr.round}"
+        yr = "January         #{new_yr.round}"
       else
-        yr = "January #{new_yr.round}"
+        yr = "January           #{new_yr.round}"
       end
 
       ann_cap_cash = 0.0
@@ -288,14 +288,7 @@ module OsLib_CreateResults
     fuel_type_map = {
       OpenStudio::EndUseFuelType.new('Electricity').value => OpenStudio::FuelType.new('Electricity'),
       OpenStudio::EndUseFuelType.new('Gas').value => OpenStudio::FuelType.new('Gas'),
-      OpenStudio::EndUseFuelType.new('Gasoline').value => OpenStudio::FuelType.new('Gasoline'),
-      OpenStudio::EndUseFuelType.new('Diesel').value => OpenStudio::FuelType.new('Diesel'),
-      OpenStudio::EndUseFuelType.new('Coal').value => OpenStudio::FuelType.new('Coal'), 
-      OpenStudio::EndUseFuelType.new('FuelOil_1').value => OpenStudio::FuelType.new('FuelOil_1'), 
-      OpenStudio::EndUseFuelType.new('FuelOil_2').value => OpenStudio::FuelType.new('FuelOil_2'), 
-      OpenStudio::EndUseFuelType.new('Propane').value => OpenStudio::FuelType.new('Propane'), 
-      OpenStudio::EndUseFuelType.new('OtherFuel_1').value => OpenStudio::FuelType.new('OtherFuel_1'), 
-      OpenStudio::EndUseFuelType.new('OtherFuel_2').value => OpenStudio::FuelType.new('OtherFuel_2'), 
+      # TODO: add other fuel types when OpenStudio sql queries are updated
       OpenStudio::EndUseFuelType.new('DistrictCooling').value => OpenStudio::FuelType.new('DistrictCooling'),
       OpenStudio::EndUseFuelType.new('DistrictHeating').value => OpenStudio::FuelType.new('DistrictHeating'),
       OpenStudio::EndUseFuelType.new('Water').value => OpenStudio::FuelType.new('Water')
@@ -305,14 +298,6 @@ module OsLib_CreateResults
     fuel_type_alias_map = {
       OpenStudio::EndUseFuelType.new('Electricity').value => 'electricity',
       OpenStudio::EndUseFuelType.new('Gas').value => 'gas',
-      OpenStudio::EndUseFuelType.new('Gasoline').value => 'gas',
-      OpenStudio::EndUseFuelType.new('Diesel').value => 'diesel',
-      OpenStudio::EndUseFuelType.new('Coal').value => 'coal',
-      OpenStudio::EndUseFuelType.new('FuelOil_1').value => 'fuel_oil_1',
-      OpenStudio::EndUseFuelType.new('FuelOil_2').value => 'fuel_oil_2',
-      OpenStudio::EndUseFuelType.new('Propane').value => 'propane',
-      OpenStudio::EndUseFuelType.new('OtherFuel_1').value => 'other_energy',
-      OpenStudio::EndUseFuelType.new('OtherFuel_2').value => 'other_fuel_2',
       OpenStudio::EndUseFuelType.new('DistrictCooling').value => 'district_cooling',
       OpenStudio::EndUseFuelType.new('DistrictHeating').value => 'district_heating',
       OpenStudio::EndUseFuelType.new('Water').value => 'water'
@@ -344,15 +329,16 @@ module OsLib_CreateResults
       @runner.registerValue('annual_consumption_gas', 0.0, 'GJ')
     end
 
+    # TODO: add all fuel types when the sql queries are added to OpenStudio
     # other_energy
-    other_energy = @sql.otherFuelTotalEndUses
-    if other_energy.is_initialized
-      cons_elems << OpenStudio::Attribute.new('other_energy', other_energy.get, 'GJ')
-      @runner.registerValue('annual_consumption_other_energy', other_energy.get, 'GJ')
-    else
-      cons_elems << OpenStudio::Attribute.new('other_energy', 0.0, 'GJ')
-      @runner.registerValue('annual_consumption_other_energy', 0.0, 'GJ')
-    end
+    # other_energy = @sql.otherFuelTotalEndUses
+    # if other_energy.is_initialized
+    #   cons_elems << OpenStudio::Attribute.new('diesel', diesel.get, 'GJ')
+    #   @runner.registerValue('annual_consumption_diesel', diesel.get, 'GJ')
+    # else
+    #   cons_elems << OpenStudio::Attribute.new('diesel', 0.0, 'GJ')
+    #   @runner.registerValue('annual_consumption_diesel', 0.0, 'GJ')
+    # end
 
     # district_cooling
     district_cooling = @sql.districtCoolingTotalEndUses
@@ -766,7 +752,7 @@ module OsLib_CreateResults
         end
       else
         # If TOU periods were specified but this model has no district cooling, report zeroes
-        if electricity_consumption_tou_periods.size > 0
+        if !electricity_consumption_tou_periods.empty?
           # Get the TOU ids
           tou_ids = []
           electricity_consumption_tou_periods.each do |tou_pd|
@@ -887,27 +873,29 @@ module OsLib_CreateResults
     total_query = "SELECT Value from tabulardatawithstrings where (reportname = 'Economics Results Summary Report') and (ReportForString = 'Entire Facility') and (TableName = 'Annual Cost') and (ColumnName ='Total') and (((RowName = 'Cost') and (Units = '~~$~~')) or (RowName = 'Cost (~~$~~)'))"
     total = @sql.execAndReturnFirstDouble(total_query)
 
+    # TODO update with all other fuel types once OS sql queries are updated
     # other_energy
     # Subtract off the already accounted for fuel types from the total
     # to account for fuels on custom meters where the fuel type is not known.
-    prev_tot = 0.0
-    annual_utility_cost_map.each do |fuel, val|
-      prev_tot += val
-    end
-    if total.is_initialized
-      other_val = total.get - prev_tot
-      annual_utility_cost_map[OpenStudio::EndUseFuelType.new('OtherFuel_1').valueName] = other_val
-    else
-      annual_utility_cost_map[OpenStudio::EndUseFuelType.new('OtherFuel_1').valueName] = 0.0
-    end
+    # prev_tot = 0.0
+    # annual_utility_cost_map.each do |fuel, val|
+    #   prev_tot += val
+    # end
+    # if total.is_initialized
+    #   other_val = total.get - prev_tot
+    #   annual_utility_cost_map[OpenStudio::EndUseFuelType.new('OtherFuel1').valueName] = other_val
+    # else
+    #   annual_utility_cost_map[OpenStudio::EndUseFuelType.new('OtherFuel1').valueName] = 0.0
+    # end
 
     # export remaining costs in the correct order
     # gas
     utility_cost_elems << OpenStudio::Attribute.new('gas', annual_utility_cost_map[OpenStudio::EndUseFuelType.new('Gas').valueName], 'dollars')
     @runner.registerValue('annual_utility_cost_gas', annual_utility_cost_map[OpenStudio::EndUseFuelType.new('Gas').valueName], 'dollars')
+    # TODO: update with all other fuel types when OS sql queries are updated
     # other_energy
-    utility_cost_elems << OpenStudio::Attribute.new('other_energy', annual_utility_cost_map[OpenStudio::EndUseFuelType.new('OtherFuel_1').valueName], 'dollars')
-    @runner.registerValue('annual_utility_cost_other_energy', annual_utility_cost_map[OpenStudio::EndUseFuelType.new('OtherFuel_1').valueName], 'dollars')
+    # utility_cost_elems << OpenStudio::Attribute.new('other_energy', annual_utility_cost_map[OpenStudio::EndUseFuelType.new('AdditionalFuel').valueName], 'dollars')
+    # @runner.registerValue('annual_utility_cost_other_energy', annual_utility_cost_map[OpenStudio::EndUseFuelType.new('AdditionalFuel').valueName], 'dollars')
     # district_cooling
     utility_cost_elems << OpenStudio::Attribute.new('district_cooling', annual_utility_cost_map[OpenStudio::EndUseFuelType.new('DistrictCooling').valueName], 'dollars')
     @runner.registerValue('annual_utility_cost_district_cooling', annual_utility_cost_map[OpenStudio::EndUseFuelType.new('DistrictCooling').valueName], 'dollars')
@@ -942,12 +930,7 @@ module OsLib_CreateResults
       # loop through all the fuel types
       end_use_fuel_types.each do |end_use_fuel_type|
         # get the annual total cost for this fuel type
-        #  Only Electricity, Gas, DistrictCooling,DistrictHeating, Water and OtherFuel_1 are defined in map so check value first
-        if annual_utility_cost_map.key?(end_use_fuel_type.valueName)
-          ann_cost = annual_utility_cost_map[end_use_fuel_type.valueName]
-        else
-          ann_cost = 0.0
-        end
+        ann_cost = annual_utility_cost_map[end_use_fuel_type.valueName]
         # get the total annual usage for this fuel type in all end use categories
         # loop through all end uses, adding the annual usage value to the aggregator
         ann_usg = 0.0
@@ -999,7 +982,7 @@ module OsLib_CreateResults
         fuel_type_elems = OpenStudio::AttributeVector.new
         fuel_type_name = fuel_type_alias_map[end_use_fuel_type.value]
         ann_energy_cons = 0.0
-        # in each end use, loop through months and get monthly energy consumption
+        # in each end use, loop through months and get monthly enedy consumption
         months.each_with_index do |month, i|
           mon_energy_cons = 0.0
           val = @sql.energyConsumptionByMonth(end_use_fuel_type, end_use_cat, month)
