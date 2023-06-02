@@ -345,7 +345,7 @@ module OsLib_CreateResults
     end
 
     # other_energy
-    other_fuels = ['gasoline', 'diesel', 'coal', 'fuelOilNo1', 'fuelOilNo2', 'propane', 'otherFuel1', 'OtherFuel2']
+    other_fuels = ['gasoline', 'diesel', 'coal', 'fuelOilNo1', 'fuelOilNo2', 'propane', 'otherFuel1', 'otherFuel2']
     other_energy_total = 0.0
     other_fuels.each do |fuel|
       other_energy = @sql.instance_eval(fuel + 'TotalEndUses')
