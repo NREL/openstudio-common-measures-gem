@@ -345,14 +345,26 @@ module OsLib_CreateResults
     end
 
     # other_energy
-    other_energy = @sql.otherFuelTotalEndUses
-    if other_energy.is_initialized
-      cons_elems << OpenStudio::Attribute.new('other_energy', other_energy.get, 'GJ')
-      @runner.registerValue('annual_consumption_other_energy', other_energy.get, 'GJ')
-    else
-      cons_elems << OpenStudio::Attribute.new('other_energy', 0.0, 'GJ')
-      @runner.registerValue('annual_consumption_other_energy', 0.0, 'GJ')
+    other_fuels = ['gasoline', 'diesel', 'coal', 'fuelOilNo1', 'fuelOilNo2', 'propane', 'otherFuel1', 'otherFuel2']
+    other_energy_total = 0.0
+    other_fuels.each do |fuel|
+      other_energy = @sql.instance_eval(fuel + 'TotalEndUses')
+      if other_energy.is_initialized
+        # sum up all of the "other" fuels
+        other_energy_total += other_energy.get
+      end
     end
+    cons_elems << OpenStudio::Attribute.new('other_energy', other_energy_total, 'GJ')
+    @runner.registerValue('annual_consumption_other_energy', other_energy_total, 'GJ')
+
+    # other_energy = @sql.otherFuelTotalEndUses
+    # if other_energy.is_initialized
+    #   cons_elems << OpenStudio::Attribute.new('other_energy', other_energy.get, 'GJ')
+    #   @runner.registerValue('annual_consumption_other_energy', other_energy.get, 'GJ')
+    # else
+    #   cons_elems << OpenStudio::Attribute.new('other_energy', 0.0, 'GJ')
+    #   @runner.registerValue('annual_consumption_other_energy', 0.0, 'GJ')
+    # end
 
     # district_cooling
     district_cooling = @sql.districtCoolingTotalEndUses

@@ -61,9 +61,6 @@ class XcelEDAReportingandQAQC < OpenStudio::Measure::ReportingMeasure
     if @sql.naturalGasCooling.is_initialized
       natural_gas_cooling = @sql.naturalGasCooling.get
     end
-    if @sql.otherFuelCooling.is_initialized
-      other_fuel_cooling = @sql.otherFuelCooling.get
-    end
     if @sql.totalSiteEnergy.is_initialized
       total_site_energy = @sql.totalSiteEnergy.get
     end
@@ -73,9 +70,31 @@ class XcelEDAReportingandQAQC < OpenStudio::Measure::ReportingMeasure
     if @sql.naturalGasHeating.is_initialized
       natural_gas_heating = @sql.naturalGasHeating.get
     end
-    if @sql.otherFuelHeating.is_initialized
-      other_fuel_heating = @sql.otherFuelHeating.get
+
+    other_fuels = ['gasoline', 'diesel', 'coal', 'fuelOilNo1', 'fuelOilNo2', 'propane', 'otherFuel1', 'otherFuel2']
+    other_fuel_cooling = 0.0
+    other_fuels.each do |fuel|
+      other_energy = @sql.instance_eval(fuel + 'Cooling')
+      if other_energy.is_initialized
+        # sum up all of the "other" fuels
+        other_fuel_cooling += other_energy.get
+      end
     end
+    other_fuel_heating = 0.0
+    other_fuels.each do |fuel|
+      other_energy = @sql.instance_eval(fuel + 'Heating')
+      if other_energy.is_initialized
+        # sum up all of the "other" fuels
+        other_fuel_heating += other_energy.get
+      end
+    end
+
+    # if @sql.otherFuelCooling.is_initialized
+      # other_fuel_cooling = @sql.otherFuelCooling.get
+    # end
+    # if @sql.otherFuelHeating.is_initialized
+      # other_fuel_heating = @sql.otherFuelHeating.get
+    # end
 
     pct_cooling = (electricity_cooling + natural_gas_cooling + other_fuel_cooling) / total_site_energy
     pct_heating = (electricity_heating + natural_gas_heating + other_fuel_heating) / total_site_energy

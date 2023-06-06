@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>c1878c3d-3aee-443e-9230-3e8e339a2764</version_id>
-  <version_modified>20221115T224204Z</version_modified>
+  <version_id>69ca37c1-8296-4319-974b-0efa50e1f9b2</version_id>
+  <version_modified>20230601T004158Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -671,12 +671,6 @@
       <checksum>2D773826</checksum>
     </file>
     <file>
-      <filename>CreateResults.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>28889E62</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -766,12 +760,6 @@
       <checksum>71DDDFBF</checksum>
     </file>
     <file>
-      <filename>measure_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>26ECA38A</checksum>
-    </file>
-    <file>
       <filename>check_envelope_conductance.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -782,6 +770,12 @@
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
       <checksum>71EF0A45</checksum>
+    </file>
+    <file>
+      <filename>measure_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9144C35D</checksum>
     </file>
   </files>
 </measure>
