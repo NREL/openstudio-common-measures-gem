@@ -129,7 +129,7 @@ A second functionality is to remove unused resources. This will include things l
     # remove orphan design spec oa objects
     orphan_flag = false
     model.getDesignSpecificationOutdoorAirs.sort.each do |instance|
-      if instance.directUseCount == 0
+      if instance.directUseCount(excludeChildren=true) == 0
         runner.registerInfo("Removing orphan design specification outdoor air object named #{instance.name}")
         instance.remove
         orphan_flag = true
@@ -248,7 +248,7 @@ A second functionality is to remove unused resources. This will include things l
     if remove_unused_load_defs
       unused_flag_counter = 0
       model.getSpaceLoadDefinitions.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -260,7 +260,7 @@ A second functionality is to remove unused resources. This will include things l
     if remove_unused_schedules
       unused_flag_counter = 0
       model.getDefaultScheduleSets.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -272,7 +272,7 @@ A second functionality is to remove unused resources. This will include things l
     if remove_unused_schedules
       unused_flag_counter = 0
       model.getSchedules.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -284,7 +284,7 @@ A second functionality is to remove unused resources. This will include things l
     if remove_unused_curves
       unused_flag_counter = 0
       model.getCurves.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           # work-around logic since <OpenStudio::Model::Curve>.remove doesn't work
           model.removeObject(resource.handle)
@@ -298,7 +298,7 @@ A second functionality is to remove unused resources. This will include things l
 
       unused_flag_counter = 0
       model.getDefaultConstructionSets.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -309,7 +309,7 @@ A second functionality is to remove unused resources. This will include things l
       # these are typically hidden from users and reporting it may be more confusing that helpful
       unused_flag_counter = 0
       model.getDefaultSurfaceConstructionss.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -318,7 +318,7 @@ A second functionality is to remove unused resources. This will include things l
 
       unused_flag_counter = 0
       model.getDefaultSubSurfaceConstructionss.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -328,17 +328,9 @@ A second functionality is to remove unused resources. This will include things l
       # remove default constructions
       unused_flag_counter = 0
       model.getConstructions.sort.each do |resource|
-        if resource.directUseCount == 1 # still don't understand why this is 1 not 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
-        else # this was just put in for testing ot understand why directUseCount isn't 0
-          # puts ""
-          # puts "Name #{resource.name}"
-          # puts "directUseCount = #{resource.nonResourceObjectUseCount}"
-          # puts "nonResourceObjectUseCount = #{resource.nonResourceObjectUseCount}"
-          # puts "targets.size = #{resource.targets.size}"
-          # puts "sources.size = #{resource.sources.size}"
-
         end
       end
       runner.registerInfo("Removed #{unused_flag_counter} unused constructions")
@@ -346,7 +338,7 @@ A second functionality is to remove unused resources. This will include things l
       # remove unused materials
       unused_flag_counter = 0
       model.getMaterials.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
