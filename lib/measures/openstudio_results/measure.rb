@@ -261,11 +261,7 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     # get units, runner's is used by revit systems analysis
     units = args['units']
     units = runner.unitsPreference if units == 'OS'
-    if units == 'IP'
-      is_ip_units = true
-    else
-      is_ip_units = false
-    end
+    is_ip_units = units == 'IP' ? true : false
 
     # reporting final condition
     runner.registerInitialCondition("Gathering data from EnergyPlus SQL file and OSM model. Will report in #{units} Units")
