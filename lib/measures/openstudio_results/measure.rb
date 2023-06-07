@@ -133,8 +133,10 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     chs = OpenStudio::StringVector.new
     chs << 'IP'
     chs << 'SI'
+    chs << 'OS'
     units = OpenStudio::Measure::OSArgument.makeChoiceArgument('units', chs, true)
-    units.setDisplayName('Which Unit System do you want to use?')
+    units.setDisplayName('Unit System')
+    units.setDescription('IP = Inch Pound, SI = International System, OS = OpenStudio')
     units.setDefaultValue('IP')
     args << units
 
@@ -156,11 +158,11 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     reg_monthly_details.setDefaultValue(false) # set to false so no impact on existing projects using the measure
     args << reg_monthly_details
 
-    # boolean for revit-specific code
-    revit = OpenStudio::Measure::OSArgument::makeBoolArgument('revit', true)
-    revit.setDisplayName('Customization for Revit?')
-    revit.setDefaultValue(false)
-    args << revit
+    # add energyplus output tables, used by revit systems analysis
+    energyplus_html = OpenStudio::Measure::OSArgument::makeBoolArgument('energyplus_html', true)
+    energyplus_html.setDisplayName('Add EnergyPlus output tables?')
+    energyplus_html.setDefaultValue(false)
+    args << energyplus_html
 
     args
   end
@@ -250,19 +252,15 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
 
     # assign the user inputs to variables
     args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments)
-    revit = runner.getBoolArgumentValue('revit', user_arguments)
+    energyplus_html = runner.getBoolArgumentValue('energyplus_html', user_arguments)
 
     unless args
       return false
     end
 
-    case revit
-    when false
-      units = args['units']
-    when true
-      units = runner.unitsPreference
-    end
-
+    # get units, runner's is used by revit systems analysis
+    units = args['units']
+    units = runner.unitsPreference if units == 'OS'
     if units == 'IP'
       is_ip_units = true
     else
@@ -367,8 +365,8 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     renderer = ERB.new(html_in)
     html_out = renderer.result(binding)
 
-    # insert eplustbl to html for revit
-    if revit
+    # add energyplus html, used by revit systems analysis
+    if energyplus_html
       eplustbl_html_path = File.join(runner.workflow.absoluteRunDir.to_s, 'eplustbl.htm')
       html_to_insert = File.read(eplustbl_html_path).match(/<body>(.*)<\/body>/m)[1]
       html_to_insert = html_to_insert.gsub(/<table/, "<table class=\"table table-striped table-bordered table-condensed\"")
