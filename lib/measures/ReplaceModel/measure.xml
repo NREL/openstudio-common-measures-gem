@@ -14,7 +14,7 @@
     <argument>
       <name>external_model_name</name>
       <display_name>External OSM File Name</display_name>
-      <description>Name of the model to replalace current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.</description>
+      <description>Name of the model to replace current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.</description>
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
