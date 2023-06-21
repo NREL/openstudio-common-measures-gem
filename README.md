@@ -1,4 +1,4 @@
-# OpenStudio Common Measures 
+# OpenStudio(R) Common Measures 
 
 Common measures used by OpenStudio.
 
