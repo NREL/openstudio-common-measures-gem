@@ -4816,4 +4816,21 @@ module OsLib_Reporting
 
     return @measure_warnings_section
   end
+
+  # replace distributed javascript library sources with local sources, required by revit systems analysis
+  def self.replace_javascript_library_sources(html_out)
+    html_out = html_out.gsub("http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js", "<%= File.join(resources_path, \"jquery.min.js\") %>")
+    html_out = html_out.gsub("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js", "<%= File.join(resources_path, \"bootstrap.min.js\") %>")
+    html_out = html_out.gsub("http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js", "<%= File.join(resources_path, \"d3.min.js\") %>")
+    html_out = html_out.gsub("http://dimplejs.org/dist/dimple.v2.1.2.min.js", "<%= File.join(resources_path, \"dimple.v2.1.2.min.js\") %>")
+  end
+
+  # add energyplus report, required for revit systems analysis 
+  def self.add_energyplus_report(runner, html_out)
+    eplustbl_html_path = File.join(runner.workflow.absoluteRunDir.to_s, 'eplustbl.htm')
+    html_to_insert = File.read(eplustbl_html_path).match(/<body>(.*)<\/body>/m)[1]
+    html_to_insert = html_to_insert.gsub(/<table/, "<table class=\"table table-striped table-bordered table-condensed\"")     
+    html_out = html_out.gsub(/Measure Warnings<\/a><\/li>/, "Measure Warnings</a></li>\r\n<li><a href=\"#Detailed_Report\">Detailed Report</a></li>")
+    html_out = html_out.gsub(/<\/body>/, "<div class=\"col-md-9 col-md-offset-3\" role=\"main\"><h2 id=\"Detailed_Report\">Detailed Report</h2><br>#{html_to_insert}</div>\\0")
+  end
 end
