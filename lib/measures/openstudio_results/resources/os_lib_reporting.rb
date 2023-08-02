@@ -4818,11 +4818,23 @@ module OsLib_Reporting
   end
 
   # replace distributed javascript library sources with local sources, required by revit systems analysis
-  def self.replace_javascript_library_sources(html_out)
-    html_out = html_out.gsub("http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js", "<%= File.join(resources_path, \"jquery.min.js\") %>")
-    html_out = html_out.gsub("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js", "<%= File.join(resources_path, \"bootstrap.min.js\") %>")
-    html_out = html_out.gsub("http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js", "<%= File.join(resources_path, \"d3.min.js\") %>")
-    html_out = html_out.gsub("http://dimplejs.org/dist/dimple.v2.1.2.min.js", "<%= File.join(resources_path, \"dimple.v2.1.2.min.js\") %>")
+  def self.replace_javascript_library_sources(runner, html_out)
+
+    # paths to local sources
+    resources_path = File.join(runner.workflow.findMeasure('openstudio_results').get.to_s, 'resources/')
+    bootstrap_css_path = File.join(resources_path, 'bootstrap.min.css')
+    jquery_js_path = File.join(resources_path, 'jquery.min.js')
+    bootstrap_js_path = File.join(resources_path, 'bootstrap.min.js')
+    d3_js_path = File.join(resources_path, 'd3.min.js')
+    dimple_js_path = File.join(resources_path, 'dimple.v2.1.2.min.js')
+  
+    # replace distributed sources
+    html_out = html_out.gsub("http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css", "#{bootstrap_css_path}")
+    html_out = html_out.gsub("http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js", "#{jquery_js_path}")
+    html_out = html_out.gsub("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js", "#{bootstrap_js_path}")
+    html_out = html_out.gsub("http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js", "#{d3_js_path}")
+    html_out = html_out.gsub("http://dimplejs.org/dist/dimple.v2.1.2.min.js", "#{dimple_js_path}")
+
   end
 
   # add energyplus report, required for revit systems analysis 
@@ -4833,4 +4845,5 @@ module OsLib_Reporting
     html_out = html_out.gsub(/Measure Warnings<\/a><\/li>/, "Measure Warnings</a></li>\r\n<li><a href=\"#Detailed_Report\">Detailed Report</a></li>")
     html_out = html_out.gsub(/<\/body>/, "<div class=\"col-md-9 col-md-offset-3\" role=\"main\"><h2 id=\"Detailed_Report\">Detailed Report</h2><br>#{html_to_insert}</div>\\0")
   end
+  
 end
