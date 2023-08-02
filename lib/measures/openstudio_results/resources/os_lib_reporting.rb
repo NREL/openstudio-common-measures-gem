@@ -4838,12 +4838,12 @@ module OsLib_Reporting
   end
 
   # add energyplus report, required for revit systems analysis 
-  def self.add_energyplus_report(runner, html_out)
+  def self.add_energyplus_reports(runner, html_out)
     eplustbl_html_path = File.join(runner.workflow.absoluteRunDir.to_s, 'eplustbl.htm')
     html_to_insert = File.read(eplustbl_html_path).match(/<body>(.*)<\/body>/m)[1]
     html_to_insert = html_to_insert.gsub(/<table/, "<table class=\"table table-striped table-bordered table-condensed\"")     
     html_out = html_out.gsub(/Measure Warnings<\/a><\/li>/, "Measure Warnings</a></li>\r\n<li><a href=\"#Detailed_Report\">Detailed Report</a></li>")
     html_out = html_out.gsub(/<\/body>/, "<div class=\"col-md-9 col-md-offset-3\" role=\"main\"><h2 id=\"Detailed_Report\">Detailed Report</h2><br>#{html_to_insert}</div>\\0")
   end
-  
+
 end
