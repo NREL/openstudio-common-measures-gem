@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>273279c7-d7b2-48a0-864e-fbc892977d8e</version_id>
-  <version_modified>20230513T030456Z</version_modified>
+  <version_id>b0629525-704d-4093-a4e7-4b9149615129</version_id>
+  <version_modified>20230802T035606Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -13,7 +13,8 @@
   <arguments>
     <argument>
       <name>units</name>
-      <display_name>Which Unit System do you want to use?</display_name>
+      <display_name>Unit System</display_name>
+      <description>IP = Inch Pound, SI = International System, OS = OpenStudio</description>
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -26,6 +27,10 @@
         <choice>
           <value>SI</value>
           <display_name>SI</display_name>
+        </choice>
+        <choice>
+          <value>OS</value>
+          <display_name>OS</display_name>
         </choice>
       </choices>
     </argument>
@@ -445,8 +450,8 @@
       </choices>
     </argument>
     <argument>
-      <name>revit</name>
-      <display_name>Customization for Revit?</display_name>
+      <name>energyplus_reports</name>
+      <display_name>Add EnergyPlus Summary Reports?</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -1485,16 +1490,16 @@
       <checksum>EB042E51</checksum>
     </file>
     <file>
-      <filename>os_lib_reporting.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B094F9F8</checksum>
-    </file>
-    <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
       <checksum>049695A2</checksum>
+    </file>
+    <file>
+      <filename>os_lib_reporting.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>C845DFEA</checksum>
     </file>
     <file>
       <version>
@@ -1505,13 +1510,43 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>255BD883</checksum>
+      <checksum>A3290D86</checksum>
+    </file>
+    <file>
+      <filename>bootstrap.min.css</filename>
+      <filetype>css</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>2C33597B</checksum>
+    </file>
+    <file>
+      <filename>bootstrap.min.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3BFC4183</checksum>
+    </file>
+    <file>
+      <filename>d3.min.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>EB90CCAC</checksum>
+    </file>
+    <file>
+      <filename>dimple.v2.1.2.min.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>0F69C1CF</checksum>
+    </file>
+    <file>
+      <filename>jquery.min.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>574D0600</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>22A9D04A</checksum>
+      <checksum>E0389149</checksum>
     </file>
   </files>
 </measure>

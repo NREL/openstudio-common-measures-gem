@@ -19,8 +19,8 @@ ReportingMeasure
 ## Arguments
 
 
-### Which Unit System do you want to use?
-
+### Unit System
+IP = Inch Pound, SI = International System, OS = OpenStudio
 **Name:** units,
 **Type:** Choice,
 **Units:** ,
@@ -211,9 +211,9 @@ This argument does not effect HTML file, instead it makes data from individal ce
 **Required:** true,
 **Model Dependent:** false
 
-### Customization for Revit?
+### Add EnergyPlus Summary Reports?
 
-**Name:** revit,
+**Name:** energyplus_reports,
 **Type:** Boolean,
 **Units:** ,
 **Required:** true,
