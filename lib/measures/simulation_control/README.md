@@ -5,7 +5,7 @@
 # Simulation Control
 
 ## Description
-The measures sets simulation control, timestep and convergence parameters.
+This measures sets the fields of the SimulationControl object.
 
 ## Modeler Description
 

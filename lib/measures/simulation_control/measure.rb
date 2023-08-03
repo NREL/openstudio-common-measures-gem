@@ -13,7 +13,7 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
 
   # human readable description
   def description
-    return 'The measures sets simulation control, timestep and convergence parameters.'
+    return 'This measures sets the fields of the SimulationControl object.'
   end
 
   # human readable description of modeling approach
