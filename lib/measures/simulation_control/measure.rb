@@ -51,7 +51,7 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
     args << run_simulation_for_weather_file_run_periods
 
     do_hvac_sizing_simulation_for_sizing_periods = OpenStudio::Measure::OSArgument.makeBoolArgument('do_hvac_sizing_simulation_for_sizing_periods', false)
-    do_hvac_sizing_simulation_for_sizing_periods.setDisplayName()'Do HVAC Sizing Simulation for Sizing Periods?')
+    do_hvac_sizing_simulation_for_sizing_periods.setDisplayName('Do HVAC Sizing Simulation for Sizing Periods?')
     do_hvac_sizing_simulation_for_sizing_periods.setDefaultValue(false)
     args << do_hvac_sizing_simulation_for_sizing_periods
 
@@ -113,7 +113,7 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
     run_simulation_for_weather_file_run_periods = runner.getBoolArgumentValue("run_simulation_for_weather_file_run_periods", user_arguments)
     do_hvac_sizing_simulation_for_sizing_periods = runner.getBoolArgumentValue('do_hvac_sizing_simulation_for_sizing_periods', user_arguments)
     if runner.getOptionalIntegerArgumentValue('maximum_number_of_hvac_sizing_simulation_passes', user_arguments).is_initialized
-      maximum_number_of_hvac_sizing_simulation_passes = runner.getBoolArgumentValue('maximum_number_of_hvac_sizing_simulation_passes', user_arguments)
+      maximum_number_of_hvac_sizing_simulation_passes = runner.getOptionalIntegerArgumentValue('maximum_number_of_hvac_sizing_simulation_passes', user_arguments)
     else
       maximum_number_of_hvac_sizing_simulation_passes = false
     end
@@ -150,10 +150,10 @@ class SimulationControl < OpenStudio::Measure::ModelMeasure
     simulation_control.setRunSimulationforSizingPeriods(run_simulation_for_sizing_periods)
     simulation_control.setRunSimulationforWeatherFileRunPeriods(run_simulation_for_weather_file_run_periods)
     simulation_control.setDoHVACSizingSimulationforSizingPeriods(do_hvac_sizing_simulation_for_sizing_periods)
-    simulation_control.setMaximumNumberofHVACSizingSimulationPasses(maximum_number_of_hvac_sizing_simulation_passes) if maximum_number_of_hvac_sizing_simulation_passes
+    simulation_control.setMaximumNumberofHVACSizingSimulationPasses(maximum_number_of_hvac_sizing_simulation_passes.get) if maximum_number_of_hvac_sizing_simulation_passes
     simulation_control.setLoadsConvergenceToleranceValue(loads_convergence_tolerance_value.get) if loads_convergence_tolerance_value
     simulation_control.setTemperatureConvergenceToleranceValue(temperature_convergence_tolerance_value.get) if temperature_convergence_tolerance_value
-    simulation_control.setSolarDistribution(solar_distribution.get) unless solar_distribution.empty?
+    simulation_control.setSolarDistribution(solar_distribution.get) if solar_distribution
     simulation_control.setMaximumNumberofWarmupDays(maximum_number_of_warmup_days.get) if maximum_number_of_warmup_days
     simulation_control.setMinimumNumberofWarmupDays(minimum_number_of_warmup_days.get) if minimum_number_of_warmup_days
 
