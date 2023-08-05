@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>b0629525-704d-4093-a4e7-4b9149615129</version_id>
-  <version_modified>20230802T035606Z</version_modified>
+  <version_id>4bea6fc9-87b4-4a96-9d28-a1c93e7189c6</version_id>
+  <version_modified>20230804T233850Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -1496,23 +1496,6 @@
       <checksum>049695A2</checksum>
     </file>
     <file>
-      <filename>os_lib_reporting.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>C845DFEA</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>A3290D86</checksum>
-    </file>
-    <file>
       <filename>bootstrap.min.css</filename>
       <filetype>css</filetype>
       <usage_type>resource</usage_type>
@@ -1547,6 +1530,23 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>E0389149</checksum>
+    </file>
+    <file>
+      <filename>os_lib_reporting.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>98CBD0BD</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>3.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>DDCFC4F8</checksum>
     </file>
   </files>
 </measure>
