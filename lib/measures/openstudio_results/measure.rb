@@ -363,7 +363,7 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
 
     # add energyplus reports, used by revit systems analysis
     if energyplus_reports
-      html_out = OsLib_Reporting.replace_javascript_library_sources(runner, html_out)
+      html_out = OsLib_Reporting.use_local_web_libraries(runner, html_out)
       html_out = OsLib_Reporting.add_energyplus_reports(runner, html_out)
     end
 

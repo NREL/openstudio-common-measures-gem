@@ -4817,11 +4817,11 @@ module OsLib_Reporting
     return @measure_warnings_section
   end
 
-  # replace distributed javascript library sources with local sources, required by revit systems analysis
-  def self.replace_javascript_library_sources(runner, html_out)
+  # replace distributed web library sources with local sources, required by revit systems analysis
+  def self.use_local_web_libraries(runner, html_out)
 
     # paths to local sources
-    resources_path = File.join(runner.workflow.findMeasure('openstudio_results').get.to_s, 'resources/')
+    resources_path = File.join(runner.workflow.findMeasure('openstudio_results').get.to_s, 'resources')
     bootstrap_css_path = File.join(resources_path, 'bootstrap.min.css')
     jquery_js_path = File.join(resources_path, 'jquery.min.js')
     bootstrap_js_path = File.join(resources_path, 'bootstrap.min.js')
