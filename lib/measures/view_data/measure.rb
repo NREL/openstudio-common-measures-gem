@@ -11,7 +11,7 @@ require 'date'
 require_relative 'resources/va3c'
 
 # start the measure
-class ViewData < OpenStudio::Ruleset::ReportingUserScript
+class ViewData < OpenStudio::Measure::ReportingMeasure
   # define the name that a user will see
   def name
     return 'ViewData'
@@ -53,12 +53,12 @@ class ViewData < OpenStudio::Ruleset::ReportingUserScript
 
   # define the arguments that the user will input
   def arguments(model = nil)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     chs = OpenStudio::StringVector.new
     chs << 'Last OSM'
     chs << 'Last IDF'
-    file_source = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('file_source', chs, true)
+    file_source = OpenStudio::Measure::OSArgument.makeChoiceArgument('file_source', chs, true)
     file_source.setDisplayName('Model Source')
     file_source.setDefaultValue('Last OSM')
     args << file_source
@@ -66,25 +66,33 @@ class ViewData < OpenStudio::Ruleset::ReportingUserScript
     chs = OpenStudio::StringVector.new
     chs << 'Timestep'
     chs << 'Hourly'
-    reporting_frequency = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('reporting_frequency', chs, true)
+    reporting_frequency = OpenStudio::Measure::OSArgument.makeChoiceArgument('reporting_frequency', chs, true)
     reporting_frequency.setDisplayName('Reporting Frequency')
     reporting_frequency.setDefaultValue('Hourly')
     args << reporting_frequency
 
-    variable1_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('variable1_name', true)
+    variable1_name = OpenStudio::Measure::OSArgument.makeStringArgument('variable1_name', true)
     variable1_name.setDisplayName('Variable 1 Name')
     variable1_name.setDefaultValue('Surface Outside Face Temperature')
     args << variable1_name
 
-    variable2_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('variable2_name', true)
+    variable2_name = OpenStudio::Measure::OSArgument.makeStringArgument('variable2_name', true)
     variable2_name.setDisplayName('Variable 2 Name')
     variable2_name.setDefaultValue('Surface Inside Face Temperature')
     args << variable2_name
 
-    variable3_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('variable3_name', true)
+    variable3_name = OpenStudio::Measure::OSArgument.makeStringArgument('variable3_name', true)
     variable3_name.setDisplayName('Variable 3 Name')
     variable3_name.setDefaultValue('Zone Mean Radiant Temperature')
     args << variable3_name
+
+    if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('3.6.1')
+      use_geometry_diagnostics = OpenStudio::Measure::OSArgument.makeBoolArgument('use_geometry_diagnostics', true)
+      use_geometry_diagnostics.setDisplayName("Enable Geometry Diagnostics")
+      use_geometry_diagnostics.setDescription("Enables checks for Surface/Space Convexity. The ThreeJS export is slightly slower.")
+      use_geometry_diagnostics.setDefaultValue(false)
+      args << use_geometry_diagnostics
+    end
 
     return args
   end
@@ -131,6 +139,9 @@ class ViewData < OpenStudio::Ruleset::ReportingUserScript
     variable1_name = runner.getStringArgumentValue('variable1_name', user_arguments)
     variable2_name = runner.getStringArgumentValue('variable2_name', user_arguments)
     variable3_name = runner.getStringArgumentValue('variable3_name', user_arguments)
+    if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('3.6.1')
+      use_geometry_diagnostics = runner.getBoolArgumentValue('use_geometry_diagnostics', user_arguments)
+    end
 
     # 'Timestep' is the key in the input file, 'Zone Timestep' is the key in the SqlFile
     if reporting_frequency == 'Timestep'
@@ -334,6 +345,9 @@ class ViewData < OpenStudio::Ruleset::ReportingUserScript
     begin
       # try to use new implementation
       ft = OpenStudio::Model::ThreeJSForwardTranslator.new
+      if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('3.6.1')
+        ft.setIncludeGeometryDiagnostics(use_geometry_diagnostics)
+      end
       three_scene = ft.modelToThreeJS(model_clone, true)
       json = JSON.parse(three_scene.toJSON(false), symbolize_names: true)
       runner.registerInfo('Used new ThreeScene translator.')
@@ -409,6 +423,13 @@ class ViewData < OpenStudio::Ruleset::ReportingUserScript
       end
     end
     # puts "finished writing html, elapsed time #{Time.now-start_time}"
+
+    # Copy js folder
+    js_in_path = "#{File.dirname(__FILE__)}/resources/js"
+    if !File.directory?(js_in_path)
+      js_in_path = "#{File.dirname(__FILE__)}/js"
+    end
+    FileUtils.cp_r js_in_path, './js'
 
     # closing the sql file
     # sqlFile.close()

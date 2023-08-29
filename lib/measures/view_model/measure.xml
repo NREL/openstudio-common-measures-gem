@@ -1,16 +1,36 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>view_model</name>
   <uid>f4669f10-fda5-489d-8e1c-7ca3c2d40378</uid>
-  <version_id>268f85e6-f86a-480c-b7dd-c75920b3c922</version_id>
-  <version_modified>20221115T223605Z</version_modified>
+  <version_id>a7b81e8a-aa85-4139-ad25-0eb6b3c29106</version_id>
+  <version_modified>2023-08-29T09:03:37Z</version_modified>
   <xml_checksum>1E1F8B97</xml_checksum>
   <class_name>ViewModel</class_name>
   <display_name>ViewModel</display_name>
   <description>Visualize an OpenStudio model in a web based viewer</description>
   <modeler_description>Converts the OpenStudio model to vA3C JSON format and renders using Three.js</modeler_description>
-  <arguments />
+  <arguments>
+    <argument>
+      <name>use_geometry_diagnostics</name>
+      <display_name>Enable Geometry Diagnostics</display_name>
+      <description>Enables checks for Surface/Space Convexity. The ThreeJS export is slightly slower.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
   <outputs />
   <provenances />
   <tags>
@@ -30,40 +50,22 @@
   </attributes>
   <files>
     <file>
-      <filename>RotationTest.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B313B958</checksum>
-    </file>
-    <file>
-      <filename>ExampleModel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>10636DB9</checksum>
-    </file>
-    <file>
-      <filename>SimpleModel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>AC094EF8</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>AF845B1C</checksum>
+      <checksum>24D601E9</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>703C9964</checksum>
-    </file>
-    <file>
-      <filename>ViewModel_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>08D44F2F</checksum>
     </file>
     <file>
       <version>
@@ -74,25 +76,67 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D03B01B8</checksum>
+      <checksum>A79976B4</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
-    </file>
-    <file>
-      <filename>va3c.rb</filename>
-      <filetype>rb</filetype>
+      <filename>js/TweenLite.2.1.3.min.js</filename>
+      <filetype>js</filetype>
       <usage_type>resource</usage_type>
-      <checksum>31AAA47F</checksum>
+      <checksum>F0831CB2</checksum>
+    </file>
+    <file>
+      <filename>js/dat.gui.0.7.9.min.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>8A880134</checksum>
+    </file>
+    <file>
+      <filename>js/three.orbitcontrols.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>35EF4A95</checksum>
+    </file>
+    <file>
+      <filename>js/three.r98.min.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>8296FEEA</checksum>
     </file>
     <file>
       <filename>report.html.in</filename>
       <filetype>in</filetype>
       <usage_type>resource</usage_type>
-      <checksum>7192FF7E</checksum>
+      <checksum>789B3BA5</checksum>
+    </file>
+    <file>
+      <filename>va3c.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>7B8C67AE</checksum>
+    </file>
+    <file>
+      <filename>ExampleModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>10636DB9</checksum>
+    </file>
+    <file>
+      <filename>RotationTest.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B313B958</checksum>
+    </file>
+    <file>
+      <filename>SimpleModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>AC094EF8</checksum>
+    </file>
+    <file>
+      <filename>ViewModel_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>010EB947</checksum>
     </file>
   </files>
 </measure>

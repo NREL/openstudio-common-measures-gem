@@ -10,7 +10,7 @@ require 'erb'
 require_relative 'resources/va3c'
 
 # start the measure
-class ViewModel < OpenStudio::Ruleset::ModelUserScript
+class ViewModel < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see
   def name
     return 'ViewModel'
@@ -28,7 +28,15 @@ class ViewModel < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
+
+    if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('3.6.1')
+      use_geometry_diagnostics = OpenStudio::Measure::OSArgument.makeBoolArgument('use_geometry_diagnostics', true)
+      use_geometry_diagnostics.setDisplayName("Enable Geometry Diagnostics")
+      use_geometry_diagnostics.setDescription("Enables checks for Surface/Space Convexity. The ThreeJS export is slightly slower.")
+      use_geometry_diagnostics.setDefaultValue(false)
+      args << use_geometry_diagnostics
+    end
 
     return args
   end
@@ -42,12 +50,19 @@ class ViewModel < OpenStudio::Ruleset::ModelUserScript
       return false
     end
 
+    if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('3.6.1')
+      use_geometry_diagnostics = runner.getBoolArgumentValue('use_geometry_diagnostics', user_arguments)
+    end
+
     # convert the model to vA3C JSON format
     json = nil
     model_clone = model.clone(true).to_Model
     begin
       # try to use new implementation
       ft = OpenStudio::Model::ThreeJSForwardTranslator.new
+      if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('3.6.1')
+        ft.setIncludeGeometryDiagnostics(use_geometry_diagnostics)
+      end
       three_scene = ft.modelToThreeJS(model_clone, true)
       json = JSON.parse(three_scene.toJSON(false), symbolize_names: true)
       runner.registerInfo('Used new ThreeScene translator.')
@@ -100,6 +115,13 @@ class ViewModel < OpenStudio::Ruleset::ModelUserScript
         file.flush
       end
     end
+
+    # Copy js folder
+    js_in_path = "#{File.dirname(__FILE__)}/resources/js"
+    if !File.directory?(js_in_path)
+      js_in_path = "#{File.dirname(__FILE__)}/js"
+    end
+    FileUtils.cp_r js_in_path, './js'
 
     html_out_path = File.absolute_path(html_out_path)
 

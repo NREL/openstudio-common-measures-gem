@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>view_data</name>
   <uid>18cf0de7-48b8-48dc-ab68-0dd29f0b8bd0</uid>
-  <version_id>b9f0e42d-44bf-4eed-b121-15624f67d8d8</version_id>
-  <version_modified>20221115T223601Z</version_modified>
+  <version_id>c0e495c8-62b6-480b-8163-bc2f24a9dcc8</version_id>
+  <version_modified>2023-08-29T09:03:29Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ViewData</class_name>
   <display_name>ViewData</display_name>
@@ -71,6 +71,25 @@
       <model_dependent>false</model_dependent>
       <default_value>Zone Mean Radiant Temperature</default_value>
     </argument>
+    <argument>
+      <name>use_geometry_diagnostics</name>
+      <display_name>Enable Geometry Diagnostics</display_name>
+      <description>Enables checks for Surface/Space Convexity. The ThreeJS export is slightly slower.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
   </arguments>
   <outputs />
   <provenances />
@@ -91,6 +110,77 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>B766BA7B</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>1.6.3</identifier>
+        <min_compatible>1.6.3</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>01FA566C</checksum>
+    </file>
+    <file>
+      <filename>js/TweenLite.2.1.3.min.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>F0831CB2</checksum>
+    </file>
+    <file>
+      <filename>js/dat.gui.0.7.9.min.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>8A880134</checksum>
+    </file>
+    <file>
+      <filename>js/three.orbitcontrols.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>35EF4A95</checksum>
+    </file>
+    <file>
+      <filename>js/three.r98.min.js</filename>
+      <filetype>js</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>8296FEEA</checksum>
+    </file>
+    <file>
+      <filename>report.html.in</filename>
+      <filetype>in</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>789B3BA5</checksum>
+    </file>
+    <file>
+      <filename>va3c.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>7B8C67AE</checksum>
+    </file>
+    <file>
+      <filename>ExampleModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FFFE0281</checksum>
+    </file>
+    <file>
       <filename>SimpleModel.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -103,57 +193,10 @@
       <checksum>BDF687C1</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>70F4784D</checksum>
-    </file>
-    <file>
-      <filename>ExampleModel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>FFFE0281</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
-    </file>
-    <file>
       <filename>ViewData_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>6D2F71F0</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>1.6.3</identifier>
-        <min_compatible>1.6.3</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>39164A78</checksum>
-    </file>
-    <file>
-      <filename>va3c.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>31AAA47F</checksum>
-    </file>
-    <file>
-      <filename>report.html.in</filename>
-      <filetype>in</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>98BCA605</checksum>
+      <checksum>7AA273EF</checksum>
     </file>
   </files>
 </measure>
