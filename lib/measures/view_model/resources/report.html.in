@@ -5,13 +5,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-    <script src="js/three.r98.min.js"></script>
+    <script> // src="js/three.r98.min.js"
+<%= three_js %>
+    </script>
 
-    <script src="js/three.orbitcontrols.js"></script>
+    <script> // src="js/three.orbitcontrols.js"
+<%= three_orbitcontrol_js %>
+    </script>
 
-    <script src="js/dat.gui.0.7.9.min.js"></script>
+    <script> // src="js/dat.gui.0.7.9.min.js"
+<%= dat_gui_js %>
+    </script>
 
-    <script src="js/TweenLite.2.1.3.min.js"></script>
+    <script> // src="js/TweenLite.2.1.3.min.js"
+<%= tweenlite_js %>
+    </script>
 
   </head>
   <body>
@@ -1557,9 +1565,10 @@ function runFromFile(data_json_file="./sample_data.json", includeGeometryDiagnos
 // BEGIN_REMOVE
 // comment out to deploy in app
 // configured variable, remove for deployed version with app
+var os_data_const = <%=os_data %>;
 var includeGeometryDiagnostics_const = <%= use_geometry_diagnostics %>;
 document.addEventListener('DOMContentLoaded', function(event) {
-  runFromFile('./report.json', includeGeometryDiagnostics_const);
+  runFromJSON(os_data_const, includeGeometryDiagnostics_const);
 });
 // END_REMOVE
 

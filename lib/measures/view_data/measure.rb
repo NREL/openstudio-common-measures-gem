@@ -407,6 +407,17 @@ class ViewData < OpenStudio::Measure::ReportingMeasure
     # configure template with variable values
     os_data = JSON.generate(json, object_nl: '', array_nl: '', indent: '')
     title = 'View Data'
+
+    # Embed js
+    js_in_path = "#{File.dirname(__FILE__)}/resources/js"
+    if !File.directory?(js_in_path)
+      js_in_path = "#{File.dirname(__FILE__)}/js"
+    end
+    three_js = File.read(File.join(js_in_path, 'three.r98.min.js'))
+    three_orbitcontrol_js = File.read(File.join(js_in_path, 'three.orbitcontrols.js'))
+    dat_gui_js = File.read(File.join(js_in_path, 'dat.gui.0.7.9.min.js'))
+    tweenlite_js = File.read(File.join(js_in_path, 'TweenLite.2.1.3.min.js'))
+
     renderer = ERB.new(html_in)
     html_out = renderer.result(binding)
 
@@ -423,13 +434,6 @@ class ViewData < OpenStudio::Measure::ReportingMeasure
       end
     end
     # puts "finished writing html, elapsed time #{Time.now-start_time}"
-
-    # Copy js folder
-    js_in_path = "#{File.dirname(__FILE__)}/resources/js"
-    if !File.directory?(js_in_path)
-      js_in_path = "#{File.dirname(__FILE__)}/js"
-    end
-    FileUtils.cp_r js_in_path, './js'
 
     # closing the sql file
     # sqlFile.close()

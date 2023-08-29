@@ -100,6 +100,17 @@ class ViewModel < OpenStudio::Measure::ModelMeasure
     # configure template with variable values
     os_data = JSON.generate(json, object_nl: '', array_nl: '', indent: '', space: '', space_before: '')
     title = 'View Model'
+
+    # Embed js
+    js_in_path = "#{File.dirname(__FILE__)}/resources/js"
+    if !File.directory?(js_in_path)
+      js_in_path = "#{File.dirname(__FILE__)}/js"
+    end
+    three_js = File.read(File.join(js_in_path, 'three.r98.min.js'))
+    three_orbitcontrol_js = File.read(File.join(js_in_path, 'three.orbitcontrols.js'))
+    dat_gui_js = File.read(File.join(js_in_path, 'dat.gui.0.7.9.min.js'))
+    tweenlite_js = File.read(File.join(js_in_path, 'TweenLite.2.1.3.min.js'))
+
     renderer = ERB.new(html_in)
     html_out = renderer.result(binding)
 
@@ -115,13 +126,6 @@ class ViewModel < OpenStudio::Measure::ModelMeasure
         file.flush
       end
     end
-
-    # Copy js folder
-    js_in_path = "#{File.dirname(__FILE__)}/resources/js"
-    if !File.directory?(js_in_path)
-      js_in_path = "#{File.dirname(__FILE__)}/js"
-    end
-    FileUtils.cp_r js_in_path, './js'
 
     html_out_path = File.absolute_path(html_out_path)
 

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>view_model</name>
   <uid>f4669f10-fda5-489d-8e1c-7ca3c2d40378</uid>
-  <version_id>a7b81e8a-aa85-4139-ad25-0eb6b3c29106</version_id>
-  <version_modified>2023-08-29T09:03:37Z</version_modified>
+  <version_id>58bf75e3-de04-4332-b1b0-d8a3ab435d27</version_id>
+  <version_modified>2023-08-29T09:49:05Z</version_modified>
   <xml_checksum>1E1F8B97</xml_checksum>
   <class_name>ViewModel</class_name>
   <display_name>ViewModel</display_name>
@@ -76,13 +76,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A79976B4</checksum>
+      <checksum>22CBE077</checksum>
     </file>
     <file>
       <filename>js/TweenLite.2.1.3.min.js</filename>
       <filetype>js</filetype>
       <usage_type>resource</usage_type>
-      <checksum>F0831CB2</checksum>
+      <checksum>7C0ACD45</checksum>
     </file>
     <file>
       <filename>js/dat.gui.0.7.9.min.js</filename>
@@ -106,7 +106,7 @@
       <filename>report.html.in</filename>
       <filetype>in</filetype>
       <usage_type>resource</usage_type>
-      <checksum>789B3BA5</checksum>
+      <checksum>1F7B79F1</checksum>
     </file>
     <file>
       <filename>va3c.rb</filename>
@@ -136,7 +136,7 @@
       <filename>ViewModel_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>010EB947</checksum>
+      <checksum>FA9C18AF</checksum>
     </file>
   </files>
 </measure>

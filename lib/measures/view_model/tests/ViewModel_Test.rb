@@ -21,27 +21,6 @@ class ViewModel_Test < MiniTest::Unit::TestCase
     # return "#{File.dirname(__FILE__)}/RotationTest.osm"
   end
 
-  def reportPath
-    return "#{File.dirname(__FILE__)}/output/report.json"
-  end
-
-  # create test files if they do not exist
-  def setup
-    if File.exist?(reportPath)
-      FileUtils.rm(reportPath)
-    end
-
-    assert(File.exist?(modelPath))
-  end
-
-  # delete output files
-  def teardown
-    # comment this out if you want to see the resulting report
-    if File.exist?(reportPath)
-      # FileUtils.rm(reportPath())
-    end
-  end
-
   # the actual test
   def test_ViewModel_withoutGeometryDiagnostics
     # load the test model
@@ -66,6 +45,7 @@ class ViewModel_Test < MiniTest::Unit::TestCase
 
     current_dir = Dir.pwd
     run_dir = File.dirname(__FILE__) + '/output/withoutGeometryDiagnostics'
+    reportPath = File.join(run_dir, 'report.json')
     FileUtils.rm_rf(run_dir) if File.exist?(run_dir)
     FileUtils.mkdir_p(run_dir)
     Dir.chdir(run_dir)
@@ -129,6 +109,7 @@ class ViewModel_Test < MiniTest::Unit::TestCase
 
     current_dir = Dir.pwd
     run_dir = File.dirname(__FILE__) + '/output/withGeometryDiagnostics'
+    reportPath = File.join(run_dir, 'report.json')
     FileUtils.rm_rf(run_dir) if File.exist?(run_dir)
     FileUtils.mkdir_p(run_dir)
     Dir.chdir(run_dir)
