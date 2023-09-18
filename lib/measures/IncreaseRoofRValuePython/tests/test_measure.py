@@ -1,10 +1,12 @@
 import pytest
 import openstudio
 import pathlib
+import unittest
+import sys
 from measure import IncreaseInsulationRValueForRoofsByPercentagePython
 
 
-class TestIncreaseInsulationRValueForRoofsByPercentagePython:
+class TestIncreaseInsulationRValueForRoofsByPercentagePython(unittest.TestCase):
 
     def test_number_of_arguments_and_argument_names(self):
         """
@@ -101,3 +103,8 @@ class TestIncreaseInsulationRValueForRoofsByPercentagePython:
             str(pathlib.Path(__file__).parent.absolute()
                 / "output" / "test_output.osm"))
         model.save(output_file_path, True)
+
+if __name__ == '__main__':
+    suite = unittest.makeSuite(TestIncreaseInsulationRValueForRoofsByPercentagePython, 'test')
+    runner = unittest.TextTestRunner()
+    runner.run(suite)
