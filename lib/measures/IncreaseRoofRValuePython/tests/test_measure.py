@@ -105,6 +105,4 @@ class TestIncreaseInsulationRValueForRoofsByPercentagePython(unittest.TestCase):
         model.save(output_file_path, True)
 
 if __name__ == '__main__':
-    suite = unittest.makeSuite(TestIncreaseInsulationRValueForRoofsByPercentagePython, 'test')
-    runner = unittest.TextTestRunner()
-    runner.run(suite)
+    unittest.main()
