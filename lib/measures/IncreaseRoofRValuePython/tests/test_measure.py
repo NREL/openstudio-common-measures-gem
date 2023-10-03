@@ -1,4 +1,3 @@
-import pytest
 import openstudio
 import pathlib
 import unittest
@@ -99,9 +98,8 @@ class TestIncreaseInsulationRValueForRoofsByPercentagePython(unittest.TestCase):
             "material 'F16 Acoustic tile_R-value 35.0% increase' was altered.")
 
         # save the model to test output directory
-        output_file_path = openstudio.toPath(
-            str(pathlib.Path(__file__).parent.absolute()
-                / "output" / "test_output.osm"))
+        output_file_path = str(pathlib.Path(__file__).parent.absolute()
+                / "output" / "test_output.osm")
         model.save(output_file_path, True)
 
 if __name__ == '__main__':
