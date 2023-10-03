@@ -1,11 +1,11 @@
+import pytest
 import openstudio
 import pathlib
-import unittest
 import sys
 from measure import IncreaseInsulationRValueForRoofsByPercentagePython
 
 
-class TestIncreaseInsulationRValueForRoofsByPercentagePython(unittest.TestCase):
+class TestIncreaseInsulationRValueForRoofsByPercentagePython:
 
     def test_number_of_arguments_and_argument_names(self):
         """
@@ -103,4 +103,4 @@ class TestIncreaseInsulationRValueForRoofsByPercentagePython(unittest.TestCase):
         model.save(output_file_path, True)
 
 if __name__ == '__main__':
-    unittest.main()
+    pytest.main()
