@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>replace_model</name>
   <uid>54f03343-5b5c-42f4-818c-5e6de6ded489</uid>
-  <version_id>3d5a8c1a-2085-4cc6-9b16-8ac8317cf1e2</version_id>
-  <version_modified>20200811T044953Z</version_modified>
+  <version_id>7ab0e620-5411-481e-93b2-83768245a28c</version_id>
+  <version_modified>20230607T052233Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>ReplaceModel</class_name>
   <display_name>Replace OpenStudio Model</display_name>
@@ -14,7 +14,7 @@
     <argument>
       <name>external_model_name</name>
       <display_name>External OSM File Name</display_name>
-      <description>Name of the model to replalace current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.</description>
+      <description>Name of the model to replace current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.</description>
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>

@@ -27,6 +27,10 @@ jobs:
           ruby -v
           openstudio openstudio_version
           openstudio gem_list
+      - name: set git config options
+        shell: bash
+        run: |
+          git config --global --add safe.directory '*'
       - name: install dependencies
         shell: bash
         run: |

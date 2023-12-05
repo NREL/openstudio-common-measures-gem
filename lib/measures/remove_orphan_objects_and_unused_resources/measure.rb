@@ -1,36 +1,6 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2022, Alliance for Sustainable Energy, LLC.
-# All rights reserved.
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are met:
-#
-# (1) Redistributions of source code must retain the above copyright notice,
-# this list of conditions and the following disclaimer.
-#
-# (2) Redistributions in binary form must reproduce the above copyright notice,
-# this list of conditions and the following disclaimer in the documentation
-# and/or other materials provided with the distribution.
-#
-# (3) Neither the name of the copyright holder nor the names of any contributors
-# may be used to endorse or promote products derived from this software without
-# specific prior written permission from the respective party.
-#
-# (4) Other than as required in clauses (1) and (2), distributions in any form
-# of modifications or other derivative works may not use the "OpenStudio"
-# trademark, "OS", "os", or any other confusingly similar designation without
-# specific prior written permission from Alliance for Sustainable Energy, LLC.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER(S) AND ANY CONTRIBUTORS
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
-# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER(S), ANY CONTRIBUTORS, THE
-# UNITED STATES GOVERNMENT, OR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF
-# THEIR EMPLOYEES, BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-# OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
-# STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# OpenStudio(R), Copyright (c) Alliance for Sustainable Energy, LLC.
+# See also https://openstudio.net/license
 # *******************************************************************************
 
 # see the URL below for information on how to write OpenStudio measures
@@ -129,7 +99,7 @@ A second functionality is to remove unused resources. This will include things l
     # remove orphan design spec oa objects
     orphan_flag = false
     model.getDesignSpecificationOutdoorAirs.sort.each do |instance|
-      if instance.directUseCount == 0
+      if instance.directUseCount(excludeChildren=true) == 0
         runner.registerInfo("Removing orphan design specification outdoor air object named #{instance.name}")
         instance.remove
         orphan_flag = true
@@ -248,7 +218,7 @@ A second functionality is to remove unused resources. This will include things l
     if remove_unused_load_defs
       unused_flag_counter = 0
       model.getSpaceLoadDefinitions.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -260,7 +230,7 @@ A second functionality is to remove unused resources. This will include things l
     if remove_unused_schedules
       unused_flag_counter = 0
       model.getDefaultScheduleSets.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -272,7 +242,7 @@ A second functionality is to remove unused resources. This will include things l
     if remove_unused_schedules
       unused_flag_counter = 0
       model.getSchedules.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -284,7 +254,7 @@ A second functionality is to remove unused resources. This will include things l
     if remove_unused_curves
       unused_flag_counter = 0
       model.getCurves.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           # work-around logic since <OpenStudio::Model::Curve>.remove doesn't work
           model.removeObject(resource.handle)
@@ -298,7 +268,7 @@ A second functionality is to remove unused resources. This will include things l
 
       unused_flag_counter = 0
       model.getDefaultConstructionSets.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -309,7 +279,7 @@ A second functionality is to remove unused resources. This will include things l
       # these are typically hidden from users and reporting it may be more confusing that helpful
       unused_flag_counter = 0
       model.getDefaultSurfaceConstructionss.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -318,7 +288,7 @@ A second functionality is to remove unused resources. This will include things l
 
       unused_flag_counter = 0
       model.getDefaultSubSurfaceConstructionss.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end
@@ -328,17 +298,9 @@ A second functionality is to remove unused resources. This will include things l
       # remove default constructions
       unused_flag_counter = 0
       model.getConstructions.sort.each do |resource|
-        if resource.directUseCount == 1 # still don't understand why this is 1 not 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
-        else # this was just put in for testing ot understand why directUseCount isn't 0
-          # puts ""
-          # puts "Name #{resource.name}"
-          # puts "directUseCount = #{resource.nonResourceObjectUseCount}"
-          # puts "nonResourceObjectUseCount = #{resource.nonResourceObjectUseCount}"
-          # puts "targets.size = #{resource.targets.size}"
-          # puts "sources.size = #{resource.sources.size}"
-
         end
       end
       runner.registerInfo("Removed #{unused_flag_counter} unused constructions")
@@ -346,7 +308,7 @@ A second functionality is to remove unused resources. This will include things l
       # remove unused materials
       unused_flag_counter = 0
       model.getMaterials.sort.each do |resource|
-        if resource.directUseCount == 0
+        if resource.directUseCount(excludeChildren=true) == 0
           unused_flag_counter += 1
           resource.remove
         end

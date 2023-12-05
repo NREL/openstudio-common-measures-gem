@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>xcel_eda_tariff_selectionand_model_setup</name>
   <uid>c5ab60e9-b8e5-4653-a502-5ed030f1335d</uid>
-  <version_id>9eb98868-d826-41f7-9dc4-e722e1170b13</version_id>
-  <version_modified>20190409T140616Z</version_modified>
+  <version_id>aee4a050-8cce-4e9a-8f6c-9ad93af850ba</version_id>
+  <version_modified>20230607T052233Z</version_modified>
   <xml_checksum>4FA703D1</xml_checksum>
   <class_name>XcelEDATariffSelectionandModelSetup</class_name>
   <display_name>XcelEDATariffSelectionandModelSetup</display_name>
@@ -103,8 +104,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Economics.Life Cycle Cost Analysis</tag>
   </tags>
@@ -264,6 +265,12 @@
       <checksum>D8E0C68E</checksum>
     </file>
     <file>
+      <filename>XcelEDATariffSelectionandModelSetup_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1486C77E</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -272,13 +279,31 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>CE698AEB</checksum>
+      <checksum>B040D95B</checksum>
     </file>
     <file>
-      <filename>XcelEDATariffSelectionandModelSetup_Test.rb</filename>
-      <filetype>rb</filetype>
+      <filename>EnvelopeAndLoadTestModel_01/project.osp-journal</filename>
+      <filetype>osp-journal</filetype>
       <usage_type>test</usage_type>
-      <checksum>1486C77E</checksum>
+      <checksum>FF136880</checksum>
+    </file>
+    <file>
+      <filename>EnvelopeAndLoadTestModel_01/run.db</filename>
+      <filetype>db</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7042FFF4</checksum>
+    </file>
+    <file>
+      <filename>EnvelopeAndLoadTestModel_01/files/USA_CO_Golden-NREL.724666_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BDF687C1</checksum>
+    </file>
+    <file>
+      <filename>EnvelopeAndLoadTestModel_01/project.osp</filename>
+      <filetype>osp</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2F951741</checksum>
     </file>
   </files>
 </measure>

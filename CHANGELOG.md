@@ -1,5 +1,30 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.8.0
+
+- Support for OpenStudio 3.6 (upgrade to standards gem 0.4.0, extension gem 0.6.1)
+- Fixed [#119]( https://github.com/NREL/openstudio-common-measures-gem/pull/119 ), adding XcelEDAReportingandQAQC measure
+- Fixed [#124]( https://github.com/NREL/openstudio-common-measures-gem/pull/124 ), Test using OpenStudio 3.5.1-rc1
+- Fixed [#125]( https://github.com/NREL/openstudio-common-measures-gem/pull/125 ), Update remove orphan objects measure
+- Fixed [#126]( https://github.com/NREL/openstudio-common-measures-gem/pull/126 ), backport OSA #585
+- Fixed [#127]( https://github.com/NREL/openstudio-common-measures-gem/pull/127 ), Adds replace model measure
+- Fixed [#128]( https://github.com/NREL/openstudio-common-measures-gem/pull/128 ), adding measure that exports output variables to csv
+- Fixed [#129]( https://github.com/NREL/openstudio-common-measures-gem/pull/129 ), Use CI to test against 3.6.0-alpha
+- Fixed [#130]( https://github.com/NREL/openstudio-common-measures-gem/pull/130 ), New AddThermalComfortModelTypes measure
+- Fixed [#131]( https://github.com/NREL/openstudio-common-measures-gem/pull/131 ), add measure for ShadowCalculation
+- Fixed [#141]( https://github.com/NREL/openstudio-common-measures-gem/pull/141 ), 3.6.0 rc1 (CI test not ready to merge yet)
+- Fixed [#142]( https://github.com/NREL/openstudio-common-measures-gem/pull/142 ), fix other fuel queries in reporting qaqc measures
+- Fixed [#143]( https://github.com/NREL/openstudio-common-measures-gem/pull/143 ), test 3.6.1-rc1
+- Fixed [#144]( https://github.com/NREL/openstudio-common-measures-gem/pull/144 ), For all 14 tests to pass on generic qaqc 6 resource files had to be l…
+- Fixed [#146]( https://github.com/NREL/openstudio-common-measures-gem/pull/146 ), Xcel reporting into remove qaqc resrouces
+- Fixed [#147]( https://github.com/NREL/openstudio-common-measures-gem/pull/147 ), Dfg temp gem env ci test
+- Fixed [#148]( https://github.com/NREL/openstudio-common-measures-gem/pull/148 ), Xcel reporting
+- Fixed [#149]( https://github.com/NREL/openstudio-common-measures-gem/pull/149 ), Add/shadow calculation
+- Fixed [#150]( https://github.com/NREL/openstudio-common-measures-gem/pull/150 ), Add thermal comfort model types
+- Fixed [#151]( https://github.com/NREL/openstudio-common-measures-gem/pull/151 ), adding measure that exports output variables to csv
+- Fixed [#153]( https://github.com/NREL/openstudio-common-measures-gem/pull/153 ), I'm testing a bunch of PR's in CI in a combined branch
+- Fixed [#154]( https://github.com/NREL/openstudio-common-measures-gem/pull/154 ), backport OSA #585
+
 ## Version 0.7.0
 
 - Support for OpenStudio 3.5 (upgrade to standards gem 0.3.0, extension gem 0.6.0)
