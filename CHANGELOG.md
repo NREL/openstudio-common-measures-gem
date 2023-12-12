@@ -1,6 +1,6 @@
 # OpenStudio Common Measures Gem
 
-## Version 0.89.0
+## Version 0.9.0
 
 - Support for OpenStudio 3.7 (upgrade to standards gem 0.5.0, extension gem 0.7)
 - Fixed [#140]( https://github.com/NREL/openstudio-common-measures-gem/issues/140 ), XcelEDAReportingandQAQC failing on 3.6.0 and CI issue with 3.5.1 measure
