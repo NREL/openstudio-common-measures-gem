@@ -35,6 +35,14 @@ class ViewData_Test < MiniTest::Unit::TestCase
     return "#{File.dirname(__FILE__)}/output/ExampleModel/ModelToIdf/EnergyPlusPreProcess-0/EnergyPlus-0/eplusout.sql"
   end
 
+  def hasGeometryDiagnostics
+    return Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('3.6.1')
+  end
+
+  def numArguments
+    return hasGeometryDiagnostics ? 6 : 5
+  end
+
   # create test files if they do not exist
   def setup
     assert(File.exist?(modelPath))
@@ -154,7 +162,7 @@ class ViewData_Test < MiniTest::Unit::TestCase
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(5, arguments.size)
+    assert_equal(numArguments, arguments.size)
 
     # create hash of argument values
     args_hash = {}
@@ -165,6 +173,9 @@ class ViewData_Test < MiniTest::Unit::TestCase
     args_hash['variable1_name'] = 'Surface Outside Face Temperature'
     args_hash['variable2_name'] = 'Surface Inside Face Temperature'
     args_hash['variable3_name'] = 'Zone Mean Air Temperature'
+    if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('3.6.1')
+      args_hash['use_geometry_diagnostics'] = true
+    end
 
     # args_hash["variable1_name"] = 'Zone Air System Sensible Cooling Rate'
     # args_hash["variable2_name"] = ''
@@ -228,7 +239,7 @@ class ViewData_Test < MiniTest::Unit::TestCase
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(5, arguments.size)
+    assert_equal(numArguments, arguments.size)
 
     # create hash of argument values
     args_hash = {}
@@ -239,6 +250,9 @@ class ViewData_Test < MiniTest::Unit::TestCase
     args_hash['variable1_name'] = 'Surface Outside Face Temperature'
     args_hash['variable2_name'] = 'Surface Inside Face Temperature'
     args_hash['variable3_name'] = 'Zone Mean Air Temperature'
+    if Gem::Version.new(OpenStudio.openStudioVersion) > Gem::Version.new('3.6.1')
+      args_hash['use_geometry_diagnostics'] = false
+    end
 
     # args_hash["variable1_name"] = 'Zone Air System Sensible Cooling Rate'
     # args_hash["variable2_name"] = ''
