@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>69ca37c1-8296-4319-974b-0efa50e1f9b2</version_id>
-  <version_modified>20230601T004158Z</version_modified>
+  <version_id>4a9ad832-316a-4d46-a2fb-36bb05afbefe</version_id>
+  <version_modified>2023-11-28T23:01:11Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -473,22 +473,189 @@
   </attributes>
   <files>
     <file>
-      <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
-      <filetype>epw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>BDF687C1</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
-      <filename>USA_TX_Austin-Camp.Mabry.722544_TMY3.epw</filename>
-      <filetype>epw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>FB60E24C</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>11DDEADA</checksum>
     </file>
     <file>
-      <filename>USA_TX_Austin-Mueller.Muni.AP.722540_TMY3.epw</filename>
-      <filetype>epw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B5BB1762</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>3AFCE991</checksum>
+    </file>
+    <file>
+      <filename>generic_qaqc_detailed.jpg</filename>
+      <filetype>jpg</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>92EA3F5C</checksum>
+    </file>
+    <file>
+      <filename>generic_qaqc_summary.jpg</filename>
+      <filetype>jpg</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>45ABEE68</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>3.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>248589A4</checksum>
+    </file>
+    <file>
+      <filename>check_air_sys_temps.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>A4C95CA9</checksum>
+    </file>
+    <file>
+      <filename>check_calibration.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B48E6C72</checksum>
+    </file>
+    <file>
+      <filename>check_cond_zns.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>DE81D202</checksum>
+    </file>
+    <file>
+      <filename>check_domestic_hot_water.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>58169778</checksum>
+    </file>
+    <file>
+      <filename>check_envelope_conductance.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>7DBD6363</checksum>
+    </file>
+    <file>
+      <filename>check_eui_by_end_use.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>0C3C90F2</checksum>
+    </file>
+    <file>
+      <filename>check_eui_reasonableness.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>60A5A2E7</checksum>
+    </file>
+    <file>
+      <filename>check_fan_pwr.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>F915B4D9</checksum>
+    </file>
+    <file>
+      <filename>check_internal_loads.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>2343A7BE</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_capacity.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>591AC54A</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_efficiency.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E470E5E3</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_part_load_eff.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B6AC9F08</checksum>
+    </file>
+    <file>
+      <filename>check_mech_sys_type.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E20ED4B4</checksum>
+    </file>
+    <file>
+      <filename>check_part_loads.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D8F94023</checksum>
+    </file>
+    <file>
+      <filename>check_placeholder.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3E6519F2</checksum>
+    </file>
+    <file>
+      <filename>check_plant_cap.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>68CC52D1</checksum>
+    </file>
+    <file>
+      <filename>check_plant_temps.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>DDA087A9</checksum>
+    </file>
+    <file>
+      <filename>check_plenum_loads.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>79CF25A9</checksum>
+    </file>
+    <file>
+      <filename>check_pump_pwr.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D20D7BDE</checksum>
+    </file>
+    <file>
+      <filename>check_sch_coord.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>113F1F3E</checksum>
+    </file>
+    <file>
+      <filename>check_schedules.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>6DADD274</checksum>
+    </file>
+    <file>
+      <filename>check_simultaneous_heating_and_cooling.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>5F60FA03</checksum>
+    </file>
+    <file>
+      <filename>check_supply_air_and_thermostat_temp_difference.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3C95B9EE</checksum>
+    </file>
+    <file>
+      <filename>check_weather_files.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>32981307</checksum>
     </file>
     <file>
       <filename>design_doc.txt</filename>
@@ -497,16 +664,28 @@
       <checksum>779C47A4</checksum>
     </file>
     <file>
+      <filename>os_lib_reporting_qaqc.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>1A922BAF</checksum>
+    </file>
+    <file>
+      <filename>report.html.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>41C02D76</checksum>
+    </file>
+    <file>
+      <filename>0422_test_b_sm_off.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E797C12A</checksum>
+    </file>
+    <file>
       <filename>BasicOfficeTest.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>75942985</checksum>
-    </file>
-    <file>
-      <filename>BasicOfficeTest_Mueller_altHVAC_a.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>2B03A487</checksum>
     </file>
     <file>
       <filename>BasicOfficeTest_Mabry.osm</filename>
@@ -521,76 +700,16 @@
       <checksum>C57E800F</checksum>
     </file>
     <file>
+      <filename>BasicOfficeTest_Mueller_altHVAC_a.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2B03A487</checksum>
+    </file>
+    <file>
       <filename>BasicOfficeTest_Mueller_altHVAC_b.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>F12AB925</checksum>
-    </file>
-    <file>
-      <filename>0422_test_b_sm_off.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E797C12A</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>3AFCE991</checksum>
-    </file>
-    <file>
-      <filename>generic_qaqc_summary.jpg</filename>
-      <filetype>jpg</filetype>
-      <usage_type>doc</usage_type>
-      <checksum>45ABEE68</checksum>
-    </file>
-    <file>
-      <filename>generic_qaqc_detailed.jpg</filename>
-      <filetype>jpg</filetype>
-      <usage_type>doc</usage_type>
-      <checksum>92EA3F5C</checksum>
-    </file>
-    <file>
-      <filename>fsr.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>D2A4E538</checksum>
-    </file>
-    <file>
-      <filename>uo_blend.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>605CDF17</checksum>
-    </file>
-    <file>
-      <filename>uo_strip_mall.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>95EBB09E</checksum>
-    </file>
-    <file>
-      <filename>uo_lg_hotel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B8033381</checksum>
-    </file>
-    <file>
-      <filename>USA_NY_Buffalo-Greater.Buffalo.Intl.AP.725280_TMY3.epw</filename>
-      <filetype>epw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>6B50E0FF</checksum>
-    </file>
-    <file>
-      <filename>uo_mixed.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>1874C555</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>11DDEADA</checksum>
     </file>
     <file>
       <filename>MidRiseApt.osm</filename>
@@ -599,183 +718,64 @@
       <checksum>8316418F</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BDF687C1</checksum>
     </file>
     <file>
-      <filename>check_plant_cap.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>17D1D3A4</checksum>
+      <filename>USA_NY_Buffalo-Greater.Buffalo.Intl.AP.725280_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>6B50E0FF</checksum>
     </file>
     <file>
-      <filename>check_part_loads.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>762838B5</checksum>
+      <filename>USA_TX_Austin-Camp.Mabry.722544_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FB60E24C</checksum>
     </file>
     <file>
-      <filename>check_fan_pwr.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>C1B603A7</checksum>
+      <filename>USA_TX_Austin-Mueller.Muni.AP.722540_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B5BB1762</checksum>
     </file>
     <file>
-      <filename>check_placeholder.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>7E1D30A6</checksum>
-    </file>
-    <file>
-      <filename>check_plenum_loads.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>8D84E744</checksum>
-    </file>
-    <file>
-      <filename>check_sch_coord.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>559EB8B6</checksum>
-    </file>
-    <file>
-      <filename>check_air_sys_temps.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>26C8FFEB</checksum>
-    </file>
-    <file>
-      <filename>check_plant_temps.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>81E9733B</checksum>
-    </file>
-    <file>
-      <filename>check_pump_pwr.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>69D57804</checksum>
-    </file>
-    <file>
-      <filename>check_weather_files.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>6978CC2A</checksum>
-    </file>
-    <file>
-      <filename>check_calibration.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>2D773826</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>7FFA6D4C</checksum>
-    </file>
-    <file>
-      <filename>check_mech_sys_type.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>35A79E06</checksum>
-    </file>
-    <file>
-      <filename>check_supply_air_and_thermostat_temp_difference.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E0253EF3</checksum>
-    </file>
-    <file>
-      <filename>check_simultaneous_heating_and_cooling.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>4CF5496C</checksum>
-    </file>
-    <file>
-      <filename>check_cond_zns.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>14107BF6</checksum>
-    </file>
-    <file>
-      <filename>check_mech_sys_capacity.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>22B0035C</checksum>
-    </file>
-    <file>
-      <filename>check_mech_sys_efficiency.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>73F6A455</checksum>
-    </file>
-    <file>
-      <filename>check_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>AE87A472</checksum>
-    </file>
-    <file>
-      <filename>check_internal_loads.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>CC42F2A5</checksum>
-    </file>
-    <file>
-      <filename>check_domestic_hot_water.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>911CC007</checksum>
-    </file>
-    <file>
-      <filename>check_mech_sys_part_load_eff.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>59FAAFF9</checksum>
-    </file>
-    <file>
-      <filename>os_lib_reporting_qaqc.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>B4078A9B</checksum>
-    </file>
-    <file>
-      <filename>check_eui_reasonableness.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>DE61A940</checksum>
-    </file>
-    <file>
-      <filename>check_eui_by_end_use.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>71DDDFBF</checksum>
-    </file>
-    <file>
-      <filename>check_envelope_conductance.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>5EA5A3D1</checksum>
-    </file>
-    <file>
-      <filename>report.html.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>71EF0A45</checksum>
+      <filename>fsr.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D2A4E538</checksum>
     </file>
     <file>
       <filename>measure_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>9144C35D</checksum>
+      <checksum>33870D5A</checksum>
+    </file>
+    <file>
+      <filename>uo_blend.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>605CDF17</checksum>
+    </file>
+    <file>
+      <filename>uo_lg_hotel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B8033381</checksum>
+    </file>
+    <file>
+      <filename>uo_mixed.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1874C555</checksum>
+    </file>
+    <file>
+      <filename>uo_strip_mall.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>95EBB09E</checksum>
     </file>
   </files>
 </measure>
