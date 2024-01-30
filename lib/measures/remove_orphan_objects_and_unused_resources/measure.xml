@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>remove_orphan_objects_and_unused_resources</name>
   <uid>c618f299-a245-49ce-a119-82eb54007ede</uid>
-  <version_id>7fc38cac-4dc6-4649-a392-d8485bb91735</version_id>
-  <version_modified>20221115T223603Z</version_modified>
+  <version_id>cbd91dc6-4e6b-4db6-96e4-25f290510e41</version_id>
+  <version_modified>20230607T052232Z</version_modified>
   <xml_checksum>28AD5222</xml_checksum>
   <class_name>RemoveOrphanObjectsAndUnusedResources</class_name>
   <display_name>Remove Orphan Objects and Unused Resources</display_name>
@@ -167,6 +167,12 @@ A second functionality is to remove unused resources. This will include things l
       <checksum>64FFEBDE</checksum>
     </file>
     <file>
+      <filename>remove_orphan_objects_and_unused_resources_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>A54B8567</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -175,13 +181,7 @@ A second functionality is to remove unused resources. This will include things l
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>76C7A186</checksum>
-    </file>
-    <file>
-      <filename>remove_orphan_objects_and_unused_resources_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>A54B8567</checksum>
+      <checksum>0B14129B</checksum>
     </file>
   </files>
 </measure>
