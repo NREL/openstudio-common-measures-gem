@@ -103,8 +103,10 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     chs = OpenStudio::StringVector.new
     chs << 'IP'
     chs << 'SI'
+    chs << 'OS'
     units = OpenStudio::Measure::OSArgument.makeChoiceArgument('units', chs, true)
-    units.setDisplayName('Which Unit System do you want to use?')
+    units.setDisplayName('Unit System')
+    units.setDescription('IP = Inch Pound, SI = International System, OS = OpenStudio')
     units.setDefaultValue('IP')
     args << units
 
@@ -125,6 +127,12 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     reg_monthly_details.setDescription('This argument does not effect HTML file, instead it makes data from individal cells of monthly tables avaiable for machine readable values in the resulting OpenStudio Workflow file.')
     reg_monthly_details.setDefaultValue(false) # set to false so no impact on existing projects using the measure
     args << reg_monthly_details
+
+    # add energyplus output tables, used by revit systems analysis
+    energyplus_reports = OpenStudio::Measure::OSArgument::makeBoolArgument('energyplus_reports', true)
+    energyplus_reports.setDisplayName('Add EnergyPlus Summary Reports?')
+    energyplus_reports.setDefaultValue(false)
+    args << energyplus_reports
 
     args
   end
@@ -214,15 +222,16 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
 
     # assign the user inputs to variables
     args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments)
+    energyplus_reports = runner.getBoolArgumentValue('energyplus_reports', user_arguments)
+
     unless args
       return false
     end
+
+    # get units, runner's is used by revit systems analysis
     units = args['units']
-    if units == 'IP'
-      is_ip_units = true
-    else
-      is_ip_units = false
-    end
+    units = runner.unitsPreference if units == 'OS'
+    is_ip_units = units == 'IP' ? true : false
 
     # reporting final condition
     runner.registerInitialCondition("Gathering data from EnergyPlus SQL file and OSM model. Will report in #{units} Units")
@@ -321,6 +330,12 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     # configure template with variable values
     renderer = ERB.new(html_in)
     html_out = renderer.result(binding)
+
+    # add energyplus reports, used by revit systems analysis
+    if energyplus_reports
+      html_out = OsLib_Reporting.use_local_web_libraries(runner, html_out)
+      html_out = OsLib_Reporting.add_energyplus_reports(runner, html_out)
+    end
 
     # write html file
     html_out_path = './report.html'
