@@ -268,6 +268,7 @@ module OsLib_CreateResults
       OpenStudio::EndUseFuelType.new('OtherFuel_2').value => OpenStudio::FuelType.new('OtherFuel_2'), 
       OpenStudio::EndUseFuelType.new('DistrictCooling').value => OpenStudio::FuelType.new('DistrictCooling'),
       OpenStudio::EndUseFuelType.new('DistrictHeating').value => OpenStudio::FuelType.new('DistrictHeating'),
+      OpenStudio::EndUseFuelType.new('DistrictHeatingSteam').value => OpenStudio::FuelType.new('DistrictHeatingSteam'),
       OpenStudio::EndUseFuelType.new('Water').value => OpenStudio::FuelType.new('Water')
     }
 
@@ -285,6 +286,7 @@ module OsLib_CreateResults
       OpenStudio::EndUseFuelType.new('OtherFuel_2').value => 'other_fuel_2',
       OpenStudio::EndUseFuelType.new('DistrictCooling').value => 'district_cooling',
       OpenStudio::EndUseFuelType.new('DistrictHeating').value => 'district_heating',
+      OpenStudio::EndUseFuelType.new('DistrictHeatingSteam').value => 'district_heating_steam',
       OpenStudio::EndUseFuelType.new('Water').value => 'water'
     }
 

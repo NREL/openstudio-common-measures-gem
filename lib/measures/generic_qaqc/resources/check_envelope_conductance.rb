@@ -136,6 +136,13 @@ module OsLib_QAQC
       climate_zone = bt_cz['climate_zone']
       prototype_prefix = "#{target_standard} #{building_type} #{climate_zone}"
 
+      # if building type, or climate zone are empty don't run this section
+      if [building_type, climate_zone].include?("")
+        check_elems << OpenStudio::Attribute.new('flag', "Can't calculate target Envelope performance. Make sure model has climate zone and building type defined.")
+        check_elem = OpenStudio::Attribute.new('check', check_elems)
+        return check_elem
+      end
+
       # make array of construction details for surfaces
       surface_details = []
       missing_surface_constructions = []
