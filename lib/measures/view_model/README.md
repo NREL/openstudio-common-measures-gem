@@ -19,8 +19,14 @@ ModelMeasure
 ## Arguments
 
 
+### Enable Geometry Diagnostics
+Enables checks for Surface/Space Convexity. The ThreeJS export is slightly slower.
+**Name:** use_geometry_diagnostics,
+**Type:** Boolean,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
 
 
-This measure does not have any user arguments
 
 
