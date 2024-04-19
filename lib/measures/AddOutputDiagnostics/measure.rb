@@ -95,11 +95,12 @@ class AddOutputDiagnostics < OpenStudio::Measure::EnergyPlusMeasure
       object = idfObject.get
       wsObject = workspace.addObject(object)
       new_diagnostic = wsObject.get
+      the_selection = new_diagnostic.getString(0)
 
-      runner.registerInfo("An output diagnostic object with a value of #{new_diagnostic.getString(0)} has been added to your model.")
+      runner.registerInfo("An output diagnostic object with a value of #{the_selection} has been added to your model.")
 
     else
-      runner.registerAsNotApplicable("An output diagnostic object with a value of #{new_diagnostic.getString(0)} already existed in your model. Nothing was changed.")
+      runner.registerAsNotApplicable("An output diagnostic object with a value of #{the_selection} already existed in your model. Nothing was changed.")
       return true
 
     end
