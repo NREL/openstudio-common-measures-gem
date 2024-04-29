@@ -41,5 +41,10 @@ class AddOutputDiagnostics_Test < Minitest::Test
     show_output(result)
     assert(result.value.valueName == 'Success')
     assert(result.info.size == 1)
+
+    # run again
+    measure.run(workspace, runner, argument_map)
+    result = runner.result
+    assert(result.value.value == -1) # not applicable
   end
 end
