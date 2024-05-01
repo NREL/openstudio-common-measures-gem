@@ -7,8 +7,8 @@
 # http://nrel.github.io/OpenStudio-user-documentation/measures/measure_writing_guide/
 
 # load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
+# require 'openstudio-extension'
+# require 'openstudio/extension/core/os_lib_helper_methods'
 
 # start the measure
 class TariffSelectionTimeAndDateDependant < OpenStudio::Measure::EnergyPlusMeasure
@@ -49,6 +49,8 @@ class TariffSelectionTimeAndDateDependant < OpenStudio::Measure::EnergyPlusMeasu
     summer_start_month.setDisplayName('Month Summer Begins')
     summer_start_month.setDescription('1-12')
     summer_start_month.setDefaultValue(5)
+    summer_start_month.setMinValue(1.0)
+    summer_start_month.setMaxValue(12.0)
     args << summer_start_month
 
     # adding argument for summer_start_day
@@ -56,6 +58,8 @@ class TariffSelectionTimeAndDateDependant < OpenStudio::Measure::EnergyPlusMeasu
     summer_start_day.setDisplayName('Day Summer Begins')
     summer_start_day.setDescription('1-31')
     summer_start_day.setDefaultValue(1)
+    summer_start_day.setMinValue(1.0)
+    summer_start_day.setMaxValue(31.0)
     args << summer_start_day
 
     # adding argument for summer_end_month
@@ -63,6 +67,8 @@ class TariffSelectionTimeAndDateDependant < OpenStudio::Measure::EnergyPlusMeasu
     summer_end_month.setDisplayName('Month Summer Ends')
     summer_end_month.setDescription('1-12')
     summer_end_month.setDefaultValue(9)
+    summer_end_month.setMinValue(1.0)
+    summer_end_month.setMaxValue(12.0)
     args << summer_end_month
 
     # adding argument for summer_end_day
@@ -70,6 +76,8 @@ class TariffSelectionTimeAndDateDependant < OpenStudio::Measure::EnergyPlusMeasu
     summer_end_day.setDisplayName('Day Summer Ends')
     summer_end_day.setDescription('1-31')
     summer_end_day.setDefaultValue(1)
+    summer_end_day.setMinValue(1.0)
+    summer_end_day.setMaxValue(31.0)
     args << summer_end_day
 
     # adding argument for peak_start_hour
@@ -77,6 +85,8 @@ class TariffSelectionTimeAndDateDependant < OpenStudio::Measure::EnergyPlusMeasu
     peak_start_hour.setDisplayName('Hour Peak Begins')
     peak_start_hour.setDescription('1-24')
     peak_start_hour.setDefaultValue(12)
+    peak_start_hour.setMinValue(0.0)
+    peak_start_hour.setMaxValue(24.0)
     args << peak_start_hour
 
     # adding argument for peak_end_hour
@@ -84,6 +94,8 @@ class TariffSelectionTimeAndDateDependant < OpenStudio::Measure::EnergyPlusMeasu
     peak_end_hour.setDisplayName('Hour Peak Ends')
     peak_end_hour.setDescription('1-24')
     peak_end_hour.setDefaultValue(18)
+    peak_end_hour.setMinValue(0.0)
+    peak_end_hour.setMaxValue(24.0)
     args << peak_end_hour
 
     # adding argument for elec_rate_sum_peak
@@ -163,19 +175,15 @@ class TariffSelectionTimeAndDateDependant < OpenStudio::Measure::EnergyPlusMeasu
   def run(workspace, runner, user_arguments)
     super(workspace, runner, user_arguments)
 
+    # use the built-in error checking
+    if !runner.validateUserArguments(arguments(workspace), user_arguments)
+      return false
+    end
+
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, workspace, user_arguments, arguments(workspace))
+    args = runner.getArgumentValues(arguments(workspace), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
-
-    # check expected values of double arguments
-    zero_24 = OsLib_HelperMethods.checkDoubleAndIntegerArguments(runner, user_arguments, 'min' => 0.0, 'max' => 24.0, 'min_eq_bool' => true, 'max_eq_bool' => true, 'arg_array' => ['peak_start_hour', 'peak_end_hour'])
-    one_31 = OsLib_HelperMethods.checkDoubleAndIntegerArguments(runner, user_arguments, 'min' => 1.0, 'max' => 31.0, 'min_eq_bool' => true, 'max_eq_bool' => true, 'arg_array' => ['summer_start_day', 'summer_end_day'])
-    one_12 = OsLib_HelperMethods.checkDoubleAndIntegerArguments(runner, user_arguments, 'min' => 1.0, 'max' => 12.0, 'min_eq_bool' => true, 'max_eq_bool' => true, 'arg_array' => ['summer_start_month', 'summer_end_month'])
-
-    # return false if any errors fail
-    if !zero_24 then return false end
-    if !one_31 then return false end
-    if !one_12 then return false end
 
     # reporting initial condition of model
     starting_tariffs = workspace.getObjectsByType('UtilityCost:Tariff'.to_IddObjectType)

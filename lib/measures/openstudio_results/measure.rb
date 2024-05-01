@@ -213,7 +213,8 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     web_asset_path = setup[:web_asset_path]
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments)
+    args = runner.getArgumentValues(arguments, user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     unless args
       return false
     end

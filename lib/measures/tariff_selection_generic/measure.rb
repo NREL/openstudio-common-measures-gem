@@ -98,7 +98,8 @@ class TariffSelectionGeneric < OpenStudio::Measure::EnergyPlusMeasure
   def run(workspace, runner, user_arguments)
     super(workspace, runner, user_arguments)
 
-    args = OsLib_HelperMethods.createRunVariables(runner, workspace, user_arguments, arguments(workspace))
+    args = runner.getArgumentValues(arguments(workspace), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
     # reporting initial condition of model
