@@ -7,6 +7,7 @@ require 'erb'
 # update
 # start the measure
 class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
+
   def name
     return 'Unmet Load Hours Troubleshooting'
   end
@@ -443,6 +444,8 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
       @test_nine_data << graph
     end
   end
+  
+  attr_reader :measureMetrics
 
   # define what happens when the measure is run
   def run(runner, user_arguments)
