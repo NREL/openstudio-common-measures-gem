@@ -17,5 +17,8 @@ elsif allow_local
 end
 
 # For Testing
-# gem 'openstudio-standards', github: 'NREL/openstudio-standards', branch: '3.5.0_changes'
-# gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'v0.6.0'
+gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'wenyi-fix-build-temp', ref: "34a39a24aee2259de"
+gem 'openstudio-standards', github: 'NREL/openstudio-standards', tag: 'v0.6.0.rc2', ref: "1c42110"
+gem 'openstudio_measure_tester', :git => 'https://github.com/NREL/OpenStudio-measure-tester-gem.git', :branch => 'wenyi-dependencies-update'
+gem 'openstudio-workflow', :git => 'https://github.com/NREL/OpenStudio-workflow-gem.git', :branch => 'develop', ref: "32126e9b9f6"
+gem 'bcl', :git => 'https://github.com/wenyikuang/bcl-gem.git', :branch => 'develop'
