@@ -6,11 +6,6 @@
 # Authors : Nicholas Long, David Goldwasser
 # Simple measure to load the EPW file and DDY file
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_model_generation.rb'
-
 class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
