@@ -8,8 +8,6 @@
 
 # start the measure
 class GetSiteFromBuildingComponentLibrary < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
 
   # human readable name
   def name

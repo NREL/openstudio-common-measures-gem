@@ -9,10 +9,6 @@
 class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_ModelGeneration
-
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name

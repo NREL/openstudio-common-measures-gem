@@ -12,13 +12,6 @@ Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
 # start the measure
 class GenericQAQC < OpenStudio::Measure::ReportingMeasure
-  # all QAQC checks should be in OsLib_QAQC module
-  include OsLib_QAQC
-  include OsLib_HelperMethods
-  include OsLib_ModelGeneration
-
-  # OsLib_CreateResults is needed for utility EDA programs but not the generic QAQC measure
-  # include OsLib_CreateResults
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
