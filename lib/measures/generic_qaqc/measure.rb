@@ -7,24 +7,11 @@ require 'erb'
 require 'json'
 require 'openstudio-standards'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_schedules'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_model_generation.rb'
-
 # require all .rb files in resources folder
 Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
 # start the measure
 class GenericQAQC < OpenStudio::Measure::ReportingMeasure
-  # all QAQC checks should be in OsLib_QAQC module
-  include OsLib_QAQC
-  include OsLib_HelperMethods
-  include OsLib_ModelGeneration
-
-  # OsLib_CreateResults is needed for utility EDA programs but not the generic QAQC measure
-  # include OsLib_CreateResults
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
