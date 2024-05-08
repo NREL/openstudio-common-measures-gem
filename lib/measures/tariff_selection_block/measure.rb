@@ -100,7 +100,8 @@ class TariffSelectionBlock < OpenStudio::Measure::EnergyPlusMeasure
     super(workspace, runner, user_arguments)
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, workspace, user_arguments, arguments(workspace))
+    args = runner.getArgumentValues(arguments(workspace), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
     # make arrays out of comma separated string inputs
