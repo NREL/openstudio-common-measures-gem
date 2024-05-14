@@ -5,6 +5,7 @@
 
 # start the measure
 class XcelEDAReportingandQAQC < OpenStudio::Measure::ReportingMeasure
+  require 'openstudio-standards'
 
   # require all .rb files in resources folder
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
@@ -133,7 +134,7 @@ class XcelEDAReportingandQAQC < OpenStudio::Measure::ReportingMeasure
 
     # vector to store the results and checks
     report_elems = OpenStudio::AttributeVector.new
-    report_elems << create_results(skip_weekends = true,
+    report_elems << OpenstudioStandards::SqlFilemake_qaqc_results_vector(skip_weekends = true,
                                    skip_holidays = true,
                                    start_mo = 'June',
                                    start_day = 1,

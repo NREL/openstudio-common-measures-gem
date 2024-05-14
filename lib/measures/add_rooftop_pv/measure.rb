@@ -8,6 +8,8 @@
 
 # start the measure
 class AddRooftopPV < OpenStudio::Measure::ModelMeasure
+  require 'openstudio-standards'
+
   # human readable name
   def name
     return 'Add Rooftop PV'
@@ -97,7 +99,7 @@ class AddRooftopPV < OpenStudio::Measure::ModelMeasure
       'summerTimeValuePairs' => { 24.0 => target_transmittance },
       'defaultTimeValuePairs' => { 24.0 => target_transmittance }
     }
-    pv_shading_transmittance_schedule = OsLib_Schedules.createSimpleSchedule(model, inputs)
+    pv_shading_transmittance_schedule = OpenstudioStandards::Schedules.create_simple_schedule(model, inputs)
     runner.registerInfo("Created transmittance schedule for PV shading surfaces with constant value of #{target_transmittance}")
 
     model.getSurfaces.each do |surface|

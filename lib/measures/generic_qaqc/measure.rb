@@ -8,10 +8,13 @@ require 'json'
 require 'openstudio-standards'
 
 # require all .rb files in resources folder
+# todo - remove resource ruby files and connect to OpenstudioStandards::QAQC
 Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
 # start the measure
 class GenericQAQC < OpenStudio::Measure::ReportingMeasure
+  # all QAQC checks should be in OsLib_QAQC module
+  include OsLib_QAQC
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
@@ -79,7 +82,7 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make an argument for the template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates(false), true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', OpenstudioStandards::CreateTypical.get_doe_templates(false), true)
     template.setDisplayName('Target ASHRAE Standard')
     template.setDescription('This used to set the target standard for most checks.')
     template.setDefaultValue('90.1-2013') # there is override variable in run method for this
