@@ -8,6 +8,7 @@
 
 class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
+  require 'openstudio-standards'
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
@@ -25,10 +26,11 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     args << weather_file_name
 
     # make choice argument for climate zone
-    choices = OpenStudio::StringVector.new
+    #choices = OpenStudio::StringVector.new
+    choices = OpenstudioStandards::CreateTypical.get_climate_zones
     choices << 'Lookup From Stat File'
 
-    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', get_climate_zones(false, 'Lookup From Stat File'), true)
+    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', choices, true)
     climate_zone.setDisplayName('Climate Zone.')
     climate_zone.setDefaultValue('Lookup From Stat File')
     args << climate_zone
