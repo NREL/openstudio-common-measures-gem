@@ -100,8 +100,8 @@ module OsLib_QAQC
           when 'OS_SetpointManager_Scheduled'
             sch = spm.to_SetpointManagerScheduled.get.schedule
             if sch.to_ScheduleRuleset.is_initialized
-              min_c = std.schedule_ruleset_annual_min_max_value(sch.to_ScheduleRuleset.get)['min']
-              max_c = std.schedule_ruleset_annual_min_max_value(sch.to_ScheduleRuleset.get)['max']
+              min_c = openstudiostandards::schedules.schedule_ruleset_annual_min_max_value(sch.to_ScheduleRuleset.get)['min']
+              max_c = openstudiostandards::schedules.schedule_ruleset_annual_min_max_value(sch.to_ScheduleRuleset.get)['max']
             elsif sch.to_ScheduleConstant.is_initialized
               min_c = std.schedule_constant_annual_min_max_value(sch.to_ScheduleConstant.get)['min']
               max_c = std.schedule_constant_annual_min_max_value(sch.to_ScheduleConstant.get)['max']
