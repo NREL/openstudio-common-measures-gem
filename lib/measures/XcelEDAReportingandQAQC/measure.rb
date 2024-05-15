@@ -134,7 +134,7 @@ class XcelEDAReportingandQAQC < OpenStudio::Measure::ReportingMeasure
 
     # vector to store the results and checks
     report_elems = OpenStudio::AttributeVector.new
-    report_elems << OpenstudioStandards::SqlFilemake_qaqc_results_vector(skip_weekends = true,
+    report_elems << OpenstudioStandards::QAQC.make_qaqc_results_vector(skip_weekends = true,
                                    skip_holidays = true,
                                    start_mo = 'June',
                                    start_day = 1,
