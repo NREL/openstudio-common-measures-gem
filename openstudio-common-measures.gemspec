@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'bundler', '~> 2.4.10'
   spec.add_dependency 'openstudio-extension', '~> 0.8.0'
-  spec.add_dependency 'openstudio-standards', '0.6.0'
+  spec.add_dependency 'openstudio-standards', '0.6.1'
   spec.add_dependency 'openstudio_measure_tester', '~> 0.4.0'
   spec.add_dependency 'openstudio-workflow', '~> 2.4.0'
   spec.add_dependency 'bcl', '~> 0.8.0'
