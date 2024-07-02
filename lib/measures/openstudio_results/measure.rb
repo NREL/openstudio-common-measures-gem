@@ -327,15 +327,13 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
       html_in = file.read
     end
 
-    # configure template with variable values
+    # configure template with variable values, resources_path needed to find javascript web libraries for html
+    resources_path = File.join(runner.workflow.findMeasure('openstudio_results').get.to_s, 'resources/')
     renderer = ERB.new(html_in)
     html_out = renderer.result(binding)
 
     # add energyplus reports, used by revit systems analysis
-    if energyplus_reports
-      html_out = OsLib_Reporting.use_local_web_libraries(runner, html_out)
-      html_out = OsLib_Reporting.add_energyplus_reports(runner, html_out)
-    end
+    html_out = OsLib_Reporting.add_energyplus_reports(runner, html_out) if energyplus_reports
 
     # write html file
     html_out_path = './report.html'
