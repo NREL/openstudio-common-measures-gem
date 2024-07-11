@@ -4,8 +4,6 @@
 # *******************************************************************************
 
 # start the measure
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
 class AddEMSToControlEVCharging < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name

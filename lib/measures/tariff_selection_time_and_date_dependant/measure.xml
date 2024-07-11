@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>tariff_selection_time_and_date_dependant</name>
   <uid>a890e296-b357-432f-8d53-6428d9bf3c0a</uid>
-  <version_id>24b6992e-546d-4d0c-a765-f20dfcd4d0ff</version_id>
-  <version_modified>20221115T223606Z</version_modified>
+  <version_id>3396540c-a309-4ace-9d97-788721c99057</version_id>
+  <version_modified>2024-07-11T14:32:09Z</version_modified>
   <xml_checksum>135F7E88</xml_checksum>
   <class_name>TariffSelectionTimeAndDateDependant</class_name>
   <display_name>Tariff Selection-Time and Date Dependant</display_name>
@@ -41,6 +41,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>5</default_value>
+      <min_value>1</min_value>
+      <max_value>12</max_value>
     </argument>
     <argument>
       <name>summer_start_day</name>
@@ -50,6 +52,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>1</default_value>
+      <min_value>1</min_value>
+      <max_value>31</max_value>
     </argument>
     <argument>
       <name>summer_end_month</name>
@@ -59,6 +63,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>9</default_value>
+      <min_value>1</min_value>
+      <max_value>12</max_value>
     </argument>
     <argument>
       <name>summer_end_day</name>
@@ -68,6 +74,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>1</default_value>
+      <min_value>1</min_value>
+      <max_value>31</max_value>
     </argument>
     <argument>
       <name>peak_start_hour</name>
@@ -77,6 +85,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>12</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>peak_end_hour</name>
@@ -86,6 +96,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>18</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>elec_rate_sum_peak</name>
@@ -252,16 +264,10 @@
   </attributes>
   <files>
     <file>
-      <filename>EnvelopeAndLoadTestModel_01.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E11F67BD</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -270,27 +276,33 @@
       <checksum>C90B29ED</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
-    </file>
-    <file>
-      <filename>tariff_selection_time_and_date_dependant_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>ECB359F4</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.8.0</min_compatible>
+        <min_compatible>3.8.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>68ECF8BF</checksum>
+      <checksum>D8EDD118</checksum>
+    </file>
+    <file>
+      <filename>EnvelopeAndLoadTestModel_01.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E11F67BD</checksum>
+    </file>
+    <file>
+      <filename>tariff_selection_time_and_date_dependant_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>54B0534C</checksum>
     </file>
   </files>
 </measure>
