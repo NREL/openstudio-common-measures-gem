@@ -4,8 +4,6 @@
 # *******************************************************************************
 
 require 'csv'
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
 
 # start the measure
 class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure

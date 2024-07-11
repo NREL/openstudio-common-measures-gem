@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>add_zone_mixing_object</name>
   <uid>6ed65817-1d97-43da-a4c2-1d738eafcde5</uid>
-  <version_id>915a90ef-082e-48f3-a782-d4416927bc88</version_id>
-  <version_modified>20221115T223602Z</version_modified>
+  <version_id>422d82bc-c2d0-44ac-b1ed-9b40cb21bf6a</version_id>
+  <version_modified>2024-07-11T14:32:05Z</version_modified>
   <xml_checksum>61000E02</xml_checksum>
   <class_name>AddZoneMixingObject</class_name>
   <display_name>Add Zone Mixing Object</display_name>
@@ -70,16 +70,10 @@
   </attributes>
   <files>
     <file>
-      <filename>ZoneMixingTestModel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4451DD5D</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -88,10 +82,10 @@
       <checksum>9C34D6E1</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -102,13 +96,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>464B8F57</checksum>
+      <checksum>968CA324</checksum>
+    </file>
+    <file>
+      <filename>ZoneMixingTestModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4451DD5D</checksum>
     </file>
     <file>
       <filename>add_zone_mixing_object_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>9EBBF197</checksum>
+      <checksum>A0A93765</checksum>
     </file>
   </files>
 </measure>

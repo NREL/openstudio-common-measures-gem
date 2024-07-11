@@ -171,7 +171,7 @@ module OsLib_QAQC
             # skip if all spaces using this space type are plenums
             all_spaces_plenums = true
             space_type.spaces.each do |space|
-               if !std.space_plenum?(space)
+               if !OpenstudioStandards::Space.space_plenum?(space)
                 all_spaces_plenums = false
                 next
               end
@@ -339,7 +339,7 @@ module OsLib_QAQC
 
         # warn if there are spaces in model that don't use space type unless they appear to be plenums
         @model.getSpaces.each do |space|
-          next if std.space_plenum?(space)
+          next if OpenstudioStandards::Space.space_plenum?(space)
 
           if !space.spaceType.is_initialized
             check_elems << OpenStudio::Attribute.new('flag', "#{space.name} doesn't have a space type assigned, can't validate internal loads.")
