@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>replace_model</name>
   <uid>54f03343-5b5c-42f4-818c-5e6de6ded489</uid>
-  <version_id>7ab0e620-5411-481e-93b2-83768245a28c</version_id>
-  <version_modified>20230607T052233Z</version_modified>
+  <version_id>d16e4a8f-cb31-49a6-9b8a-57ba444241fa</version_id>
+  <version_modified>2024-07-11T14:32:10Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>ReplaceModel</class_name>
   <display_name>Replace OpenStudio Model</display_name>
@@ -14,7 +14,7 @@
     <argument>
       <name>external_model_name</name>
       <display_name>External OSM File Name</display_name>
-      <description>Name of the model to replace current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.</description>
+      <description>Name of the model to replalace current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.</description>
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -39,16 +39,22 @@
   </attributes>
   <files>
     <file>
-      <filename>EnvelopeAndLoadTestModel_01.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>6616E1BE</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
-      <filename>test.osw</filename>
-      <filetype>osw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>F5FABCCF</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>3E7AEAB6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -59,13 +65,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>15A137A6</checksum>
+      <checksum>1327E71E</checksum>
+    </file>
+    <file>
+      <filename>EnvelopeAndLoadTestModel_01.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>6616E1BE</checksum>
     </file>
     <file>
       <filename>ReplaceModel_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>AA8EB3EB</checksum>
+      <checksum>B418CC92</checksum>
+    </file>
+    <file>
+      <filename>test.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F5FABCCF</checksum>
     </file>
   </files>
 </measure>

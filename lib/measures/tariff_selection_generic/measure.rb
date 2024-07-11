@@ -6,10 +6,6 @@
 # see the URL below for information on how to write OpenStuido measures
 # http://openstudio.nrel.gov/openstudio-measure-writing-guide
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-
 # start the measure
 class TariffSelectionGeneric < OpenStudio::Measure::EnergyPlusMeasure
   # define the name that a user will see, this method may be deprecated as
@@ -98,7 +94,8 @@ class TariffSelectionGeneric < OpenStudio::Measure::EnergyPlusMeasure
   def run(workspace, runner, user_arguments)
     super(workspace, runner, user_arguments)
 
-    args = OsLib_HelperMethods.createRunVariables(runner, workspace, user_arguments, arguments(workspace))
+    args = runner.getArgumentValues(arguments(workspace), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
     # reporting initial condition of model
