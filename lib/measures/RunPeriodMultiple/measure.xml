@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>run_period_multiple</name>
   <uid>100a5eba-0442-42cb-bdf1-9cf75e102f71</uid>
-  <version_id>67d5da8b-2476-48a9-b987-f7e3caf0617b</version_id>
-  <version_modified>20221115T223606Z</version_modified>
+  <version_id>9e401ed2-e8ce-4a5d-994e-b0ac6716f809</version_id>
+  <version_modified>2024-07-11T14:32:09Z</version_modified>
   <xml_checksum>87C4F8A7</xml_checksum>
   <class_name>RunPeriodMultiple</class_name>
   <display_name>Set Multiple Run Period Object</display_name>
@@ -71,10 +71,10 @@
   </attributes>
   <files>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -83,10 +83,10 @@
       <checksum>1CF1E24C</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -97,7 +97,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7974EF1A</checksum>
+      <checksum>B42E6FBE</checksum>
     </file>
   </files>
 </measure>
