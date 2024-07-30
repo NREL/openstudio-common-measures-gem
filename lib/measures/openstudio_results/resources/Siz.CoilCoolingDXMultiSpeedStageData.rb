@@ -41,7 +41,9 @@ class OpenStudio::Model::CoilCoolingDXMultiSpeedStageData
   def performanceCharacteristics
     effs = []
     effs << [grossRatedCoolingCOP, 'Gross Rated Cooling COP']
-    effs << [evaporativeCondenserEffectiveness, 'Evaporative Condenser Effectiveness']
+    if parentCoil.is_initialized
+      effs << [evaporativeCondenserEffectiveness, 'Evaporative Condenser Effectiveness'] if parentCoil.get.condenserType == 'EvaporativelyCooled'
+    end
     return effs
   end
 end

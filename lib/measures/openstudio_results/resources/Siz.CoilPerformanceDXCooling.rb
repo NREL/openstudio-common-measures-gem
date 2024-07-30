@@ -41,7 +41,7 @@ class OpenStudio::Model::CoilPerformanceDXCooling
   def performanceCharacteristics
     effs = []
     effs << [grossRatedCoolingCOP, 'Gross Rated Cooling COP']
-    effs << [evaporativeCondenserEffectiveness, 'Evaporative Condenser Effectiveness']
+    effs << [evaporativeCondenserEffectiveness, 'Evaporative Condenser Effectiveness'] if condenserType == 'EvaporativelyCooled'
     return effs
   end
 end

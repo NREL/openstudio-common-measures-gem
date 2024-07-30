@@ -54,4 +54,10 @@ class OpenStudio::Model::CoilCoolingWaterToAirHeatPumpEquationFit
       return OpenStudio::OptionalBool.new(true)
     end
   end
+
+  def performanceCharacteristics
+    effs = []
+    effs << [ratedCoolingCoefficientofPerformance, 'Rated Cooling COP']
+    return effs
+  end
 end

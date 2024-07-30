@@ -40,7 +40,7 @@ class OpenStudio::Model::CoilHeatingDXSingleSpeed
 
   def performanceCharacteristics
     effs = []
-    effs << [ratedCOP, 'Rated COP']
+    effs << [ratedCOP, 'Rated Heating COP']
     return effs
   end
 end
