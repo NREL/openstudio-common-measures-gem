@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>create_csv_output</name>
   <uid>99d3a7e5-4bd5-407f-b5eb-7c59660ca980</uid>
-  <version_id>fbbc1933-a541-4258-89b1-20ec4abae16a</version_id>
-  <version_modified>20230118T161956Z</version_modified>
+  <version_id>a1449e43-ae2f-468f-abb1-11be6f448e2e</version_id>
+  <version_modified>2024-07-11T14:32:06Z</version_modified>
   <xml_checksum>9BF1E6AC</xml_checksum>
   <class_name>CreateCSVOutput</class_name>
   <display_name>CreateCSVOutput</display_name>
@@ -65,7 +65,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>CD7F5672</checksum>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0A07426F</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -80,24 +86,6 @@
       <checksum>00000000</checksum>
     </file>
     <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>39B6E26C</checksum>
-    </file>
-    <file>
-      <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
-      <filetype>epw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>BDF687C1</checksum>
-    </file>
-    <file>
-      <filename>report.html.in</filename>
-      <filetype>in</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>3F69E3FB</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>3.4.0</identifier>
@@ -106,19 +94,31 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>94EA9ABB</checksum>
+      <checksum>B46C084C</checksum>
+    </file>
+    <file>
+      <filename>report.html.in</filename>
+      <filetype>in</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3F69E3FB</checksum>
+    </file>
+    <file>
+      <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BDF687C1</checksum>
     </file>
     <file>
       <filename>create_csv_output_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>74354A94</checksum>
+      <checksum>91652056</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>0A07426F</checksum>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>39B6E26C</checksum>
     </file>
   </files>
 </measure>

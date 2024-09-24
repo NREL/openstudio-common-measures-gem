@@ -6,10 +6,6 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/measures/measure_writing_guide/
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-
 # start the measure
 class TariffSelectionFlat < OpenStudio::Measure::EnergyPlusMeasure
   # human readable name
@@ -108,7 +104,9 @@ class TariffSelectionFlat < OpenStudio::Measure::EnergyPlusMeasure
     super(workspace, runner, user_arguments)
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, workspace, user_arguments, arguments(workspace))
+    args = runner.getArgumentValues(arguments(workspace), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
+    
     if !args then return false end
 
     # reporting initial condition of model
