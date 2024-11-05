@@ -13,8 +13,7 @@ Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
 # start the measure
 class GenericQAQC < OpenStudio::Measure::ReportingMeasure
-  # all QAQC checks should be in OsLib_QAQC module
-  include OsLib_QAQC
+  # all QAQC checks should be in standards
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
@@ -54,6 +53,7 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     # gather inputs for check_mech_sys_capacity. Each option has a target value, min and max fractional tolerance, and units
     # in the future climate zone specific targets may be in standards
     # todo - expose these tollerances as user arguments
+    # these are set in standards now not exoised as argynebt
     options_check_mech_sys_capacity = {}
     options_check_mech_sys_capacity['chiller_max_flow_rate'] = { 'target' => 2.4, 'min' => 0.1, 'max' => 0.1, 'units' => 'gal/ton*min' }
     options_check_mech_sys_capacity['air_loop_max_flow_rate'] = { 'target' => 1.0, 'min' => 0.1, 'max' => 0.1, 'units' => 'cfm/ft^2' }
@@ -61,18 +61,18 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     options_check_mech_sys_capacity['zone_heating_capacity'] = { 'target' => 12.5, 'min' => 0.20, 'max' => 0.40, 'units' => 'Btu/ft^2*h' }
 
     # results << {:method_name => 'check_weather_files',:cat => 'General',:standards => false,:data => options_check_weather_files,:min_tol => false,:max_tol => false, :units => nil}
-    results << { method_name: 'check_eui_reasonableness', cat: 'General', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
+    results << { method_name: 'check_eui', cat: 'General', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
     results << { method_name: 'check_eui_by_end_use', cat: 'General', standards: true, data: nil, tol_min: 0.25, tol_max: true, units: 'fraction' }
-    results << { method_name: 'check_mech_sys_part_load_eff', cat: 'General', standards: true, data: nil, tol_min: 0.05, tol_max: true, units: 'fraction' }
-    results << { method_name: 'check_mech_sys_capacity', cat: 'General', standards: true, data: options_check_mech_sys_capacity, tol_min: false, tol_max: false, units: 'fraction' }
+    results << { method_name: 'check_hvac_part_load_efficiency', cat: 'General', standards: true, data: nil, tol_min: 0.05, tol_max: true, units: 'fraction' }
+    results << { method_name: 'check_hvac_capacity', cat: 'General', standards: true, data: options_check_mech_sys_capacity, tol_min: false, tol_max: false, units: 'fraction' }
     results << { method_name: 'check_simultaneous_heating_and_cooling', cat: 'General', standards: false, data: nil, tol_min: false, tol_max: 0.05, units: 'fraction' }
     results << { method_name: 'check_internal_loads', cat: 'Baseline', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
-    results << { method_name: 'check_schedules', cat: 'Baseline', standards: true, data: nil, tol_min: 0.05, tol_max: true, units: 'fraction' }
+    results << { method_name: 'check_schedule_coordination', cat: 'Baseline', standards: true, data: nil, tol_min: nil, tol_max: 2.0, units: 'fraction' }
     results << { method_name: 'check_envelope_conductance', cat: 'Baseline', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
-    results << { method_name: 'check_domestic_hot_water', cat: 'Baseline', standards: true, data: nil, tol_min: 0.25, tol_max: true, units: 'fraction' }
-    results << { method_name: 'check_mech_sys_efficiency', cat: 'Baseline', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
-    results << { method_name: 'check_mech_sys_type', cat: 'Baseline', standards: true, data: nil, tol_min: false, tol_max: false, units: nil }
-    results << { method_name: 'check_supply_air_and_thermostat_temp_difference', cat: 'Baseline', standards: true, data: nil, tol_min: 0.5, tol_max: false, units: 'F' }
+    results << { method_name: 'check_service_hot_water', cat: 'Baseline', standards: true, data: nil, tol_min: 0.25, tol_max: true, units: 'fraction' }
+    results << { method_name: 'check_hvac_efficiency', cat: 'Baseline', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
+    results << { method_name: 'check_hvac_system_type', cat: 'Baseline', standards: true, data: nil, tol_min: false, tol_max: false, units: nil }
+    results << { method_name: 'check_air_loop_temperatures', cat: 'Baseline', data: nil, tol_min: false, tol_max: false, units: 'F' }
 
     results
   end
@@ -90,6 +90,18 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
 
     # add arguments from possible_check_categories
     possible_check_categories.each do |hash|
+
+      # arguments vary by method
+      min_string = 'min_pass_pct'
+      max_string = 'max_pass_pct'
+      if hash[:method_name] == "check_schedule_coordination"
+        min_string = nil
+        max_string = 'max_hrs'
+      elsif hash[:method_name] == "check_air_loop_temperatures"
+        min_string = nil
+        max_string = nil
+      end
+
       cat = hash[:cat]
       cat_input = "\'#{cat}\'"
       if hash[:standards]
@@ -102,25 +114,30 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
       else
         data_input = ",#{hash[:data]}"
       end
+
+      # get min tol
       if !hash[:tol_min]
         min = nil
         min_input = ''
       else
         min = hash[:tol_min]
-        min_input = ",#{min}"
+        min_input = ", #{min_string}: #{min}"
       end
       if hash[:tol_max].is_a? Float
         max = hash[:tol_max]
-        max_input = ",#{max}"
+        max_input = ", #{max_string}: #{max}"
       elsif !hash[:tol_max]
         max = nil
         max_input = ''
       else
         max = hash[:tol_min]
-        max_input = ",#{max}"
+        max_input = ", #{max_string}: #{max}"
       end
 
-      name_cat_desc = eval("#{hash[:method_name]}(#{cat_input}#{data_input}#{standards_input}#{min_input}#{max_input},true)")
+      # data_input not used for implementation in standards
+      puts "hello0"
+      puts "OpenstudioStandards::QAQC.#{hash[:method_name]}(#{cat_input}#{standards_input}#{min_input}#{max_input}, name_only: true)"
+      name_cat_desc = eval("OpenstudioStandards::QAQC.#{hash[:method_name]}(#{cat_input}#{standards_input}#{min_input}#{max_input}, name_only: true)")
       arg = OpenStudio::Measure::OSArgument.makeBoolArgument(hash[:method_name], true)
       arg.setDisplayName("#{name_cat_desc[0]} (#{hash[:cat]})")
       arg.setDescription(name_cat_desc[2])
@@ -275,6 +292,17 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
       # skip if bool arg for this method is false
       next if args[hash[:method_name]] == false
 
+      # arguments vary by method
+      min_string = 'min_pass_pct'
+      max_string = 'max_pass_pct'
+      if hash[:method_name] == "check_schedule_coordination"
+        min_string = nil
+        max_string = 'max_hrs'
+      elsif hash[:method_name] == "check_air_loop_temperatures"
+        min_string = nil
+        max_string = nil
+      end
+
       cat = hash[:cat]
       cat_input = "\'#{cat}\'"
       if hash[:standards]
@@ -294,7 +322,7 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
         tol = args["#{hash[:method_name]}_tol"]
         # set min inputs
         if tol.is_a? Float
-          min_input = ",#{tol}"
+          min_input = ",#{min_string}: #{tol}"
         else
           min_input = ''
         end
@@ -308,24 +336,26 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
         max_tol = args["#{hash[:method_name]}_max_tol"]
         # set max inputs
         if max_tol.is_a? Float
-          max_input = ",#{max_tol}"
+          max_input = ",#{max_string}: #{max_tol}"
         elsif (hash[:tol_max] == true) && hash[:tol_min].is_a?(Float)
           # if true then use double from min_tol
-          max_input = ",#{args["#{hash[:method_name]}_tol"]}"
+          max_input = ",#{max_string}: #{args["#{hash[:method_name]}_tol"]}"
         else
           max_input = ''
         end
       else
         if (hash[:tol_max] == true) && hash[:tol_min].is_a?(Float)
           # if true then use double from min_tol
-          max_input = ",#{args["#{hash[:method_name]}_tol"]}"
+          max_input = ",#{max_string}: #{args["#{hash[:method_name]}_tol"]}"
         else
           max_input = ''
         end
       end
 
       # run QAQC check
-      eval("check_elems << #{hash[:method_name]}(#{cat_input}#{data_input}#{standards_input}#{min_input}#{max_input},false)")
+      puts "hello1"
+      puts "OpenstudioStandards::QAQC.#{hash[:method_name]}(#{cat_input}#{standards_input}#{min_input}#{max_input}, name_only: false)"
+      eval("check_elems << OpenstudioStandards::QAQC.#{hash[:method_name]}(#{cat_input}#{standards_input}#{min_input}#{max_input},name_only: false)")
     end
 
     # add checks to report_elems
