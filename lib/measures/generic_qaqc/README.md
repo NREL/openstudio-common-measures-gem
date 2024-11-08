@@ -27,38 +27,6 @@ This used to set the target standard for most checks.
 **Required:** true,
 **Model Dependent:** false
 
-### EUI Reasonableness (General)
-Check model EUI against selected ASHRAE standard DOE prototype building.
-**Name:** check_eui_reasonableness,
-**Type:** Boolean,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
-
-### EUI Reasonableness Tolerance
-
-**Name:** check_eui_reasonableness_tol,
-**Type:** Double,
-**Units:** fraction,
-**Required:** true,
-**Model Dependent:** false
-
-### End Use by Category (General)
-Check model consumption by end use against selected ASHRAE standard DOE prototype building.
-**Name:** check_eui_by_end_use,
-**Type:** Boolean,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
-
-### End Use by Category Tolerance
-
-**Name:** check_eui_by_end_use_tol,
-**Type:** Double,
-**Units:** fraction,
-**Required:** true,
-**Model Dependent:** false
-
 ### Mechanical System Part Load Efficiency (General)
 Check 40% and 80% part load efficency against selected ASHRAE standard for the following compenent types: ChillerElectricEIR, CoilCoolingDXSingleSpeed, CoilCoolingDXTwoSpeed, CoilHeatingDXSingleSpeed. Checking EIR Function of Part Load Ratio curve for chiller and EIR Function of Flow Fraction for DX coils.
 **Name:** check_mech_sys_part_load_eff,
