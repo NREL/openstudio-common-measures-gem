@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>replace_thermostat_schedules</name>
   <uid>7e6da001-30f2-419c-bfc0-2f96ba2115cb</uid>
-  <version_id>89d9d3af-9cdd-40d6-afb5-190a2ab57c50</version_id>
-  <version_modified>20221115T223610Z</version_modified>
+  <version_id>260ebf84-d91c-4861-b5f0-4a47a0821c08</version_id>
+  <version_modified>2024-07-11T14:32:14Z</version_modified>
   <xml_checksum>4F7846F2</xml_checksum>
   <class_name>ReplaceThermostatSchedules</class_name>
   <display_name>Replace Thermostat Schedules</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{de4a5938-8864-44fd-8dc3-b85e56b79112}</default_value>
+      <default_value>{bf97efc3-79f7-4b8b-8b25-e8b6c8e7f5c1}</default_value>
       <choices>
         <choice>
-          <value>{de4a5938-8864-44fd-8dc3-b85e56b79112}</value>
+          <value>{bf97efc3-79f7-4b8b-8b25-e8b6c8e7f5c1}</value>
           <display_name>*All Thermal Zones*</display_name>
         </choice>
       </choices>
@@ -91,16 +91,22 @@
   </attributes>
   <files>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>7ECBC1DB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -111,19 +117,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D15EBA1A</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <checksum>62FAE26F</checksum>
     </file>
     <file>
       <filename>ReplaceThermostatSchedules_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>08EBDF1B</checksum>
+      <checksum>0A1A19D8</checksum>
     </file>
   </files>
 </measure>

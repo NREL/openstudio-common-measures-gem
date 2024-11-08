@@ -66,7 +66,7 @@ module OsLib_QAQC
           # skip if all spaces using this space type are plenums
           all_spaces_plenums = true
           space_type.spaces.each do |space|
-            if !std.space_plenum?(space)
+            if !OpenstudioStandards::Space.space_plenum?(space)
               all_spaces_plenums = false
               next
             end
@@ -90,7 +90,7 @@ module OsLib_QAQC
             check_elems << OpenStudio::Attribute.new('flag', "Didn't find schedule named #{data['lighting_schedule']} in standards json.")
           else
             # loop through and test individual load instances
-            target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target.to_ScheduleRuleset.get)
+            target_hrs = OpenstudioStandards::Schedules.schedule_ruleset_get_equivalent_full_load_hours(schedule_target.to_ScheduleRuleset.get)
             space_type.lights.each do |load_inst|
               inst_sch_check = generate_load_insc_sch_check_attribute(target_hrs, load_inst, space_type, check_elems, min_pass, max_pass, target_standard)
               if inst_sch_check then check_elems << inst_sch_check end
@@ -107,7 +107,7 @@ module OsLib_QAQC
             check_elems << OpenStudio::Attribute.new('flag', "Didn't find schedule named #{data['electric_equipment_schedule']} in standards json.")
           else
             # loop through and test individual load instances
-            target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target.to_ScheduleRuleset.get)
+            target_hrs = OpenstudioStandards::Schedules.schedule_ruleset_get_equivalent_full_load_hours(schedule_target.to_ScheduleRuleset.get)
 
             space_type.electricEquipment.each do |load_inst|
               inst_sch_check = generate_load_insc_sch_check_attribute(target_hrs, load_inst, space_type, check_elems, min_pass, max_pass, target_standard)
@@ -125,7 +125,7 @@ module OsLib_QAQC
             check_elems << OpenStudio::Attribute.new('flag', "Didn't find schedule named #{data['gas_equipment_schedule']} in standards json.")
           else
             # loop through and test individual load instances
-            target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target.to_ScheduleRuleset.get)
+            target_hrs = OpenstudioStandards::Schedules.schedule_ruleset_get_equivalent_full_load_hours(schedule_target.to_ScheduleRuleset.get)
             space_type.gasEquipment.each do |load_inst|
               inst_sch_check = generate_load_insc_sch_check_attribute(target_hrs, load_inst, space_type, check_elems, min_pass, max_pass, target_standard)
               if inst_sch_check then check_elems << inst_sch_check end
@@ -141,7 +141,7 @@ module OsLib_QAQC
             check_elems << OpenStudio::Attribute.new('flag', "Didn't find schedule named #{data['occupancy_schedule']} in standards json.")
           else
             # loop through and test individual load instances
-            target_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_target.to_ScheduleRuleset.get)
+            target_hrs = OpenstudioStandards::Schedules.schedule_ruleset_get_equivalent_full_load_hours(schedule_target.to_ScheduleRuleset.get)
             space_type.people.each do |load_inst|
               inst_sch_check = generate_load_insc_sch_check_attribute(target_hrs, load_inst, space_type, check_elems, min_pass, max_pass, target_standard)
               if inst_sch_check then check_elems << inst_sch_check end
@@ -182,7 +182,7 @@ module OsLib_QAQC
 
       # warn if there are spaces in model that don't use space type unless they appear to be plenums
       @model.getSpaces.each do |space|
-        next if std.space_plenum?(space)
+        next if OpenstudioStandards::Space.space_plenum?(space)
         if !space.spaceType.is_initialized
           check_elems << OpenStudio::Attribute.new('flag', "#{space.name} doesn't have a space type assigned, can't validate schedules.")
         end
@@ -234,7 +234,7 @@ module OsLib_QAQC
 
     # get annual equiv for model schedule
     if schedule_inst.to_ScheduleRuleset.is_initialized
-      inst_hrs = std.schedule_ruleset_annual_equivalent_full_load_hrs(schedule_inst.to_ScheduleRuleset.get)
+      inst_hrs = OpenstudioStandards::Schedules.schedule_ruleset_get_equivalent_full_load_hours(schedule_inst.to_ScheduleRuleset.get)
     elsif schedule_inst.to_ScheduleConstant.is_initialized
       inst_hrs = std.schedule_constant_annual_equivalent_full_load_hrs(schedule_inst.to_ScheduleConstant.get)
     else

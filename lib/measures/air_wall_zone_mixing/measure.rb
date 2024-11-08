@@ -6,12 +6,10 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/measures/measure_writing_guide/
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_geometry'
-
 # start the measure
 class AirWallZoneMixing < OpenStudio::Measure::ModelMeasure
+  require 'openstudio-standards'
+  
   # human readable name
   def name
     return 'Air Wall Zone Mixing'
@@ -78,8 +76,8 @@ Zone mixing will only be added where there is an air wall and where the matched 
       max_space_height = 0
       zone.spaces.each do |space|
         volume_counter += space.volume
-        min_space_zvalue = OsLib_Geometry.getSurfaceZValues(space.surfaces).sort.first # this expects an array of surfaces
-        max_space_zvalue = OsLib_Geometry.getSurfaceZValues(space.surfaces).sort.last # this expects an array of surfaces
+        min_space_zvalue = OpenstudioStandards::Geometry.surfaces_get_z_values(space.surfaces).sort.first # this expects an array of surfaces
+        max_space_zvalue = OpenstudioStandards::Geometry.surfaces_get_z_values(space.surfaces).sort.last # this expects an array of surfaces
         if max_space_zvalue - min_space_zvalue > max_space_height
           max_space_height = max_space_zvalue - min_space_zvalue
         end

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>add_cost_per_floor_area_to_electric_equipment</name>
   <uid>42cf1acc-c0bc-46cd-af67-8a17cadaab7b</uid>
-  <version_id>878740df-ba76-4b19-9baf-e845b66097e0</version_id>
-  <version_modified>20221115T223556Z</version_modified>
+  <version_id>e584d703-1f79-47dc-9940-126d4927a992</version_id>
+  <version_modified>2024-07-11T14:32:01Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerFloorAreaToElectricEquipment</class_name>
   <display_name>Add Cost per Floor Area to Electric Equipment</display_name>
@@ -140,22 +140,22 @@ For baseline costs, 'Years Until Costs Start' indicates the year that the capita
   </attributes>
   <files>
     <file>
-      <filename>0416_NetArea_b.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>3D3EE8E9</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>F4D7E305</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -166,19 +166,19 @@ For baseline costs, 'Years Until Costs Start' indicates the year that the capita
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>808F6B1D</checksum>
+      <checksum>878DCC90</checksum>
+    </file>
+    <file>
+      <filename>0416_NetArea_b.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3D3EE8E9</checksum>
     </file>
     <file>
       <filename>AddCostPerFloorAreaToElectricEquipment_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>146B4156</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <checksum>BFD5BDA4</checksum>
     </file>
   </files>
 </measure>

@@ -1,5 +1,12 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.11.0
+- Support for OpenStudio 3.9 (upgrade to standards gem 0.7.0, extension gem 0.8.1)
+
+## Version 0.10.0
+- Support for OpenStudio 3.8 (upgrade to standards gem 0.6.0, extension gem 0.8.0)
+- Support Ruby 3.2.2
+
 ## Version 0.9.0
 
 - Support for OpenStudio 3.7 (upgrade to standards gem 0.5.0, extension gem 0.7)
