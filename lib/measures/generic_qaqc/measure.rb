@@ -7,24 +7,14 @@ require 'erb'
 require 'json'
 require 'openstudio-standards'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_schedules'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_model_generation.rb'
-
 # require all .rb files in resources folder
+# todo - remove resource ruby files and connect to OpenstudioStandards::QAQC
 Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
 
 # start the measure
 class GenericQAQC < OpenStudio::Measure::ReportingMeasure
   # all QAQC checks should be in OsLib_QAQC module
   include OsLib_QAQC
-  include OsLib_HelperMethods
-  include OsLib_ModelGeneration
-
-  # OsLib_CreateResults is needed for utility EDA programs but not the generic QAQC measure
-  # include OsLib_CreateResults
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
@@ -71,8 +61,11 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     options_check_mech_sys_capacity['zone_heating_capacity'] = { 'target' => 12.5, 'min' => 0.20, 'max' => 0.40, 'units' => 'Btu/ft^2*h' }
 
     # results << {:method_name => 'check_weather_files',:cat => 'General',:standards => false,:data => options_check_weather_files,:min_tol => false,:max_tol => false, :units => nil}
-    results << { method_name: 'check_eui_reasonableness', cat: 'General', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
-    results << { method_name: 'check_eui_by_end_use', cat: 'General', standards: true, data: nil, tol_min: 0.25, tol_max: true, units: 'fraction' }
+    
+    # not reporting EUI and end use comparison until update to use newer methods in standards
+    #results << { method_name: 'check_eui_reasonableness', cat: 'General', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
+    #results << { method_name: 'check_eui_by_end_use', cat: 'General', standards: true, data: nil, tol_min: 0.25, tol_max: true, units: 'fraction' }
+    
     results << { method_name: 'check_mech_sys_part_load_eff', cat: 'General', standards: true, data: nil, tol_min: 0.05, tol_max: true, units: 'fraction' }
     results << { method_name: 'check_mech_sys_capacity', cat: 'General', standards: true, data: options_check_mech_sys_capacity, tol_min: false, tol_max: false, units: 'fraction' }
     results << { method_name: 'check_simultaneous_heating_and_cooling', cat: 'General', standards: false, data: nil, tol_min: false, tol_max: 0.05, units: 'fraction' }
@@ -92,7 +85,7 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make an argument for the template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates(false), true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', OpenstudioStandards::CreateTypical.get_doe_templates(false), true)
     template.setDisplayName('Target ASHRAE Standard')
     template.setDescription('This used to set the target standard for most checks.')
     template.setDefaultValue('90.1-2013') # there is override variable in run method for this
@@ -169,7 +162,8 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     result = OpenStudio::IdfObjectVector.new
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, @model, user_arguments, arguments)
+    args = runner.getArgumentValues(arguments, user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     unless args
       return false
     end
@@ -231,7 +225,8 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     climateZones.setClimateZone('ASHRAE', cz)
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, @model, user_arguments, arguments)
+    args = runner.getArgumentValues(arguments, user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     unless args
       return false
     end
@@ -246,7 +241,8 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     if args['use_upstream_args'] == true
       args.each do |arg, value|
         next if arg == 'use_upstream_args' # this argument should not be changed
-        value_from_osw = OsLib_HelperMethods.check_upstream_measure_for_arg(runner, arg)
+        value_from_osw = runner.getPastStepValuesForName(arg)
+        value_from_osw = value_from_osw.collect{ |k, v| Hash[:measure_name => k, :value => v] }.first if !value_from_osw.empty?
         if !value_from_osw.empty?
           runner.registerInfo("Replacing argument named #{arg} from current measure with a value of #{value_from_osw[:value]} from #{value_from_osw[:measure_name]}.")
           new_val = value_from_osw[:value]

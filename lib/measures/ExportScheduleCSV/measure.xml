@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>export_schedule_csv</name>
   <uid>6fc1a46d-4912-47af-8ace-a7c453fbe363</uid>
-  <version_id>ca8d5ad7-4b0b-460c-b16f-99317305d0f8</version_id>
-  <version_modified>20221115T223604Z</version_modified>
+  <version_id>5a8d134c-3008-49ab-a2f4-f4a614f22371</version_id>
+  <version_modified>2024-07-11T14:32:08Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ExportScheduleCSV</class_name>
   <display_name>ExportScheduleCSV</display_name>
@@ -39,22 +39,10 @@
   </attributes>
   <files>
     <file>
-      <filename>ExampleModel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>6EBB9908</checksum>
-    </file>
-    <file>
-      <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
-      <filetype>epw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>BDF687C1</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -63,16 +51,10 @@
       <checksum>6F5139DD</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
-    </file>
-    <file>
-      <filename>ExportScheduleCSV_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9EE1AB45</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -83,7 +65,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>44168D6E</checksum>
+      <checksum>57C4F21B</checksum>
+    </file>
+    <file>
+      <filename>ExampleModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>6EBB9908</checksum>
+    </file>
+    <file>
+      <filename>ExportScheduleCSV_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D467AE10</checksum>
+    </file>
+    <file>
+      <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BDF687C1</checksum>
     </file>
   </files>
 </measure>

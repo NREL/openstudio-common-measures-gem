@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>add_ems_to_control_ev_charging</name>
   <uid>df97997f-d02a-4e35-af7a-5aed16cb5772</uid>
-  <version_id>5a5c367a-fcf8-4162-ba42-59edc0c46a4a</version_id>
-  <version_modified>20221115T223602Z</version_modified>
+  <version_id>cb1e5410-6ed7-43a8-8ff7-a7134be49ef7</version_id>
+  <version_modified>2024-07-11T14:32:06Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSToControlEVCharging</class_name>
   <display_name>Add EMS to Control EV Charging</display_name>
@@ -50,10 +50,10 @@
   </attributes>
   <files>
     <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E925F127</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -62,27 +62,27 @@
       <checksum>70CA2C6E</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.5.1</identifier>
+        <min_compatible>3.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>D2FD7CFE</checksum>
     </file>
     <file>
       <filename>add_ems_to_control_ev_charging_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>0BFC4A8F</checksum>
+      <checksum>D10942F4</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.5.1</identifier>
-        <min_compatible>2.5.1</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>7EC3E27C</checksum>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E925F127</checksum>
     </file>
   </files>
 </measure>

@@ -1,0 +1,6 @@
+AllCops:
+  Exclude:
+    - 'spec/test_measures/**/*'
+require: rubocop-performance
+inherit_from:
+  - http://s3.amazonaws.com/openstudio-resources/styles/rubocop_v4.yml

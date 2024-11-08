@@ -131,6 +131,7 @@ class GenericQAQC_Test < Minitest::Test
     test_strings << "Can't calculate target EUI. Make sure model has expected climate zone and building type."
     test_strings << "Can't calculate target end use EUIs. Make sure model has expected climate zone and building type."
     test_strings << "Didn't find construction for"
+    test_strings << "Can't calculate target Envelope performance. Make sure model has climate zone and building type defined."
     # test_strings << "Annual average of 0 gallons per day of hot water" # confirm that no test models have non zero SWH value
 
     section_errors = []

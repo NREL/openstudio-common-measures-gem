@@ -17,7 +17,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container:
-      image: nrel/openstudio:3.5.1
+      image: nrel/openstudio:develop
 
     steps:
       - uses: actions/checkout@v2
@@ -34,7 +34,7 @@ jobs:
       - name: install dependencies
         shell: bash
         run: |
-          gem install bundler -v '2.1.4'
+          gem install bundler -v '2.4.10'
           bundle -v
           bundle install
       - name: run tests

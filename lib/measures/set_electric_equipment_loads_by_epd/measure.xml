@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>set_electric_equipment_loads_by_epd</name>
   <uid>b1d87b95-a6d1-4999-bd0d-16da879f4340</uid>
-  <version_id>82ce2fa6-e066-4dd0-adba-9b7338ed0757</version_id>
-  <version_modified>20221115T223601Z</version_modified>
+  <version_id>fbf62617-296b-4029-a917-c02257c9aab9</version_id>
+  <version_modified>2024-07-11T14:32:05Z</version_modified>
   <xml_checksum>5C8B3381</xml_checksum>
   <class_name>SetElectricEquipmentLoadsByEPD</class_name>
   <display_name>Set Electric Equipment loads by EPD</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{5d06cf57-89f9-4476-9475-68e081eb0d61}</default_value>
+      <default_value>{f4294201-a0fb-4eb7-b0f7-3fc09b56f7af}</default_value>
       <choices>
         <choice>
-          <value>{5d06cf57-89f9-4476-9475-68e081eb0d61}</value>
+          <value>{f4294201-a0fb-4eb7-b0f7-3fc09b56f7af}</value>
           <display_name>*Entire Building*</display_name>
         </choice>
       </choices>
@@ -147,6 +147,35 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>14295EFE</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>232D0477</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>788F4CF4</checksum>
+    </file>
+    <file>
       <filename>EnvelopeAndLoadTestModel_01.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -165,39 +194,10 @@
       <checksum>ECE1D347</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>232D0477</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>14295EFE</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>EDD3B2FC</checksum>
-    </file>
-    <file>
       <filename>ReplaceElectricEquipmentWithEPD_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>FF9A3A76</checksum>
+      <checksum>C46B576F</checksum>
     </file>
   </files>
 </measure>

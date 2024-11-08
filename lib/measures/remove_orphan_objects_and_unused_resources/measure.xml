@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>remove_orphan_objects_and_unused_resources</name>
   <uid>c618f299-a245-49ce-a119-82eb54007ede</uid>
-  <version_id>cbd91dc6-4e6b-4db6-96e4-25f290510e41</version_id>
-  <version_modified>20230607T052232Z</version_modified>
+  <version_id>65cd4e9a-d035-423a-8a58-853a318d2cab</version_id>
+  <version_modified>2024-07-11T14:32:07Z</version_modified>
   <xml_checksum>28AD5222</xml_checksum>
   <class_name>RemoveOrphanObjectsAndUnusedResources</class_name>
   <display_name>Remove Orphan Objects and Unused Resources</display_name>
@@ -143,16 +143,10 @@ A second functionality is to remove unused resources. This will include things l
   </attributes>
   <files>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
-      <filename>1125_infil_test_a.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E8A821F1</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -161,16 +155,10 @@ A second functionality is to remove unused resources. This will include things l
       <checksum>3D163369</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
-    </file>
-    <file>
-      <filename>remove_orphan_objects_and_unused_resources_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>A54B8567</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -181,7 +169,19 @@ A second functionality is to remove unused resources. This will include things l
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>0B14129B</checksum>
+      <checksum>F3D52604</checksum>
+    </file>
+    <file>
+      <filename>1125_infil_test_a.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E8A821F1</checksum>
+    </file>
+    <file>
+      <filename>remove_orphan_objects_and_unused_resources_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>931450B4</checksum>
     </file>
   </files>
 </measure>
