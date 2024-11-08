@@ -78,7 +78,7 @@ module OsLib_QAQC
               is_plenum = true
             end
           else
-            if std.space_plenum?(space)
+            if OpenstudioStandards::Space.space_plenum?(space)
               is_plenum = true
             end
           end

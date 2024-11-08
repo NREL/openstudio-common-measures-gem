@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>d45ffbf1-e76f-4e04-9de4-effdf2f0f410</version_id>
-  <version_modified>2024-04-04T16:21:33Z</version_modified>
+  <version_id>5b4d387a-f537-4693-a9eb-6192957b6c1b</version_id>
+  <version_modified>2024-07-11T14:31:57Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -641,12 +641,12 @@
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>3.1.0</min_compatible>
+        <min_compatible>3.8.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>120E71D7</checksum>
+      <checksum>477BD96D</checksum>
     </file>
     <file>
       <filename>Siz.AirConditionerVariableRefrigerantFlow.rb</filename>
@@ -1420,13 +1420,13 @@
       <filename>os_lib_reporting.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>C18C8EF3</checksum>
+      <checksum>2B4F256F</checksum>
     </file>
     <file>
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>CCE600FF</checksum>
+      <checksum>945F4BD1</checksum>
     </file>
     <file>
       <filename>1004_SmallHotel_a.osm</filename>
