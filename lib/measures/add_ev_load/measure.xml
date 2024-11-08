@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>add_ev_load</name>
   <uid>a23e0493-7357-48ca-b089-4d902efd6b50</uid>
-  <version_id>1a1691ef-23a0-4d6e-b061-f2b3407950a3</version_id>
-  <version_modified>20221115T223600Z</version_modified>
+  <version_id>6b5494cf-80bb-43d4-99d5-59325f977d4f</version_id>
+  <version_modified>2024-07-11T14:32:04Z</version_modified>
   <xml_checksum>9A202986</xml_checksum>
   <class_name>AddEVLoad</class_name>
   <display_name>Add_EV_Load</display_name>
@@ -136,16 +136,39 @@
   </attributes>
   <files>
     <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E925F127</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>2293F4B3</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.5.1</identifier>
+        <min_compatible>2.5.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>D3110BC3</checksum>
+    </file>
+    <file>
+      <filename>PSN_BuildingKey.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>153D4BBA</checksum>
+    </file>
+    <file>
+      <filename>PSN_BuildingKey_v2.csv</filename>
+      <filetype>csv</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>1000C8E8</checksum>
     </file>
     <file>
       <filename>chg1_dow1_flex1.csv</filename>
@@ -328,39 +351,16 @@
       <checksum>114F9EA1</checksum>
     </file>
     <file>
-      <filename>PSN_BuildingKey.csv</filename>
-      <filetype>csv</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>153D4BBA</checksum>
-    </file>
-    <file>
-      <filename>PSN_BuildingKey_v2.csv</filename>
-      <filetype>csv</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>1000C8E8</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
-    </file>
-    <file>
       <filename>add_ev_load_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>8D60903A</checksum>
+      <checksum>5381CBDE</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.5.1</identifier>
-        <min_compatible>2.5.1</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>488C2195</checksum>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E925F127</checksum>
     </file>
   </files>
 </measure>

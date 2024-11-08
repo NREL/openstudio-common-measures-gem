@@ -6,17 +6,9 @@
 # Authors : Nicholas Long, David Goldwasser
 # Simple measure to load the EPW file and DDY file
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_model_generation.rb'
-
 class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
   Dir[File.dirname(__FILE__) + '/resources/*.rb'].each { |file| require file }
-
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_ModelGeneration
+  require 'openstudio-standards'
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
@@ -34,10 +26,11 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     args << weather_file_name
 
     # make choice argument for climate zone
-    choices = OpenStudio::StringVector.new
+    #choices = OpenStudio::StringVector.new
+    choices = OpenstudioStandards::CreateTypical.get_climate_zones
     choices << 'Lookup From Stat File'
 
-    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', get_climate_zones(false, 'Lookup From Stat File'), true)
+    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', choices, true)
     climate_zone.setDisplayName('Climate Zone.')
     climate_zone.setDefaultValue('Lookup From Stat File')
     args << climate_zone
@@ -74,14 +67,16 @@ class ChangeBuildingLocation < OpenStudio::Measure::ModelMeasure
     super(model, runner, user_arguments)
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
     # lookup and replace argument values from upstream measures
     if args['use_upstream_args'] == true
       args.each do |arg, value|
         next if arg == 'use_upstream_args' # this argument should not be changed
-        value_from_osw = OsLib_HelperMethods.check_upstream_measure_for_arg(runner, arg)
+        value_from_osw = runner.getPastStepValuesForName(arg)
+        value_from_osw = value_from_osw.collect{ |k, v| Hash[:measure_name => k, :value => v] }.first if !value_from_osw.empty?
         if !value_from_osw.empty?
           runner.registerInfo("Replacing argument named #{arg} from current measure with a value of #{value_from_osw[:value]} from #{value_from_osw[:measure_name]}.")
           new_val = value_from_osw[:value]
