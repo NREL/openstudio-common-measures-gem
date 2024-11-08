@@ -38,6 +38,8 @@ bundle exec rake openstudio:test_with_openstudio
 
 |OpenStudio Common Measures Gem|OpenStudio|Ruby|
 |:--------------:|:----------:|:--------:|
+| 0.11.0         | 3.9      | 3.2.2    |
+| 0.10.0         | 3.8      | 3.2.2    |
 | 0.9.0         | 3.7      | 2.7    |
 | 0.8.0         | 3.6      | 2.7    |
 | 0.7.0         | 3.5      | 2.7    |

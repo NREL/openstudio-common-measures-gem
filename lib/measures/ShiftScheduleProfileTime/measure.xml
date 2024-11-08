@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>shift_schedule_profile_time</name>
   <uid>1c642348-f074-4ad1-98ee-2208ddc89ac7</uid>
-  <version_id>4f449856-9a3b-4ad0-a5a1-efea0b95396a</version_id>
-  <version_modified>20221115T223607Z</version_modified>
+  <version_id>b8e9677e-d5d5-4583-b552-95e53bf655ff</version_id>
+  <version_modified>2024-07-11T14:32:10Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>ShiftScheduleProfileTime</class_name>
   <display_name>ShiftScheduleProfileTime</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{4998e0bc-9175-4c72-9384-15b3c9c1f4f7}</default_value>
+      <default_value>{dbbe6087-34db-420d-8a04-3c691240c1a6}</default_value>
       <choices>
         <choice>
-          <value>{4998e0bc-9175-4c72-9384-15b3c9c1f4f7}</value>
+          <value>{dbbe6087-34db-420d-8a04-3c691240c1a6}</value>
           <display_name>*All Ruleset Schedules*</display_name>
         </choice>
       </choices>
@@ -63,22 +63,22 @@
   </attributes>
   <files>
     <file>
-      <filename>3Story2Space.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B4AB814E</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>8E63A0BF</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -89,19 +89,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>589E2347</checksum>
+      <checksum>B0B00FDE</checksum>
+    </file>
+    <file>
+      <filename>3Story2Space.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B4AB814E</checksum>
     </file>
     <file>
       <filename>ShiftScheduleProfileTime_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>0C5DE85F</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
+      <checksum>579AC50F</checksum>
     </file>
   </files>
 </measure>

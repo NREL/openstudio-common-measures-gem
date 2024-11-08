@@ -60,17 +60,20 @@ module OsLib_QAQC
               if use_old_gem_code
                 schedule_values = clg_sch.to_ScheduleRuleset.get.annual_min_max_value
               else
-                schedule_values = std.schedule_ruleset_annual_min_max_value(clg_sch.to_ScheduleRuleset.get)
+                schedule_values = OpenstudioStandards::Schedules.schedule_get_min_max(clg_sch)
               end
             elsif clg_sch.to_ScheduleConstant.is_initialized
               if use_old_gem_code
                 schedule_values = clg_sch.to_ScheduleConstant.get.annual_min_max_value
               else
-                schedule_values = std.schedule_constant_annual_min_max_value(clg_sch.to_ScheduleConstant.get)
+                schedule_values = OpenstudioStandards::Schedules.schedule_get_min_max(clg_sch)
               end
             end
 
             unless schedule_values.nil?
+              puts "hello1"
+              puts schedule_values
+              puts "hello2"
               model_clg_min = schedule_values['min']
             end
           end

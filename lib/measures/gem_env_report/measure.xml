@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>gem_environment_report</name>
   <uid>3f9f1a2f-0e8a-4c88-b817-10494fc3e73a</uid>
-  <version_id>c37f64ba-bdf4-4c67-a5e6-4cd01086ac36</version_id>
-  <version_modified>20221115T223606Z</version_modified>
+  <version_id>b833f734-5c26-4273-94d8-d9cb36a7abf3</version_id>
+  <version_modified>2024-07-11T14:32:10Z</version_modified>
   <xml_checksum>D1F10311</xml_checksum>
   <class_name>GemEnvironmentReport</class_name>
   <display_name>gem environment report</display_name>
@@ -40,10 +40,10 @@
   </attributes>
   <files>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -52,40 +52,10 @@
       <checksum>ACC6F66B</checksum>
     </file>
     <file>
-      <filename>run_gem_env_info.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>EB1D95F2</checksum>
-    </file>
-    <file>
-      <filename>run_openstudio_info.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>926943DC</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>64FFEBDE</checksum>
-    </file>
-    <file>
-      <filename>openstudio_info.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>BA1249C5</checksum>
-    </file>
-    <file>
-      <filename>gem_env_info.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>5C631590</checksum>
-    </file>
-    <file>
-      <filename>gem_env_report_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>96AADEF6</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -96,7 +66,37 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>3D133192</checksum>
+      <checksum>509760B0</checksum>
+    </file>
+    <file>
+      <filename>gem_env_info.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>C74C9A12</checksum>
+    </file>
+    <file>
+      <filename>openstudio_info.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>58061348</checksum>
+    </file>
+    <file>
+      <filename>run_gem_env_info.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9F90BABF</checksum>
+    </file>
+    <file>
+      <filename>run_openstudio_info.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E4901393</checksum>
+    </file>
+    <file>
+      <filename>gem_env_report_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1F849B2D</checksum>
     </file>
   </files>
 </measure>

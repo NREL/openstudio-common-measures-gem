@@ -26,12 +26,19 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '~> 2.7.0'
+  spec.required_ruby_version = '~> 3.2.2'
 
-  spec.add_dependency 'bundler', '>= 2.1'
-  spec.add_dependency 'openstudio-extension', '~> 0.7.0'
-  spec.add_dependency 'openstudio-standards', '~> 0.5.0' 
+  spec.add_dependency 'bundler', '~> 2.4.10'
+  spec.add_dependency 'openstudio-extension', '~> 0.8.1'
+  spec.add_dependency 'openstudio-standards', '0.7.0.rc1'
+
+  # if we need the following dependencies pinned, 
+  # let's set them in extension-gem for next release
+  spec.add_dependency 'multipart-post', '2.4.0'
+  spec.add_dependency 'regexp_parser', '2.9.0'
+  spec.add_dependency 'addressable', '2.8.1'
 
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.9'
+  spec.add_development_dependency 'octokit', '4.18.0' # for change logs
 end
