@@ -61,8 +61,11 @@ class GenericQAQC < OpenStudio::Measure::ReportingMeasure
     options_check_mech_sys_capacity['zone_heating_capacity'] = { 'target' => 12.5, 'min' => 0.20, 'max' => 0.40, 'units' => 'Btu/ft^2*h' }
 
     # results << {:method_name => 'check_weather_files',:cat => 'General',:standards => false,:data => options_check_weather_files,:min_tol => false,:max_tol => false, :units => nil}
-    results << { method_name: 'check_eui_reasonableness', cat: 'General', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
-    results << { method_name: 'check_eui_by_end_use', cat: 'General', standards: true, data: nil, tol_min: 0.25, tol_max: true, units: 'fraction' }
+    
+    # not reporting EUI and end use comparison until update to use newer methods in standards
+    #results << { method_name: 'check_eui_reasonableness', cat: 'General', standards: true, data: nil, tol_min: 0.1, tol_max: true, units: 'fraction' }
+    #results << { method_name: 'check_eui_by_end_use', cat: 'General', standards: true, data: nil, tol_min: 0.25, tol_max: true, units: 'fraction' }
+    
     results << { method_name: 'check_mech_sys_part_load_eff', cat: 'General', standards: true, data: nil, tol_min: 0.05, tol_max: true, units: 'fraction' }
     results << { method_name: 'check_mech_sys_capacity', cat: 'General', standards: true, data: options_check_mech_sys_capacity, tol_min: false, tol_max: false, units: 'fraction' }
     results << { method_name: 'check_simultaneous_heating_and_cooling', cat: 'General', standards: false, data: nil, tol_min: false, tol_max: 0.05, units: 'fraction' }
