@@ -306,6 +306,8 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
 
       vals = {}
 
+      #vals[:va] = getDetailsData('Input Verification and Results Summary', 'Entire Facility', 'Zone Summary', "#{zoneMetrics[:name].upcase}", 'Lighting[W/m2]', 'W/m2', 'W/ft^2').round(2)
+      #vals[:va] = getDetailsData('Initialization Summary', 'Entire Facility', 'Zone Internal Gains Nominal', "#{zoneMetrics[:name].upcase}", 'Interior Lighting', 'W/m2', 'W/ft^2').round(2)
       vals[:va] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Lighting Power Density', 'W/m2', 'W/ft^2').round(2)
       vals[:vb] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Full Load Hours/Week', 'hr', 'hr').round(2)
 
@@ -637,7 +639,8 @@ end
 
     if query_results.empty?
 
-      @runner.registerWarning("Could not get data for #{report} #{forstring} #{table} #{row} #{column}.")
+      # todo - is there any valid reason data might not be found? If not then make error isntead of warning
+      @runner.registerWarning("Could not get data for report:#{report} For:#{forstring} table:#{table} row:#{row} column:#{column}.")
       return final_units == 's' ? '' : 0.0
 
     else
@@ -652,7 +655,7 @@ end
         converted = OpenStudio.convert(r.to_f, eplus_to_openstudio(units), final_units)
         if converted.empty?
           @runner.registerError("Could not convert #{r} from #{units} to #{final_units}")
-          return 0.0
+          return false
         else
           return converted.get.round(2)
         end
@@ -671,7 +674,7 @@ end
 
     if query_results.empty?
       @runner.registerError("Could not get data for requested Column #{colName}.")
-      return []
+      return false
     else
       return query_results
     end
