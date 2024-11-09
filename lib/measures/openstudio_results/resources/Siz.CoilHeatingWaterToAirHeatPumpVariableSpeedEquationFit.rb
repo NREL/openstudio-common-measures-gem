@@ -54,4 +54,14 @@ class OpenStudio::Model::CoilHeatingWaterToAirHeatPumpVariableSpeedEquationFit
       return OpenStudio::OptionalBool.new(true)
     end
   end
+
+  def performanceCharacteristics
+    effs = []
+    speeds.each_with_index do |speed_data, i|
+      speed_effs = speed_data.performanceCharacteristics
+      speed_effs.each { |pc| pc[1] = "Speed #{i+1} #{pc[1]}"}
+      effs.concat speed_effs
+    end
+    return effs
+  end
 end

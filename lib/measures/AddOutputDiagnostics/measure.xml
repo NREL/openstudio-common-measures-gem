@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_output_diagnostics</name>
   <uid>cb957503-4a01-42c4-a918-a44df4ea759c</uid>
-  <version_id>28c00b8a-091e-4792-9eeb-65e6e64482d2</version_id>
-  <version_modified>2024-07-11T14:32:00Z</version_modified>
+  <version_id>8138aec6-0182-4778-a02e-1194d553e7f3</version_id>
+  <version_modified>2024-04-29T14:26:44Z</version_modified>
   <xml_checksum>AA6ADD14</xml_checksum>
   <class_name>AddOutputDiagnostics</class_name>
   <display_name>Add Output Diagnostics</display_name>
@@ -107,13 +107,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>94FC90D2</checksum>
+      <checksum>0E7EAC98</checksum>
     </file>
     <file>
       <filename>AddOutputDiagnostics_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>43E8CA0D</checksum>
+      <checksum>4B735B56</checksum>
     </file>
   </files>
 </measure>

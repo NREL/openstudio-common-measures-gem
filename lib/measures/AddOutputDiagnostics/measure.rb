@@ -99,7 +99,7 @@ class AddOutputDiagnostics < OpenStudio::Measure::EnergyPlusMeasure
       runner.registerInfo("An output diagnostic object with a value of #{new_diagnostic.getString(0)} has been added to your model.")
 
     else
-      runner.registerAsNotApplicable("An output diagnostic object with a value of #{new_diagnostic.getString(0)} already existed in your model. Nothing was changed.")
+      runner.registerAsNotApplicable("An output diagnostic object with a value of #{outputDiagnostic} already existed in your model. Nothing was changed.")
       return true
 
     end
