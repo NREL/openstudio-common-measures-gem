@@ -43,6 +43,17 @@ ModelMeasure
 
 
 
+### Interpret Flow Rate as seen at 50 Pascal Pressure Difference
+Set to true if the flow per exterior surface entered represents the flow rate during blower door test with 50 Pascal pressure difference. When set to false the input value will be passed directly to the energy model.
+**Name:** input_value_at_50_pa,
+**Type:** Boolean,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
+
+
+
 
 
 
