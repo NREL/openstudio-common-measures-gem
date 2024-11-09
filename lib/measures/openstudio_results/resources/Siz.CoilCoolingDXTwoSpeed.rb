@@ -42,8 +42,9 @@ class OpenStudio::Model::CoilCoolingDXTwoSpeed
     effs = []
     effs << [ratedHighSpeedCOP, 'Rated High Speed COP']
     effs << [ratedLowSpeedCOP, 'Rated Low Speed COP']
-    effs << [highSpeedEvaporativeCondenserEffectiveness, 'High Speed Evaporative Condenser Effectiveness']
-    effs << [lowSpeedEvaporativeCondenserEffectiveness, 'Low Speed Evaporative Condenser Effectiveness']
-    return effs
+    if condenserType == 'EvaporativelyCooled'
+      effs << [highSpeedEvaporativeCondenserEffectiveness, 'High Speed Evaporative Condenser Effectiveness']
+      effs << [lowSpeedEvaporativeCondenserEffectiveness, 'Low Speed Evaporative Condenser Effectiveness']
+    end
   end
 end
