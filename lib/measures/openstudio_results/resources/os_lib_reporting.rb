@@ -924,6 +924,8 @@ module OsLib_Reporting
         display_units = '%'
         perf_val *= 100
         perf_val = OpenStudio.toNeatString(perf_val, 1, true)
+      elsif perf_name.downcase.include?('cop')
+        perf_val = OpenStudio.toNeatString(perf_val, 2, true)
       end
       # Report the value
       data_arrays << ['', perf_name, "#{perf_val} #{display_units}", '', '']
