@@ -323,7 +323,7 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     end
 
     # configure template with variable values, resources_path needed to find javascript web libraries for html
-    resources_path = File.join(runner.workflow.findMeasure('openstudio_results').get.to_s, 'resources/')
+    resources_path = "#{File.dirname(__FILE__)}/resources/"
     renderer = ERB.new(html_in)
     html_out = renderer.result(binding)
 
