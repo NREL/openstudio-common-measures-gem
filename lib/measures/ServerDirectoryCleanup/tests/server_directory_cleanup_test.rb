@@ -13,19 +13,19 @@ require 'fileutils'
 
 class ServerDirectoryCleanupTest < Minitest::Test
   def model_in_path_default
-    return "#{File.dirname(__FILE__)}/example_model.osm"
+    return "#{__dir__}/example_model.osm"
   end
 
   def epw_path_default
     # make sure we have a weather data location
-    epw = File.expand_path("#{File.dirname(__FILE__)}/USA_CO_Golden-NREL.724666_TMY3.epw")
+    epw = File.expand_path("#{__dir__}/USA_CO_Golden-NREL.724666_TMY3.epw")
     assert(File.exist?(epw.to_s))
     return epw.to_s
   end
 
   def run_dir(test_name)
     # always generate test output in specially named 'output' directory so result files are not made part of the measure
-    return "#{File.dirname(__FILE__)}/output/#{test_name}"
+    return "#{__dir__}/output/#{test_name}"
   end
 
   def model_out_path(test_name)
@@ -101,7 +101,7 @@ class ServerDirectoryCleanupTest < Minitest::Test
     model = OpenStudio::Model::Model.new
 
     # get arguments and test that they are what we are expecting
-    arguments = measure.arguments
+    arguments = measure.arguments(model)
     assert_equal(12, arguments.size)
   end
 
@@ -127,8 +127,8 @@ class ServerDirectoryCleanupTest < Minitest::Test
     epw_path = epw_path_default
     setup_test(test_name, idf_output_requests)
 
-    has_files = ServerDirectoryCleanup.file_types.map{|k, ext| [ext, !Dir["#{run_dir(test_name)}/run/*#{ext}"].empty?]}.to_h
-    assert(has_files.count{|k, v| v} > 0)
+    has_files = ServerDirectoryCleanup.file_types.map { |_k, ext| [ext, !Dir["#{run_dir(test_name)}/run/*#{ext}"].empty?] }.to_h
+    assert(has_files.count { |_k, v| v } > 0)
 
     assert(File.exist?(model_out_path(test_name)))
     assert(File.exist?(sql_path(test_name)))
@@ -164,6 +164,7 @@ class ServerDirectoryCleanupTest < Minitest::Test
 
     has_files.each do |ext, had_files|
       next unless had_files
+
       assert(Dir["#{run_dir(test_name)}/run/*#{ext}"].empty?)
     end
 
