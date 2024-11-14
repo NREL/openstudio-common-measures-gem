@@ -3,69 +3,13 @@
   <schema_version>3.1</schema_version>
   <name>unmet_load_hours_troubleshooting</name>
   <uid>edf8fc3a-5607-4e0f-9dd2-4a1e1545433b</uid>
-  <version_id>c6295e86-6d14-43d9-ad33-702bbd4aab0f</version_id>
-  <version_modified>2024-07-11T14:32:03Z</version_modified>
+  <version_id>f3f2ef3e-9876-47d3-8d66-1e3a75e17fea</version_id>
+  <version_modified>2024-09-24T19:28:23Z</version_modified>
   <xml_checksum>5BFE84C4</xml_checksum>
   <class_name>UnmetLoadHoursTroubleshooting</class_name>
   <display_name>Unmet Load Hours Troubleshooting</display_name>
-  <description>Unmet load hours are any hours of operation when conditioned spaces are outside the throttling range for heating or cooling controls. That is, they are the hours in a year that the HVAC system serving a space cannot maintain space setpoint. This measure performs a series of checks against various model input variables and when applicable informs the user of possible sources of unmet cooling and heating hours. The measure also creates a dynamic time series plot of unmet cooling and heating hours, by zone - whose patterns may be interpreted to assist in troubleshooting unmet cooling and heating hours. Prior to running this measure, users will need to add the following output variables to their model: 1) Zone Mean Air Temperature,hourly  2) Zone Thermostat Heating Setpoint Temperature, hourly 3) Zone Thermostat Cooling Setpoint Temperature, hourly 4) Zone People Occupant Count, hourly using the AddOutputVariable OS measure, or the add output variables screen in the OpenStudio application.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</description>
-  <modeler_description>This measure performs a series of logic checks against model inputs for diagnosing common issues responsible for unmet cooling and heating hours. The measure will also create a time series interactive chart (using dygraph libraries) to provide a visual inspection of when unmet heating and cooling hours are occurring.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </modeler_description>
+  <description>Unmet load hours are any hours of operation when conditioned spaces are outside the throttling range for heating or cooling controls. That is, they are the hours in a year that the HVAC system serving a space cannot maintain space setpoint. This measure performs a series of checks against various model input variables and when applicable informs the user of possible sources of unmet cooling and heating hours. The measure also creates a dynamic time series plot of unmet cooling and heating hours, by zone - whose patterns may be interpreted to assist in troubleshooting unmet cooling and heating hours. Prior to running this measure, users will need to add the following output variables to their model: 1) Zone Mean Air Temperature,hourly  2) Zone Thermostat Heating Setpoint Temperature, hourly 3) Zone Thermostat Cooling Setpoint Temperature, hourly 4) Zone People Occupant Count, hourly using the AddOutputVariable OS measure, or the add output variables screen in the OpenStudio application.</description>
+  <modeler_description>This measure performs a series of logic checks against model inputs for diagnosing common issues responsible for unmet cooling and heating hours. The measure will also create a time series interactive chart (using dygraph libraries) to provide a visual inspection of when unmet heating and cooling hours are occurring.</modeler_description>
   <arguments>
     <argument>
       <name>measure_zone</name>
@@ -127,7 +71,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D516E015</checksum>
+      <checksum>0A588C59</checksum>
     </file>
     <file>
       <filename>report.html.in</filename>
@@ -151,7 +95,7 @@
       <filename>UnmetLoadHoursTroubleshooting_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>EDF1ED99</checksum>
+      <checksum>A71A5D73</checksum>
     </file>
     <file>
       <filename>sqlfile.sql</filename>

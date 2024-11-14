@@ -7,6 +7,7 @@ require 'erb'
 # update
 # start the measure
 class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
+
   def name
     return 'Unmet Load Hours Troubleshooting'
   end
@@ -55,7 +56,7 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
       @metrics[:toleranceTimeHeatSetUnmet] = d.getDouble(1).empty? ? 0.2 : d.getDouble(1).get
       @metrics[:toleranceTimeCoolSetUnmet] = d.getDouble(2).empty? ? 0.2 : d.getDouble(2).get
     end
-    # We must use Kelvin -> Rankine conversion instead of Celsius -> Farenheit because the latter conversion adds the 32 degree offset
+    # We must use Kelvin -> Rankine conversion instead of Celsius -> Fahrenheit because the latter conversion adds the 32 degree offset
     @metrics[:toleranceTimeHeatSetUnmetF] = OpenStudio.convert(@metrics[:toleranceTimeHeatSetUnmet], 'K', 'R').get
     @metrics[:toleranceTimeCoolSetUnmetF] = OpenStudio.convert(@metrics[:toleranceTimeCoolSetUnmet], 'K', 'R').get
 
@@ -258,7 +259,7 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
 
           rawMin, rawMax = getMinMaxForSchedule(schedule)
 
-          exit_temp = plantloop.sizingPlant.getDesignLoopExitTemperature.value
+          exit_temp = plantloop.sizingPlant.designLoopExitTemperature
           exit_temp = OpenStudio.convert(exit_temp, 'C', 'F').get
 
           maxSetpointValue = OpenStudio.convert(rawMax, 'C', 'F').get
@@ -443,6 +444,8 @@ class UnmetLoadHoursTroubleshooting < OpenStudio::Measure::ReportingMeasure
       @test_nine_data << graph
     end
   end
+  
+  attr_reader :measureMetrics
 
   # define what happens when the measure is run
   def run(runner, user_arguments)
