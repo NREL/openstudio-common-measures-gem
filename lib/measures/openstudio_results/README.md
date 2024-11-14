@@ -19,8 +19,8 @@ ReportingMeasure
 ## Arguments
 
 
-### Which Unit System do you want to use?
-
+### Unit System
+IP = Inch Pound, SI = International System, OS = OpenStudio
 **Name:** units,
 **Type:** Choice,
 **Units:** ,
@@ -206,6 +206,14 @@ ReportingMeasure
 ### Report monthly fuel and enduse breakdown to registerValue
 This argument does not effect HTML file, instead it makes data from individal cells of monthly tables avaiable for machine readable values in the resulting OpenStudio Workflow file.
 **Name:** reg_monthly_details,
+**Type:** Boolean,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
+### Add EnergyPlus Summary Reports?
+
+**Name:** energyplus_reports,
 **Type:** Boolean,
 **Units:** ,
 **Required:** true,

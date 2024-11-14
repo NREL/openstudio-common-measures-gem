@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '~> 3.2.2'
 
   spec.add_dependency 'bundler', '~> 2.4.10'
-  spec.add_dependency 'openstudio-extension', '~> 0.8.1'
+  spec.add_dependency 'openstudio-extension', '~> 0.8.2'
   spec.add_dependency 'openstudio-standards', '0.7.0'
 
   # if we need the following dependencies pinned, 
