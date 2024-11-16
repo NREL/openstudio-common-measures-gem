@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>predicted_mean_vote</name>
   <uid>11cd3144-dac6-4f64-90e4-b8804c6bfc5e</uid>
-  <version_id>7cdac9cc-f495-48c3-b785-ba9ebbd43c84</version_id>
-  <version_modified>2024-07-11T14:32:11Z</version_modified>
+  <version_id>0426fad2-5158-4523-8da5-4b4b1b62ecde</version_id>
+  <version_modified>2024-11-16T23:54:18Z</version_modified>
   <xml_checksum>0CA4D54C</xml_checksum>
   <class_name>PredictedMeanVote</class_name>
   <display_name>Predicted Mean Vote</display_name>
@@ -136,7 +136,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

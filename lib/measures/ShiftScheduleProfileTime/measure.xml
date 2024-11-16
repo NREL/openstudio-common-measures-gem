@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>shift_schedule_profile_time</name>
   <uid>1c642348-f074-4ad1-98ee-2208ddc89ac7</uid>
-  <version_id>b8e9677e-d5d5-4583-b552-95e53bf655ff</version_id>
-  <version_modified>2024-07-11T14:32:10Z</version_modified>
+  <version_id>9bca8070-3c21-4334-8f6b-6eef794ab5cb</version_id>
+  <version_modified>2024-11-16T23:54:17Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>ShiftScheduleProfileTime</class_name>
   <display_name>ShiftScheduleProfileTime</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{dbbe6087-34db-420d-8a04-3c691240c1a6}</default_value>
+      <default_value>{e6774645-c45b-4e09-a0e4-45c8b134098e}</default_value>
       <choices>
         <choice>
-          <value>{dbbe6087-34db-420d-8a04-3c691240c1a6}</value>
+          <value>{e6774645-c45b-4e09-a0e4-45c8b134098e}</value>
           <display_name>*All Ruleset Schedules*</display_name>
         </choice>
       </choices>
@@ -66,7 +66,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

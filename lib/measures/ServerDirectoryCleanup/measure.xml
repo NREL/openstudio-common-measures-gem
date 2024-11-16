@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>server_directory_cleanup</name>
   <uid>ec7d04ad-0b7b-495b-825a-e1b6d28d1d3f</uid>
-  <version_id>51546894-cade-4c2c-b370-97a46c9bb423</version_id>
-  <version_modified>2024-11-13T08:37:19Z</version_modified>
+  <version_id>b7ac12e3-448d-4bc8-8e61-f07b99ac5829</version_id>
+  <version_modified>2024-11-16T23:54:12Z</version_modified>
   <xml_checksum>5BFE84C4</xml_checksum>
   <class_name>ServerDirectoryCleanup</class_name>
   <display_name>Server Directory Cleanup</display_name>
@@ -250,7 +250,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>hvac_psychrometric_chart</name>
   <uid>97213780-0727-4462-8ec0-9a6c3e475cd6</uid>
-  <version_id>b6eca7ed-6047-4a27-9190-773f8e670e5c</version_id>
-  <version_modified>2024-07-11T14:32:02Z</version_modified>
+  <version_id>14a66d22-4ff4-458d-a883-514409a52b5e</version_id>
+  <version_modified>2024-11-16T23:54:13Z</version_modified>
   <xml_checksum>F657B621</xml_checksum>
   <class_name>HVACPsychrometricChart</class_name>
   <display_name>HVAC Psychrometric Chart</display_name>
@@ -47,7 +47,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>change_building_location</name>
   <uid>d4db4971-f5ba-11e3-a3ac-0800200c9a66</uid>
-  <version_id>b5f24cb3-0230-4992-b9a0-d8f67cc17c84</version_id>
-  <version_modified>2024-11-16T22:58:10Z</version_modified>
+  <version_id>da0d3750-39f6-413f-a7a8-267438b920b7</version_id>
+  <version_modified>2024-11-16T23:54:17Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>ChangeBuildingLocation</class_name>
   <display_name>ChangeBuildingLocation</display_name>
@@ -239,7 +239,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

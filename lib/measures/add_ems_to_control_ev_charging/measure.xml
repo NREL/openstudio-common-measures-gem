@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_ems_to_control_ev_charging</name>
   <uid>df97997f-d02a-4e35-af7a-5aed16cb5772</uid>
-  <version_id>cb1e5410-6ed7-43a8-8ff7-a7134be49ef7</version_id>
-  <version_modified>2024-07-11T14:32:06Z</version_modified>
+  <version_id>a6a93a92-7693-4cf3-81a1-59a618e75322</version_id>
+  <version_modified>2024-11-16T23:54:15Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSToControlEVCharging</class_name>
   <display_name>Add EMS to Control EV Charging</display_name>
@@ -53,7 +53,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
