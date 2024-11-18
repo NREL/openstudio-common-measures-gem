@@ -35,7 +35,6 @@ Gem::Specification.new do |spec|
   # if we need the following dependencies pinned, 
   # let's set them in extension-gem for next release
   spec.add_dependency 'multipart-post', '2.4.0'
-  spec.add_dependency 'regexp_parser', '2.9.0'
   spec.add_dependency 'addressable', '2.8.1'
 
   spec.add_development_dependency 'rake', '~> 13.0'
