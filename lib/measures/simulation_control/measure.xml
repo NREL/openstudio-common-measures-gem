@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>simulation_control</name>
   <uid>f0f3eeb6-f23b-4ba9-b0c0-7e680f6f2552</uid>
   <version_id>0d83ee42-cf04-466e-befc-e9b57bf3d36c</version_id>
@@ -214,16 +214,16 @@
   </attributes>
   <files>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>100BD514</checksum>
+    </file>
+    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>703C9964</checksum>
-    </file>
-    <file>
-      <filename>simulation_control_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>20765BB0</checksum>
     </file>
     <file>
       <version>
@@ -237,10 +237,10 @@
       <checksum>F6E076D4</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>100BD514</checksum>
+      <filename>simulation_control_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>20765BB0</checksum>
     </file>
   </files>
 </measure>

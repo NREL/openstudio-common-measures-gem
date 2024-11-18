@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_energyplus_minimum_outdoor_air_flow_rate</name>
   <uid>90e4574a-b4cc-4a00-9b43-1fe9bb7e6e77</uid>
-  <version_id>a10ba836-d5ab-48a4-894f-76ad4d2b72e4</version_id>
-  <version_modified>2024-07-11T14:31:54Z</version_modified>
+  <version_id>30952729-1e1b-48d8-bdcd-3e282ae7a90c</version_id>
+  <version_modified>2024-11-16T23:54:10Z</version_modified>
   <xml_checksum>7E41814C</xml_checksum>
   <class_name>SetEnergyPlusMinimumOutdoorAirFlowRate</class_name>
   <display_name>SetEnergyPlusMinimumOutdoorAirFlowRate</display_name>
@@ -41,7 +41,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

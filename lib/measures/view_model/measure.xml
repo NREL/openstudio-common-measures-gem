@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>view_model</name>
   <uid>f4669f10-fda5-489d-8e1c-7ca3c2d40378</uid>
-  <version_id>58bf75e3-de04-4332-b1b0-d8a3ab435d27</version_id>
-  <version_modified>2023-08-29T09:49:05Z</version_modified>
+  <version_id>be174260-8a60-4185-9344-9995ac77bec8</version_id>
+  <version_modified>2024-11-16T23:54:16Z</version_modified>
   <xml_checksum>1E1F8B97</xml_checksum>
   <class_name>ViewModel</class_name>
   <display_name>ViewModel</display_name>
@@ -53,7 +53,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

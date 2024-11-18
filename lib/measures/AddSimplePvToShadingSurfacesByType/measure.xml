@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_simple_pv_to_shading_surfaces_by_type</name>
   <uid>27627c16-75d4-4fc3-add9-2d7d538c0130</uid>
-  <version_id>a6476df6-8fac-48df-9065-6d2dc7f1c382</version_id>
-  <version_modified>2024-07-11T14:32:08Z</version_modified>
+  <version_id>17051d34-b75e-442a-9901-d5c81f4cf54b</version_id>
+  <version_modified>2024-11-16T23:54:16Z</version_modified>
   <xml_checksum>92C8C204</xml_checksum>
   <class_name>AddSimplePvToShadingSurfacesByType</class_name>
   <display_name>Add Simple PV to Specified Shading Surfaces</display_name>
@@ -118,7 +118,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

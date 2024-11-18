@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_exterior_lights</name>
   <uid>34f9050c-5f8f-4d10-8e46-30ca8333114d</uid>
-  <version_id>5424f31c-13ac-438e-a802-98c69979c130</version_id>
-  <version_modified>2024-07-11T14:32:02Z</version_modified>
+  <version_id>b7da8ea0-0fc4-4519-8ff0-fc52bef46190</version_id>
+  <version_modified>2024-11-16T23:54:13Z</version_modified>
   <xml_checksum>293730A7</xml_checksum>
   <class_name>AddExteriorLights</class_name>
   <display_name>Add Exterior Lights</display_name>
@@ -151,7 +151,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

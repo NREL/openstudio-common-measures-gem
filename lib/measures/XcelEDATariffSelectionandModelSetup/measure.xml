@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>xcel_eda_tariff_selectionand_model_setup</name>
   <uid>c5ab60e9-b8e5-4653-a502-5ed030f1335d</uid>
-  <version_id>6771c66d-93f6-4a18-81a5-a83ca5754a9b</version_id>
-  <version_modified>2024-07-11T14:32:13Z</version_modified>
+  <version_id>f7e70c8e-6b11-4436-b518-5ac929c7c79e</version_id>
+  <version_modified>2024-11-16T23:54:19Z</version_modified>
   <xml_checksum>4FA703D1</xml_checksum>
   <class_name>XcelEDATariffSelectionandModelSetup</class_name>
   <display_name>XcelEDATariffSelectionandModelSetup</display_name>
@@ -136,7 +136,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
