@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>get_site_from_building_component_library</name>
   <uid>a6dff045-6f62-4288-a3f0-a5549f4c292a</uid>
-  <version_id>aa3db6e6-f8bf-492f-9fcd-b2c8750c4352</version_id>
-  <version_modified>2024-07-11T14:32:10Z</version_modified>
+  <version_id>5637a75b-ebbd-455c-8437-3fd3409e30ad</version_id>
+  <version_modified>2024-11-16T23:54:17Z</version_modified>
   <xml_checksum>99E7000D</xml_checksum>
   <class_name>GetSiteFromBuildingComponentLibrary</class_name>
   <display_name>Get Site from Building Component Library</display_name>
@@ -97,7 +97,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>gem_environment_report</name>
   <uid>3f9f1a2f-0e8a-4c88-b817-10494fc3e73a</uid>
-  <version_id>b833f734-5c26-4273-94d8-d9cb36a7abf3</version_id>
-  <version_modified>2024-07-11T14:32:10Z</version_modified>
+  <version_id>cec906d1-dd78-4e27-b916-ea9b6384a1e8</version_id>
+  <version_modified>2024-11-16T23:54:17Z</version_modified>
   <xml_checksum>D1F10311</xml_checksum>
   <class_name>GemEnvironmentReport</class_name>
   <display_name>gem environment report</display_name>
@@ -43,7 +43,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -46,6 +46,13 @@ class SetSpaceInfiltrationPerExteriorArea < OpenStudio::Measure::ModelMeasure
     ext_surf_cat.setDefaultValue('ExteriorArea')
     args << ext_surf_cat
 
+    # interpret input as infiltration at 50PA presasure difference
+    input_value_at_50_pa = OpenStudio::Measure::OSArgument.makeBoolArgument('input_value_at_50_pa', true)
+    input_value_at_50_pa.setDisplayName('Interpret Flow Rate as seen at 50 Pascal Pressure Difference')
+    input_value_at_50_pa.setDescription('Set to true if the flow per exterior surface entered represents the flow rate during blower door test with 50 Pascal pressure difference. When set to false the input value will be passed directly to the energy model.')
+    input_value_at_50_pa.setDefaultValue(false)
+    args << input_value_at_50_pa
+
     return args
   end
 
@@ -61,6 +68,7 @@ class SetSpaceInfiltrationPerExteriorArea < OpenStudio::Measure::ModelMeasure
     # assign the user inputs to variables
     flow_per_area = runner.getDoubleArgumentValue('flow_per_area', user_arguments)
     ext_surf_cat = runner.getStringArgumentValue('ext_surf_cat', user_arguments)
+    input_value_at_50_pa = runner.getBoolArgumentValue('input_value_at_50_pa', user_arguments)
 
     # check the flow_per_area for reasonableness
     if flow_per_area < 0
@@ -127,6 +135,11 @@ class SetSpaceInfiltrationPerExteriorArea < OpenStudio::Measure::ModelMeasure
     most_comm_sch = sch_hash.key(sch_hash.values.max)
 
     # get target flow rate in ip
+    if input_value_at_50_pa
+      orig_flow = flow_per_area
+      flow_per_area = flow_per_area / 8.92857
+      runner.registerInfo("Converting flow rate of #{orig_flow.round(2)} (CFM/ft^2) at 50pa to #{flow_per_area.round(2)} (CFM/ft^2) for the energy analysis.")
+    end
     flow_per_area_si = OpenStudio.convert(flow_per_area, 'ft/min', 'm/s').get
 
     # set infil for existing SpaceInfiltrationDesignFlowRate objects

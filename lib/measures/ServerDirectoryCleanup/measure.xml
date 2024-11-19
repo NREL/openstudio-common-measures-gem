@@ -3,17 +3,17 @@
   <schema_version>3.1</schema_version>
   <name>server_directory_cleanup</name>
   <uid>ec7d04ad-0b7b-495b-825a-e1b6d28d1d3f</uid>
-  <version_id>d4c7557d-56bd-43bc-842b-df4c9d687338</version_id>
-  <version_modified>2024-07-11T14:32:00Z</version_modified>
+  <version_id>b7ac12e3-448d-4bc8-8e61-f07b99ac5829</version_id>
+  <version_modified>2024-11-16T23:54:12Z</version_modified>
   <xml_checksum>5BFE84C4</xml_checksum>
   <class_name>ServerDirectoryCleanup</class_name>
   <display_name>Server Directory Cleanup</display_name>
-  <description>Removes a significant portion of the saved results from each run, helping to alleviate memory problems.</description>
-  <modeler_description>Use during large server runs, when individual sequel files and the like will not be needed.</modeler_description>
+  <description>Clean up files in the run directory</description>
+  <modeler_description>You can select which files to remove by the file types (eg: sql) as well as the sizing run directories</modeler_description>
   <arguments>
     <argument>
       <name>sql</name>
-      <display_name>Remove sql files from run directory</display_name>
+      <display_name>Remove 'sql' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -31,7 +31,7 @@
     </argument>
     <argument>
       <name>eso</name>
-      <display_name>Remove eso files from run directory</display_name>
+      <display_name>Remove 'eso' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -49,7 +49,7 @@
     </argument>
     <argument>
       <name>audit</name>
-      <display_name>Remove audit files from run directory</display_name>
+      <display_name>Remove 'audit' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -67,7 +67,7 @@
     </argument>
     <argument>
       <name>osm</name>
-      <display_name>Remove osm files from run directory</display_name>
+      <display_name>Remove 'osm' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -85,7 +85,7 @@
     </argument>
     <argument>
       <name>idf</name>
-      <display_name>Remove idf files from run directory</display_name>
+      <display_name>Remove 'idf' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -103,7 +103,7 @@
     </argument>
     <argument>
       <name>bnd</name>
-      <display_name>Remove bnd files from run directory</display_name>
+      <display_name>Remove 'bnd' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -121,7 +121,7 @@
     </argument>
     <argument>
       <name>eio</name>
-      <display_name>Remove eio files from run directory</display_name>
+      <display_name>Remove 'eio' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -139,7 +139,7 @@
     </argument>
     <argument>
       <name>shd</name>
-      <display_name>Remove shd files from run directory</display_name>
+      <display_name>Remove 'shd' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -157,7 +157,7 @@
     </argument>
     <argument>
       <name>mdd</name>
-      <display_name>Remove mdd files from run directory</display_name>
+      <display_name>Remove 'mdd' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -175,7 +175,7 @@
     </argument>
     <argument>
       <name>rdd</name>
-      <display_name>Remove rdd files from run directory</display_name>
+      <display_name>Remove 'rdd' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -193,7 +193,7 @@
     </argument>
     <argument>
       <name>csv</name>
-      <display_name>Remove csv files from run directory</display_name>
+      <display_name>Remove 'csv' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -211,7 +211,7 @@
     </argument>
     <argument>
       <name>Sizing Run Directories</name>
-      <display_name>Remove Sizing Run Directories files from run directory</display_name>
+      <display_name>Remove 'Sizing Run Directories' files from run directory</display_name>
       <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -250,13 +250,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>4910D396</checksum>
+      <checksum>743071F5</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -273,13 +273,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D359866E</checksum>
-    </file>
-    <file>
-      <filename>ServerDirectoryCleanup_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>6E655440</checksum>
+      <checksum>BBAA09F4</checksum>
     </file>
     <file>
       <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>
@@ -292,6 +286,12 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>39B6E26C</checksum>
+    </file>
+    <file>
+      <filename>server_directory_cleanup_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>AA55141E</checksum>
     </file>
   </files>
 </measure>

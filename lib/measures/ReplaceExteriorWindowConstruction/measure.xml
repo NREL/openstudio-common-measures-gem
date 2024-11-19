@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>replace_exterior_window_construction</name>
   <uid>95116deb-0716-4cdc-af27-09c463befc7c</uid>
-  <version_id>91ef97e1-ec9e-4f25-bc3a-4a0374375bbf</version_id>
-  <version_modified>2024-07-11T14:32:11Z</version_modified>
+  <version_id>8179147f-e9e7-4580-b10e-51a102d4c454</version_id>
+  <version_modified>2024-11-16T23:54:18Z</version_modified>
   <xml_checksum>6DE831F7</xml_checksum>
   <class_name>ReplaceExteriorWindowConstruction</class_name>
   <display_name>Replace Exterior Window Constructions with a Different Construction from the Model.</display_name>
@@ -189,7 +189,7 @@ For costs added as part of a design alternatives "Years Until Costs Start? is ty
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -19,4 +19,14 @@ class OpenStudio::Model::CoilCoolingDXMultiSpeed
   def maxAirFlowRateAutosized
     stages.last.maxAirFlowRateAutosized
   end
+
+  def performanceCharacteristics
+    effs = []
+    stages.each_with_index do |stage_data, i|
+      stage_effs = stage_data.performanceCharacteristics
+      stage_effs.each{|pc| pc[1] = "Stage #{i+1} #{pc[1]}"}
+      effs.concat stage_effs
+    end
+    return effs
+  end
 end

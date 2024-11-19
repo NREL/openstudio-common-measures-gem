@@ -5,10 +5,10 @@
 # Server Directory Cleanup
 
 ## Description
-
+Clean up files in the run directory
 
 ## Modeler Description
-
+You can select which files to remove by the file types (eg: sql) as well as the sizing run directories
 
 ## Measure Type
 ReportingMeasure
@@ -19,7 +19,7 @@ ReportingMeasure
 ## Arguments
 
 
-### Remove sql files from run directory
+### Remove 'sql' files from run directory
 
 **Name:** sql,
 **Type:** Boolean,
@@ -27,7 +27,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove eso files from run directory
+### Remove 'eso' files from run directory
 
 **Name:** eso,
 **Type:** Boolean,
@@ -35,7 +35,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove audit files from run directory
+### Remove 'audit' files from run directory
 
 **Name:** audit,
 **Type:** Boolean,
@@ -43,7 +43,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove osm files from run directory
+### Remove 'osm' files from run directory
 
 **Name:** osm,
 **Type:** Boolean,
@@ -51,7 +51,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove idf files from run directory
+### Remove 'idf' files from run directory
 
 **Name:** idf,
 **Type:** Boolean,
@@ -59,7 +59,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove bnd files from run directory
+### Remove 'bnd' files from run directory
 
 **Name:** bnd,
 **Type:** Boolean,
@@ -67,7 +67,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove eio files from run directory
+### Remove 'eio' files from run directory
 
 **Name:** eio,
 **Type:** Boolean,
@@ -75,7 +75,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove shd files from run directory
+### Remove 'shd' files from run directory
 
 **Name:** shd,
 **Type:** Boolean,
@@ -83,7 +83,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove mdd files from run directory
+### Remove 'mdd' files from run directory
 
 **Name:** mdd,
 **Type:** Boolean,
@@ -91,7 +91,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove rdd files from run directory
+### Remove 'rdd' files from run directory
 
 **Name:** rdd,
 **Type:** Boolean,
@@ -99,7 +99,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove csv files from run directory
+### Remove 'csv' files from run directory
 
 **Name:** csv,
 **Type:** Boolean,
@@ -107,7 +107,7 @@ ReportingMeasure
 **Required:** true,
 **Model Dependent:** false
 
-### Remove Sizing Run Directories files from run directory
+### Remove 'Sizing Run Directories' files from run directory
 
 **Name:** Sizing Run Directories,
 **Type:** Boolean,

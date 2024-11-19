@@ -1,4 +1,3 @@
-
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) Alliance for Sustainable Energy, LLC.
 # See also https://openstudio.net/license
@@ -12,8 +11,16 @@ class ServerDirectoryCleanup < OpenStudio::Measure::ReportingMeasure
     'Server Directory Cleanup'
   end
 
+  def description
+    'Clean up files in the run directory'
+  end
+
+  def modeler_description
+    'You can select which files to remove by the file types (eg: sql) as well as the sizing run directories'
+  end
+
   # file types that can be removed
-  def file_types
+  def self.file_types
     # key is arg name value is string for run method
     file_types = {}
     file_types['sql'] = '*.sql'
@@ -33,15 +40,15 @@ class ServerDirectoryCleanup < OpenStudio::Measure::ReportingMeasure
   end
 
   # define the arguments that the user will input
-  def arguments(model = nil)
+  def arguments(_model = nil)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # loop through file types and make arguments
-    file_types.each do |k, v|
-      temp_var = OpenStudio::Measure::OSArgument.makeBoolArgument(k, true)
-      temp_var.setDisplayName("Remove #{k} files from run directory")
-      temp_var.setDefaultValue(true)
-      args << temp_var
+    ServerDirectoryCleanup.file_types.each do |file_type, _|
+      arg = OpenStudio::Measure::OSArgument.makeBoolArgument(file_type, true)
+      arg.setDisplayName("Remove '#{file_type}' files from run directory")
+      arg.setDefaultValue(true)
+      args << arg
     end
 
     args
@@ -57,22 +64,19 @@ class ServerDirectoryCleanup < OpenStudio::Measure::ReportingMeasure
     end
 
     # assign the user inputs to variables
-    args = {}
-    file_types.each do |k, v|
-      args[k] = runner.getBoolArgumentValue(k, user_arguments)
-    end
-
+    args = ServerDirectoryCleanup.file_types.map { |k, _| [k, runner.getBoolArgumentValue(k, user_arguments)] }.to_h
     initial_string = 'The following files were in the local run directory prior to the execution of this measure: '
     Dir.entries('./../').each do |f|
       initial_string << "#{f}, "
     end
-    initial_string = initial_string[0..(initial_string.length - 3)] + '.'
+    initial_string = "#{initial_string[0..(initial_string.length - 3)]}."
     runner.registerInitialCondition(initial_string)
 
     # TODO: - code to remove sizing runs is not functional yet
     # delete run directories
-    file_types.each do |k, v|
+    ServerDirectoryCleanup.file_types.each do |k, v|
       next if !args[k]
+
       if v == 'Sizing Run Directories'
 
         Dir.glob('./../**/output').select { |e| File.directory? e }.each do |f|
@@ -99,12 +103,12 @@ class ServerDirectoryCleanup < OpenStudio::Measure::ReportingMeasure
     Dir.entries('./..').each do |f|
       final_string << "#{f}, "
     end
-    final_string = final_string[0..(final_string.length - 3)] + '.'
+    final_string = "#{final_string[0..(final_string.length - 3)]}."
     runner.registerFinalCondition(final_string)
 
     true
-  end # end the run method
-end # end the measure
+  end
+end
 
 # this allows the measure to be use by the application
 ServerDirectoryCleanup.new.registerWithApplication

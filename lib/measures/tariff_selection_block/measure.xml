@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>tariff_selection_block</name>
   <uid>42e9f831-f39a-4709-a79b-41db49c94f8c</uid>
-  <version_id>a32acde2-5c0b-4530-9c82-30042fc3e128</version_id>
-  <version_modified>2024-07-11T14:32:08Z</version_modified>
+  <version_id>42fed421-174c-41ae-9c47-071315937b29</version_id>
+  <version_modified>2024-11-16T23:54:16Z</version_modified>
   <xml_checksum>92578CE8</xml_checksum>
   <class_name>TariffSelectionBlock</class_name>
   <display_name> Tariff Selection-Block</display_name>
@@ -237,7 +237,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

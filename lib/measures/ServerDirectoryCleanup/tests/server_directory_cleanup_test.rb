@@ -8,24 +8,24 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class ServerDirectoryCleanupTest < Minitest::Test
   def model_in_path_default
-    return "#{File.dirname(__FILE__)}/example_model.osm"
+    return "#{__dir__}/example_model.osm"
   end
 
   def epw_path_default
     # make sure we have a weather data location
-    epw = File.expand_path("#{File.dirname(__FILE__)}/USA_CO_Golden-NREL.724666_TMY3.epw")
+    epw = File.expand_path("#{__dir__}/USA_CO_Golden-NREL.724666_TMY3.epw")
     assert(File.exist?(epw.to_s))
     return epw.to_s
   end
 
   def run_dir(test_name)
     # always generate test output in specially named 'output' directory so result files are not made part of the measure
-    return "#{File.dirname(__FILE__)}/output/#{test_name}"
+    return "#{__dir__}/output/#{test_name}"
   end
 
   def model_out_path(test_name)
@@ -86,10 +86,8 @@ class ServerDirectoryCleanupTest < Minitest::Test
     model.addObjects(request_model.objects)
     model.save(model_out_path(test_name), true)
 
-    if ENV['OPENSTUDIO_TEST_NO_CACHE_SQLFILE']
-      if File.exist?(sql_path(test_name))
-        FileUtils.rm_f(sql_path(test_name))
-      end
+    if ENV['OPENSTUDIO_TEST_NO_CACHE_SQLFILE'] && File.exist?(sql_path(test_name))
+      FileUtils.rm_f(sql_path(test_name))
     end
 
     setup_test_2(test_name, epw_path)
@@ -103,7 +101,7 @@ class ServerDirectoryCleanupTest < Minitest::Test
     model = OpenStudio::Model::Model.new
 
     # get arguments and test that they are what we are expecting
-    arguments = measure.arguments
+    arguments = measure.arguments(model)
     assert_equal(12, arguments.size)
   end
 
@@ -129,6 +127,9 @@ class ServerDirectoryCleanupTest < Minitest::Test
     epw_path = epw_path_default
     setup_test(test_name, idf_output_requests)
 
+    has_files = ServerDirectoryCleanup.file_types.map { |_k, ext| [ext, !Dir["#{run_dir(test_name)}/run/*#{ext}"].empty?] }.to_h
+    assert(has_files.count { |_k, v| v } > 0)
+
     assert(File.exist?(model_out_path(test_name)))
     assert(File.exist?(sql_path(test_name)))
     assert(File.exist?(epw_path))
@@ -146,8 +147,10 @@ class ServerDirectoryCleanupTest < Minitest::Test
 
     # temporarily change directory to the run directory and run the measure
     start_dir = Dir.pwd
+    measure_run_dir = "#{run_dir(test_name)}/run/0001_measure_apply"
+    FileUtils.mkdir_p(measure_run_dir)
     begin
-      Dir.chdir(run_dir(test_name))
+      Dir.chdir(measure_run_dir)
 
       # run the measure
       measure.run(runner, argument_map)
@@ -157,6 +160,12 @@ class ServerDirectoryCleanupTest < Minitest::Test
       assert(result.warnings.empty?)
     ensure
       Dir.chdir(start_dir)
+    end
+
+    has_files.each do |ext, had_files|
+      next unless had_files
+
+      assert(Dir["#{run_dir(test_name)}/run/*#{ext}"].empty?)
     end
 
     # make sure the report file exists
