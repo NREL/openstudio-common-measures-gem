@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>import_envelope_and_internal_loads_from_idf</name>
   <uid>10a3ffb4-de25-4cb3-87ff-5922219716f9</uid>
-  <version_id>c0e675d5-d39e-44e2-ab33-e6eeb0552880</version_id>
-  <version_modified>2024-07-11T14:31:57Z</version_modified>
+  <version_id>8d86240c-94a2-484e-a779-328453d67e73</version_id>
+  <version_modified>2024-11-16T23:54:10Z</version_modified>
   <xml_checksum>45097B60</xml_checksum>
   <class_name>ImportEnvelopeAndInternalLoadsFromIdf</class_name>
   <display_name>ImportEnvelopeAndInternalLoadsFromIdf</display_name>
@@ -60,7 +60,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

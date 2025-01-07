@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_ems_emissions_reporting</name>
   <uid>e8fe9153-5e70-4769-afa0-6da0045aa529</uid>
-  <version_id>a433902c-9979-4067-bc02-69a17cc9e2fe</version_id>
-  <version_modified>2024-07-11T14:32:05Z</version_modified>
+  <version_id>5d43cac2-efd0-4a24-92af-afdbcca53db7</version_id>
+  <version_modified>2024-11-16T23:54:14Z</version_modified>
   <xml_checksum>976EB6EB</xml_checksum>
   <class_name>AddEMSEmissionsReporting</class_name>
   <display_name>Add EMS to Report Emissions</display_name>
@@ -450,7 +450,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_rooftop_pv</name>
   <uid>34550614-0c87-44db-9252-0ca0915b1e64</uid>
-  <version_id>f6dcae0f-c0e6-42dc-bc4b-1caca12e71f3</version_id>
-  <version_modified>2024-07-11T14:32:06Z</version_modified>
+  <version_id>0d2f5512-be0c-4af5-a651-139c86a3adf0</version_id>
+  <version_modified>2024-11-16T23:54:15Z</version_modified>
   <xml_checksum>178163B6</xml_checksum>
   <class_name>AddRooftopPV</class_name>
   <display_name>Add Rooftop PV</display_name>
@@ -91,7 +91,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>30314b23-6e89-4672-ae78-4be112a7e2b4</version_id>
-  <version_modified>2024-07-11T14:32:09Z</version_modified>
+  <version_id>e9d3cdcc-22d3-4a22-8ce2-f172521d31bf</version_id>
+  <version_modified>2024-11-16T23:54:17Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -85,62 +85,6 @@
           <display_name>ComStock 90.1-2019</display_name>
         </choice>
       </choices>
-    </argument>
-    <argument>
-      <name>check_eui_reasonableness</name>
-      <display_name>EUI Reasonableness (General)</display_name>
-      <description>Check model EUI against selected ASHRAE standard DOE prototype building.</description>
-      <type>Boolean</type>
-      <required>true</required>
-      <model_dependent>false</model_dependent>
-      <default_value>true</default_value>
-      <choices>
-        <choice>
-          <value>true</value>
-          <display_name>true</display_name>
-        </choice>
-        <choice>
-          <value>false</value>
-          <display_name>false</display_name>
-        </choice>
-      </choices>
-    </argument>
-    <argument>
-      <name>check_eui_reasonableness_tol</name>
-      <display_name>EUI Reasonableness Tolerance</display_name>
-      <type>Double</type>
-      <units>fraction</units>
-      <required>true</required>
-      <model_dependent>false</model_dependent>
-      <default_value>0.1</default_value>
-    </argument>
-    <argument>
-      <name>check_eui_by_end_use</name>
-      <display_name>End Use by Category (General)</display_name>
-      <description>Check model consumption by end use against selected ASHRAE standard DOE prototype building.</description>
-      <type>Boolean</type>
-      <required>true</required>
-      <model_dependent>false</model_dependent>
-      <default_value>true</default_value>
-      <choices>
-        <choice>
-          <value>true</value>
-          <display_name>true</display_name>
-        </choice>
-        <choice>
-          <value>false</value>
-          <display_name>false</display_name>
-        </choice>
-      </choices>
-    </argument>
-    <argument>
-      <name>check_eui_by_end_use_tol</name>
-      <display_name>End Use by Category Tolerance</display_name>
-      <type>Double</type>
-      <units>fraction</units>
-      <required>true</required>
-      <model_dependent>false</model_dependent>
-      <default_value>0.25</default_value>
     </argument>
     <argument>
       <name>check_mech_sys_part_load_eff</name>
@@ -476,13 +420,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>11DDEADA</checksum>
+      <checksum>7C9ACA14</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -511,7 +455,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C631FD2F</checksum>
+      <checksum>46B7DE78</checksum>
     </file>
     <file>
       <filename>check_air_sys_temps.rb</filename>

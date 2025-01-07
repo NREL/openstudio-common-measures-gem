@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_cost_per_floor_area_to_electric_equipment</name>
   <uid>42cf1acc-c0bc-46cd-af67-8a17cadaab7b</uid>
-  <version_id>e584d703-1f79-47dc-9940-126d4927a992</version_id>
-  <version_modified>2024-07-11T14:32:01Z</version_modified>
+  <version_id>82439a8d-e528-40bd-9151-736c35e2917f</version_id>
+  <version_modified>2024-11-16T23:54:12Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerFloorAreaToElectricEquipment</class_name>
   <display_name>Add Cost per Floor Area to Electric Equipment</display_name>
@@ -143,7 +143,7 @@ For baseline costs, 'Years Until Costs Start' indicates the year that the capita
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

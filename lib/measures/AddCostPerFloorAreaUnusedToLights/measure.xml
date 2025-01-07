@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_cost_per_floor_area_to_unused_lights</name>
   <uid>a5f5ddcf-48bb-413a-a712-0ee22f0b40a4</uid>
-  <version_id>1b346f2e-67d4-4041-b3b3-db02c92c91dc</version_id>
-  <version_modified>2024-07-11T14:32:11Z</version_modified>
+  <version_id>01c854f9-16b6-44fa-bf98-52352d426101</version_id>
+  <version_modified>2024-11-16T23:54:18Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerFloorAreaToUnusedLights</class_name>
   <display_name>Add Cost per Floor Area to Unused Lights</display_name>
@@ -141,7 +141,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
