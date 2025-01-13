@@ -1,5 +1,8 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.11.1
+* Update dependencies for 3.9
+
 ## Version 0.11.0
 - Support for OpenStudio 3.9 (upgrade to standards gem 0.7.0, extension gem 0.8.1)
 - Fixed [#160]( https://github.com/NREL/openstudio-common-measures-gem/issues/160 ), ServerDirectoryCleanup test doesn't test whether the measure does what it's supposed to do
