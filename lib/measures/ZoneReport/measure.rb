@@ -320,18 +320,18 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
       vals[:vf] = getDetailsData('InputVerificationandResultsSummary', 'Entire Facility', 'Zone Summary', zoneMetrics[:name], 'Conditioned (Y/N)', '', 's')
       if vals[:vf] == '' then vals[:vf] = 'No' end
 
-      vals[:vg] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Heating', zoneMetrics[:name], 'User Design Load', 'W', 'kBtu/hr').round(2)
-      vals[:vh] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Heating', zoneMetrics[:name], 'User Design Air Flow', 'm3/s', 'ft^3/s').round(2)
-      vals[:vi] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Cooling', zoneMetrics[:name], 'User Design Load', 'W', 'kBtu/hr').round(2)
-      vals[:vj] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Cooling', zoneMetrics[:name], 'User Design Air Flow', 'm3/s', 'ft^3/s').round(2)
+      vals[:vg] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Heating', zoneMetrics[:name], 'User Design Load', 'W', 'kBtu/hr').round(2)
+      vals[:vh] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Heating', zoneMetrics[:name], 'User Design Air Flow', 'm3/s', 'ft^3/s').round(2)
+      vals[:vi] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Cooling', zoneMetrics[:name], 'User Design Load', 'W', 'kBtu/hr').round(2)
+      vals[:vj] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Cooling', zoneMetrics[:name], 'User Design Air Flow', 'm3/s', 'ft^3/s').round(2)
 
       vals[:vk] = getDetailsData('OutdoorAirSummary', 'Entire Facility', 'Average Outdoor Air During Occupied Hours', zoneMetrics[:name], 'Mechanical Ventilation', 'ach', 'ach').round(2)
       vals[:vl] = getDetailsData('OutdoorAirSummary', 'Entire Facility', 'Average Outdoor Air During Occupied Hours', zoneMetrics[:name], 'Infiltration', 'ach', 'ach').round(2)
 
       vals[:vm] = getDetailsData('InputVerificationandResultsSummary', 'Entire Facility', 'Zone Summary', zoneMetrics[:name], 'People', 'm2 per person', 'ft^2/person').round(2)
 
-      vals[:vn] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Cooling', zoneMetrics[:name], 'Date/Time Of Peak', '', 's')
-      vals[:vo] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Heating', zoneMetrics[:name], 'Date/Time Of Peak', '', 's')
+      vals[:vn] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Cooling', zoneMetrics[:name], 'Date/Time Of Peak {TIMESTAMP}', '', 's')
+      vals[:vo] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Heating', zoneMetrics[:name], 'Date/Time Of Peak {TIMESTAMP}', '', 's')
 
       vals[:vp] = getDetailsData('SystemSummary', 'Entire Facility', 'Time Setpoint Not Met', zoneMetrics[:name], 'During Heating', 'hr', 'hr')
       vals[:vq] = getDetailsData('SystemSummary', 'Entire Facility', 'Time Setpoint Not Met', zoneMetrics[:name], 'During Cooling', 'hr', 'hr')
