@@ -336,31 +336,31 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
       vals[:vp] = getDetailsData('SystemSummary', 'Entire Facility', 'Time Setpoint Not Met', zoneMetrics[:name], 'During Heating', 'hr', 'hr')
       vals[:vq] = getDetailsData('SystemSummary', 'Entire Facility', 'Time Setpoint Not Met', zoneMetrics[:name], 'During Cooling', 'hr', 'hr')
 
-      vals[:vr] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Gas', "InteriorEquipment:Gas:Zone:#{zoneMetrics[:name]}", 'Electricity Annual Value', 'GJ', 'Therm').round(2)
+      vals[:vr] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Natural Gas', "InteriorEquipment:NaturalGas:Zone:#{zoneMetrics[:name]}", 'Natural Gas Annual Value', 'GJ', 'Therm').round(2)
       vals[:vs] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorEquipment:Electricity:Zone:#{zoneMetrics[:name]}", 'Electricity Annual Value', 'GJ', 'kWh').round(2)
 
-      vals[:vt] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Gas', "InteriorEquipment:Gas:Zone:#{zoneMetrics[:name]}", 'Gas Maximum  Value', 'W', 'kBtu/hr').round(2)
-      vals[:vu] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Gas', "InteriorEquipment:Gas:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      vals[:vt] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Natural Gas', "InteriorEquipment:NaturalGas:Zone:#{zoneMetrics[:name]}", 'Natural Gas Maximum Value', 'W', 'kBtu/hr').round(2)
+      vals[:vu] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Natural Gas', "InteriorEquipment:NaturalGas:Zone:#{zoneMetrics[:name]}", 'Timestamp of Minimum {TIMESTAMP}', '', 's')
 
       vals[:vv] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Electricity Maximum Value', 'W', 'kW').round(2)
-      vals[:vw] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      vals[:vw] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Timestamp of Minimum {TIMESTAMP}', '', 's')
 
       # X unused
 
       vals[:vy] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorEquipment:Electricity:Zone:#{zoneMetrics[:name]}", 'Electricity Maximum Value', 'W', 'kW').round(2)
-      vals[:vz] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorEquipment:Electricity:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      vals[:vz] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorEquipment:Electricity:Zone:#{zoneMetrics[:name]}", 'Timestamp of Minimum {TIMESTAMP}', '', 's')
 
-      vals[:vaa] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeating:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
-      vals[:vab] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeating:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr').round(2)
-      vals[:vac] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeating:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      vals[:vaa] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeatingWater:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
+      vals[:vab] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeatingWater:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr').round(2)
+      vals[:vac] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeatingWater:Zone:#{zoneMetrics[:name]}", 'Timestamp of Minimum {TIMESTAMP}', '', 's')
 
       vals[:vad] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
       vals[:vae] = (getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr') / zoneMetrics[:area]).round(2)
-      vals[:vaf] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      vals[:vaf] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Timestamp of Minimum {TIMESTAMP}', '', 's')
 
       vals[:vag] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
       vals[:vah] = (getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr') / zoneMetrics[:area]).round(2)
-      vals[:vai] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      vals[:vai] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Timestamp of Minimum {TIMESTAMP}', '', 's')
 
       vals[:vaj] = zoneHeatComponentCalc('People', zoneMetrics)
       vals[:vak] = zoneHeatComponentCalc('Lights', zoneMetrics)
