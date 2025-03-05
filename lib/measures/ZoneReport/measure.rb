@@ -308,8 +308,8 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
 
       #vals[:va] = getDetailsData('Input Verification and Results Summary', 'Entire Facility', 'Zone Summary', "#{zoneMetrics[:name].upcase}", 'Lighting[W/m2]', 'W/m2', 'W/ft^2').round(2)
       #vals[:va] = getDetailsData('Initialization Summary', 'Entire Facility', 'Zone Internal Gains Nominal', "#{zoneMetrics[:name].upcase}", 'Interior Lighting', 'W/m2', 'W/ft^2').round(2)
-      vals[:va] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Lighting Power Density', 'W/m2', 'W/ft^2').round(2)
-      vals[:vb] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Full Load Hours/Week', 'hr', 'hr').round(2)
+      # vals[:va] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Lighting Power Density', 'W/m2', 'W/ft^2').round(2)
+      # vals[:vb] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Full Load Hours/Week', 'hr', 'hr').round(2)
 
       vals[:vc] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Electricity Annual Value', 'GJ', 'kWh').round(2)
 
@@ -344,6 +344,15 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
 
       vals[:vv] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Electricity Maximum Value', 'W', 'kW').round(2)
       vals[:vw] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Timestamp of Minimum {TIMESTAMP}', '', 's')
+
+      # calculate lighting values based on EnergyMeters, which has data by zone
+      # instead of Lighting Summary, which has data by space
+
+      # W/ft2
+      vals[:va] = (vals[:vv] * 1000 / zoneMetrics[:area]).round(2)
+
+      # kWh / kW = full load hours
+      vals[:vb] = (vals[:vc] / vals[:vv]).round(2)
 
       # X unused
 
