@@ -387,7 +387,7 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
       vals[:vbf] = zoneHeatComponentCalc('Fenestration Conduction', zoneMetrics)
       vals[:vbg] = zoneHeatComponentCalc('Fenestration Solar', zoneMetrics)
 
-      vals[:vbh] = getDetailsData('ZoneComponentLoadSummary', (zoneMetrics[:name]).to_s, 'Heating Peak Conditions', 'Time of Peak Load', 'Value', '', 's')
+      vals[:vbh] = getDetailsData('Zone Component Load Summary', (zoneMetrics[:name]).to_s, 'Heating Peak Conditions', 'Time of Peak Load', 'Value', '', 's')
 
       vals[:vbi] = zoneCoolComponentCalc('People', zoneMetrics)
       vals[:vbj] = zoneCoolComponentCalc('Lights', zoneMetrics)
@@ -414,7 +414,7 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
       vals[:vce] = zoneCoolComponentCalc('Fenestration Conduction', zoneMetrics)
       vals[:vcf] = zoneCoolComponentCalc('Fenestration Solar', zoneMetrics)
 
-      vals[:vcg] = getDetailsData('ZoneComponentLoadSummary', (zoneMetrics[:name]).to_s, 'Cooling Peak Conditions', 'Time of Peak Load', 'Value', '', 's')
+      vals[:vcg] = getDetailsData('Zone Component Load Summary', (zoneMetrics[:name]).to_s, 'Cooling Peak Conditions', 'Time of Peak Load', 'Value', '', 's')
 
       # vals = loadTestVals( vals )
 
@@ -482,11 +482,11 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
   end
 
   def zoneHeatComponentCalc(component, zoneMetrics)
-    (getDetailsData('ZoneComponentLoadSummary', (zoneMetrics[:name]).to_s, 'Estimated Heating Peak Load Components', component, 'Total', 'W', 'Btu/hr') / zoneMetrics[:area]).round(2)
+    (getDetailsData('Zone Component Load Summary', (zoneMetrics[:name]).to_s, 'Estimated Heating Peak Load Components', component, 'Total', 'W', 'Btu/hr') / zoneMetrics[:area]).round(2)
   end
 
   def zoneCoolComponentCalc(component, zoneMetrics)
-    (getDetailsData('ZoneComponentLoadSummary', (zoneMetrics[:name]).to_s, 'Estimated Cooling Peak Load Components', component, 'Total', 'W', 'Btu/hr') / zoneMetrics[:area]).round(2)
+    (getDetailsData('Zone Component Load Summary', (zoneMetrics[:name]).to_s, 'Estimated Cooling Peak Load Components', component, 'Total', 'W', 'Btu/hr') / zoneMetrics[:area]).round(2)
   end
 
   def stacked_bars(zoneMetrics)
@@ -623,7 +623,7 @@ end
   # and final_units should be open studio style (m^2, m^3, ...)
   # If the data is not found or cannot be converted a warning is registered and "" or 0.0 is returned.
   def getDetailsData(report, forstring, table, row, column, units, final_units)
-    if report == 'ZoneComponentLoadSummary'
+    if report == 'Zone Component Load Summary'
       forstring.upcase!
     end
 
@@ -645,7 +645,7 @@ end
 
     else
       r = query_results.get
-      if report == 'ZoneComponentLoadSummary'
+      if report == 'Zone Component Load Summary'
         @testData["#{@currentZoneName}_#{table}_#{row}"] = r
       end
 
