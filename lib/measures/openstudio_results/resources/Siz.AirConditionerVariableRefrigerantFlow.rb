@@ -76,7 +76,7 @@ class OpenStudio::Model::AirConditionerVariableRefrigerantFlow
     effs = []
     effs << [ratedCoolingCOP, 'Rated Cooling COP']
     effs << [ratedHeatingCOP, 'Rated Heating COP']
-    effs << [evaporativeCondenserEffectiveness, 'Evaporative Condenser Effectiveness']
+    effs << [evaporativeCondenserEffectiveness, 'Evaporative Condenser Effectiveness'] if condenserType == 'EvaporativelyCooled'
     return effs
   end
 end

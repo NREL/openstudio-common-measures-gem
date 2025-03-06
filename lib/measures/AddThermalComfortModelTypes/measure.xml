@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_thermal_comfort_model_types</name>
   <uid>5ae7b6b3-58d0-40b4-9899-a7cf0e0d36d2</uid>
-  <version_id>4df1a3ab-2368-464d-8ade-28a0b26601fd</version_id>
-  <version_modified>2024-07-11T14:32:12Z</version_modified>
+  <version_id>e4859508-750e-4c5f-b1fd-f9053d734101</version_id>
+  <version_modified>2024-11-16T23:54:18Z</version_modified>
   <xml_checksum>F0C3F749</xml_checksum>
   <class_name>AddThermalComfortModelTypes</class_name>
   <display_name>AddThermalComfortModelTypes</display_name>
@@ -197,7 +197,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

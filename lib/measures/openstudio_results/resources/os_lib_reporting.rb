@@ -924,6 +924,8 @@ module OsLib_Reporting
         display_units = '%'
         perf_val *= 100
         perf_val = OpenStudio.toNeatString(perf_val, 1, true)
+      elsif perf_name.downcase.include?('cop')
+        perf_val = OpenStudio.toNeatString(perf_val, 2, true)
       end
       # Report the value
       data_arrays << ['', perf_name, "#{perf_val} #{display_units}", '', '']
@@ -4786,4 +4788,14 @@ module OsLib_Reporting
 
     return @measure_warnings_section
   end
+
+  # add energyplus summary reports, required for revit systems analysis
+  def self.add_energyplus_reports(runner, html_out)
+    eplustbl_html_path = File.join(runner.workflow.absoluteRunDir.to_s, 'eplustbl.htm')
+    html_to_insert = File.read(eplustbl_html_path).match(/<body>(.*)<\/body>/m)[1]
+    html_to_insert = html_to_insert.gsub(/<table/, "<table class=\"table table-striped table-bordered table-condensed\"")
+    html_out = html_out.gsub(/Measure Warnings<\/a><\/li>/, "Measure Warnings</a></li>\r\n<li><a href=\"#EnergyPlus_Results\">EnergyPlus Results</a></li>")
+    html_out = html_out.gsub(/<\/body>/, "<div class=\"col-md-9 col-md-offset-3\" role=\"main\"><h2 id=\"EnergyPlus_Results\">EnergyPlus Results</h2><br>#{html_to_insert}</div>\\0")
+  end
+
 end

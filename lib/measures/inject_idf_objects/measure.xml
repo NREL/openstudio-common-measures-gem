@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>inject_idf_objects</name>
   <uid>f567dfbc-d280-4d68-b061-019ab2630cd0</uid>
-  <version_id>fad67fa1-ef05-4eea-bb44-8552e20c1a4c</version_id>
-  <version_modified>2024-07-11T14:32:07Z</version_modified>
+  <version_id>44e9e977-bab2-45e3-af0b-a48301fd330b</version_id>
+  <version_modified>2024-11-16T23:54:16Z</version_modified>
   <xml_checksum>A8BAB05F</xml_checksum>
   <class_name>InjectIDFObjects</class_name>
   <display_name> Inject IDF Objects</display_name>
@@ -64,7 +64,7 @@ This measure works for when you just need to add new IDF objects. If you need to
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

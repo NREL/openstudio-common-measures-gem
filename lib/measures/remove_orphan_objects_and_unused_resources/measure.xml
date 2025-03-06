@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>remove_orphan_objects_and_unused_resources</name>
   <uid>c618f299-a245-49ce-a119-82eb54007ede</uid>
-  <version_id>65cd4e9a-d035-423a-8a58-853a318d2cab</version_id>
-  <version_modified>2024-07-11T14:32:07Z</version_modified>
+  <version_id>1bfb2b43-cf8e-4677-b35b-6375c22f5a56</version_id>
+  <version_modified>2024-11-16T23:54:16Z</version_modified>
   <xml_checksum>28AD5222</xml_checksum>
   <class_name>RemoveOrphanObjectsAndUnusedResources</class_name>
   <display_name>Remove Orphan Objects and Unused Resources</display_name>
@@ -146,7 +146,7 @@ A second functionality is to remove unused resources. This will include things l
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

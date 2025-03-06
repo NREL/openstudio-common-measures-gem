@@ -1,7 +1,20 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.11.1
+* Update dependencies for 3.9
+
 ## Version 0.11.0
 - Support for OpenStudio 3.9 (upgrade to standards gem 0.7.0, extension gem 0.8.1)
+- Fixed [#160]( https://github.com/NREL/openstudio-common-measures-gem/issues/160 ), ServerDirectoryCleanup test doesn't test whether the measure does what it's supposed to do
+- Fixed [#174]( https://github.com/NREL/openstudio-common-measures-gem/issues/174 ), ChangeBuildingLocation CSV encoding
+- Fixed [#133]( https://github.com/NREL/openstudio-common-measures-gem/pull/133 ), add measure for SimulationControl
+- Fixed [#134]( https://github.com/NREL/openstudio-common-measures-gem/pull/134 ), add customization for revit to openstudio results
+- Fixed [#156]( https://github.com/NREL/openstudio-common-measures-gem/pull/156 ), view_model / view_data: improve maintainability by using separate jS files + add new geometry diagnostics feature
+- Fixed [#166]( https://github.com/NREL/openstudio-common-measures-gem/pull/166 ), fix not applicable message in AddOutputDiagnostics
+- Fixed [#170]( https://github.com/NREL/openstudio-common-measures-gem/pull/170 ), add input_value_at_50_pa argument to set_space_infiltration_per_exterior_area
+- Fixed [#172]( https://github.com/NREL/openstudio-common-measures-gem/pull/172 ), Os results enhancements
+- Fixed [#173]( https://github.com/NREL/openstudio-common-measures-gem/pull/173 ), ChangeBuildingLocation EPW file encoding
+- Fixed [#182]( https://github.com/NREL/openstudio-common-measures-gem/pull/182 ), View model geometry diag and split js
 
 ## Version 0.10.0
 - Support for OpenStudio 3.8 (upgrade to standards gem 0.6.0, extension gem 0.8.0)

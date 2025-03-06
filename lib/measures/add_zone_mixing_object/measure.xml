@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_zone_mixing_object</name>
   <uid>6ed65817-1d97-43da-a4c2-1d738eafcde5</uid>
-  <version_id>422d82bc-c2d0-44ac-b1ed-9b40cb21bf6a</version_id>
-  <version_modified>2024-07-11T14:32:05Z</version_modified>
+  <version_id>59de5d20-ca60-4d50-abf2-d0e87034d58f</version_id>
+  <version_modified>2024-11-16T23:54:15Z</version_modified>
   <xml_checksum>61000E02</xml_checksum>
   <class_name>AddZoneMixingObject</class_name>
   <display_name>Add Zone Mixing Object</display_name>
@@ -73,7 +73,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

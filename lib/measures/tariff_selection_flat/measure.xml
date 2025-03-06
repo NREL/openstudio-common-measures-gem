@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>tariff_selection_flat</name>
   <uid>539c3e8e-6c41-4f50-ac61-6cbbf1ee1b55</uid>
-  <version_id>30111c72-9467-4d48-92e9-084c1c3ebe44</version_id>
-  <version_modified>2024-07-11T14:32:14Z</version_modified>
+  <version_id>fd4df4de-7934-4166-8f6f-c3582921b71c</version_id>
+  <version_modified>2024-11-16T23:54:19Z</version_modified>
   <xml_checksum>FBDC6D11</xml_checksum>
   <class_name>TariffSelectionFlat</class_name>
   <display_name>Tariff Selection-Flat</display_name>
@@ -213,7 +213,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
