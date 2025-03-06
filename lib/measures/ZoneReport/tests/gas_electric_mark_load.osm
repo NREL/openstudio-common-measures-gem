@@ -4582,7 +4582,7 @@ OS:DefaultScheduleSet,
   ,                                       !- Hot Water Equipment Schedule Name
   {9b632351-6f29-44df-8db8-ea74fdb73fd9}, !- Infiltration Schedule Name
   ,                                       !- Steam Equipment Schedule Name
-  {afb7c502-efcf-4588-8f7f-d170513af535}; !- Other Equipment Schedule Name
+  ;                                       !- Other Equipment Schedule Name
 
 OS:Lights:Definition,
   {40a1e206-1ba7-493a-bc91-516e63eee985}, !- Handle
@@ -5568,7 +5568,7 @@ OS:DefaultScheduleSet,
   ,                                       !- Hot Water Equipment Schedule Name
   {9b632351-6f29-44df-8db8-ea74fdb73fd9}, !- Infiltration Schedule Name
   ,                                       !- Steam Equipment Schedule Name
-  {afb7c502-efcf-4588-8f7f-d170513af535}; !- Other Equipment Schedule Name
+  ;                                       !- Other Equipment Schedule Name
 
 OS:Lights:Definition,
   {da1f6e19-7c6d-423c-85a8-c6c0bf75e578}, !- Handle
@@ -5682,7 +5682,7 @@ OS:DefaultScheduleSet,
   ,                                       !- Hot Water Equipment Schedule Name
   {9b632351-6f29-44df-8db8-ea74fdb73fd9}, !- Infiltration Schedule Name
   ,                                       !- Steam Equipment Schedule Name
-  {afb7c502-efcf-4588-8f7f-d170513af535}; !- Other Equipment Schedule Name
+  ;                                       !- Other Equipment Schedule Name
 
 OS:Lights:Definition,
   {9df12fbe-f931-4b12-8e80-386c92927dda}, !- Handle
