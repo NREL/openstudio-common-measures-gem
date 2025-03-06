@@ -4578,11 +4578,11 @@ OS:DefaultScheduleSet,
   {cdc340a8-7617-420e-b7d9-f0d518d9bdf3}, !- People Activity Level Schedule Name
   {519f1393-154f-48a3-abf3-b4259184f75a}, !- Lighting Schedule Name
   {afb7c502-efcf-4588-8f7f-d170513af535}, !- Electric Equipment Schedule Name
-  ,                                       !- Gas Equipment Schedule Name
+  {afb7c502-efcf-4588-8f7f-d170513af535}, !- Gas Equipment Schedule Name
   ,                                       !- Hot Water Equipment Schedule Name
   {9b632351-6f29-44df-8db8-ea74fdb73fd9}, !- Infiltration Schedule Name
   ,                                       !- Steam Equipment Schedule Name
-  ;                                       !- Other Equipment Schedule Name
+  {afb7c502-efcf-4588-8f7f-d170513af535}; !- Other Equipment Schedule Name
 
 OS:Lights:Definition,
   {40a1e206-1ba7-493a-bc91-516e63eee985}, !- Handle
@@ -5563,12 +5563,12 @@ OS:DefaultScheduleSet,
   {3f2c281b-2880-437c-9ba2-bc3dedff516c}, !- Number of People Schedule Name
   {cdc340a8-7617-420e-b7d9-f0d518d9bdf3}, !- People Activity Level Schedule Name
   {519f1393-154f-48a3-abf3-b4259184f75a}, !- Lighting Schedule Name
-  ,                                       !- Electric Equipment Schedule Name
-  ,                                       !- Gas Equipment Schedule Name
+  {afb7c502-efcf-4588-8f7f-d170513af535}, !- Electric Equipment Schedule Name
+  {afb7c502-efcf-4588-8f7f-d170513af535}, !- Gas Equipment Schedule Name
   ,                                       !- Hot Water Equipment Schedule Name
   {9b632351-6f29-44df-8db8-ea74fdb73fd9}, !- Infiltration Schedule Name
   ,                                       !- Steam Equipment Schedule Name
-  ;                                       !- Other Equipment Schedule Name
+  {afb7c502-efcf-4588-8f7f-d170513af535}; !- Other Equipment Schedule Name
 
 OS:Lights:Definition,
   {da1f6e19-7c6d-423c-85a8-c6c0bf75e578}, !- Handle
@@ -5678,11 +5678,11 @@ OS:DefaultScheduleSet,
   {cdc340a8-7617-420e-b7d9-f0d518d9bdf3}, !- People Activity Level Schedule Name
   {519f1393-154f-48a3-abf3-b4259184f75a}, !- Lighting Schedule Name
   {afb7c502-efcf-4588-8f7f-d170513af535}, !- Electric Equipment Schedule Name
-  ,                                       !- Gas Equipment Schedule Name
+  {afb7c502-efcf-4588-8f7f-d170513af535}, !- Gas Equipment Schedule Name
   ,                                       !- Hot Water Equipment Schedule Name
   {9b632351-6f29-44df-8db8-ea74fdb73fd9}, !- Infiltration Schedule Name
   ,                                       !- Steam Equipment Schedule Name
-  ;                                       !- Other Equipment Schedule Name
+  {afb7c502-efcf-4588-8f7f-d170513af535}; !- Other Equipment Schedule Name
 
 OS:Lights:Definition,
   {9df12fbe-f931-4b12-8e80-386c92927dda}, !- Handle
@@ -9185,4 +9185,38 @@ OS:Connection,
   3,                                      !- Outlet Port
   {284773c5-9560-48d6-bdfa-a47afc99cd7b}, !- Target Object
   2;                                      !- Inlet Port
+
+OS:GasEquipment:Definition,
+  {4e3c3574-4f39-417f-b850-cf5c3da6595a}, !- Handle
+  Gas Equipment Definition 1,             !- Name
+  Watts/Area,                             !- Design Level Calculation Method
+  ,                                       !- Design Level {W}
+  1,                                      !- Watts per Space Floor Area {W/m2}
+  ;                                       !- Watts per Person {W/Person}
+
+OS:GasEquipment,
+  {8d03ecaa-367f-4aaf-b821-99c678b867e6}, !- Handle
+  Gas Equipment 1,                        !- Name
+  {4e3c3574-4f39-417f-b850-cf5c3da6595a}, !- Gas Equipment Definition Name
+  {baf897ea-6e53-4c8b-8d6f-679ed46d23d4}, !- Space or SpaceType Name
+  {afb7c502-efcf-4588-8f7f-d170513af535}; !- Schedule Name
+
+OS:GasEquipment,
+  {51610a77-d8d5-4b3e-8edb-533d60603b83}, !- Handle
+  Gas Equipment 2,                        !- Name
+  {4e3c3574-4f39-417f-b850-cf5c3da6595a}, !- Gas Equipment Definition Name
+  {7150e08f-69fc-4ed1-b532-e445f24728fb}, !- Space or SpaceType Name
+  {afb7c502-efcf-4588-8f7f-d170513af535}; !- Schedule Name
+
+OS:GasEquipment,
+  {0b4ffdf0-cb83-4a0a-af0d-4ddf46d3e974}, !- Handle
+  Gas Equipment 3,                        !- Name
+  {4e3c3574-4f39-417f-b850-cf5c3da6595a}, !- Gas Equipment Definition Name
+  {b257189d-31e4-45a2-b538-64234a4c0faf}; !- Space or SpaceType Name
+
+OS:ElectricEquipment,
+  {bf63974e-2a73-4235-8f51-f424b8f70f1e}, !- Handle
+  Electric Equipment 1,                   !- Name
+  {f3370da9-e17a-446f-bd8b-2c50303ef410}, !- Electric Equipment Definition Name
+  {7150e08f-69fc-4ed1-b532-e445f24728fb}; !- Space or SpaceType Name
 
