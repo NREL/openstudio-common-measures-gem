@@ -1024,13 +1024,6 @@ OS:ThermostatSetpoint:DualSetpoint,
   {de733bb4-ab71-44d2-ab3a-a9b7c2a54774}, !- Heating Setpoint Temperature Schedule Name
   {e9bd9cb4-1124-4ccf-bf18-c5ad994faa55}; !- Cooling Setpoint Temperature Schedule Name
 
-OS:Rendering:Color,
-  {0e5a132c-e7c3-4583-ad5a-cf0bf0fe2d03}, !- Handle
-  Rendering Color 7,                      !- Name
-  230,                                    !- Rendering Red Value
-  157,                                    !- Rendering Green Value
-  120;                                    !- Rendering Blue Value
-
 OS:DesignSpecification:OutdoorAir,
   {f648ca0a-523e-4cd1-9141-0b84b7a81954}, !- Handle
   189.1-2009 - Office - Lobby - CZ1-3 Ventilation, !- Name
@@ -3048,13 +3041,6 @@ OS:ThermostatSetpoint:DualSetpoint,
   {de733bb4-ab71-44d2-ab3a-a9b7c2a54774}, !- Heating Setpoint Temperature Schedule Name
   {e9bd9cb4-1124-4ccf-bf18-c5ad994faa55}; !- Cooling Setpoint Temperature Schedule Name
 
-OS:Rendering:Color,
-  {6dc82c65-0965-48c5-9394-1f57bef18075}, !- Handle
-  Rendering Color 18,                     !- Name
-  120,                                    !- Rendering Red Value
-  230,                                    !- Rendering Green Value
-  199;                                    !- Rendering Blue Value
-
 OS:DesignSpecification:OutdoorAir,
   {2cbf38dd-78ec-43cf-9455-8dba2eee1857}, !- Handle
   189.1-2009 - Office - ClosedOffice - CZ4-8 Ventilation, !- Name
@@ -3254,13 +3240,6 @@ OS:ThermostatSetpoint:DualSetpoint,
   189.1-2009 - Office - Restroom - CZ4-8 Thermostat, !- Name
   {de733bb4-ab71-44d2-ab3a-a9b7c2a54774}, !- Heating Setpoint Temperature Schedule Name
   {e9bd9cb4-1124-4ccf-bf18-c5ad994faa55}; !- Cooling Setpoint Temperature Schedule Name
-
-OS:Rendering:Color,
-  {6f557e2a-06b2-4e96-bd62-f7b1f6d0b22c}, !- Handle
-  Rendering Color 27,                     !- Name
-  230,                                    !- Rendering Red Value
-  157,                                    !- Rendering Green Value
-  120;                                    !- Rendering Blue Value
 
 OS:DesignSpecification:OutdoorAir,
   {06eb26bf-daae-4d7b-802f-f14f4973bffc}, !- Handle
