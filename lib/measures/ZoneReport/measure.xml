@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>zone_report</name>
   <uid>81ac119f-4841-434c-9e11-824310fe1cb7</uid>
-  <version_id>783f69cf-8d41-4389-b98b-d3f9b73f8891</version_id>
-  <version_modified>2024-11-16T23:54:13Z</version_modified>
+  <version_id>d766c945-4106-4958-90a6-9f492ff01192</version_id>
+  <version_modified>2025-03-10T17:36:01Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ZoneReport</class_name>
   <display_name>Zone Report</display_name>
@@ -50,13 +50,13 @@
     <file>
       <version>
         <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
+        <identifier>3.9.0</identifier>
+        <min_compatible>3.9.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C6695B06</checksum>
+      <checksum>8ABC273B</checksum>
     </file>
     <file>
       <filename>report.html.in</filename>
@@ -74,13 +74,13 @@
       <filename>ZoneReport_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>5CDE28AB</checksum>
+      <checksum>28CD8E93</checksum>
     </file>
     <file>
       <filename>gas_electric_mark_load.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
-      <checksum>1F5C6B63</checksum>
+      <checksum>1FAF2250</checksum>
     </file>
   </files>
 </measure>
