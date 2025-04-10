@@ -9,6 +9,9 @@ require 'erb'
 
 # start the measure
 class ZoneReport < OpenStudio::Measure::ReportingMeasure
+  attr_reader :component_loads
+  attr_reader :zone_collection
+
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
@@ -212,6 +215,18 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
       return false
     end
     model = model.get
+
+    # check if the Component Load Summary reports have been produced by EnergyPlus,
+    # which are needed for the Peak Heating Load and Peak Cooling Load tables
+    @component_loads = {}
+    if model.getOutputTableSummaryReports.summaryReports.any? { |r| r.include?('SizingPeriod') }
+      @component_loads[:report] = true
+    else
+      @component_loads[:report] = false
+      message = 'WARNING: The Component Load Summary reports were not produced by EnergyPlus, which are required by the Peak Heating Load and Peak Cooling Load tables.'
+      @component_loads[:message] = message
+      runner.registerWarning(message)
+    end
 
     @sqlFile = runner.lastEnergyPlusSqlFile
     if @sqlFile.empty?
@@ -590,7 +605,7 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
     graph['data'] = stacked_vals
 
     @graph_data << graph
-end
+  end
 
   def getPctLoad(val, total)
     if val != '' && total != 0
@@ -689,8 +704,6 @@ end
     end
   end
 
-  # Accessor to support unit tests
-  attr_reader :zone_collection
 end
 
 # this allows the measure to be use by the application
