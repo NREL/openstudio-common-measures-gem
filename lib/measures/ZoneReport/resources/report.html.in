@@ -216,7 +216,7 @@ var graph_data = <%= @graph_data %>;
       <ul class="nav nav-pills nav-stacked" role="navigation">
         <% counter = 0 %>
         <% zone_collection.each do |z| %>
-        
+
           <li>
             <a href="#zone_<%= counter %>"><%= z[:name] %></a>
           </li>
@@ -224,18 +224,22 @@ var graph_data = <%= @graph_data %>;
         <% end %>
       </ul>
     </div>
-  </div>  
+  </div>
 
   <div class="col-md-9" style="padding-top:25px;" role="main">
-    
+
       <h1>Zone Equipment Report</h1>
+
+      <% if component_loads[:report] == false %>
+        <i><%= component_loads[:message] %></i>
+      <% end %>
 
       <% counter = 0 %>
       <% zone_collection.each do |z| %>
       <h3 id="zone_<%= counter %>"><%= z[:name] %></h3>
-        
+
       <h4>Zone Equipment Summary</h4>
-      
+
       <table class="table table-striped table-bordered table-condensed zoneGrid">
           <% report_sort_order = {"Heating" => 0, "Backup Heating" => 1, "Cooling" => 2, "Fans" => 3} %>
           <% z[:equipment].sort_by{|k,v| report_sort_order[k]}.each do |reporting_type, equipments| %>
@@ -260,9 +264,9 @@ var graph_data = <%= @graph_data %>;
               <% end %>
           <% end %>
       </table>
-        
+
       <h4>Zone Sizing and Load Summary</h4>
-      
+
       <table class="table table-striped table-bordered table-condensed zoneGrid">
           <tr>
               <td>Zone Name</td><td><%=z[:name]%></td><td>Zone Size (ft2)</td><td><%=z[:area]%></td>
