@@ -131,11 +131,11 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
 
     # location of html dependencies, revit systems analysis uses local files
     html_dependencies_choices = OpenStudio::StringVector.new
-    html_dependencies_choices << 'Remote'
     html_dependencies_choices << 'Local'
+    html_dependencies_choices << 'Remote'
     html_dependencies = OpenStudio::Measure::OSArgument::makeChoiceArgument('html_dependencies', html_dependencies_choices, true)
     html_dependencies.setDisplayName('HTML Dependencies')
-    html_dependencies.setDescription('Location of HTML dependencies.')
+    html_dependencies.setDescription('Location of HTML dependencies. Local is useful for working offline.')
     html_dependencies.setDefaultValue('Remote')
     args << html_dependencies
 
