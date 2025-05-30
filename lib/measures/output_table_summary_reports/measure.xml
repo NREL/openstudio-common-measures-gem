@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>output_table_summary_reports</name>
   <uid>9edf689e-b0c4-4a80-9d3f-a5b8e9097275</uid>
-  <version_id>4a30e3be-fa92-4cbd-8572-883feefd0796</version_id>
-  <version_modified>2025-05-06T16:09:42Z</version_modified>
+  <version_id>3a565ec4-aee4-4394-bdce-db77944da7de</version_id>
+  <version_modified>2025-05-30T15:39:54Z</version_modified>
   <xml_checksum>59C2BE35</xml_checksum>
   <class_name>OutputTableSummaryReports</class_name>
   <display_name>Output Table Summary Reports</display_name>
@@ -90,12 +90,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>.gitkeep</filename>
-      <filetype>gitkeep</filetype>
-      <usage_type>doc</usage_type>
-      <checksum>00000000</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>3.0.0</identifier>
@@ -105,12 +99,6 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>CA41D880</checksum>
-    </file>
-    <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>53D14E69</checksum>
     </file>
     <file>
       <filename>output_table_summary_reports_test.rb</filename>
