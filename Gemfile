@@ -24,5 +24,3 @@ allow_local = ENV['FAVOR_LOCAL_GEMS']
 # elsif allow_local
   gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'faraday'
 # end
-# Delete this once testing is complete!
-gem 'bcl', github: 'NREL/bcl-gem', branch: 'faraday'
