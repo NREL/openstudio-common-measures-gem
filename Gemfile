@@ -22,5 +22,5 @@ allow_local = ENV['FAVOR_LOCAL_GEMS']
 # if allow_local && File.exist?('../OpenStudio-extension-gem')
 #   gem 'openstudio-extension', path: '../OpenStudio-extension-gem'
 # elsif allow_local
-  gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'faraday'
+  # gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'faraday'
 # end
