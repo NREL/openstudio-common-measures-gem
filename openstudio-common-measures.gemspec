@@ -36,6 +36,10 @@ Gem::Specification.new do |spec|
   # let's set them in extension-gem for next release
   spec.add_dependency 'multipart-post', '2.4.0'
 
+  spec.add_development_dependency 'rubocop', '1.50'
+  spec.add_development_dependency 'rubocop-checkstyle_formatter', '0.6.0'
+  spec.add_development_dependency 'rubocop-performance', '1.20.0'
+  spec.add_development_dependency 'simplecov', '0.22.0'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.9'
   spec.add_development_dependency 'octokit', '4.18.0' # for change logs
