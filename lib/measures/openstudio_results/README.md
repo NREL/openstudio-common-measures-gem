@@ -219,6 +219,14 @@ This argument does not effect HTML file, instead it makes data from individal ce
 **Required:** true,
 **Model Dependent:** false
 
+### HTML Dependencies
+Location of HTML dependencies. Local is useful for working offline.
+**Name:** html_dependencies,
+**Type:** Choice,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
 
 
 
