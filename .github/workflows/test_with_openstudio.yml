@@ -1,6 +1,5 @@
 # Test with OpenStudio container
 name: test_with_openstudio
-
 on: push
 
 jobs:
