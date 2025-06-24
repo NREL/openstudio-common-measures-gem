@@ -84,12 +84,19 @@ class AddRooftopPV < OpenStudio::Measure::ModelMeasure
 
     # create the inverter
     inverter = OpenStudio::Model::ElectricLoadCenterInverterSimple.new(model)
-    inverter.setInverterEfficiency(args['inverter_efficiency'])
+    inverter.setName("Rooftop PV Inverter")
+    inverter.setInverterEfficiency(args["inverter_efficiency"])
+    inverter.setAvailabilitySchedule(model.alwaysOnDiscreteSchedule)
     runner.registerInfo("Created inverter with efficiency of #{inverter.inverterEfficiency}")
 
     # create the distribution system
     elcd = OpenStudio::Model::ElectricLoadCenterDistribution.new(model)
+    elcd.setName("Rooftop PV ELCD")
     elcd.setInverter(inverter)
+    # This is the default, but much better to do it explicitly since it's
+    # critical
+    elcd.setGeneratorOperationSchemeType("Baseload")
+    elcd.setElectricalBussType("DirectCurrentWithInverter")
 
     # create shared shading transmittance schedule
     target_transmittance = 1.0 - args['fraction_of_surface'].to_f
@@ -101,6 +108,10 @@ class AddRooftopPV < OpenStudio::Measure::ModelMeasure
     }
     pv_shading_transmittance_schedule = OpenstudioStandards::Schedules.create_simple_schedule(model, inputs)
     runner.registerInfo("Created transmittance schedule for PV shading surfaces with constant value of #{target_transmittance}")
+
+    # Efficiency is rated at a solar irradiance intensity of 1000 W/m^2
+    # So if cell_efficiency is 0.18, that means 180 W/m^2
+    rated_solar_irradiance_w_per_m2 = 1000.0
 
     model.getSurfaces.each do |surface|
       next if !surface.space.is_initialized
@@ -125,9 +136,18 @@ class AddRooftopPV < OpenStudio::Measure::ModelMeasure
         # create the panel
         panel = OpenStudio::Model::GeneratorPhotovoltaic.simple(model)
         panel.setSurface(shading_surface)
+        panel.setName("Rooftop PV - #{surface.nameString}")
         performance = panel.photovoltaicPerformance.to_PhotovoltaicPerformanceSimple.get
         performance.setFractionOfSurfaceAreaWithActiveSolarCells(args['fraction_of_surface'])
         performance.setFixedEfficiency(args['cell_efficiency'])
+        performance.setName("Rooftop PV - #{surface.nameString} - Performance Simple")
+
+        rated_electric_power_output_w = args["cell_efficiency"] * rated_solar_irradiance_w_per_m2 * args["fraction_of_surface"] * shading_surface.grossArea
+
+        # Set it on the panel, so it's written to the ElectricLoadCenter:Generators
+        # object that the OS ForwardTranslator creates, and reported in the
+        # eplustbl.html (otherwise it shows rated power = 0.0W in L-1. Renewable Energy Source Summary)
+        panel.setRatedElectricPowerOutput(rated_electric_power_output_w)
 
         # connect panel to electric load center distribution
         elcd.addGenerator(panel)
