@@ -200,6 +200,10 @@ class ZoneReport_Test < Minitest::Test
       result = runner.result
       show_output(result)
       assert_equal('Success', result.value.valueName)
+
+      # fail test if warning
+      assert_equal(0, result.warnings.size)
+
     ensure
       Dir.chdir(start_dir)
     end
