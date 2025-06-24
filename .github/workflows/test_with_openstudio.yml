@@ -1,62 +1,109 @@
 # Test with OpenStudio container
 name: test_with_openstudio
 
-# trigger action on all branches, pull requests and tags
-on:
-  pull_request:
-    branches:
-      - '*'
-  push:
-    branches:
-      - '*'
-    tags:
-      - '*'
+on: push
 
 jobs:
-  test:
-    # The type of runner that the job will run on
+  test-gems-latest:
     runs-on: ubuntu-latest
-    container:
-      image: nrel/openstudio:develop
+    env:
+      BRANCH_NAME: ${{ github.ref_name }}
+      BUILD_NUMBER: ${{ github.run_number }}
+      DEPLOY_PATH: ${{ github.repository }}/${{ github.ref_name }}/${{ github.run_number }} # Path for S3 deployment
+      S3_BUCKET: ext-gem-dashboard
+
+    container: # Define the Docker container for the job. All subsequent steps run inside it.
+      image: nrel/openstudio:3.10.0
+      options: -u root -e "LANG=en_US.UTF-8" # These options are passed to the 'docker run' command internally
 
     steps:
-      - uses: actions/checkout@v2
-      - name: show enviroment
-        shell: bash
-        run: |
-          ruby -v
-          openstudio openstudio_version
-          openstudio gem_list
-      - name: set git config options
-        shell: bash
-        run: |
-          git config --global --add safe.directory '*'
-      - name: install dependencies
-        shell: bash
-        run: |
-          gem install bundler -v '2.4.10'
-          bundle -v
-          bundle install
-      - name: run tests
-        shell: bash
-        run: |
-          bundle exec rake
-          bundle exec rake openstudio:list_measures
-          bundle exec rake openstudio:update_measures
-          bundle exec rake openstudio:test_with_openstudio
-      - name: collect stats, display and check for failures
-        shell: bash
-        run: |
-          test_dir=$(find -type d -name "test_results")
-          echo $test_dir
-          mv $test_dir . 
-      - uses: actions/upload-artifact@v3
-        name: save artifacts
+      - name: Checkout Repository
+        # The repository will be checked out inside the 'nrel/openstudio:3.10.0' container
+        uses: actions/checkout@v4 # Use v4 for better security and features
         with:
-          name: test_results
-          path: test_results
+          submodules: true # Set to true if your repository uses Git submodules
 
+      - name: Install Node.js and AWS CLI
+        # Install required dependencies for AWS actions to work in the OpenStudio container
+        shell: bash
+        run: |
+          echo "Installing Node.js and AWS CLI..."
+
+          # Update package list
+          apt-get update
+
+          # Install curl and other dependencies
+          apt-get install -y curl unzip
+
+          # Install Node.js (using NodeSource repository for latest LTS)
+          curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+          apt-get install -y nodejs
+
+          # Install AWS CLI v2
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          ./aws/install
+
+          # Verify installations
+          echo "Node.js version: $(node --version)"
+          echo "npm version: $(npm --version)"
+          echo "AWS CLI version: $(aws --version)"
+
+          # Clean up
+          rm -rf awscliv2.zip aws/
+
+      - name: Verify Environment and Run Measures
+        # All 'run' commands in this job now execute inside the specified Docker container.
+        shell: bash # Specify the shell if needed, though bash is default for Ubuntu runners
+        run: |
+          # Fix git ownership issue in container
+          git config --global --add safe.directory /__w/openstudio-load-flexibility-measures-gem/openstudio-load-flexibility-measures-gem
           
-        
-        
+          echo "OpenStudio Version: $(openstudio --version)"
+          echo "Ruby Version: $(ruby -v)"
+          echo "Listing OpenStudio Gems: $(openstudio gem_list)"
+          
+          # Install dependencies before running tests
+          echo "Installing gem dependencies..."
+          bundle install
+          
+          echo "Running spec tests..."
+          rake spec
+          echo "Running measures with verbose output:"
+          # This command will execute within the container.
+          # Ensure that './lib/measures' is the correct path relative to the checkout.
+          openstudio --verbose measure -r ./lib/measures
 
+          # The output for 'test' should now be generated directly into the workspace
+          # within the container, which is mounted from the host.
+          # No 'docker cp' is needed as the workspace is shared.
+          ls -al ./test # Verify the output directory exists and contains files
+
+      - name: Configure AWS Credentials
+        # This step is crucial for authenticating with AWS S3
+        uses: aws-actions/configure-aws-credentials@v4 # Use v4 for updated features
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # Assuming this is your secret name
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }} # Replace with your AWS region, e.g., us-east-1
+
+      - name: Sync files to S3 with branch and build in path
+        shell: bash
+        run: |
+          echo "Deploying to s3://${{ env.S3_BUCKET }}/${{ env.DEPLOY_PATH }}/"
+          # Ensure './test_results' is the correct source directory for the files to upload to S3.
+          dir_name=$(find -type d -name "test_results")
+          # It must match the output directory from the 'Run Measures' step.
+          aws s3 sync $dir_name s3://${{ env.S3_BUCKET }}/${{ env.DEPLOY_PATH }}/ \
+            --delete \
+            --acl public-read \
+            --cache-control "max-age=0, no-cache, no-store, must-revalidate"
+          echo "S3 sync complete."
+          echo "https://${{ env.S3_BUCKET }}.s3.amazonaws.com/${{ env.DEPLOY_PATH }}/dashboard/index.html"
+          echo dir_name=$dir_name >> $GITHUB_ENV # Save the directory name to an environment variable for later use
+
+      - name: Archive static site as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-html-artifact
+          path: ${{ env.dir_name }} # Path should be relative to the GitHub workspace, which is shared with the container          
