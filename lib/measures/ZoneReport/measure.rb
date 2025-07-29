@@ -9,6 +9,9 @@ require 'erb'
 
 # start the measure
 class ZoneReport < OpenStudio::Measure::ReportingMeasure
+  attr_reader :component_loads
+  attr_reader :zone_collection
+
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
@@ -213,6 +216,18 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
     end
     model = model.get
 
+    # check if the Component Load Summary reports have been produced by EnergyPlus,
+    # which are needed for the Peak Heating Load and Peak Cooling Load tables
+    @component_loads = {}
+    if model.getOutputTableSummaryReports.summaryReports.any? { |r| r.include?('SizingPeriod') }
+      @component_loads[:report] = true
+    else
+      @component_loads[:report] = false
+      message = 'WARNING: The Component Load Summary reports were not produced by EnergyPlus, which are required by the Peak Heating Load and Peak Cooling Load tables.'
+      @component_loads[:message] = message
+      runner.registerWarning(message)
+    end
+
     @sqlFile = runner.lastEnergyPlusSqlFile
     if @sqlFile.empty?
       runner.registerError('Cannot find last sql file.')
@@ -306,8 +321,10 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
 
       vals = {}
 
-      vals[:va] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Lighting Power Density', 'W/m2', 'W/ft^2').round(2)
-      vals[:vb] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Full Load Hours/Week', 'hr', 'hr').round(2)
+      #vals[:va] = getDetailsData('Input Verification and Results Summary', 'Entire Facility', 'Zone Summary', "#{zoneMetrics[:name].upcase}", 'Lighting[W/m2]', 'W/m2', 'W/ft^2').round(2)
+      #vals[:va] = getDetailsData('Initialization Summary', 'Entire Facility', 'Zone Internal Gains Nominal', "#{zoneMetrics[:name].upcase}", 'Interior Lighting', 'W/m2', 'W/ft^2').round(2)
+      # vals[:va] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Lighting Power Density', 'W/m2', 'W/ft^2').round(2)
+      # vals[:vb] = getDetailsData('LightingSummary', 'Entire Facility', 'Interior Lighting', "#{zoneMetrics[:name]}%", 'Full Load Hours/Week', 'hr', 'hr').round(2)
 
       vals[:vc] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Electricity Annual Value', 'GJ', 'kWh').round(2)
 
@@ -318,47 +335,56 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
       vals[:vf] = getDetailsData('InputVerificationandResultsSummary', 'Entire Facility', 'Zone Summary', zoneMetrics[:name], 'Conditioned (Y/N)', '', 's')
       if vals[:vf] == '' then vals[:vf] = 'No' end
 
-      vals[:vg] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Heating', zoneMetrics[:name], 'User Design Load', 'W', 'kBtu/hr').round(2)
-      vals[:vh] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Heating', zoneMetrics[:name], 'User Design Air Flow', 'm3/s', 'ft^3/s').round(2)
-      vals[:vi] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Cooling', zoneMetrics[:name], 'User Design Load', 'W', 'kBtu/hr').round(2)
-      vals[:vj] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Cooling', zoneMetrics[:name], 'User Design Air Flow', 'm3/s', 'ft^3/s').round(2)
+      vals[:vg] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Heating', zoneMetrics[:name], 'User Design Load', 'W', 'kBtu/hr').round(2)
+      vals[:vh] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Heating', zoneMetrics[:name], 'User Design Air Flow', 'm3/s', 'ft^3/s').round(2)
+      vals[:vi] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Cooling', zoneMetrics[:name], 'User Design Load', 'W', 'kBtu/hr').round(2)
+      vals[:vj] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Cooling', zoneMetrics[:name], 'User Design Air Flow', 'm3/s', 'ft^3/s').round(2)
 
       vals[:vk] = getDetailsData('OutdoorAirSummary', 'Entire Facility', 'Average Outdoor Air During Occupied Hours', zoneMetrics[:name], 'Mechanical Ventilation', 'ach', 'ach').round(2)
       vals[:vl] = getDetailsData('OutdoorAirSummary', 'Entire Facility', 'Average Outdoor Air During Occupied Hours', zoneMetrics[:name], 'Infiltration', 'ach', 'ach').round(2)
 
       vals[:vm] = getDetailsData('InputVerificationandResultsSummary', 'Entire Facility', 'Zone Summary', zoneMetrics[:name], 'People', 'm2 per person', 'ft^2/person').round(2)
 
-      vals[:vn] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Cooling', zoneMetrics[:name], 'Date/Time Of Peak', '', 's')
-      vals[:vo] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Heating', zoneMetrics[:name], 'Date/Time Of Peak', '', 's')
+      vals[:vn] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Cooling', zoneMetrics[:name], 'Date/Time Of Peak {TIMESTAMP}', '', 's')
+      vals[:vo] = getDetailsData('HVACSizingSummary', 'Entire Facility', 'Zone Sensible Heating', zoneMetrics[:name], 'Date/Time Of Peak {TIMESTAMP}', '', 's')
 
       vals[:vp] = getDetailsData('SystemSummary', 'Entire Facility', 'Time Setpoint Not Met', zoneMetrics[:name], 'During Heating', 'hr', 'hr')
       vals[:vq] = getDetailsData('SystemSummary', 'Entire Facility', 'Time Setpoint Not Met', zoneMetrics[:name], 'During Cooling', 'hr', 'hr')
 
-      vals[:vr] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Gas', "InteriorEquipment:Gas:Zone:#{zoneMetrics[:name]}", 'Electricity Annual Value', 'GJ', 'Therm').round(2)
+      vals[:vr] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Natural Gas', "InteriorEquipment:NaturalGas:Zone:#{zoneMetrics[:name]}", 'Natural Gas Annual Value', 'GJ', 'Therm').round(2)
       vals[:vs] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorEquipment:Electricity:Zone:#{zoneMetrics[:name]}", 'Electricity Annual Value', 'GJ', 'kWh').round(2)
 
-      vals[:vt] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Gas', "InteriorEquipment:Gas:Zone:#{zoneMetrics[:name]}", 'Gas Maximum  Value', 'W', 'kBtu/hr').round(2)
-      vals[:vu] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Gas', "InteriorEquipment:Gas:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      vals[:vt] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Natural Gas', "InteriorEquipment:NaturalGas:Zone:#{zoneMetrics[:name]}", 'Natural Gas Maximum Value', 'W', 'kBtu/hr').round(2)
+      vals[:vu] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Natural Gas', "InteriorEquipment:NaturalGas:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum {TIMESTAMP}', '', 's')
 
       vals[:vv] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Electricity Maximum Value', 'W', 'kW').round(2)
-      vals[:vw] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      vals[:vw] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorLights:Electricity:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum {TIMESTAMP}', '', 's')
+
+      # calculate lighting values based on EnergyMeters, which has data by zone
+      # instead of Lighting Summary, which has data by space
+
+      # W/ft2
+      vals[:va] = (vals[:vv] * 1000 / zoneMetrics[:area]).round(2)
+
+      # kWh / kW = full load hours
+      vals[:vb] = (vals[:vc] / vals[:vv]).round(2)
 
       # X unused
 
       vals[:vy] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorEquipment:Electricity:Zone:#{zoneMetrics[:name]}", 'Electricity Maximum Value', 'W', 'kW').round(2)
-      vals[:vz] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorEquipment:Electricity:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      vals[:vz] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Electricity', "InteriorEquipment:Electricity:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum {TIMESTAMP}', '', 's')
 
-      vals[:vaa] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeating:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
-      vals[:vab] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeating:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr').round(2)
-      vals[:vac] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeating:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      # vals[:vaa] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeatingWater:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
+      # vals[:vab] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeatingWater:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr').round(2)
+      # vals[:vac] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "InteriorEquipment:DistrictHeatingWater:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum {TIMESTAMP}', '', 's')
 
-      vals[:vad] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
-      vals[:vae] = (getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr') / zoneMetrics[:area]).round(2)
-      vals[:vaf] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      # vals[:vad] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
+      # vals[:vae] = (getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr') / zoneMetrics[:area]).round(2)
+      # vals[:vaf] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Heating:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum {TIMESTAMP}', '', 's')
 
-      vals[:vag] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
-      vals[:vah] = (getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr') / zoneMetrics[:area]).round(2)
-      vals[:vai] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum', '', 's')
+      # vals[:vag] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Annual Value', 'GJ', 'kBtu').round(2)
+      # vals[:vah] = (getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Maximum Value', 'W', 'kBtu/hr') / zoneMetrics[:area]).round(2)
+      # vals[:vai] = getDetailsData('EnergyMeters', 'Entire Facility', 'Annual and Peak Values - Other', "Cooling:EnergyTransfer:Zone:#{zoneMetrics[:name]}", 'Timestamp of Maximum {TIMESTAMP}', '', 's')
 
       vals[:vaj] = zoneHeatComponentCalc('People', zoneMetrics)
       vals[:vak] = zoneHeatComponentCalc('Lights', zoneMetrics)
@@ -385,7 +411,7 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
       vals[:vbf] = zoneHeatComponentCalc('Fenestration Conduction', zoneMetrics)
       vals[:vbg] = zoneHeatComponentCalc('Fenestration Solar', zoneMetrics)
 
-      vals[:vbh] = getDetailsData('ZoneComponentLoadSummary', (zoneMetrics[:name]).to_s, 'Heating Peak Conditions', 'Time of Peak Load', 'Value', '', 's')
+      vals[:vbh] = getDetailsData('Zone Component Load Summary', (zoneMetrics[:name]).to_s, 'Heating Peak Conditions', 'Time of Peak Load', 'Value', '', 's')
 
       vals[:vbi] = zoneCoolComponentCalc('People', zoneMetrics)
       vals[:vbj] = zoneCoolComponentCalc('Lights', zoneMetrics)
@@ -412,7 +438,7 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
       vals[:vce] = zoneCoolComponentCalc('Fenestration Conduction', zoneMetrics)
       vals[:vcf] = zoneCoolComponentCalc('Fenestration Solar', zoneMetrics)
 
-      vals[:vcg] = getDetailsData('ZoneComponentLoadSummary', (zoneMetrics[:name]).to_s, 'Cooling Peak Conditions', 'Time of Peak Load', 'Value', '', 's')
+      vals[:vcg] = getDetailsData('Zone Component Load Summary', (zoneMetrics[:name]).to_s, 'Cooling Peak Conditions', 'Time of Peak Load', 'Value', '', 's')
 
       # vals = loadTestVals( vals )
 
@@ -480,11 +506,11 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
   end
 
   def zoneHeatComponentCalc(component, zoneMetrics)
-    (getDetailsData('ZoneComponentLoadSummary', (zoneMetrics[:name]).to_s, 'Estimated Heating Peak Load Components', component, 'Total', 'W', 'Btu/hr') / zoneMetrics[:area]).round(2)
+    (getDetailsData('Zone Component Load Summary', (zoneMetrics[:name]).to_s, 'Estimated Heating Peak Load Components', component, 'Total', 'W', 'Btu/hr') / zoneMetrics[:area]).round(2)
   end
 
   def zoneCoolComponentCalc(component, zoneMetrics)
-    (getDetailsData('ZoneComponentLoadSummary', (zoneMetrics[:name]).to_s, 'Estimated Cooling Peak Load Components', component, 'Total', 'W', 'Btu/hr') / zoneMetrics[:area]).round(2)
+    (getDetailsData('Zone Component Load Summary', (zoneMetrics[:name]).to_s, 'Estimated Cooling Peak Load Components', component, 'Total', 'W', 'Btu/hr') / zoneMetrics[:area]).round(2)
   end
 
   def stacked_bars(zoneMetrics)
@@ -579,7 +605,7 @@ class ZoneReport < OpenStudio::Measure::ReportingMeasure
     graph['data'] = stacked_vals
 
     @graph_data << graph
-end
+  end
 
   def getPctLoad(val, total)
     if val != '' && total != 0
@@ -621,7 +647,7 @@ end
   # and final_units should be open studio style (m^2, m^3, ...)
   # If the data is not found or cannot be converted a warning is registered and "" or 0.0 is returned.
   def getDetailsData(report, forstring, table, row, column, units, final_units)
-    if report == 'ZoneComponentLoadSummary'
+    if report == 'Zone Component Load Summary'
       forstring.upcase!
     end
 
@@ -637,12 +663,13 @@ end
 
     if query_results.empty?
 
-      @runner.registerWarning("Could not get data for #{report} #{forstring} #{table} #{row} #{column}.")
+      # todo - is there any valid reason data might not be found? If not then make error isntead of warning
+      @runner.registerWarning("Could not get data for report:#{report} For:#{forstring} table:#{table} row:#{row} column:#{column}.")
       return final_units == 's' ? '' : 0.0
 
     else
       r = query_results.get
-      if report == 'ZoneComponentLoadSummary'
+      if report == 'Zone Component Load Summary'
         @testData["#{@currentZoneName}_#{table}_#{row}"] = r
       end
 
@@ -652,7 +679,7 @@ end
         converted = OpenStudio.convert(r.to_f, eplus_to_openstudio(units), final_units)
         if converted.empty?
           @runner.registerError("Could not convert #{r} from #{units} to #{final_units}")
-          return 0.0
+          return false
         else
           return converted.get.round(2)
         end
@@ -671,14 +698,12 @@ end
 
     if query_results.empty?
       @runner.registerError("Could not get data for requested Column #{colName}.")
-      return []
+      return false
     else
       return query_results
     end
   end
 
-  # Accessor to support unit tests
-  attr_reader :zone_collection
 end
 
 # this allows the measure to be use by the application
