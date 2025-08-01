@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>shadow_calculation</name>
   <uid>d0699b19-862f-4b68-9ff0-58483c45e0e8</uid>
-  <version_id>0840ebaa-2852-4add-b240-f71d42647474</version_id>
-  <version_modified>2024-11-16T23:54:12Z</version_modified>
+  <version_id>9a6788e4-8d8e-4631-a77f-7c99263184c2</version_id>
+  <version_modified>2025-08-01T14:35:25Z</version_modified>
   <xml_checksum>D8922A73</xml_checksum>
   <class_name>ShadowCalculation</class_name>
   <display_name>Shadow Calculation</display_name>
@@ -145,7 +145,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

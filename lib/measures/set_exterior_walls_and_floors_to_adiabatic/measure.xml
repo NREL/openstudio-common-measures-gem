@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_exterior_walls_and_floors_to_adiabatic</name>
   <uid>63c7f9ba-8c85-4545-bbc0-d25babefb2c3</uid>
-  <version_id>c2ae223c-32ff-4620-9b05-a5fbe41a9a26</version_id>
-  <version_modified>2024-11-16T23:54:19Z</version_modified>
+  <version_id>1b779fc7-09d3-4318-b35f-02ebdbccbbd6</version_id>
+  <version_modified>2025-08-01T14:35:32Z</version_modified>
   <xml_checksum>5091078B</xml_checksum>
   <class_name>SetExteriorWallsAndFloorsToAdiabatic</class_name>
   <display_name>Set Exterior Walls and Floors to Adiabatic</display_name>
@@ -178,7 +178,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

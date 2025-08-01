@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>remove_unused_default_profiles</name>
   <uid>8abcdf38-c391-465a-8fb8-b243aa4f0b06</uid>
-  <version_id>042703a5-9280-4f87-8a1a-2ff750468b06</version_id>
-  <version_modified>2024-11-16T23:54:12Z</version_modified>
+  <version_id>2004c15b-3edc-4555-88ee-d7f4ee15895b</version_id>
+  <version_modified>2025-08-01T14:35:26Z</version_modified>
   <xml_checksum>B6CD1F98</xml_checksum>
   <class_name>RemoveUnusedDefaultProfiles</class_name>
   <display_name>RemoveUnusedDefaultProfiles</display_name>
@@ -43,7 +43,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

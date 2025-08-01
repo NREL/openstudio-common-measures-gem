@@ -5,6 +5,6 @@
 
 module OpenStudio
   module CommonMeasures
-    VERSION = '0.12.0'.freeze
+    VERSION = '0.12.2'.freeze
   end
 end

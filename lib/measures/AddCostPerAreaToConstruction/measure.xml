@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_cost_per_area_to_construction</name>
   <uid>bf6ac5d5-6348-4012-b7b4-1200a672e377</uid>
-  <version_id>fd2fe78c-74ea-4117-a56f-cdb69130fcee</version_id>
-  <version_modified>2024-11-16T23:54:13Z</version_modified>
+  <version_id>2923ddb7-cd26-4ded-acf0-34a0ca00419c</version_id>
+  <version_modified>2025-08-01T14:35:27Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerAreaToConstruction</class_name>
   <display_name>Add Cost per Area to Construction</display_name>
@@ -143,7 +143,7 @@ For baseline costs, 'Years Until Costs Start' indicates the year that the capita
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

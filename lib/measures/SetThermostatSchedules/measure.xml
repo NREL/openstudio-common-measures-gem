@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_thermostat_schedules</name>
   <uid>2978cde0-53d5-4096-bdab-11f9f6e074f1</uid>
-  <version_id>2931abe2-6734-4e55-9957-b253c35e172a</version_id>
-  <version_modified>2024-11-16T23:54:13Z</version_modified>
+  <version_id>a0fe1f52-9d41-40ae-9f81-75d538d7a1a8</version_id>
+  <version_modified>2025-08-01T14:35:27Z</version_modified>
   <xml_checksum>F4CEA58B</xml_checksum>
   <class_name>SetThermostatSchedules</class_name>
   <display_name>Set Thermostat Schedules</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{e07a0db7-1ccd-43b9-b919-606e7221514c}</default_value>
+      <default_value>{a3a0c4fa-b630-406e-a5e2-332e7c7edf66}</default_value>
       <choices>
         <choice>
-          <value>{e07a0db7-1ccd-43b9-b919-606e7221514c}</value>
+          <value>{a3a0c4fa-b630-406e-a5e2-332e7c7edf66}</value>
           <display_name>*All Thermal Zones*</display_name>
         </choice>
       </choices>
@@ -94,7 +94,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
