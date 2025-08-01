@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>modify_energyplus_coil_cooling_dx_single_speed_objects</name>
   <uid>b224bd36-213e-4b0e-b3fe-70371e04533d</uid>
-  <version_id>e8b2b867-91df-4a86-99d0-75510808828a</version_id>
-  <version_modified>2024-11-16T23:54:12Z</version_modified>
+  <version_id>77b4f73b-d061-4390-9050-672670bf4b19</version_id>
+  <version_modified>2025-08-01T14:35:26Z</version_modified>
   <xml_checksum>C7ED76C0</xml_checksum>
   <class_name>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects</class_name>
   <display_name>ModifyEnergyPlusCoilCoolingDXSingleSpeedObjects</display_name>
@@ -76,7 +76,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

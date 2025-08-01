@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_lifecycle_cost_parameters</name>
   <uid>bb5913af-d959-4e2a-81c5-cd0f3d14c99a</uid>
-  <version_id>49704a40-2567-4d4c-ba86-1b7f0f277b2e</version_id>
-  <version_modified>2024-11-16T23:54:18Z</version_modified>
+  <version_id>64f1e1cf-3823-4a27-bd7d-5da067e61ac9</version_id>
+  <version_modified>2025-08-01T14:35:31Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>SetLifecycleCostParameters</class_name>
   <display_name>SetLifecycleCostParameters</display_name>
@@ -52,7 +52,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>modify_energyplus_fan_variable_volume_objects</name>
   <uid>009fe4eb-be72-4803-ac84-471ebe2c4c21</uid>
-  <version_id>587f3f10-3611-4e74-869c-5f611db19963</version_id>
-  <version_modified>2024-11-16T23:54:15Z</version_modified>
+  <version_id>c7c41d56-ef82-4e91-8930-f37dfe47a4d2</version_id>
+  <version_modified>2025-08-01T14:35:28Z</version_modified>
   <xml_checksum>D8794EFE</xml_checksum>
   <class_name>ModifyEnergyPlusFanVariableVolumeObjects</class_name>
   <display_name>ModifyEnergyPlusFanVariableVolumeObjects</display_name>
@@ -48,7 +48,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

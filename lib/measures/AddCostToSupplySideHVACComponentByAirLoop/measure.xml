@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_cost_to_supply_side_hvac_component_by_air_loop</name>
   <uid>a667a52f-aa04-4997-9292-c81671d75f84</uid>
-  <version_id>0954521a-df5e-4233-8f93-5493f83c69c0</version_id>
-  <version_modified>2024-11-16T23:54:14Z</version_modified>
+  <version_id>adf30b9f-ef5b-454b-b429-0e05f88d7a82</version_id>
+  <version_modified>2025-08-01T14:35:27Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostToSupplySideHVACComponentByAirLoop</class_name>
   <display_name>Add Cost to Supply Side HVAC Component by Air Loop</display_name>
@@ -80,7 +80,7 @@
       <model_dependent>false</model_dependent>
       <choices>
         <choice>
-          <value>{53352c37-0e9c-4a72-ae03-9345a60f1e60}</value>
+          <value>{66d7e76a-244a-4ddc-a3cb-c7f61b8964c3}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>
@@ -208,7 +208,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

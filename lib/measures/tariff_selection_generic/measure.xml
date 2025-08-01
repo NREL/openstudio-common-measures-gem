@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>tariff_selection_generic</name>
   <uid>d65ae535-f0ea-4745-9f5b-8d42c7070741</uid>
-  <version_id>1a265ba0-8c4f-4dd2-b6d1-6b1bc4a3f1cf</version_id>
-  <version_modified>2024-11-16T23:54:19Z</version_modified>
+  <version_id>f43c0e0c-756c-40d6-8ef4-0a0a96f64397</version_id>
+  <version_modified>2025-08-01T14:35:32Z</version_modified>
   <xml_checksum>43564105</xml_checksum>
   <class_name>TariffSelectionGeneric</class_name>
   <display_name> Tariff Selection-Generic</display_name>
@@ -129,7 +129,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

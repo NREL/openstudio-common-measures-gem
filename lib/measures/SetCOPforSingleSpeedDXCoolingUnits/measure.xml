@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_co_pfor_single_speed_dx_cooling_units</name>
   <uid>a4a7297e-8314-4df7-86b5-bec18cdd0a3a</uid>
-  <version_id>d38c238c-5423-4378-9736-c655b16827c3</version_id>
-  <version_modified>2024-11-16T23:54:17Z</version_modified>
+  <version_id>f3b9ee9a-355b-4bf3-839e-2496ef247aa3</version_id>
+  <version_modified>2025-08-01T14:35:31Z</version_modified>
   <xml_checksum>9E2537CD</xml_checksum>
   <class_name>SetCOPforSingleSpeedDXCoolingUnits</class_name>
   <display_name>Set COP for Single Speed DX Cooling Units</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{37b886b6-96ce-4c96-931d-092eadc8869e}</default_value>
+      <default_value>{ffab1c15-ee51-41b0-8716-e41b3064e85c}</default_value>
       <choices>
         <choice>
-          <value>{37b886b6-96ce-4c96-931d-092eadc8869e}</value>
+          <value>{ffab1c15-ee51-41b0-8716-e41b3064e85c}</value>
           <display_name>*All Air Loops*</display_name>
         </choice>
       </choices>
@@ -140,7 +140,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

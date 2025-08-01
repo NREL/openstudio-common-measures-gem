@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_meter</name>
   <uid>ad4015f2-6d1d-4bb2-84b1-db47bc67a5b2</uid>
-  <version_id>3ef806d0-a2b9-4673-9ac0-bbfe838dae7e</version_id>
-  <version_modified>2024-11-16T23:54:16Z</version_modified>
+  <version_id>94902bec-e913-4664-a5e1-6bac52d62fd2</version_id>
+  <version_modified>2025-08-01T14:35:29Z</version_modified>
   <xml_checksum>0CA4D54C</xml_checksum>
   <class_name>AddMeter</class_name>
   <display_name>Add Meter</display_name>
@@ -82,7 +82,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

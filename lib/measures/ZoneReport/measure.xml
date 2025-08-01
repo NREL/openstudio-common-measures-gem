@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>zone_report</name>
   <uid>81ac119f-4841-434c-9e11-824310fe1cb7</uid>
-  <version_id>d766c945-4106-4958-90a6-9f492ff01192</version_id>
-  <version_modified>2025-03-10T17:36:01Z</version_modified>
+  <version_id>a5a25c05-02b3-4b8d-bf91-59fac3fddaa4</version_id>
+  <version_modified>2025-08-01T14:35:26Z</version_modified>
   <xml_checksum>2C8A3EEF</xml_checksum>
   <class_name>ZoneReport</class_name>
   <display_name>Zone Report</display_name>
@@ -33,7 +33,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -56,13 +56,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>8ABC273B</checksum>
+      <checksum>DE6FAD49</checksum>
     </file>
     <file>
       <filename>report.html.in</filename>
       <filetype>in</filetype>
       <usage_type>resource</usage_type>
-      <checksum>9863EEC5</checksum>
+      <checksum>4D3102CA</checksum>
     </file>
     <file>
       <filename>USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>

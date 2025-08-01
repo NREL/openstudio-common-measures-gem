@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>output_table_summary_reports</name>
   <uid>9edf689e-b0c4-4a80-9d3f-a5b8e9097275</uid>
-  <version_id>3a565ec4-aee4-4394-bdce-db77944da7de</version_id>
-  <version_modified>2025-05-30T15:39:54Z</version_modified>
+  <version_id>62f1b83b-3207-4f9d-b1b1-8cbd00b8841a</version_id>
+  <version_modified>2025-08-01T14:35:29Z</version_modified>
   <xml_checksum>59C2BE35</xml_checksum>
   <class_name>OutputTableSummaryReports</class_name>
   <display_name>Output Table Summary Reports</display_name>
@@ -75,7 +75,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>CD7F5672</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -98,13 +98,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>CA41D880</checksum>
+      <checksum>B964B566</checksum>
     </file>
     <file>
       <filename>output_table_summary_reports_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>FFA491A3</checksum>
+      <checksum>FA1D0E25</checksum>
     </file>
   </files>
 </measure>

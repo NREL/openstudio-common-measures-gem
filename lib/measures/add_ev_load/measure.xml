@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_ev_load</name>
   <uid>a23e0493-7357-48ca-b089-4d902efd6b50</uid>
-  <version_id>12fb9a15-3439-41f4-981b-832f5c219cd0</version_id>
-  <version_modified>2024-11-16T23:54:14Z</version_modified>
+  <version_id>2d6e7c7b-d342-478c-b85a-262b092eccd8</version_id>
+  <version_modified>2025-08-01T14:35:27Z</version_modified>
   <xml_checksum>9A202986</xml_checksum>
   <class_name>AddEVLoad</class_name>
   <display_name>Add_EV_Load</display_name>
@@ -139,7 +139,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
