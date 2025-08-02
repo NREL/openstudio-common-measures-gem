@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_cost_per_floor_area_to_lights</name>
   <uid>eeec5adf-b3a8-498a-b0d1-eabd81ca0620</uid>
-  <version_id>a27526a8-0f4a-427f-bb60-530b2d04ce45</version_id>
-  <version_modified>2024-11-16T23:54:14Z</version_modified>
+  <version_id>631674a4-ffd1-4b76-bc7f-eda9c07ec03c</version_id>
+  <version_modified>2025-08-01T14:35:27Z</version_modified>
   <xml_checksum>35DA4ED3</xml_checksum>
   <class_name>AddCostPerFloorAreaToLights</class_name>
   <display_name>Add Cost per FloorArea to Lights</display_name>
@@ -143,7 +143,7 @@ For baseline costs, 'Years Until Costs Start' indicates the year that the capita
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

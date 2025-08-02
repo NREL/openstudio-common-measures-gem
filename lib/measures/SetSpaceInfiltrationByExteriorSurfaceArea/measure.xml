@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_space_infiltration_by_exterior_surface_area</name>
   <uid>9d7b0789-3974-4869-a2a8-055391857e3c</uid>
-  <version_id>ae75fe7a-8830-4bc8-9d14-511e8cbb5792</version_id>
-  <version_modified>2024-11-16T23:54:14Z</version_modified>
+  <version_id>11cef87a-d0ec-41b0-b9f4-968723a0b2ff</version_id>
+  <version_modified>2025-08-01T14:35:27Z</version_modified>
   <xml_checksum>E88CCCA7</xml_checksum>
   <class_name>SetSpaceInfiltrationByExteriorSurfaceArea</class_name>
   <display_name>Set Space Infiltration by Exterior Surface Area</display_name>
@@ -148,7 +148,7 @@ A one time material &amp; installation cost can be added to the building object 
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

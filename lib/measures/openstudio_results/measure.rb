@@ -129,6 +129,16 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     energyplus_reports.setDefaultValue(false)
     args << energyplus_reports
 
+    # location of html dependencies, revit systems analysis uses local files
+    html_dependencies_choices = OpenStudio::StringVector.new
+    html_dependencies_choices << 'Local'
+    html_dependencies_choices << 'Remote'
+    html_dependencies = OpenStudio::Measure::OSArgument::makeChoiceArgument('html_dependencies', html_dependencies_choices, true)
+    html_dependencies.setDisplayName('HTML Dependencies')
+    html_dependencies.setDescription('Location of HTML dependencies. Local is useful for working offline.')
+    html_dependencies.setDefaultValue('Remote')
+    args << html_dependencies
+
     args
   end
 
@@ -219,6 +229,7 @@ class OpenStudioResults < OpenStudio::Measure::ReportingMeasure
     args = runner.getArgumentValues(arguments, user_arguments)
     args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     energyplus_reports = runner.getBoolArgumentValue('energyplus_reports', user_arguments)
+    @html_dependencies = runner.getStringArgumentValue('html_dependencies', user_arguments)
     unless args
       return false
     end

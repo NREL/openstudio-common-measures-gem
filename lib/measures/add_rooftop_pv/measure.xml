@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_rooftop_pv</name>
   <uid>34550614-0c87-44db-9252-0ca0915b1e64</uid>
-  <version_id>0d2f5512-be0c-4af5-a651-139c86a3adf0</version_id>
-  <version_modified>2024-11-16T23:54:15Z</version_modified>
+  <version_id>782e0e4a-7795-4904-b3f7-3e7dffe12469</version_id>
+  <version_modified>2025-08-01T14:35:28Z</version_modified>
   <xml_checksum>178163B6</xml_checksum>
   <class_name>AddRooftopPV</class_name>
   <display_name>Add Rooftop PV</display_name>
@@ -91,7 +91,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -114,7 +114,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>9AA2D6EE</checksum>
+      <checksum>47313383</checksum>
     </file>
     <file>
       <filename>add_rooftop_pv_test.rb</filename>

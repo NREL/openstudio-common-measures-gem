@@ -1,5 +1,31 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.12.2
+- Update dependency: `openstudio-extension` upgraded from `~> 0.9.1` to `~> 0.9.2`.
+- Regenerate all `measure.xml` files for measures (79 files) to update version IDs, timestamps, and checksums.
+- Add or update copyright/license header in:
+  - `lib/measures/simulation_control/measure.rb`
+  - `lib/measures/output_table_summary_reports/measure.rb`
+  - Associated test files for these measures.
+- Add new `LICENSE.md` for `simulation_control` measure (untracked).
+- Minor whitespace or formatting changes in some HTML report templates (5 files).
+
+## Version 0.12.1
+- Fixed [#203]( https://github.com/NREL/openstudio-common-measures-gem/pull/203 ), Update copyright year in LICENSE.md files to 2025 for all measures
+
+## Version 0.12.0
+- Support for OpenStudio 3.10 (upgrade to standards gem 0.8.2, extension gem 0.9.1)
+- todo add log after finalize bug fixes for this release
+- Fixed [#191]( https://github.com/NREL/openstudio-common-measures-gem/pull/191 ), AddRooftopPV: name objects + set explicit critical defaults + write ratedElectricPowerOutput
+- Fixed [#192]( https://github.com/NREL/openstudio-common-measures-gem/pull/192 ), ZoneReport fixes for 3.9.0
+- Fixed [#195]( https://github.com/NREL/openstudio-common-measures-gem/pull/195 ), fix openstudio results rendering
+- Fixed [#196]( https://github.com/NREL/openstudio-common-measures-gem/pull/196 ), add measure for Output Table Summary Reports
+- Fixed [#198]( https://github.com/NREL/openstudio-common-measures-gem/pull/198 ), test on CI and then investigate bug fixes to add for release
+- Fixed [#199]( https://github.com/NREL/openstudio-common-measures-gem/pull/199 ), 3.10.0 prep
+- Fixed [#200]( https://github.com/NREL/openstudio-common-measures-gem/pull/200 ), Output table summary reports
+- Fixed [#201]( https://github.com/NREL/openstudio-common-measures-gem/pull/201 ), Zone report 39 fix
+- Fixed [#202]( https://github.com/NREL/openstudio-common-measures-gem/pull/202 ), AddRooftopPV: name objects + set explicit critical defaults + write r…
+
 ## Version 0.11.1
 * Update dependencies for 3.9
 

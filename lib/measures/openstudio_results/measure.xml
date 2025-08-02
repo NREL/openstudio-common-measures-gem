@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>openstudio_results</name>
   <uid>a25386cd-60e4-46bc-8b11-c755f379d916</uid>
-  <version_id>a70480c9-7dfa-42f7-9632-93f96baafc66</version_id>
-  <version_modified>2024-11-16T23:54:10Z</version_modified>
+  <version_id>7d5c34e8-efac-4e9f-8d43-ce5c01e38838</version_id>
+  <version_modified>2025-08-01T14:35:24Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>OpenStudioResults</class_name>
   <display_name>OpenStudio Results</display_name>
@@ -467,6 +467,25 @@
         </choice>
       </choices>
     </argument>
+    <argument>
+      <name>html_dependencies</name>
+      <display_name>HTML Dependencies</display_name>
+      <description>Location of HTML dependencies. Local is useful for working offline.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Remote</default_value>
+      <choices>
+        <choice>
+          <value>Local</value>
+          <display_name>Local</display_name>
+        </choice>
+        <choice>
+          <value>Remote</value>
+          <display_name>Remote</display_name>
+        </choice>
+      </choices>
+    </argument>
   </arguments>
   <outputs>
     <output>
@@ -623,13 +642,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>E0389149</checksum>
+      <checksum>03CD4A32</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -646,7 +665,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>2D427F94</checksum>
+      <checksum>02BE0BDF</checksum>
     </file>
     <file>
       <filename>Siz.AirConditionerVariableRefrigerantFlow.rb</filename>
@@ -1462,7 +1481,7 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>3151B6DF</checksum>
+      <checksum>0F529563</checksum>
     </file>
     <file>
       <filename>1004_SmallHotel_a.osm</filename>

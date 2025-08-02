@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.1</schema_version>
+  <name>output_table_summary_reports</name>
+  <uid>9edf689e-b0c4-4a80-9d3f-a5b8e9097275</uid>
+  <version_id>62f1b83b-3207-4f9d-b1b1-8cbd00b8841a</version_id>
+  <version_modified>2025-08-01T14:35:29Z</version_modified>
+  <xml_checksum>59C2BE35</xml_checksum>
+  <class_name>OutputTableSummaryReports</class_name>
+  <display_name>Output Table Summary Reports</display_name>
+  <description>This Measure adds one of the predefined summary table outputs from EnergyPlus to the the Model, which can be helpful for requesting monthly or sizing reports.</description>
+  <modeler_description>OpenStudio automatically adds the AllSummary report during translation to EnergyPlus. Choices include reports with the All* prefix and do not include individual predefined reports such as the "Annual Building Utility Performance Summary". Including the Component Load Summary reports (any with *AndSizingPeriod) will increase the simulation run time</modeler_description>
+  <arguments>
+    <argument>
+      <name>report</name>
+      <display_name>Output Table Summary Report</display_name>
+      <description>AllSummary is added automatically by OpenStudio.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>AllSummaryAndSizingPeriod</default_value>
+      <choices>
+        <choice>
+          <value>AllSummary</value>
+          <display_name>AllSummary</display_name>
+        </choice>
+        <choice>
+          <value>AllMonthly</value>
+          <display_name>AllMonthly</display_name>
+        </choice>
+        <choice>
+          <value>AllSummaryAndMonthly</value>
+          <display_name>AllSummaryAndMonthly</display_name>
+        </choice>
+        <choice>
+          <value>AllSummaryAndSizingPeriod</value>
+          <display_name>AllSummaryAndSizingPeriod</display_name>
+        </choice>
+        <choice>
+          <value>AllSummaryMonthlyAndSizingPeriod</value>
+          <display_name>AllSummaryMonthlyAndSizingPeriod</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Reporting.QAQC</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>CBFF29F5</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>FD14B507</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.0.0</identifier>
+        <min_compatible>3.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>B964B566</checksum>
+    </file>
+    <file>
+      <filename>output_table_summary_reports_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FA1D0E25</checksum>
+    </file>
+  </files>
+</measure>

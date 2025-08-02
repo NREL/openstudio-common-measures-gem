@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>remove_internal_loads_directly_assigned_to_spaces</name>
   <uid>019999e0-3e0c-4a77-abbf-a3352de12384</uid>
-  <version_id>4512f509-8834-4404-b4a6-68a31b638d31</version_id>
-  <version_modified>2024-11-16T23:54:12Z</version_modified>
+  <version_id>886f21a9-0605-4e7a-97bc-5ec5a5bbc803</version_id>
+  <version_modified>2025-08-01T14:35:26Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>RemoveInternalLoadsDirectlyAssignedToSpaces</class_name>
   <display_name>RemoveInternalLoadsDirectlyAssignedToSpaces</display_name>
@@ -33,7 +33,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

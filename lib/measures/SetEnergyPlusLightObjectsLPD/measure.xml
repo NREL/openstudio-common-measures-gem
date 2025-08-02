@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_energyplus_light_objects_lpd</name>
   <uid>88e02d9f-611f-45ec-afd7-eb9c0e2f8ccf</uid>
-  <version_id>886930c7-2d40-4466-8c65-631001dbf86b</version_id>
-  <version_modified>2024-11-16T23:54:16Z</version_modified>
+  <version_id>9f17c105-d292-4fe5-a61e-da8f81ce1499</version_id>
+  <version_modified>2025-08-01T14:35:29Z</version_modified>
   <xml_checksum>B087785D</xml_checksum>
   <class_name>SetEnergyPlusLightObjectsLPD</class_name>
   <display_name>SetEnergyPlusLightObjectsLPD</display_name>
@@ -42,7 +42,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

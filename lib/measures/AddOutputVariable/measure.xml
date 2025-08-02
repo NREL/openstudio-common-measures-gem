@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_output_variable</name>
   <uid>2a058afb-e349-49ae-a4bf-2c56a42b4352</uid>
-  <version_id>27d01112-66bb-41ca-97a7-4b1dd74c83c7</version_id>
-  <version_modified>2024-11-16T23:54:18Z</version_modified>
+  <version_id>e84e2244-3691-44fa-ac91-7421e2a54367</version_id>
+  <version_modified>2025-08-01T14:35:31Z</version_modified>
   <xml_checksum>0CA4D54C</xml_checksum>
   <class_name>AddOutputVariable</class_name>
   <display_name>Add Output Variable</display_name>
@@ -94,7 +94,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
