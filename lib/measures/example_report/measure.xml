@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>example_report</name>
   <uid>174a6f71-3e8c-4f99-9e7a-b64f2e7535d4</uid>
-  <version_id>f5c2cf11-35e0-4955-8707-8f5b9e011c16</version_id>
-  <version_modified>2025-08-01T14:35:24Z</version_modified>
+  <version_id>78791872-2fe7-4d6b-8b8f-957e9426bbf5</version_id>
+  <version_modified>2025-08-08T03:48:23Z</version_modified>
   <xml_checksum>557BF06F</xml_checksum>
   <class_name>ExampleReport</class_name>
   <display_name>Example Report</display_name>
@@ -149,7 +149,7 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>DECB249E</checksum>
+      <checksum>CDD44109</checksum>
     </file>
     <file>
       <filename>ExampleModel.osm</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>hvac_psychrometric_chart</name>
   <uid>97213780-0727-4462-8ec0-9a6c3e475cd6</uid>
-  <version_id>a631ac09-eed9-433e-a431-66a899572054</version_id>
-  <version_modified>2025-08-01T14:35:26Z</version_modified>
+  <version_id>7aa9fb35-484e-45af-afe1-ccabf8baa2d9</version_id>
+  <version_modified>2025-08-08T03:48:27Z</version_modified>
   <xml_checksum>F657B621</xml_checksum>
   <class_name>HVACPsychrometricChart</class_name>
   <display_name>HVAC Psychrometric Chart</display_name>
@@ -76,7 +76,7 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>FDFE3DDC</checksum>
+      <checksum>96356037</checksum>
     </file>
     <file>
       <filename>USA_CO_Golden-NREL.724666_TMY3.epw</filename>

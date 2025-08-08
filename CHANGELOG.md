@@ -1,5 +1,8 @@
 # OpenStudio Common Measures Gem
 
+## Version 0.12.3
+- Update dependency: `openstudio-extension` upgraded from `~> 0.9.2` to `~> 0.9.3`.
+
 ## Version 0.12.2
 - Update dependency: `openstudio-extension` upgraded from `~> 0.9.1` to `~> 0.9.2`.
 - Regenerate all `measure.xml` files for measures (79 files) to update version IDs, timestamps, and checksums.
