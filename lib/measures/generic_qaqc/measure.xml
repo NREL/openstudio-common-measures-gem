@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>generic_qaqc</name>
   <uid>d58d6b29-69ba-4915-b907-3c2c37ddb7c7</uid>
-  <version_id>303811a2-818a-407b-b1f8-4796509afd9c</version_id>
-  <version_modified>2025-08-01T14:35:30Z</version_modified>
+  <version_id>cd027531-07d3-47a6-a25d-19e8a28403ff</version_id>
+  <version_modified>2025-08-08T03:48:28Z</version_modified>
   <xml_checksum>0A3BF61C</xml_checksum>
   <class_name>GenericQAQC</class_name>
   <display_name>Generic QAQC</display_name>
@@ -617,7 +617,7 @@
       <filename>report.html.erb</filename>
       <filetype>erb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>DECB249E</checksum>
+      <checksum>CDD44109</checksum>
     </file>
     <file>
       <filename>0422_test_b_sm_off.osm</filename>
